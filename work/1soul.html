@@ -68,45 +68,53 @@
     </ul>
 
     <h2>Website redesign</h2>
-    <p>The research reframed the brief: this wasn't a visual refresh, it was a trust and positioning problem. Three shifts drove the redesign — soften the "AI decides for you" framing, replace investor-speak social proof with something specific and local, and give safety its own first-class section instead of a passing mention.</p>
+    <p>The research reframed the brief: this wasn't a visual refresh, it was a trust and positioning problem. Three shifts drove the redesign — soften the "AI decides for you" framing, replace investor-speak social proof with something specific and local, and give safety its own first-class section instead of a passing mention. Every change below traces back to a specific line from the interviews or the comment-mining exercise, not a stylistic preference.</p>
 
     <h3>Before</h3>
     <figure class="figure">
       <img src="../assets/images/1soul/before-hero.jpg" alt="Original 1soul.ai homepage — a dark wine-red hero with the headline 'Your agent is already dating on your behalf', a text-input CTA, and '400+ early users, London first launch' stats" loading="lazy">
-      <figcaption>The original hero — dark, mysterious, and framed around the AI acting "on your behalf"</figcaption>
+      <figcaption>The original hero — dark, mysterious, and framed around the AI acting "on your behalf." This is precisely the "AI dates AI, then you meet" framing that the comment-mining exercise flagged as the strongest source of backlash.</figcaption>
     </figure>
     <figure class="figure">
       <img src="../assets/images/1soul/before-social.jpg" alt="Original site section reading 'Connecting students at UCL, LSE, King's, QMUL, UAL' above a Polaroid-style photo of friends playing a board game" loading="lazy">
-      <figcaption>Unclear audience ("is this for students only?") and imagery that read as friends hanging out, not dating</figcaption>
+      <figcaption>Unclear audience ("is this for students only?") and imagery that read as friends hanging out, not dating — a direct match to the "unclear audience" theme from the interview clustering.</figcaption>
     </figure>
     <figure class="figure">
       <img src="../assets/images/1soul/before-stats.jpg" alt="Original site copy reading 'The world's first Relationship Infrastructure' over vague statistics" loading="lazy">
-      <figcaption>"The world's first Relationship Infrastructure" — investor language, not dater language</figcaption>
+      <figcaption>"The world's first Relationship Infrastructure" — investor language, not dater language. No participant used a word like "infrastructure" to describe what they wanted from a dating product.</figcaption>
     </figure>
 
     <h3>After</h3>
+    <p>Design principle: keep the mechanic (AI narrows the field), remove every word that implies the AI decides <em>for</em> you instead of <em>with</em> you, and replace every vague claim with a number a sceptical dater could sanity-check themselves.</p>
     <figure class="figure figure--narrow">
       <img src="../assets/images/1soul/after-hero.jpg" alt="Redesigned 1soul homepage hero — a warm photo background, headline 'Be seriously match, not just casually seen', with 'Imperial College London, first launch' and '1000+ students with serious intention'" loading="lazy">
-      <figcaption>A warmer, human hero — with specific, local, verifiable social proof</figcaption>
+      <figcaption>A warmer, human hero with specific, local, verifiable social proof. "Imperial College London, first launch" replaces the vague university list — it answers "is this for students only?" honestly (yes, for now) rather than dodging the question.</figcaption>
     </figure>
     <figure class="figure figure--narrow">
       <img src="../assets/images/1soul/after-painpoints.jpg" alt="A pain-point section reading 'Finding love shouldn't feel like this', with quotes including 'I don't want to put my face for strangers and deepfakes'" loading="lazy">
-      <figcaption>The privacy/deepfake fear from research, answered head-on instead of ignored</figcaption>
+      <figcaption>The privacy/deepfake fear was the single largest trust gap in research, so it gets answered head-on in the customer's own words, in a dedicated section, instead of a footnote.</figcaption>
     </figure>
     <figure class="figure figure--narrow">
       <img src="../assets/images/1soul/after-flow.jpg" alt="A five-step 'how it works' flow: introduce yourself, Cupid refers someone, you look then decide, Cupid grows with you, and a match reveal — emphasising the user chooses" loading="lazy">
-      <figcaption>Cupid narrows the field; the user still looks, then decides — the AI-does-everything framing is gone</figcaption>
+      <figcaption>Cupid narrows the field; the user still looks, then decides. Spelling out all five steps — rather than one clever line — was the direct fix for "participants were curious what Cupid actually does, but the product didn't say."</figcaption>
     </figure>
     <figure class="figure figure--narrow">
       <img src="../assets/images/1soul/after-stats.jpg" alt="Updated stats section: 1000+ intentional singles, 360+ introductions made, London Unis" loading="lazy">
-      <figcaption>Concrete, specific numbers in place of the old abstract "world's first infrastructure" framing</figcaption>
+      <figcaption>Concrete, specific numbers in place of the old abstract "world's first infrastructure" framing — proof a visitor can mentally verify, not a claim they have to take on faith.</figcaption>
     </figure>
 
+    <div class="confidential" style="max-width:var(--container-narrow)">
+      <div>
+        <strong>Measured impact:</strong> after the redesign shipped, the female sign-up rate rose by roughly <strong>25%</strong>, with more women joining the platform than before — a direct read on whether the trust-and-safety rework actually moved the group that was most hesitant in research.
+      </div>
+    </div>
+
     <h2>An AI-native, design-to-ship workflow</h2>
-    <p>This is the project where I work closest to the metal as a designer: I don't hand off a Figma file and wait — I use AI tools to take a direction from research finding to shipped, live product myself, then use AI again to correct course once real users touch it. Roughly, the pipeline looks like:</p>
+    <p>This is the project where I work closest to the metal as a designer: I don't hand off a Figma file and wait — I use AI tools to take a direction from research finding to shipped, live product myself, then use AI again to correct course once real users touch it. A core part of that is a tight <strong>Claude → Figma → Claude Code</strong> loop: I use Claude to reason through a direction and generate it directly as an editable Figma file, review and adjust it visually in Figma, then hand that approved file to Claude Code to implement in production — looping back into Figma for another visual pass whenever a section needs more exploration before it's worth coding. Roughly, the full pipeline looks like:</p>
     <ul>
       <li><strong>Claude</strong> — research synthesis and reasoning: clustering four raw interview transcripts into a prioritised, actionable framework in hours instead of days, and drafting positioning and copy directions grounded directly in that evidence, not generated in a vacuum</li>
-      <li><strong>Claude Code</strong> — building and iterating the actual product: the website redesign shown above and the logic behind Agent Cupid were built and refined in code, not just mocked up</li>
+      <li><strong>Claude → Figma</strong> — turning an approved direction into an editable Figma file, so visual iteration (spacing, hierarchy, imagery) happens fast and stays reviewable before anything is built</li>
+      <li><strong>Claude Code</strong> — building and iterating the actual product from the approved Figma file: the website redesign shown above and the logic behind Agent Cupid were built and refined in code, not just mocked up</li>
       <li><strong>GitHub</strong> — version control across iterations, so every redesign round (like the before/after above) is a real, reviewable change, not a one-off file</li>
       <li><strong>Vercel</strong> — deployment, so a design decision made in the morning can be live and in front of real daters the same day</li>
       <li><strong>AI, again, after launch</strong> — once a version is live, AI helps me re-check copy, flows and edge cases against how real users actually respond, closing the loop back into the next research round</li>
