@@ -33,7 +33,7 @@
           io.unobserve(entry.target);
         }
       });
-    }, {threshold:0.2});
+    }, {threshold:0, rootMargin:'0px 0px -10% 0px'});
     reveals.forEach(function(el){ io.observe(el); });
   } else {
     reveals.forEach(function(el){ el.classList.add('is-visible'); });

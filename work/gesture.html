@@ -49,8 +49,8 @@
     <p>A device for a new approach to password exploration, featuring a smart-lock structure that uses machine learning to recognise gestures. Each small circular ring corresponds to the angle of a finger, controlled by a small servo motor — when every gesture is correct, the lock opens.</p>
 
     <figure class="figure">
-      <img src="../assets/images/gesture/device.jpg" alt="Close-up of the gesture-controlled lock device, showing its ring mechanism, servo motors and wiring, with a phone propped beside it" loading="lazy">
-      <figcaption>The gesture-lock mechanism — rings, servos and wiring</figcaption>
+      <img src="../assets/images/gesture/device-front.jpg" alt="Front view of the gesture-controlled lock device — a square panel with four concentric rotating rings around a central iris, with a phone propped in front for scale" loading="lazy">
+      <figcaption>The finished device — one ring per finger, iris mechanism at the centre</figcaption>
     </figure>
 
     <h2>My contributions</h2>
@@ -61,6 +61,16 @@
       <li>Responsible for training the machine-learning model</li>
     </ul>
     <p>The device consists of four SG92R micro servos, one MG996R servo, one MG995R servo, and an Arduino. Each gesture corresponds to a circle whose rotation angle controls the actual rotation of the ring. When all four gestures reach their specified angle, the iris structure rotates open and an internal push rod releases the locked item.</p>
+
+    <figure class="figure">
+      <img src="../assets/images/gesture/device-hand.jpg" alt="A hand reaching toward the gesture-lock device to interact with its rings" loading="lazy">
+      <figcaption>Testing gesture recognition against the device</figcaption>
+    </figure>
+
+    <figure class="figure">
+      <img src="../assets/images/gesture/device.jpg" alt="Close-up of the gesture-controlled lock device, showing its ring mechanism, servo motors and wiring" loading="lazy">
+      <figcaption>The ring mechanism, servo motors and wiring, from the side</figcaption>
+    </figure>
 
     <h2>Technical implementation — gesture and angle design</h2>
     <p><strong>Vision OSC</strong> — reads hand signals and recognises gestures, sending signals on to Processing. <strong>Processing</strong> — collects those messages and converts them into binary signals Wekinator can analyse. <strong>Wekinator</strong> — performs the machine learning: classification to identify each gesture, and a custom model to read the exact rotation angle. <strong>Arduino</strong> — receives both signals and drives the precise rotation of each servo to achieve mechanical control.</p>
