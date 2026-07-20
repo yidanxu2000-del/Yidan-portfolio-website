@@ -1,0 +1,89 @@
+/* Design tokens — Yidan Xu design system (claude.ai/design/p/3304f440-c204-470d-993f-49aedd0825c8) */
+
+:root{
+  /* colors */
+  --white:#ffffff;
+  --gray-1:#f5f5f7;
+  --gray-2:#e8e8ed;
+  --gray-3:#d2d2d7;
+  --gray-4:#86868b;
+  --gray-5:#6e6e73;
+  --gray-6:#424245;
+  --gray-7:#1d1d1f;
+  --black:#000000;
+  --accent:#2b5fd9;
+  --accent-hover:#1e4dc0;
+  --accent-tint:#eaf0fd;
+  --surface-primary:var(--white);
+  --surface-secondary:var(--gray-1);
+  --surface-inverse:var(--black);
+  --surface-inverse-alt:#1d1d1f;
+  --text-primary:var(--gray-7);
+  --text-secondary:var(--gray-5);
+  --text-tertiary:var(--gray-4);
+  --text-on-dark:var(--white);
+  --text-on-dark-secondary:#a1a1a6;
+  --text-link:var(--accent);
+  --border-hairline:rgba(0,0,0,0.08);
+  --border-hairline-dark:rgba(255,255,255,0.14);
+
+  /* type — SF Pro is Apple's proprietary font and isn't redistributable, so the
+     system stack renders true SF Pro on Apple devices and falls back to Inter
+     (loaded from Google Fonts) everywhere else, per the design system's own guidance. */
+  --font-display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Helvetica Neue",Arial,sans-serif;
+  --font-text:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono","Menlo",monospace;
+  --text-hero:clamp(40px,7vw,96px);
+  --text-h1:clamp(32px,5vw,64px);
+  --text-h2:clamp(26px,3.6vw,44px);
+  --text-h3:clamp(20px,2.4vw,28px);
+  --text-eyebrow:15px;
+  --text-body-lg:21px;
+  --text-body:17px;
+  --text-body-sm:14px;
+  --text-caption:12px;
+  --lh-tight:1.05;
+  --lh-snug:1.2;
+  --lh-body:1.5;
+  --ls-tight:-0.02em;
+  --ls-snug:-0.01em;
+  --ls-normal:0em;
+  --fw-regular:400;
+  --fw-medium:500;
+  --fw-semibold:600;
+  --fw-bold:700;
+
+  /* spacing */
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:24px;
+  --space-6:32px;
+  --space-7:48px;
+  --space-8:64px;
+  --space-9:96px;
+  --space-10:128px;
+  --space-11:160px;
+  --radius-sm:12px;
+  --radius-md:18px;
+  --radius-lg:28px;
+  --radius-pill:980px;
+  --container-max:1200px;
+  --container-narrow:692px;
+  --section-pad-y:var(--space-10);
+  --section-pad-y-sm:var(--space-8);
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  --duration-fast:0.3s;
+  --duration-base:0.6s;
+  --duration-slow:0.9s;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--surface-primary);color:var(--text-primary);font-family:var(--font-text);font-size:var(--text-body);line-height:var(--lh-body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+a{color:var(--text-link);text-decoration:none;}
+a:hover{color:var(--accent-hover);}
+h1,h2,h3,h4,p{margin:0;}
+img{max-width:100%;display:block;}
+::selection{background:var(--accent);color:var(--white);}

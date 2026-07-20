@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edog ｜ 我的小狗 — Yidan Xu</title>
+<meta name="description" content="Pets die in the real world, but their data survives online — an AR experience that lets a pet's appearance and personality live on.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<nav class="navbar navbar--dark">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__logo">Yidan Xu</a>
+    <div class="navbar__links">
+      <a href="../index.html#work">Work</a>
+      <a href="../about.html">About</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+    <button class="navbar__toggle" aria-label="Menu">☰</button>
+  </div>
+  <div class="navbar__mobile">
+    <a href="../index.html#work">Work</a>
+    <a href="../about.html">About</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="case-hero__inner reveal">
+    <a class="back-link" href="../index.html#work">← All work</a>
+    <div class="case-hero__meta">2022 · Personal Project</div>
+    <h1 class="case-hero__title">Edog ｜ 我的小狗</h1>
+    <p class="case-hero__subtitle">Pets die in the real world, but their data is preserved intact on the internet. Maybe they can get a second life there.</p>
+    <div class="case-hero__tags tag-row" style="justify-content:flex-start">
+      <span class="tag tag--dark">AR</span>
+      <span class="tag tag--dark">Interaction</span>
+      <span class="tag tag--dark">Service</span>
+    </div>
+  </div>
+</header>
+
+<section class="prose-section section--light">
+  <div class="prose reveal">
+    <h2>Project overview</h2>
+    <p>Pets die in the real world, but their data is preserved intact on the internet. Maybe pets can get a second life there.</p>
+
+    <h2>My contributions</h2>
+    <p>A personal project — AR, interaction design, research, 3D modelling and visual design completed individually, with programming and hardware help from computer-science classmates.</p>
+    <p>It was inspired by a friend, Jane, whose dog Pupu passed away unexpectedly in August 2021. It was hard for her to accept sending Pupu to be cremated: "I want to see Pupu wake up, I want to take Pupu to my new house and introduce Pupu to you!"</p>
+    <p>That led me to ask: could an AR experience use a pet's appearance and personality data, combined with virtual-reality technology, to let them "survive" online — recognising old toys, meeting the owner's new pets or family members, even making new friends?</p>
+    <p>I designed an experience where, as soon as the owner gets home and puts on their slippers, a pressure sensor picks up the signal and the AR experience begins. (Currently, AR and pressure sensing are each implemented — connectivity between the two isn't realised yet.)</p>
+
+    <figure class="figure">
+      <img src="../assets/images/edog/journey.jpg" alt="Isometric illustration of the Edog experience journey — a person entering through a door, an object glowing, a dog appearing in AR, interacting with an old toy, meeting new family members and pets, and finally settling to sleep" loading="lazy">
+      <figcaption>The Edog experience journey — from arriving home to sleep</figcaption>
+    </figure>
+
+    <h2>Design point</h2>
+    <h3>Research — pet life</h3>
+    <p>Per the White Paper on China's Pet Industry (2020, Qianzhan Industry Research Institute), the number of cats and dogs in urban China exceeded 100 million in 2021, with 62.94 million pet owners — both rising year on year. Pet content is hugely popular on Chinese social media, and internationally people run dedicated social accounts for their pets on Facebook, Instagram and YouTube.</p>
+    <h3>Research — pet death</h3>
+    <p>As living standards rise, pet ownership has become one of many families' great interests — and the pet-funeral industry has grown alongside it. People increasingly want more than a funeral: turning pet fur into diamonds, cloning pets, and other ways to keep their companions close for longer.</p>
+    <h3>Competitor / user research</h3>
+    <p>Existing apps focus only on entertainment during a pet's lifetime, without addressing the emotional needs of owners after a pet passes away.</p>
+
+    <h2>Design proposal</h2>
+    <p>An AR system automatically triggered when someone returns to the place they spent time with their pet — home. People can interact with the pet, whose data retains its appearance and personality and keeps learning and developing — an AR pet might even feel jealous of a new pet. In this way, pets can live with us in another form.</p>
+    <h3>Experience design</h3>
+    <p>The experience begins the moment the owner steps into the home, and ends at the moment of sleep — indoor slippers were chosen as the trigger for the whole sequence:</p>
+    <ol>
+      <li>Putting on slippers triggers the pet's appearance</li>
+      <li>Interacting with old toys with the pet</li>
+      <li>Introducing new family members to the pet</li>
+      <li>Personal social time with the pet</li>
+      <li>Removing slippers marks the end of the experience</li>
+    </ol>
+    <h3>Software &amp; hardware</h3>
+    <p><strong>C4D</strong> — modelling pet images and recording simple pet-interaction videos. <strong>Unity</strong> — implementing the AR effect on mobile platforms. <strong>Arduino</strong> — the built-in pressure sensor in the slippers and its transmission signal. <strong>Python</strong> — receives the pressure signal and triggers the corresponding interactive AR video.</p>
+  </div>
+</section>
+
+<section class="section section--light section--tight">
+  <div class="section__inner reveal case-nav">
+    <a class="btn btn--secondary" href="gesture.html">← Gesture</a>
+    <a class="btn btn--secondary" href="illustrator.html">Illustrator →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__top">
+    <div class="footer__name">Yidan Xu</div>
+    <div class="footer__links">
+      <a href="mailto:yidanxu2000@outlook.com">yidanxu2000@outlook.com</a>
+      <a href="https://www.linkedin.com/in/yidan-xu2000/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div class="footer__bottom">© <span id="year"></span> Yidan Xu. All rights reserved.</div>
+</footer>
+
+<script src="../assets/js/site.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
