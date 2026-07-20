@@ -29,23 +29,30 @@
 - Microsoft Clarity 用户行为分析埋点脚本
 - jQuery、Webflow 运行时 JS（`webflow.schunk...js` 等，这是 Webflow 平台自己的通用交互引擎代码，React 重写时不会用到）
 
-## 图片：已下载 4 张示例 + 完整地址清单（148张）
+### 图片：已全部下载并分类整理完毕
 
-**没能把全部图片下载下来，原因如下：** 抽样检测发现这些图片体积普遍很大（有的截图/GIF 单张 1-4MB），148 张全部拉取需要把上百MB的数据以 base64 文本形式经过对话上下文传输，这个量级会导致对话严重卡顿甚至失败，所以我先完整保留了**全部图片的原始CDN地址清单**（`assets/images/ALL_IMAGE_URLS.txt`，148条），并示范下载了4张作为验证：
+后续通过 Webflow 后台 Assets 面板导出了全部原图（约400个文件，含同一张图的 avif/png 等重复格式），存放在 `webflow image/` 原始文件夹里。又写了 `sort_webflow_images.py` 脚本，按图片在网站各页面的实际用途自动分类，运行后生成：
 
-- `menu-icon.png`
-- `home-cover-portfolio.png`
-- `gesture-lockdevice-1.png`
-- `xiaomi-auto-hero-IMG_5085.jpg`
+```
+sorted_images/
+  shared/              多个页面共用的图（logo、封面等）
+  home/
+  about/
+  work-xiaomi-auto/
+  work-huawei/
+  work-res/
+  work-pulpatronics/
+  work-entropy/
+  work-innovate-adhd/
+  work-project-2/
+  work-project-4/
+  work-project-6/
+  work-hand-drawing/
+  _unsorted/           没能自动匹配上的老素材/草稿图，多为网站现在没用到的文件
+```
 
-**获取全部图片原图的推荐方法（几分钟搞定，比我一张张抓快得多）：**
-
-1. 登录 Webflow → 打开这个项目 → 左侧面板找到 **Assets**（资源库）
-2. 全选所有图片 → 点击 **Download**，Webflow 会打包成一个 zip（这个功能所有计划都能用，不需要付费 Workspace）
-3. 把下载的 zip 发给我，我来解压、按 `ALL_IMAGE_URLS.txt` 里的文件名核对补齐到 `assets/images/`，再补一次 git commit
-
-这样能拿到最原始质量的图片，比我通过浏览器脚本重新抓取更快也更完整。
+同一张图的 avif/png 重复格式脚本会自动去重只保留一份。`assets/images/ALL_IMAGE_URLS.txt` 里原来记录的148条 CDN 地址仍保留作为交叉核对参考，但现在实际使用的是 `sorted_images/` 里的本地文件。
 
 ## Git
 
-本目录已 `git init` 并完成一次 commit，包含目前已有的文案、CSS 和示例图片。图片补齐后会再提交一次。
+本仓库已推送到正式的 GitHub 仓库：https://github.com/yidanxu2000-del/Yidan-portfolio-website 。目前 `site_backup/` 是原网站的存档，新的 React 版本正在仓库根目录的 `site/` 文件夹里由 Claude Code 搭建和迭代，两者互不影响——`site_backup/` 保持只读存档，不会再改动。
