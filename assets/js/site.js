@@ -35,6 +35,8 @@
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
     var w = 0, h = 0, bgStars = [];
     var mouse = {x:-9999,y:-9999};
+    var parallax = {nx:0, ny:0};
+    var parallaxTarget = {nx:0, ny:0};
     var entranceMs = opts.entrance ? 1500 : 0;
     var startTime = performance.now();
 
@@ -50,13 +52,31 @@
       var tints = ['255,255,255', '186,196,255', '170,210,255', '255,224,178'];
       for(var i=0;i<count;i++){
         var tint = Math.random() < 0.72 ? tints[0] : tints[1 + Math.floor(Math.random()*3)];
+        var r = Math.random()*1.2 + 0.3;
         bgStars.push({
           x: Math.random()*w, y: Math.random()*h,
-          r: Math.random()*1.2 + 0.3,
+          r: r,
           phase: Math.random()*Math.PI*2,
           speed: 0.5 + Math.random()*1.2,
-          tint: tint
+          tint: tint,
+          depth: (r - 0.3) / 1.2
         });
+      }
+      // a small set of larger, closer "foreground" stars that drift further
+      // with the cursor than the background field, so the scene reads as
+      // layered space rather than one flat plane
+      if(opts.foreground){
+        var fgCount = Math.max(10, Math.round((w * h) / 90000));
+        for(var j=0;j<fgCount;j++){
+          bgStars.push({
+            x: Math.random()*w, y: Math.random()*h,
+            r: Math.random()*1.6 + 1.6,
+            phase: Math.random()*Math.PI*2,
+            speed: 0.4 + Math.random()*0.8,
+            tint: Math.random() < 0.6 ? tints[0] : tints[1 + Math.floor(Math.random()*3)],
+            depth: 1.4 + Math.random()*0.6
+          });
+        }
       }
     }
 
@@ -74,25 +94,31 @@
       var ep = entranceMs ? Math.min(1, (performance.now() - startTime) / entranceMs) : 1;
       var eased = 1 - Math.pow(1 - ep, 3);
       var cx = w / 2, cy = h / 2;
+      parallax.nx += (parallaxTarget.nx - parallax.nx) * 0.06;
+      parallax.ny += (parallaxTarget.ny - parallax.ny) * 0.06;
       for(var i=0;i<bgStars.length;i++){
         var s = bgStars[i];
         var tw = 0.55 + 0.45*Math.sin(t*s.speed + s.phase);
         var alpha = 0.25 + 0.55*tw;
+        // per-star depth parallax: nearer (larger) stars drift further with
+        // the cursor than distant ones, so the field has real spatial layers
+        var px = s.x + parallax.nx * s.depth * 22;
+        var py = s.y + parallax.ny * s.depth * 16;
         if(ep < 1){
           // warp-in: stars streak outward from centre into their resting
           // position, like arriving at light-speed into the field
-          var fx = cx + (s.x - cx) * eased;
-          var fy = cy + (s.y - cy) * eased;
+          var fx = cx + (px - cx) * eased;
+          var fy = cy + (py - cy) * eased;
           var trail = (1 - eased) * 0.55;
           ctx.beginPath();
-          ctx.moveTo(fx - (s.x - cx) * trail, fy - (s.y - cy) * trail);
+          ctx.moveTo(fx - (px - cx) * trail, fy - (py - cy) * trail);
           ctx.lineTo(fx, fy);
           ctx.strokeStyle = 'rgba(' + s.tint + ',' + (alpha * ep).toFixed(3) + ')';
           ctx.lineWidth = Math.max(0.3, s.r * 0.9);
           ctx.stroke();
         } else {
           ctx.beginPath();
-          ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+          ctx.arc(px, py, s.r, 0, Math.PI*2);
           ctx.fillStyle = 'rgba(' + s.tint + ',' + alpha + ')';
           ctx.fill();
         }
@@ -104,7 +130,8 @@
     requestAnimationFrame(draw);
     window.addEventListener('resize', resize);
     return {
-      setMouse: function(x,y){ mouse.x = x; mouse.y = y; }
+      setMouse: function(x,y){ mouse.x = x; mouse.y = y; },
+      setParallax: function(nx,ny){ parallaxTarget.nx = nx; parallaxTarget.ny = ny; }
     };
   }
 
@@ -113,7 +140,7 @@
   var heroField = document.querySelector('.hero-starfield');
   if(heroField){
     var heroCanvas = heroField.querySelector('canvas');
-    paintTwinklingStars(heroCanvas, heroField, {density:12000, glow:false, entrance:true});
+    var heroRenderer = paintTwinklingStars(heroCanvas, heroField, {density:11000, glow:false, entrance:true, foreground:true});
 
     var heroSection = heroField.closest('.section--full') || heroField.parentElement;
     if(heroSection && !reduceMotion){
@@ -121,10 +148,12 @@
         var rect = heroSection.getBoundingClientRect();
         var nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;   // -1 .. 1
         var ny = ((e.clientY - rect.top) / rect.height) * 2 - 1;
-        heroCanvas.style.transform = 'rotateX(' + (-ny*4).toFixed(2) + 'deg) rotateY(' + (nx*6).toFixed(2) + 'deg) scale(1.04) translate(' + (-nx*10).toFixed(1) + 'px,' + (-ny*8).toFixed(1) + 'px)';
+        heroCanvas.style.transform = 'rotateX(' + (-ny*5).toFixed(2) + 'deg) rotateY(' + (nx*7).toFixed(2) + 'deg) scale(1.05) translate(' + (-nx*14).toFixed(1) + 'px,' + (-ny*10).toFixed(1) + 'px)';
+        if(heroRenderer) heroRenderer.setParallax(nx, ny);
       });
       heroSection.addEventListener('mouseleave', function(){
         heroCanvas.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1) translate(0,0)';
+        if(heroRenderer) heroRenderer.setParallax(0, 0);
       });
     }
   }
