@@ -287,7 +287,20 @@
 .footer__bottom{max-width:var(--container-max);margin:var(--space-6) auto 0;font-size:var(--text-caption);color:var(--gray-6);}
 
 /* ---------- Case study pages ---------- */
-.case-hero{background:var(--surface-inverse);color:var(--text-on-dark);padding:var(--space-9) var(--space-5) var(--space-8);}
+.case-hero{
+  background:var(--surface-inverse);color:var(--text-on-dark);
+  padding:var(--space-9) var(--space-5) var(--space-8);
+  position:relative;overflow:hidden;
+}
+.case-hero--photo{
+  min-height:min(640px,80vh);display:flex;align-items:flex-end;
+  background-size:cover;background-position:center;
+}
+.case-hero--photo::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.68) 45%, rgba(0,0,0,.92) 100%);
+}
+.case-hero--photo .case-hero__inner{position:relative;z-index:1;width:100%;}
 .case-hero__inner{max-width:var(--container-max);margin:0 auto;}
 .back-link{
   display:inline-flex;align-items:center;gap:6px;font-size:var(--text-body-sm);
