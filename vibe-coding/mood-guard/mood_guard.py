@@ -55,7 +55,9 @@ def days_since_last_activity(data):
 
 
 def status_icon(days):
-    if days is None or days >= WARNING_DAYS:
+    if days is None:
+        return "🙂"  # no history yet — nothing to warn about, just getting started
+    if days >= WARNING_DAYS:
         return "🚨"
     if days >= WARNING_DAYS - 3:
         return "⚠️"
