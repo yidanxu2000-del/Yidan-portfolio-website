@@ -49,7 +49,7 @@
     var parallax = {nx:0, ny:0};
     var parallaxTarget = {nx:0, ny:0};
     var entranceMs = opts.entrance ? 1500 : 0;
-    var startTime = performance.now();
+    var startTime = opts.entranceManual ? null : performance.now();
 
     function resize(){
       w = host.clientWidth; h = host.clientHeight;
@@ -102,7 +102,7 @@
         ctx.fillStyle = g;
         ctx.fillRect(0,0,w,h);
       }
-      var ep = entranceMs ? Math.min(1, (performance.now() - startTime) / entranceMs) : 1;
+      var ep = entranceMs ? (startTime === null ? 0 : Math.min(1, (performance.now() - startTime) / entranceMs)) : 1;
       var eased = 1 - Math.pow(1 - ep, 3);
       var cx = w / 2, cy = h / 2;
       parallax.nx += (parallaxTarget.nx - parallax.nx) * 0.06;
@@ -142,7 +142,8 @@
     window.addEventListener('resize', resize);
     return {
       setMouse: function(x,y){ mouse.x = x; mouse.y = y; },
-      setParallax: function(nx,ny){ parallaxTarget.nx = nx; parallaxTarget.ny = ny; }
+      setParallax: function(nx,ny){ parallaxTarget.nx = nx; parallaxTarget.ny = ny; },
+      triggerEntrance: function(){ if(startTime === null) startTime = performance.now(); }
     };
   }
 
@@ -175,14 +176,27 @@
     var canvas = field.querySelector('.starfield-canvas');
     var linksLayer = field.querySelector('.starfield-links');
     var mouse = {x:-9999,y:-9999};
-    var renderer = paintTwinklingStars(canvas, field, {density:9000, glow:true});
+    var renderer = paintTwinklingStars(canvas, field, {density:9000, glow:true, entrance:true, entranceManual:true});
 
-    // burst-in: reveal stars with a staggered "pop" once the section is in view
+    // entrance: the moment this section scrolls into view, the whole field
+    // swirls/rotates into place (canvas stars warp in, the star-links layer
+    // spins down from an angle) instead of just sitting there static —
+    // works identically on touch, no mouse needed, so mobile gets it too
     var stars = linksLayer ? Array.prototype.slice.call(linksLayer.querySelectorAll('.star-link')) : [];
     if('IntersectionObserver' in window){
       var burstIO = new IntersectionObserver(function(entries){
         entries.forEach(function(entry){
           if(entry.isIntersecting){
+            if(renderer) renderer.triggerEntrance();
+            field.classList.add('is-revealed');
+            canvas.classList.add('is-revealing');
+            if(linksLayer) linksLayer.classList.add('is-revealing');
+            // one-shot animation only — drop the class once it's done so it
+            // never lingers and fights the mouse-driven inline transform
+            setTimeout(function(){
+              canvas.classList.remove('is-revealing');
+              if(linksLayer) linksLayer.classList.remove('is-revealing');
+            }, 1450);
             stars.forEach(function(star, i){
               setTimeout(function(){ star.classList.add('is-burst'); }, 40 * i);
             });
@@ -192,6 +206,8 @@
       }, {threshold:0.15});
       burstIO.observe(field);
     } else {
+      if(renderer) renderer.triggerEntrance();
+      field.classList.add('is-revealed');
       stars.forEach(function(star){ star.classList.add('is-burst'); });
     }
 

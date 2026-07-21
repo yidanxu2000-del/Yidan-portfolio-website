@@ -195,13 +195,36 @@ body{background:#07080d;}
   position:absolute;inset:0;z-index:2;transform-style:preserve-3d;
   transition:transform .3s var(--ease-out);will-change:transform;
 }
+/* whole-field swirl entrance: rotated, scaled back and invisible until the
+   section scrolls into view, then spins/zooms down into place. Runs as a
+   one-shot animation (JS removes the class once it finishes) rather than a
+   plain transition, so it never fights with the mouse-driven inline
+   transform these same elements get on hover. Plays identically on touch
+   — it's triggered by IntersectionObserver, no mouse required. */
+.starfield-section:not(.is-revealed) .starfield-links,
+.starfield-section:not(.is-revealed) .starfield-canvas{opacity:0;}
+.starfield-links.is-revealing{animation:starfield-links-entrance 1.4s cubic-bezier(.22,1,.36,1) both;}
+.starfield-canvas.is-revealing{animation:starfield-canvas-entrance 1.4s cubic-bezier(.22,1,.36,1) both;}
+@keyframes starfield-links-entrance{
+  0%{opacity:0;transform:rotateY(46deg) rotateX(10deg) scale(1.5);}
+  100%{opacity:1;transform:rotateY(0deg) rotateX(0deg) scale(1);}
+}
+@keyframes starfield-canvas-entrance{
+  0%{opacity:0;transform:scale(1.5);}
+  100%{opacity:1;transform:scale(1);}
+}
+@media(prefers-reduced-motion:reduce){
+  .starfield-section:not(.is-revealed) .starfield-links,
+  .starfield-section:not(.is-revealed) .starfield-canvas{opacity:1;}
+  .starfield-links.is-revealing,.starfield-canvas.is-revealing{animation:none;}
+}
 .star-link{
-  position:absolute;transform:translate(-50%,-50%) scale(0);opacity:0;
+  position:absolute;transform:translate(-50%,-50%) scale(0) rotate(-65deg);opacity:0;
   display:flex;flex-direction:column;align-items:center;gap:6px;
   text-decoration:none;color:var(--text-on-dark);cursor:pointer;-webkit-tap-highlight-color:transparent;
-  transition:opacity .6s var(--ease-out),transform .6s cubic-bezier(.34,1.56,.64,1);
+  transition:opacity .7s var(--ease-out),transform .7s cubic-bezier(.34,1.56,.64,1);
 }
-.star-link.is-burst{transform:translate(-50%,-50%) scale(1);opacity:1;}
+.star-link.is-burst{transform:translate(-50%,-50%) scale(1) rotate(0deg);opacity:1;}
 .star-link__dot{
   --dot-size:6px;
   width:var(--dot-size);height:var(--dot-size);border-radius:50%;background:#fff;
@@ -255,8 +278,13 @@ body{background:#07080d;}
   background:linear-gradient(to bottom, transparent, rgba(10,8,20,.85));
 }
 
+/* used to be hidden entirely below 680px — the picker only needed a mouse
+   to be useful (hover tooltip, cursor tilt), but tapping a star already
+   navigates via a plain <a href>, and the entrance/label states don't
+   depend on hover, so there's no real reason to withhold it on touch */
 @media(max-width:680px){
-  .starfield-section{display:none;}
+  .starfield-section{height:min(760px,150vw);min-height:520px;}
+  .star-link__label{font-size:11px;}
 }
 @media(prefers-reduced-motion:reduce){
   .starfield-canvas{display:none;}
