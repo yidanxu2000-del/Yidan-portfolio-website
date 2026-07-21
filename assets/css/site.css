@@ -106,6 +106,9 @@ body{background:#07080d;}
 .btn:active{transform:scale(.97);}
 
 .btn-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+@media(max-width:480px){
+  .btn-row{flex-direction:column;align-items:center;gap:var(--space-4);}
+}
 
 /* ---------- Tags ---------- */
 .tag{
@@ -657,7 +660,7 @@ body{background:#07080d;}
 .timeline__item{display:flex;gap:var(--space-6);padding:var(--space-5) 0;border-top:1px solid var(--border-hairline);}
 .timeline__item:first-child{border-top:none;}
 .timeline__date{flex:0 0 160px;font-size:var(--text-body-sm);color:var(--text-tertiary);padding-top:2px;}
-.timeline__role{font-size:var(--text-body-lg);color:var(--text-primary);font-weight:var(--fw-medium);flex:1;min-width:0;}
+.timeline__role{font-size:var(--text-body-lg);color:var(--text-primary);font-weight:var(--fw-medium);flex:1;min-width:0;overflow-wrap:break-word;}
 .timeline__role--logo{display:grid;grid-template-columns:64px 1fr;column-gap:14px;align-items:start;}
 .timeline__logo{height:26px;width:64px;object-fit:contain;object-position:left center;margin-top:2px;}
 .timeline__logo-badge{
@@ -665,8 +668,14 @@ body{background:#07080d;}
   width:26px;height:26px;border-radius:50%;border:1px solid var(--border-hairline);
   font-family:var(--font-display);font-size:9px;font-weight:var(--fw-semibold);color:var(--text-secondary);
 }
-.timeline__role-text{min-width:0;}
+.timeline__role-text{min-width:0;overflow-wrap:break-word;}
 @media(max-width:600px){
+  /* stack date above role+logo instead of squeezing a fixed 160px date
+     column next to a logo+text grid — on a phone-width screen the two
+     together didn't leave the text room to wrap, so long single words
+     (Innovation, Engineering, College...) overflowed past the edge */
+  .timeline__item{flex-direction:column;gap:var(--space-2);}
+  .timeline__date{flex:none;}
   .timeline__role--logo{grid-template-columns:44px 1fr;}
   .timeline__role--logo .timeline__logo{height:22px;width:44px;}
 }
