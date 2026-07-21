@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gesture — Yidan Xu</title>
+<meta name="description" content="A gesture-controlled lock trained with machine learning — it opens only once every finger reaches its correct angle.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<nav class="navbar navbar--dark">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__logo">Yidan Xu</a>
+    <div class="navbar__links">
+      <a href="../index.html#work">Work</a>
+      <a href="../about.html">About</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+    <button class="navbar__toggle" aria-label="Menu">☰</button>
+  </div>
+  <div class="navbar__mobile">
+    <a href="../index.html#work">Work</a>
+    <a href="../about.html">About</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="case-hero case-hero--photo" style="background-image:url(&#39;../assets/images/gesture/device-front.jpg&#39;)">
+  <div class="case-hero__inner reveal">
+    <a class="back-link" href="../index.html#work">← All work</a>
+    <div class="case-hero__meta">2023 · IDE Project 03</div>
+    <h1 class="case-hero__title">Gesture</h1>
+    <p class="case-hero__subtitle">A new approach to password exploration — a smart lock that uses machine learning to recognise gestures, one ring per finger.</p>
+    <div class="case-hero__tags tag-row" style="justify-content:flex-start">
+      <span class="tag tag--dark">AI</span>
+      <span class="tag tag--dark">Machine Learning</span>
+      <span class="tag tag--dark">Arduino</span>
+    </div>
+  </div>
+</header>
+
+<section class="prose-section section--light">
+  <div class="prose reveal">
+    <h2>Project overview</h2>
+    <p>A device for a new approach to password exploration, featuring a smart-lock structure that uses machine learning to recognise gestures. Each small circular ring corresponds to the angle of a finger, controlled by a small servo motor — when every gesture is correct, the lock opens.</p>
+
+    <figure class="figure">
+      <img src="../assets/images/gesture/device-front.jpg" alt="Front view of the gesture-controlled lock device — a square panel with four concentric rotating rings around a central iris, with a phone propped in front for scale" loading="lazy">
+      <figcaption>The finished device — one ring per finger, iris mechanism at the centre</figcaption>
+    </figure>
+
+    <h2>My contributions</h2>
+    <ul>
+      <li>Connection and testing with Arduino</li>
+      <li>Responsible for visual structure design</li>
+      <li>Responsible for laser cutting</li>
+      <li>Responsible for training the machine-learning model</li>
+    </ul>
+    <p>The device consists of four SG92R micro servos, one MG996R servo, one MG995R servo, and an Arduino. Each gesture corresponds to a circle whose rotation angle controls the actual rotation of the ring. When all four gestures reach their specified angle, the iris structure rotates open and an internal push rod releases the locked item.</p>
+
+    <figure class="figure">
+      <img src="../assets/images/gesture/device-hand.jpg" alt="A hand reaching toward the gesture-lock device to interact with its rings" loading="lazy">
+      <figcaption>Testing gesture recognition against the device</figcaption>
+    </figure>
+
+    <figure class="figure">
+      <img src="../assets/images/gesture/device.jpg" alt="Close-up of the gesture-controlled lock device, showing its ring mechanism, servo motors and wiring" loading="lazy">
+      <figcaption>The ring mechanism, servo motors and wiring, from the side</figcaption>
+    </figure>
+
+    <h2>Technical implementation — gesture and angle design</h2>
+    <p><strong>Vision OSC</strong> — reads hand signals and recognises gestures, sending signals on to Processing. <strong>Processing</strong> — collects those messages and converts them into binary signals Wekinator can analyse. <strong>Wekinator</strong> — performs the machine learning: classification to identify each gesture, and a custom model to read the exact rotation angle. <strong>Arduino</strong> — receives both signals and drives the precise rotation of each servo to achieve mechanical control.</p>
+
+    <h3>Hardware</h3>
+    <ul>
+      <li><strong>SG92R</strong> — controls the disc and connecting-rod motion</li>
+      <li><strong>MG996R</strong> — rotates 360°, controlling the iris structure's open/close</li>
+      <li><strong>MG995R</strong> — controls the telescopic structure's movement</li>
+    </ul>
+
+    <h3>Arduino — receiving classification + angle, driving the servos</h3>
+    <pre><code>#include "PCA9685.h"
+#include &lt;Wire.h&gt;
+ServoDriver servo;
+const int servoR1Pin = 1;
+const int servoR2Pin = 2;
+const int servoR3Pin = 3;
+const int servoR4Pin = 4;
+const int servoDoorPin = 5;
+const int servoR6Pin = 6;
+const int minValidAngle = 20;
+const int maxValidAngle = 180;
+
+void setup() {
+  Wire.begin();
+  Serial.begin(9600);
+  servo.init(0x7f);
+}
+
+void loop() {
+  static bool servoDoorMoved = false;
+  if (Serial.available() >= 4) {
+    char classification = Serial.read();
+    int angle = 0;
+    for (int i = 0; i &lt; 3; i++) {
+      char digit = Serial.read();
+      if (digit >= '0' &amp;&amp; digit &lt;= '9') angle = angle * 10 + (digit - '0');
+    }
+    switch (classification) {
+      case '1': servo.setAngle(servoR1Pin, angle); break;
+      case '2': servo.setAngle(servoR2Pin, angle); break;
+      case '3': servo.setAngle(servoR3Pin, angle); break;
+      case '4': servo.setAngle(servoR4Pin, angle); break;
+      case '5':
+        if (!servoDoorMoved) {
+          // open only once all four rings sit within the valid angle range
+          servo.setAngle(servoDoorPin, 180);
+          delay(5000);
+          servo.setAngle(servoR6Pin, 179);
+          delay(2000);
+          servo.setAngle(servoR6Pin, 90);
+          servoDoorMoved = true;
+        }
+        break;
+    }
+  }
+}</code></pre>
+    <p>Signals flow Vision OSC → Processing → Wekinator → Processing → Arduino, with the final stage forwarding a classification digit and a zero-padded angle string to the microcontroller over serial.</p>
+  </div>
+</section>
+
+<section class="section section--light section--tight">
+  <div class="section__inner reveal case-nav">
+    <a class="btn btn--secondary" href="entropy.html">← Entropy</a>
+    <a class="btn btn--secondary" href="illustrator.html">Illustrator →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__top">
+    <div class="footer__name">Yidan Xu</div>
+    <div class="footer__links">
+      <a href="mailto:yidanxu2000@outlook.com">yidanxu2000@outlook.com</a>
+      <a href="https://www.linkedin.com/in/yidan-xu2000/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div class="footer__bottom">© <span id="year"></span> Yidan Xu. All rights reserved.</div>
+</footer>
+
+<script src="../assets/js/site.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
