@@ -308,10 +308,11 @@ body{background:#07080d;}
 .thinking-callout__body{font-size:var(--text-body-lg);line-height:var(--lh-body);color:var(--text-on-dark-secondary);max-width:640px;margin:0 auto var(--space-5);}
 .thinking-callout__cta{
   display:inline-flex;align-items:center;gap:6px;font-size:var(--text-body-sm);font-weight:var(--fw-medium);
-  color:#7fbdf0;transition:color var(--duration-fast) var(--ease-out);
+  color:#fff;padding:11px 22px;border-radius:var(--radius-pill);border:1px solid rgba(255,255,255,.4);
+  transition:color var(--duration-fast) var(--ease-out), background var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
 }
 .thinking-callout__cta svg{transition:transform var(--duration-fast) var(--ease-out);}
-.thinking-callout:hover .thinking-callout__cta{color:#fff;}
+.thinking-callout:hover .thinking-callout__cta{background:#fff;color:#0a0a0a;border-color:#fff;}
 .thinking-callout:hover .thinking-callout__cta svg{transform:translateX(4px);}
 
 /* ---------- Project grid / cards ---------- */
