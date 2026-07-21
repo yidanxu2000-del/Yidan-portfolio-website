@@ -70,6 +70,12 @@
   <div class="prose reveal">
     <h2>Task 01 · Start from the big question</h2>
     <p>In B2B, identity is everything — yet on most platforms, users are reduced to a name and a job title. How do you bring offline trust online without overcomplicating the product?</p>
+
+    <figure class="figure">
+      <img src="../assets/images/huawei/card-handshake.jpg" alt="Left: a line illustration of two gloved hands exchanging a business card. Right: a wireframe of a phone screen showing a profile photo placeholder, a name field marked 'XXX', a 'PM' role tag, and two content blocks below" loading="lazy">
+      <figcaption>Offline, a handshake and a card convey who you are instantly. Online, that same trust has to be designed back in.</figcaption>
+    </figure>
+
     <p><strong>Offline</strong> — professional attire, business cards: natural ways to signal who you are and establish trust at first glance. <strong>Online</strong> — a name, a small job title: no way to show expertise, authority or warmth, leaving interactions feeling impersonal.</p>
     <h3>The problem</h3>
     <p>An app often serves multiple professional roles simultaneously, whose needs vary greatly. My product team and I analysed user types and typical interaction scenarios, and two findings emerged: users' relationship to trust varies greatly by role, and the information they need to display changes with the scenario.</p>
@@ -82,12 +88,21 @@
     <h3>Methodology</h3>
     <p><strong>First-hand research</strong> — through workshops and user interviews, I identified key identity-verification scenarios: first meeting, internal collaboration, client meetings. <strong>Secondary research</strong> — how "trust" is visually established across professional contexts, and the tension between genuine ability and social stereotype that shaped our subsequent design choices.</p>
     <h3>Delivery</h3>
-    <p>Four identity cards across two qualification levels and two card formats — a new ID card and an AI avatar system covering multiple scenes. Presented to the product team across four occupations and two card types compatible with all five apps, helping users build a stronger first impression and faster trust online.</p>
+    <p>Presented to the product team across four occupations and two card types compatible with all five apps, helping users build a stronger first impression and faster trust online.</p>
 
     <figure class="figure figure--narrow">
       <img src="../assets/images/huawei/personas.jpg" alt="Four line-icon personas representing the professional roles studied: a construction worker, an engineer with glasses, a businessman, and a businesswoman" loading="lazy">
       <figcaption>The four professional roles the identity system was designed around</figcaption>
     </figure>
+
+    <div class="feature-cards">
+      <div class="feature-card"><div class="feature-card__title">4</div><div class="feature-card__body">Identity cards</div></div>
+      <div class="feature-card"><div class="feature-card__title">2</div><div class="feature-card__body">Qualification levels</div></div>
+      <div class="feature-card"><div class="feature-card__title">2</div><div class="feature-card__body">Card formats</div></div>
+      <div class="feature-card"><div class="feature-card__title">🪪 New ID card</div><div class="feature-card__body">A redesigned identity card for the core role-based system</div></div>
+      <div class="feature-card"><div class="feature-card__title">👤 AI avatar system</div><div class="feature-card__body">AI-generated visual language for each professional identity</div></div>
+      <div class="feature-card"><div class="feature-card__title">🎬 Scene coverage</div><div class="feature-card__body">Company-oriented and personal-oriented modes for different moments</div></div>
+    </div>
 
     <p><strong>What I learned:</strong> in B2B design, "feeling" is not optional — it determines whether a tool is tolerated or trusted. Most B2B platforms underestimate this.</p>
 
@@ -95,18 +110,42 @@
     <p>In the second phase, I moved to a large-scale enterprise-level web system serving users with multiple roles. This phase focused on structural design — simplifying information hierarchy and improving efficiency based on real behavioural data and user interviews.</p>
     <h3>Methodology</h3>
     <p><strong>Behavioural data</strong> — click-through rate, dwell time, bounce rate. <strong>User interviews</strong> — what's convenient, what's confusing, what do users expect.</p>
-    <h3>Four behavioural patterns</h3>
-    <p>An evidence-based classification that replaced intuition with a data signal and behavioural hypothesis for every suggestion.</p>
-    <ul>
-      <li><strong>Clear signal</strong> — low click-through, low dwell time, high bounce: a candidate for repositioning or removal</li>
-      <li><strong>Mixed signal</strong> — high clicks, short dwell: often accidental clicks or fast recognition that "this isn't it" — usually fixed with clearer labelling</li>
-      <li><strong>Buried value</strong> — low clicks, long dwell: the feature is valuable but hard to find, so fix visibility, not the feature</li>
-    </ul>
+    <h3>The framework: four behavioural patterns</h3>
+    <p>An evidence-based classification that replaced intuition with a data signal and a behavioural hypothesis for every design suggestion — each pattern maps straight to an optimisation strategy, not a guess.</p>
 
-    <figure class="figure">
-      <img src="../assets/images/huawei/behavior-table.jpg" alt="Table mapping four behavioural patterns — dispersed entrances, high click-through with short dwell time, low click-through with long dwell time, and high bounce rate pages — to their data signal, behavioural hypothesis and optimisation strategy" loading="lazy">
-      <figcaption>The behavioural-pattern framework used to turn raw analytics into design decisions</figcaption>
-    </figure>
+    <div class="prose-table-wrap">
+      <table class="prose-table">
+        <thead>
+          <tr><th>Pattern</th><th>Data signal</th><th>Behavioural hypothesis</th><th>Optimisation strategy</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dispersed entrances</td>
+            <td>The same function appears on multiple pages, and clicks on it are scattered.</td>
+            <td>The user's goal is unclear, or different pages share irrelevant entry points.</td>
+            <td>Reorganise the entry path to reduce redundancy.</td>
+          </tr>
+          <tr>
+            <td>High click-through rate + short dwell time</td>
+            <td>Users exit immediately after entering the function.</td>
+            <td>Accidental touch, or a misleading function name.</td>
+            <td>Verify through interviews and adjust labels or layout.</td>
+          </tr>
+          <tr>
+            <td>Low click-through rate + long dwell time</td>
+            <td>The feature is hard to find, but once found, is used extensively.</td>
+            <td>An important function is visually underestimated.</td>
+            <td>Enhance visual hierarchy and entry-point placement.</td>
+          </tr>
+          <tr>
+            <td>High bounce-rate pages</td>
+            <td>The task was interrupted midway.</td>
+            <td>A lack of clear task-completion feedback loses the user's confidence.</td>
+            <td>Strengthen completion feedback and guidance for the next step.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2>Task 03 · Cross-application consistency</h2>
     <p>Alongside the previous two projects, I maintained design consistency across all five B2B applications — analysing each app's business structure, identifying inconsistencies in shared components, and aligning the design team on a unified standard. This work is quiet — it doesn't produce dramatic before/after comparisons — but it's the foundation that makes everything else feel coherent.</p>

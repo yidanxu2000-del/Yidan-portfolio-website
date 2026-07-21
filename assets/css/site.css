@@ -497,6 +497,24 @@ body{background:#07080d;}
   font-size:var(--text-body-lg);font-style:italic;color:var(--text-primary);
 }
 .prose code{font-family:var(--font-mono);font-size:.9em;background:var(--gray-1);padding:2px 6px;border-radius:6px;}
+
+/* a real data table for process artifacts (e.g. a behavioural-pattern
+   framework) — coded rather than a screenshot, so it stays sharp and
+   on-brand at any size */
+.prose-table-wrap{margin:var(--space-6) 0;overflow-x:auto;border:1px solid var(--border-hairline);border-radius:var(--radius-md);}
+.prose-table{width:100%;border-collapse:collapse;font-size:var(--text-body-sm);min-width:640px;}
+.prose-table th{
+  text-align:left;font-size:11px;font-weight:var(--fw-semibold);letter-spacing:.04em;text-transform:uppercase;
+  color:var(--text-tertiary);background:var(--gray-1);padding:var(--space-3) var(--space-4);
+}
+.prose-table td{padding:var(--space-4);border-top:1px solid var(--border-hairline);color:var(--text-secondary);line-height:var(--lh-body);vertical-align:top;}
+.prose-table td:first-child{color:var(--text-primary);font-weight:var(--fw-medium);position:relative;padding-left:calc(var(--space-4) + 10px);}
+.prose-table td:first-child::before{content:"";position:absolute;left:var(--space-3);top:var(--space-4);bottom:var(--space-4);width:3px;border-radius:2px;background:var(--accent);}
+.prose-table td:last-child{color:var(--accent);}
+.section--dark .prose-table-wrap{border-color:var(--border-hairline-dark);}
+.section--dark .prose-table th{background:rgba(255,255,255,.06);color:var(--text-on-dark-secondary);}
+.section--dark .prose-table td{border-top-color:var(--border-hairline-dark);color:var(--text-on-dark-secondary);}
+.section--dark .prose-table td:first-child{color:var(--text-on-dark);}
 .prose pre{
   background:var(--gray-7);color:var(--gray-1);padding:var(--space-5);border-radius:var(--radius-md);
   overflow-x:auto;font-size:13px;line-height:1.6;margin:var(--space-6) 0;
@@ -583,6 +601,7 @@ body{background:#07080d;}
 
 /* raw user-feedback quote cards, e.g. verbatim reactions during research */
 .quote-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-5);margin:var(--space-6) 0;}
+@media(max-width:600px){.quote-cards{grid-template-columns:1fr;}}
 .quote-card{padding:var(--space-5);border-radius:var(--radius-lg);background:var(--gray-1);border:1px solid var(--border-hairline);}
 .quote-card__avatar{
   width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
@@ -702,6 +721,13 @@ body{background:#07080d;}
   display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:var(--space-6);
   max-width:var(--container-max);margin:0 auto;padding:0 var(--space-5);
 }
+@media(max-width:600px){
+  /* auto-fit wasn't collapsing columns reliably on narrow phone widths,
+     leaving 3-4 fixed 140px columns and forcing the row (and the whole
+     page) wider than the viewport — pin an explicit 2-column layout
+     instead of relying on auto-fit to shrink it */
+  .stat-row{grid-template-columns:repeat(2,1fr);}
+}
 .stat{text-align:center;}
 .stat__value{font-family:var(--font-display);font-size:var(--text-h1);font-weight:var(--fw-semibold);color:var(--text-primary);letter-spacing:var(--ls-tight);}
 .section--dark .stat__value,.section--alt-dark .stat__value{color:var(--text-on-dark);}
@@ -709,6 +735,7 @@ body{background:#07080d;}
 .section--dark .stat__label,.section--alt-dark .stat__label{color:var(--text-on-dark-secondary);}
 
 .quote-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-6);max-width:var(--container-max);margin:0 auto;}
+@media(max-width:600px){.quote-grid{grid-template-columns:1fr;}}
 .quote-card{background:var(--gray-1);border-radius:var(--radius-md);padding:var(--space-6);}
 .quote-card p{font-size:var(--text-body-lg);font-style:italic;color:var(--text-primary);margin-bottom:var(--space-3);}
 .quote-card cite{font-size:var(--text-body-sm);color:var(--text-secondary);font-style:normal;}
