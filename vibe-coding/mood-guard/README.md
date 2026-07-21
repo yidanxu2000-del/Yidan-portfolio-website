@@ -6,7 +6,7 @@ knowing why until it's already happened.
 
 MoodGuard tracks seven things that reliably recharge you:
 
-1. A high-quality date
+1. Seeing my boyfriend for 3+ hours
 2. Long time with a cat or dog
 3. A real meal out at a restaurant
 4. Travel

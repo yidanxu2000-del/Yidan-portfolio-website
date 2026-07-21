@@ -18,7 +18,7 @@ DATA_FILE = os.path.join(DATA_DIR, "data.json")
 WARNING_DAYS = 14
 
 ACTIVITIES = [
-    ("date", "💛 High-quality date"),
+    ("date", "💛 Saw my boyfriend, 3+ hours"),
     ("pet", "🐾 Long time with a cat or dog"),
     ("food", "🍽️ Restaurant, real food"),
     ("travel", "✈️ Travel"),
