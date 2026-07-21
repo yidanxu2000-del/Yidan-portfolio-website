@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gesture — Yidan Xu</title>
-<meta name="description" content="A gesture-controlled lock trained with machine learning — it opens only once every finger reaches its correct angle.">
+<meta name="description" content="A gesture-controlled lock trained with machine learning. It opens only once every finger reaches its correct angle.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <link rel="stylesheet" href="../assets/css/site.css">
@@ -34,7 +34,7 @@
     <a class="back-link" href="../index.html#work">← All work</a>
     <div class="case-hero__meta">2023 · IDE Project 03</div>
     <h1 class="case-hero__title">Gesture</h1>
-    <p class="case-hero__subtitle">A new approach to password exploration — a smart lock that uses machine learning to recognise gestures, one ring per finger.</p>
+    <p class="case-hero__subtitle">A new approach to password exploration: a smart lock that uses machine learning to recognise gestures, one ring per finger.</p>
     <div class="case-hero__tags tag-row" style="justify-content:flex-start">
       <span class="tag tag--dark">AI</span>
       <span class="tag tag--dark">Machine Learning</span>
@@ -46,11 +46,11 @@
 <section class="prose-section section--light">
   <div class="prose reveal">
     <h2>Project overview</h2>
-    <p>A device for a new approach to password exploration, featuring a smart-lock structure that uses machine learning to recognise gestures. Each small circular ring corresponds to the angle of a finger, controlled by a small servo motor — when every gesture is correct, the lock opens.</p>
+    <p>A device for a new approach to password exploration, featuring a smart-lock structure that uses machine learning to recognise gestures. Each small circular ring corresponds to the angle of a finger, controlled by a small servo motor. When every gesture is correct, the lock opens.</p>
 
     <figure class="figure">
       <img src="../assets/images/gesture/device-front.jpg" alt="Front view of the gesture-controlled lock device — a square panel with four concentric rotating rings around a central iris, with a phone propped in front for scale" loading="lazy">
-      <figcaption>The finished device — one ring per finger, iris mechanism at the centre</figcaption>
+      <figcaption>The finished device: one ring per finger, iris mechanism at the centre</figcaption>
     </figure>
 
     <h2>My contributions</h2>
@@ -72,17 +72,17 @@
       <figcaption>The ring mechanism, servo motors and wiring, from the side</figcaption>
     </figure>
 
-    <h2>Technical implementation — gesture and angle design</h2>
-    <p><strong>Vision OSC</strong> — reads hand signals and recognises gestures, sending signals on to Processing. <strong>Processing</strong> — collects those messages and converts them into binary signals Wekinator can analyse. <strong>Wekinator</strong> — performs the machine learning: classification to identify each gesture, and a custom model to read the exact rotation angle. <strong>Arduino</strong> — receives both signals and drives the precise rotation of each servo to achieve mechanical control.</p>
+    <h2>Technical implementation: gesture and angle design</h2>
+    <p><strong>Vision OSC</strong>: reads hand signals and recognises gestures, sending signals on to Processing. <strong>Processing</strong>: collects those messages and converts them into binary signals Wekinator can analyse. <strong>Wekinator</strong>: performs the machine learning: classification to identify each gesture, and a custom model to read the exact rotation angle. <strong>Arduino</strong>: receives both signals and drives the precise rotation of each servo to achieve mechanical control.</p>
 
     <h3>Hardware</h3>
     <ul>
-      <li><strong>SG92R</strong> — controls the disc and connecting-rod motion</li>
-      <li><strong>MG996R</strong> — rotates 360°, controlling the iris structure's open/close</li>
-      <li><strong>MG995R</strong> — controls the telescopic structure's movement</li>
+      <li><strong>SG92R</strong>: controls the disc and connecting-rod motion</li>
+      <li><strong>MG996R</strong>: rotates 360°, controlling the iris structure's open/close</li>
+      <li><strong>MG995R</strong>: controls the telescopic structure's movement</li>
     </ul>
 
-    <h3>Arduino — receiving classification + angle, driving the servos</h3>
+    <h3>Arduino: receiving classification + angle, driving the servos</h3>
     <pre><code>#include "PCA9685.h"
 #include &lt;Wire.h&gt;
 ServoDriver servo;
