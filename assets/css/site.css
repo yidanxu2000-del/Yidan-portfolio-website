@@ -344,7 +344,7 @@
   position:relative;overflow:hidden;
 }
 .case-hero--photo{
-  min-height:min(760px,90vh);display:flex;align-items:flex-end;
+  min-height:100vh;display:flex;align-items:flex-end;
   background-size:cover;background-position:center top;
 }
 .case-hero--photo::before{
