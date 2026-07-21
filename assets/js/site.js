@@ -169,7 +169,7 @@
           if(dot){
             var scale = 1 + intensity*1.6;
             dot.style.transform = 'scale(' + scale + ')';
-            dot.style.boxShadow = '0 0 ' + (6+intensity*24) + 'px ' + (1+intensity*6) + 'px rgba(190,175,255,' + (0.55+intensity*0.4) + ')';
+            dot.style.boxShadow = '0 0 ' + (6+intensity*24) + 'px ' + (1+intensity*6) + 'px rgba(160,200,255,' + (0.55+intensity*0.4) + ')';
           }
           if(label){
             label.style.opacity = String(Math.min(1, 0.5 + intensity*1.4));
@@ -200,6 +200,25 @@
         ticking = false;
       });
     }
+
+    // pressed cursor state on mousedown/mouseup
+    field.addEventListener('mousedown', function(){ field.classList.add('is-pressed'); });
+    field.addEventListener('mouseup', function(){ field.classList.remove('is-pressed'); });
+    field.addEventListener('mouseleave', function(){ field.classList.remove('is-pressed'); });
+
+    // smooth warp-out transition before navigating to a project
+    clickableStars.forEach(function(star){
+      star.addEventListener('click', function(e){
+        if(reduceMotion) return; // instant nav, no transition
+        var href = star.getAttribute('href');
+        if(!href) return;
+        e.preventDefault();
+        stars.forEach(function(s){ s.classList.add('is-navigating'); });
+        linksLayer.classList.add('is-navigating');
+        canvas.classList.add('is-navigating');
+        setTimeout(function(){ window.location.href = href; }, 380);
+      });
+    });
   }
 
   var reveals = document.querySelectorAll('.reveal');
