@@ -354,12 +354,10 @@
 .case-hero--photo .case-hero__inner{position:relative;z-index:1;width:100%;}
 
 /* same background-photo treatment for generic dark hero sections (e.g. About) —
-   uses contain (not cover) so a portrait photo is never cropped; the empty
-   side gutters are filled with a matching dark gray rather than stretching or cutting it */
+   always fills the section edge to edge (no letterbox bars), cropping as needed */
 .section--photo{
   position:relative;overflow:hidden;
-  min-height:100vh;background-size:contain;background-repeat:no-repeat;background-position:center top;
-  background-color:var(--surface-inverse-alt);
+  min-height:100vh;background-size:cover;background-position:center top;
   justify-content:center;
 }
 .section--photo::before{
