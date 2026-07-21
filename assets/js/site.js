@@ -43,12 +43,17 @@
       ctx.setTransform(dpr,0,0,dpr,0,0);
       var count = Math.round((w * h) / (opts.density || 9000));
       bgStars = [];
+      // a handful of stars pick up a faint nebula tint (pale blue / violet / gold)
+      // so the field reads as colourful star-cloud, not flat white dots
+      var tints = ['255,255,255', '186,196,255', '210,180,255', '255,224,178'];
       for(var i=0;i<count;i++){
+        var tint = Math.random() < 0.72 ? tints[0] : tints[1 + Math.floor(Math.random()*3)];
         bgStars.push({
           x: Math.random()*w, y: Math.random()*h,
           r: Math.random()*1.2 + 0.3,
           phase: Math.random()*Math.PI*2,
-          speed: 0.5 + Math.random()*1.2
+          speed: 0.5 + Math.random()*1.2,
+          tint: tint
         });
       }
     }
@@ -59,8 +64,8 @@
       ctx.clearRect(0,0,w,h);
       if(opts.glow && mouse.x > -999){
         var g = ctx.createRadialGradient(mouse.x,mouse.y,0,mouse.x,mouse.y,260);
-        g.addColorStop(0,'rgba(43,95,217,0.16)');
-        g.addColorStop(1,'rgba(43,95,217,0)');
+        g.addColorStop(0,'rgba(120,110,255,0.18)');
+        g.addColorStop(1,'rgba(120,110,255,0)');
         ctx.fillStyle = g;
         ctx.fillRect(0,0,w,h);
       }
@@ -69,7 +74,7 @@
         var tw = 0.55 + 0.45*Math.sin(t*s.speed + s.phase);
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-        ctx.fillStyle = 'rgba(255,255,255,' + (0.25 + 0.55*tw) + ')';
+        ctx.fillStyle = 'rgba(' + s.tint + ',' + (0.25 + 0.55*tw) + ')';
         ctx.fill();
       }
       requestAnimationFrame(draw);
@@ -141,12 +146,18 @@
     });
 
     var clickableStars = linksLayer ? Array.prototype.slice.call(linksLayer.querySelectorAll('.star-link:not(.star-link--disabled)')) : [];
+    var tooltip = field.querySelector('.star-tooltip');
+    var tooltipTitle = tooltip && tooltip.querySelector('.star-tooltip__title');
+    var tooltipMeta = tooltip && tooltip.querySelector('.star-tooltip__meta');
+    var tooltipDesc = tooltip && tooltip.querySelector('.star-tooltip__desc');
+    var activeStar = null;
     var ticking = false;
     function updateStarIntensity(){
       if(ticking) return;
       ticking = true;
       requestAnimationFrame(function(){
         var rect = field.getBoundingClientRect();
+        var nearest = null, nearestDist = Infinity;
         clickableStars.forEach(function(star){
           var r = star.getBoundingClientRect();
           var cx = r.left + r.width/2 - rect.left;
@@ -154,17 +165,38 @@
           var dist = Math.hypot(mouse.x - cx, mouse.y - cy);
           var intensity = Math.max(0, 1 - dist/240);
           var dot = star.querySelector('.star-link__dot');
-          var info = star.querySelector('.star-link__info');
+          var label = star.querySelector('.star-link__label');
           if(dot){
             var scale = 1 + intensity*1.6;
             dot.style.transform = 'scale(' + scale + ')';
-            dot.style.boxShadow = '0 0 ' + (6+intensity*24) + 'px ' + (1+intensity*6) + 'px rgba(255,255,255,' + (0.5+intensity*0.4) + ')';
+            dot.style.boxShadow = '0 0 ' + (6+intensity*24) + 'px ' + (1+intensity*6) + 'px rgba(190,175,255,' + (0.55+intensity*0.4) + ')';
           }
-          if(info){
-            info.style.opacity = String(Math.min(1, intensity*1.8));
-            info.style.transform = intensity > 0.1 ? 'translateY(0)' : 'translateY(2px)';
+          if(label){
+            label.style.opacity = String(Math.min(1, 0.5 + intensity*1.4));
           }
+          if(dist < nearestDist){ nearestDist = dist; nearest = star; }
         });
+
+        if(tooltip){
+          if(nearest && nearestDist < 130){
+            if(activeStar !== nearest){
+              activeStar = nearest;
+              if(tooltipTitle) tooltipTitle.textContent = nearest.dataset.title || nearest.querySelector('.star-link__label').textContent;
+              if(tooltipMeta) tooltipMeta.textContent = nearest.dataset.meta || '';
+              if(tooltipDesc) tooltipDesc.textContent = nearest.dataset.desc || '';
+            }
+            var flip = mouse.x > rect.width - 260;
+            tooltip.style.left = mouse.x + 'px';
+            tooltip.style.top = mouse.y + 'px';
+            tooltip.style.transform = flip
+              ? 'translate(calc(-100% - 18px),-50%) scale(1)'
+              : 'translate(18px,-50%) scale(1)';
+            tooltip.classList.add('is-shown');
+          } else {
+            activeStar = null;
+            tooltip.classList.remove('is-shown');
+          }
+        }
         ticking = false;
       });
     }

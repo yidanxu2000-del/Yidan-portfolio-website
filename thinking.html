@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>On AI &amp; HMI — Yidan Xu</title>
+<meta name="description" content="How Yidan Xu thinks about designing the seam between people and increasingly autonomous systems — from an AI matchmaker to an in-vehicle digital cockpit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<nav class="navbar navbar--dark">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">Yidan Xu</a>
+    <div class="navbar__links">
+      <a href="index.html#work">Work</a>
+      <a href="about.html">About</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="navbar__toggle" aria-label="Menu">☰</button>
+  </div>
+  <div class="navbar__mobile">
+    <a href="index.html#work">Work</a>
+    <a href="about.html">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="case-hero__inner reveal">
+    <a class="back-link" href="index.html">← Home</a>
+    <div class="case-hero__meta">Thinking · AI · HMI</div>
+    <h1 class="case-hero__title">Designing the seam between people and machines that decide.</h1>
+    <p class="case-hero__subtitle">Two projects, one question underneath both: how much should the system decide, and how do you make that boundary legible enough to trust?</p>
+  </div>
+</header>
+
+<section class="prose-section prose-section--signature section--dark">
+  <div class="prose reveal">
+    <div class="prose-signature-kicker">Starting point</div>
+    <h2>AI has to find the scenario — not the other way round</h2>
+    <p>I keep relearning the same lesson across every project that touches AI: it's only useful once it's found the right scenario to sit inside. AI has to integrate into the work, not the work bend to fit the AI. I don't ask AI to "make it smarter" or "make it feel more AI." I ask it to do one specific thing — cluster raw interview transcripts by problem type, narrow a field of candidates before a human decides, hold a conversation's context so a driver doesn't have to — because that's a task where speed and pattern-finding remove real friction without removing my judgement, or the user's, about what actually matters.</p>
+    <p>The two projects below are the clearest version of this I've built: <strong>1Soul</strong>, where AI mediates a human relationship decision, and <strong>Xiaomi Auto</strong>'s digital cockpit, where software mediates a human's control of a physical machine at speed. Different domains, same underlying design problem.</p>
+  </div>
+</section>
+
+<section class="prose-section section--light">
+  <div class="prose reveal">
+    <h2>The common thread: legible boundaries, not invisible automation</h2>
+    <p>Both projects put a system between a person and a consequential moment — who they'll meet, or what their car does next. In both, the wrong move is the same: let the system quietly decide more than the person realises, and trust breaks the instant they notice. The right move is also the same: make the boundary between "the system narrows this" and "you decide this" visible, stated, and consistent — not just implied through polish.</p>
+
+    <h3>1Soul — AI narrows the field, she decides</h3>
+    <p>Research surfaced a specific fear: a match arriving with a name but no context, and an implicit expectation to just trust an algorithm's judgement about who to meet. The fix wasn't more reassuring copy, it was a mechanic — Cupid narrows candidates and offers one small, human clue first, and the decision to go further is restated as explicitly hers, every time. The AI's authority stops at "worth considering"; it never quietly extends into "worth meeting."</p>
+
+    <h3>Xiaomi Auto — the cockpit narrates itself</h3>
+    <p>A digital cockpit is the same trust boundary at higher stakes: the system is making micro-decisions about what to surface — a navigation update, a driving-assist prompt, a rear-display alert — while the driver needs to stay in control at speed. The design work was about sequencing and hierarchy: what the interface says now versus what it holds back, so a driver's attention is never split between "what is the car doing" and "what should I do," and every automated suggestion reads as a suggestion, not a fait accompli.</p>
+
+    <p>Written side by side, the throughline is a working principle I now carry into everything: <em>an interface earns the right to automate more only by first making it completely legible what it isn't deciding for you.</em></p>
+  </div>
+</section>
+
+<section class="section section--tint">
+  <div class="section__inner reveal">
+    <div class="section__eyebrow">Working principles</div>
+    <h2 class="section__title">What I keep coming back to.</h2>
+  </div>
+  <div class="section__content list-grid reveal">
+    <div class="list-grid__group">
+      <ul>
+        <li><strong>AI narrows the field; it doesn't make the choice.</strong> The moment a user feels the system decided <em>for</em> them instead of <em>with</em> them, trust is gone — no amount of polish earns it back.</li>
+        <li><strong>Trust is a UI problem before it's a policy problem.</strong> A privacy promise buried in terms and conditions doesn't work if the interface itself feels like it's hiding something.</li>
+        <li><strong>State the boundary, don't just imply it.</strong> "You decide, always" restated on-product outperforms a reassuring tone that never actually says who's in control.</li>
+        <li><strong>The best AI-assisted interface is invisible in the credits.</strong> Nobody looking at a shipped product should be able to tell which parts moved fast because of AI — only that the whole thing feels considered.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section--light section--tight">
+  <div class="section__inner reveal">
+    <div class="section__eyebrow">See it applied</div>
+    <div class="btn-row" style="margin-top:var(--space-5)">
+      <a class="btn btn--primary" href="work/1soul.html">1Soul — the AI-native workflow →</a>
+      <a class="btn btn--secondary" href="work/xiaomi-auto.html">Xiaomi Auto — the digital cockpit →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__top">
+    <div class="footer__name">Yidan Xu</div>
+    <div class="footer__links">
+      <a href="mailto:yidanxu2000@outlook.com">yidanxu2000@outlook.com</a>
+      <a href="https://www.linkedin.com/in/yidan-xu2000/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div class="footer__bottom">© <span id="year"></span> Yidan Xu. All rights reserved.</div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
