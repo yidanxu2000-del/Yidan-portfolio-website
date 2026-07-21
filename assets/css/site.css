@@ -483,6 +483,18 @@
 .section--light .prose-stat-callout__value{color:var(--text-primary);}
 .section--light .prose-stat-callout__label{color:var(--text-secondary);}
 
+/* raw user-feedback quote cards, e.g. verbatim reactions during research */
+.quote-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-5);margin:var(--space-6) 0;}
+.quote-card{padding:var(--space-5);border-radius:var(--radius-lg);background:var(--gray-1);border:1px solid var(--border-hairline);}
+.quote-card__avatar{
+  width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:19px;background:var(--surface-primary);border:1px solid var(--border-hairline);margin-bottom:var(--space-4);
+}
+.quote-card__text{font-size:var(--text-body);color:var(--text-primary);font-style:italic;line-height:var(--lh-body);}
+.section--dark .quote-card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);}
+.section--dark .quote-card__avatar{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.16);}
+.section--dark .quote-card__text{color:var(--text-on-dark);}
+
 /* coded colour-palette swatches (no screenshot needed) */
 .swatch-grid{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--space-5);
