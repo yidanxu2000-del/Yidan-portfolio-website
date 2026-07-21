@@ -83,7 +83,6 @@
 .btn--primary:hover{background:var(--accent-hover);color:#fff;}
 .btn--secondary{background:transparent;color:var(--text-primary);border-color:var(--gray-3);}
 .btn--secondary:hover{border-color:var(--gray-4);color:var(--text-primary);}
-.navbar--dark ~ * .btn--secondary,
 .section--dark .btn--secondary{color:var(--text-on-dark);border-color:var(--border-hairline-dark);}
 .btn--link{background:transparent;color:var(--text-primary);padding:0;font-weight:var(--fw-regular);}
 .btn--link:hover{color:var(--accent);}
