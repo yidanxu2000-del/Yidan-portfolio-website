@@ -112,7 +112,7 @@
 
 /* ---------- Sections ---------- */
 .section{padding:var(--section-pad-y) var(--space-5);display:flex;flex-direction:column;align-items:center;}
-.section--full{min-height:100vh;justify-content:center;}
+.section--full{min-height:100vh;justify-content:center;perspective:1200px;}
 .section--light{background:var(--surface-primary);color:var(--text-primary);}
 .section--tint{background:var(--surface-secondary);color:var(--text-primary);}
 .section--dark{background:var(--surface-inverse);color:var(--text-on-dark);}
@@ -260,7 +260,10 @@
   transition:transform .3s var(--ease-out);
   will-change:transform;
 }
-.hero-starfield canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.hero-starfield canvas{
+  position:absolute;inset:0;width:100%;height:100%;display:block;
+  transition:transform .3s var(--ease-out);will-change:transform;
+}
 .section--full{position:relative;}
 .section--full > .section__inner{position:relative;z-index:1;}
 @media(prefers-reduced-motion:reduce){

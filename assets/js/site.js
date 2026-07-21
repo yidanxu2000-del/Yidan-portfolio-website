@@ -88,11 +88,25 @@
     };
   }
 
-  // ambient, non-interactive starfield behind the hero
+  // ambient hero starfield — twinkling stars, plus a subtle mouse-driven
+  // 3D tilt so the scene feels like it has real depth, not a flat backdrop
   var heroField = document.querySelector('.hero-starfield');
   if(heroField){
     var heroCanvas = heroField.querySelector('canvas');
     paintTwinklingStars(heroCanvas, heroField, {density:12000, glow:false});
+
+    var heroSection = heroField.closest('.section--full') || heroField.parentElement;
+    if(heroSection && !reduceMotion){
+      heroSection.addEventListener('mousemove', function(e){
+        var rect = heroSection.getBoundingClientRect();
+        var nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;   // -1 .. 1
+        var ny = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+        heroCanvas.style.transform = 'rotateX(' + (-ny*4).toFixed(2) + 'deg) rotateY(' + (nx*6).toFixed(2) + 'deg) scale(1.04) translate(' + (-nx*10).toFixed(1) + 'px,' + (-ny*8).toFixed(1) + 'px)';
+      });
+      heroSection.addEventListener('mouseleave', function(){
+        heroCanvas.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1) translate(0,0)';
+      });
+    }
   }
 
   // interactive project starfield
