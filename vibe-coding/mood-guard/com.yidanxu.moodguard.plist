@@ -6,7 +6,7 @@
 	<string>com.yidanxu.moodguard</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/usr/bin/python3</string>
+		<string>__PYTHON_PATH__</string>
 		<string>__SCRIPT_PATH__</string>
 	</array>
 	<key>RunAtLoad</key>
