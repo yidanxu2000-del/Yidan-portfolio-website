@@ -404,6 +404,12 @@
   color:var(--text-secondary);margin:var(--space-6) 0;max-width:var(--container-narrow);margin-left:auto;margin-right:auto;
 }
 
+.video-embed{
+  position:relative;aspect-ratio:16/9;border-radius:var(--radius-lg);overflow:hidden;
+  max-width:var(--container-max);margin:var(--space-7) auto;background:var(--gray-7);
+}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;}
+
 .figure{max-width:var(--container-max);margin:0 auto var(--space-9);}
 .figure img{width:100%;border-radius:var(--radius-lg);}
 .figure figcaption{margin-top:var(--space-3);font-size:var(--text-body-sm);color:var(--text-tertiary);text-align:center;}
