@@ -36,6 +36,12 @@
   }
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // true only on devices that actually have a mouse/trackpad — touch fires a
+  // single synthetic mousemove at the tap point after tap-and-release, which
+  // would otherwise trigger the cursor-proximity glow/tooltip meant for a
+  // continuously-moving pointer, ballooning up several nearby stars at once
+  // on a screen where a 240px glow radius covers half the width
+  var hasHover = !window.matchMedia || window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   // shared twinkling star-canvas renderer, reused by the interactive
   // starfield and the ambient (decorative) hero version
@@ -176,7 +182,8 @@
     var canvas = field.querySelector('.starfield-canvas');
     var linksLayer = field.querySelector('.starfield-links');
     var mouse = {x:-9999,y:-9999};
-    var renderer = paintTwinklingStars(canvas, field, {density:9000, glow:true, entrance:true, entranceManual:true});
+    var isDragging = false;
+    var renderer = paintTwinklingStars(canvas, field, {density:9000, glow:true, entrance:true, entranceManual:true, foreground:true});
 
     // entrance: the moment this section scrolls into view, the whole field
     // swirls/rotates into place (canvas stars warp in, the star-links layer
@@ -196,7 +203,7 @@
             setTimeout(function(){
               canvas.classList.remove('is-revealing');
               if(linksLayer) linksLayer.classList.remove('is-revealing');
-            }, 1450);
+            }, 1750);
             stars.forEach(function(star, i){
               setTimeout(function(){ star.classList.add('is-burst'); }, 40 * i);
             });
@@ -211,29 +218,39 @@
       stars.forEach(function(star){ star.classList.add('is-burst'); });
     }
 
-    field.addEventListener('mousemove', function(e){
-      var rect = field.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-      if(renderer) renderer.setMouse(mouse.x, mouse.y);
-      updateStarIntensity();
+    if(hasHover){
+      field.addEventListener('mousemove', function(e){
+        var rect = field.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+        if(renderer) renderer.setMouse(mouse.x, mouse.y);
+        updateStarIntensity();
 
-      if(!reduceMotion){
-        var nx = (mouse.x / rect.width) * 2 - 1;   // -1 .. 1
-        var ny = (mouse.y / rect.height) * 2 - 1;
-        var rotY = nx * 6;   // deg
-        var rotX = -ny * 4;  // deg
-        linksLayer.style.transform = 'rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg)';
-        canvas.style.transform = 'translate(' + (-nx*8) + 'px,' + (-ny*8) + 'px) scale(1.03)';
-      }
-    });
-    field.addEventListener('mouseleave', function(){
-      mouse.x = -9999; mouse.y = -9999;
-      if(renderer) renderer.setMouse(mouse.x, mouse.y);
-      updateStarIntensity();
-      linksLayer.style.transform = 'rotateX(0deg) rotateY(0deg)';
-      canvas.style.transform = 'translate(0,0) scale(1)';
-    });
+        if(!reduceMotion){
+          var nx = (mouse.x / rect.width) * 2 - 1;   // -1 .. 1
+          var ny = (mouse.y / rect.height) * 2 - 1;
+          if(renderer) renderer.setParallax(nx, ny);
+          // dragging (mouse held down) reads as actually grabbing and
+          // spinning the field like a 3D model — bigger rotation, a
+          // perspective push toward the viewer — rather than the
+          // subtler drift it does on a passive hover-by
+          var rotY = nx * (isDragging ? 20 : 6);
+          var rotX = -ny * (isDragging ? 13 : 4);
+          var pushZ = isDragging ? 40 : 0;
+          linksLayer.style.transform = 'translateZ(' + pushZ + 'px) rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg)';
+          canvas.style.transform = 'translate(' + (-nx*8) + 'px,' + (-ny*8) + 'px) scale(' + (isDragging ? 1.06 : 1.03) + ')';
+        }
+      });
+      field.addEventListener('mouseleave', function(){
+        mouse.x = -9999; mouse.y = -9999;
+        isDragging = false;
+        field.classList.remove('is-pressed');
+        if(renderer){ renderer.setMouse(mouse.x, mouse.y); renderer.setParallax(0, 0); }
+        updateStarIntensity();
+        linksLayer.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        canvas.style.transform = 'translate(0,0) scale(1)';
+      });
+    }
 
     var clickableStars = linksLayer ? Array.prototype.slice.call(linksLayer.querySelectorAll('.star-link:not(.star-link--disabled)')) : [];
     var tooltip = field.querySelector('.star-tooltip');
@@ -291,10 +308,10 @@
       });
     }
 
-    // pressed cursor state on mousedown/mouseup
-    field.addEventListener('mousedown', function(){ field.classList.add('is-pressed'); });
-    field.addEventListener('mouseup', function(){ field.classList.remove('is-pressed'); });
-    field.addEventListener('mouseleave', function(){ field.classList.remove('is-pressed'); });
+    // pressed cursor state, and dragging state for the model-like spin
+    field.addEventListener('mousedown', function(){ field.classList.add('is-pressed'); isDragging = true; });
+    field.addEventListener('mouseup', function(){ field.classList.remove('is-pressed'); isDragging = false; });
+    field.addEventListener('mouseleave', function(){ field.classList.remove('is-pressed'); isDragging = false; });
 
     // smooth warp-out transition before navigating to a project
     clickableStars.forEach(function(star){
