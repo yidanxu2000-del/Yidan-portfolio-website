@@ -507,6 +507,7 @@
   display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);
   max-width:var(--container-max);margin:0 auto var(--space-9);align-items:start;
 }
+.figure-grid--3{grid-template-columns:1fr 1fr 1fr;}
 .figure-grid .figure{margin-bottom:0;}
 @media (max-width:720px){
   .figure-grid{grid-template-columns:1fr;}
