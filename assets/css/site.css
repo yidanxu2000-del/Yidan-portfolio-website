@@ -34,13 +34,21 @@ body{background:#07080d;}
 }
 
 /* ---------- Nav ----------
-   Material comes entirely from .liquid-glass/.liquid-glass--dark (added
-   alongside these classes in markup) so the nav reads as the exact same
-   glass as every other component on the site, not a bespoke treatment. */
+   Deliberately simpler than .liquid-glass, and deliberately not relying on
+   backdrop-filter for legibility: Chrome has a known limitation where
+   backdrop-filter on a position:sticky element stops blurring newly
+   scrolled-in content once a page has scrolled a long way, leaving only
+   the flat translucent colour with sharp, unblurred text showing straight
+   through it (reads as a "ghosting" glitch on long pages). Blur is kept as
+   a nice-to-have on top, but the base colour is opaque enough on its own
+   to stay clean and legible even where the blur silently stops applying. */
 .navbar{
   position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);
 }
 .navbar--dark{
+  background:rgba(8,10,16,.86);
 }
 .navbar__inner{
   max-width:var(--container-max);margin:0 auto;
