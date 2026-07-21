@@ -306,8 +306,8 @@
   position:relative;overflow:hidden;
 }
 .case-hero--photo{
-  min-height:min(640px,80vh);display:flex;align-items:flex-end;
-  background-size:cover;background-position:center;
+  min-height:min(760px,90vh);display:flex;align-items:flex-end;
+  background-size:cover;background-position:center top;
 }
 .case-hero--photo::before{
   content:"";position:absolute;inset:0;z-index:0;
@@ -318,7 +318,7 @@
 /* same background-photo treatment for generic dark hero sections (e.g. About) */
 .section--photo{
   position:relative;overflow:hidden;
-  min-height:min(560px,72vh);background-size:cover;background-position:center;
+  min-height:100vh;background-size:cover;background-position:center top;
   justify-content:center;
 }
 .section--photo::before{
@@ -516,7 +516,7 @@
 .timeline__item:first-child{border-top:none;}
 .timeline__date{flex:0 0 160px;font-size:var(--text-body-sm);color:var(--text-tertiary);}
 .timeline__role{font-size:var(--text-body-lg);color:var(--text-primary);font-weight:var(--fw-medium);}
-.timeline__logo{height:20px;width:auto;max-width:80px;object-fit:contain;vertical-align:middle;margin-right:10px;}
+.timeline__logo{height:26px;width:64px;object-fit:contain;object-position:left center;vertical-align:middle;margin-right:10px;}
 .timeline__logo-badge{
   display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin-right:10px;
   width:26px;height:26px;border-radius:50%;border:1px solid var(--border-hairline);
