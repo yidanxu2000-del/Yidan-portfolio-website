@@ -14,8 +14,16 @@
 }
 .liquid-glass::before{
   content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;
-  background:linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,0) 45%);
-  opacity:.55;mix-blend-mode:overlay;
+  background:radial-gradient(150% 130% at var(--mx,50%) var(--my,12%), rgba(255,255,255,.6), rgba(255,255,255,0) 55%);
+  opacity:.6;mix-blend-mode:overlay;
+  transition:background .2s var(--ease-out);
+}
+.liquid-glass::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;
+  background:conic-gradient(from var(--angle,200deg) at var(--mx,50%) var(--my,50%),
+    rgba(130,185,255,.6), rgba(255,165,210,.48), rgba(150,255,220,.48), rgba(255,220,130,.4), rgba(130,185,255,.6));
+  opacity:.42;mix-blend-mode:soft-light;
+  transition:opacity .25s var(--ease-out), background .2s var(--ease-out);
 }
 .liquid-glass--light{
   background:linear-gradient(135deg, rgba(255,255,255,.78), rgba(255,255,255,.5) 55%, rgba(255,255,255,.66));
@@ -148,11 +156,17 @@
   position:relative;overflow:hidden;
   height:min(1100px,155vw);min-height:620px;
   perspective:1200px;
+  background:var(--black);
+}
+.starfield-section::before{
+  content:"";position:absolute;inset:-6%;pointer-events:none;
   background:
     radial-gradient(ellipse 55% 42% at 28% 32%, rgba(40,110,224,.38), transparent 62%),
     radial-gradient(ellipse 48% 38% at 72% 42%, rgba(43,95,217,.32), transparent 65%),
-    radial-gradient(ellipse 50% 34% at 46% 72%, rgba(50,100,210,.24), transparent 62%),
-    var(--black);
+    radial-gradient(ellipse 50% 34% at 46% 72%, rgba(50,100,210,.24), transparent 62%);
+  transform:translate3d(var(--parallax-x,0px), var(--parallax-y,0px), 0);
+  transition:transform .3s var(--ease-out);
+  will-change:transform;
 }
 .starfield-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;transition:transform .3s var(--ease-out);will-change:transform;}
 .starfield-intro{
@@ -243,9 +257,15 @@
 /* ---------- Ambient hero starfield (decorative, non-interactive) ---------- */
 .hero-starfield{
   position:absolute;inset:0;overflow:hidden;z-index:0;
+}
+.hero-starfield::before{
+  content:"";position:absolute;inset:-6%;pointer-events:none;
   background:
     radial-gradient(ellipse 50% 40% at 22% 28%, rgba(40,110,224,.28), transparent 62%),
     radial-gradient(ellipse 45% 35% at 78% 60%, rgba(43,95,217,.22), transparent 65%);
+  transform:translate3d(var(--parallax-x,0px), var(--parallax-y,0px), 0);
+  transition:transform .3s var(--ease-out);
+  will-change:transform;
 }
 .hero-starfield canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
 .section--full{position:relative;}
