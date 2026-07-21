@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """MoodGuard — a small glass widget that lives on the desktop.
 
-Tracks a customisable list of recharge activities. One click checks an
-activity off for today. If 14 days pass with nothing checked, it fires a
-macOS notification — the idea is to catch the drift toward a low mood
-*before* it arrives, not explain it after the fact.
+Built for one specific pattern: getting fully absorbed in an urgent, solo
+task and losing track of food, sleep and people for days at a time. Tracks
+a customisable list of recharge activities. One click checks an activity
+off for today. If 14 days pass with nothing checked, it fires a macOS
+notification, catching the drift toward a low mood before it arrives, not
+explaining it after the fact.
 
 Runs as a floating, frameless panel (drag it anywhere; it remembers where
 you left it) plus a menu-bar icon showing days since the last recharge.

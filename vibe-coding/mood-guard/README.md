@@ -1,15 +1,17 @@
 # MoodGuard
 
-A small glass widget that lives on the Mac desktop, for one specific
-pattern: working alone at home for days at a stretch, skipping food, sleep
-and people, and ending up irritable without knowing why until it's already
-happened.
+A small glass widget that floats on the Mac desktop, built for one specific
+pattern: when I'm carrying an urgent, high-pressure task solo, I get fully
+absorbed and lose track of everything else, food, sleep, people, for days
+at a time. MoodGuard tracks the things that actually recharge me, so I
+notice the drift before a low mood lands instead of after.
 
 The widget shows a big number: days since the last recharge. Below it, your
-recharge activities. Did one? Click it and it's checked off for today. If
-14 days pass with nothing checked, MoodGuard sends a macOS notification,
-catching the drift *before* the low mood arrives. The menu-bar icon also
-quietly shifts (🙂 → 😐 → ⚠️ → 🚨) as the window closes in.
+recharge activities, fully customisable. Did one? Click it and it's checked
+off for today. If 14 days pass with no real, positive recharge logged,
+MoodGuard sends a macOS notification, warning you to watch for a low mood
+and step in early. The menu-bar icon also quietly shifts (🙂 → 😐 → ⚠️ → 🚨)
+as the window closes in.
 
 ## What's in v2
 
@@ -58,3 +60,7 @@ Built in a Linux sandbox, so the AppKit UI hasn't been run end-to-end
 (the date math, warning threshold, data migration and activity parsing are
 unit-tested). Run `install.sh` and try it; if anything misbehaves, the
 error log is at `/tmp/moodguard.err.log`.
+
+## License
+
+MIT. See [LICENSE](LICENSE). Built by [Yidan Xu](https://yidanxu.netlify.app) with Claude Code; part of a small collection of vibe-coded tools on her [portfolio](https://yidanxu.netlify.app/#thinking).
