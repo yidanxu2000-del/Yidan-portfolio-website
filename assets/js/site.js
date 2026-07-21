@@ -229,15 +229,12 @@
         if(!r.width || !r.height) return;
         var mx = ((e.clientX - r.left) / r.width) * 100;
         var my = ((e.clientY - r.top) / r.height) * 100;
-        var angle = Math.atan2(my - 50, mx - 50) * 180 / Math.PI;
         el.style.setProperty('--mx', mx.toFixed(1) + '%');
         el.style.setProperty('--my', my.toFixed(1) + '%');
-        el.style.setProperty('--angle', angle.toFixed(1) + 'deg');
       });
       el.addEventListener('pointerleave', function(){
         el.style.removeProperty('--mx');
         el.style.removeProperty('--my');
-        el.style.removeProperty('--angle');
       });
     });
   }
