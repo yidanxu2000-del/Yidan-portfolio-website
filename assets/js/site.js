@@ -45,7 +45,7 @@
       bgStars = [];
       // a handful of stars pick up a faint nebula tint (pale blue / violet / gold)
       // so the field reads as colourful star-cloud, not flat white dots
-      var tints = ['255,255,255', '186,196,255', '210,180,255', '255,224,178'];
+      var tints = ['255,255,255', '186,196,255', '170,210,255', '255,224,178'];
       for(var i=0;i<count;i++){
         var tint = Math.random() < 0.72 ? tints[0] : tints[1 + Math.floor(Math.random()*3)];
         bgStars.push({
@@ -64,8 +64,8 @@
       ctx.clearRect(0,0,w,h);
       if(opts.glow && mouse.x > -999){
         var g = ctx.createRadialGradient(mouse.x,mouse.y,0,mouse.x,mouse.y,260);
-        g.addColorStop(0,'rgba(120,110,255,0.18)');
-        g.addColorStop(1,'rgba(120,110,255,0)');
+        g.addColorStop(0,'rgba(70,150,230,0.18)');
+        g.addColorStop(1,'rgba(70,150,230,0)');
         ctx.fillStyle = g;
         ctx.fillRect(0,0,w,h);
       }
