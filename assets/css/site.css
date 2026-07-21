@@ -98,10 +98,12 @@ body{background:#07080d;}
 .btn--secondary{background:transparent;color:var(--text-primary);border-color:var(--gray-3);}
 .btn--secondary:hover{border-color:var(--gray-4);color:var(--text-primary);}
 .section--dark .btn--secondary{color:var(--text-on-dark);border-color:var(--border-hairline-dark);}
+.section--dark .btn--secondary:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.06);color:var(--text-on-dark);}
 .btn--link{background:transparent;color:var(--text-primary);padding:0;font-weight:var(--fw-regular);}
 .btn--link:hover{color:var(--accent);}
 .btn--link:hover .btn__arrow{transform:translateX(4px);}
 .section--dark .btn--link{color:var(--text-on-dark);}
+.section--dark .btn--link:hover{color:#5cb8ee;}
 .btn__arrow{transition:transform var(--duration-fast) var(--ease-out);}
 .btn:active{transform:scale(.97);}
 
