@@ -35,6 +35,8 @@
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
     var w = 0, h = 0, bgStars = [];
     var mouse = {x:-9999,y:-9999};
+    var entranceMs = opts.entrance ? 1500 : 0;
+    var startTime = performance.now();
 
     function resize(){
       w = host.clientWidth; h = host.clientHeight;
@@ -69,13 +71,31 @@
         ctx.fillStyle = g;
         ctx.fillRect(0,0,w,h);
       }
+      var ep = entranceMs ? Math.min(1, (performance.now() - startTime) / entranceMs) : 1;
+      var eased = 1 - Math.pow(1 - ep, 3);
+      var cx = w / 2, cy = h / 2;
       for(var i=0;i<bgStars.length;i++){
         var s = bgStars[i];
         var tw = 0.55 + 0.45*Math.sin(t*s.speed + s.phase);
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-        ctx.fillStyle = 'rgba(' + s.tint + ',' + (0.25 + 0.55*tw) + ')';
-        ctx.fill();
+        var alpha = 0.25 + 0.55*tw;
+        if(ep < 1){
+          // warp-in: stars streak outward from centre into their resting
+          // position, like arriving at light-speed into the field
+          var fx = cx + (s.x - cx) * eased;
+          var fy = cy + (s.y - cy) * eased;
+          var trail = (1 - eased) * 0.55;
+          ctx.beginPath();
+          ctx.moveTo(fx - (s.x - cx) * trail, fy - (s.y - cy) * trail);
+          ctx.lineTo(fx, fy);
+          ctx.strokeStyle = 'rgba(' + s.tint + ',' + (alpha * ep).toFixed(3) + ')';
+          ctx.lineWidth = Math.max(0.3, s.r * 0.9);
+          ctx.stroke();
+        } else {
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+          ctx.fillStyle = 'rgba(' + s.tint + ',' + alpha + ')';
+          ctx.fill();
+        }
       }
       requestAnimationFrame(draw);
     }
@@ -93,7 +113,7 @@
   var heroField = document.querySelector('.hero-starfield');
   if(heroField){
     var heroCanvas = heroField.querySelector('canvas');
-    paintTwinklingStars(heroCanvas, heroField, {density:12000, glow:false});
+    paintTwinklingStars(heroCanvas, heroField, {density:12000, glow:false, entrance:true});
 
     var heroSection = heroField.closest('.section--full') || heroField.parentElement;
     if(heroSection && !reduceMotion){
