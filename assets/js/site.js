@@ -1,9 +1,20 @@
 (function(){
   var nav = document.querySelector('.navbar');
   if(nav){
+    var lastScrollY = window.scrollY;
     var onScroll = function(){
-      if(window.scrollY > 24) nav.classList.add('is-scrolled');
+      var y = window.scrollY;
+      if(y > 24) nav.classList.add('is-scrolled');
       else nav.classList.remove('is-scrolled');
+
+      // hide the bar while scrolling down past the first screen, reveal it
+      // again as soon as the user scrolls back up
+      if(y > lastScrollY + 4 && y > 120){
+        nav.classList.add('is-hidden');
+      } else if(y < lastScrollY - 4 || y <= 120){
+        nav.classList.remove('is-hidden');
+      }
+      lastScrollY = y;
     };
     window.addEventListener('scroll', onScroll, {passive:true});
     onScroll();

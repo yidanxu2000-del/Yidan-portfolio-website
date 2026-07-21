@@ -34,21 +34,26 @@ body{background:#07080d;}
 }
 
 /* ---------- Nav ----------
-   Deliberately simpler than .liquid-glass, and deliberately not relying on
-   backdrop-filter for legibility: Chrome has a known limitation where
-   backdrop-filter on a position:sticky element stops blurring newly
-   scrolled-in content once a page has scrolled a long way, leaving only
-   the flat translucent colour with sharp, unblurred text showing straight
-   through it (reads as a "ghosting" glitch on long pages). Blur is kept as
-   a nice-to-have on top, but the base colour is opaque enough on its own
-   to stay clean and legible even where the blur silently stops applying. */
+   position:fixed (not sticky) so it always overlays real page content —
+   with a sticky nav sitting in normal flow, the nav's own "backdrop" at
+   rest is just the empty page background, so its glass blur had nothing
+   to actually show through. Fixed floats it over the hero/photo straight
+   away, which is also what makes the see-through glass effect read.
+   Chrome also has a known limitation where backdrop-filter on a pinned
+   element stops blurring newly scrolled-in content once a page has
+   scrolled a long way (reads as unblurred text "ghosting" through) — kept
+   the base colour translucent-but-not-too-thin so it still looks
+   intentional if the blur silently stops applying deep in a long page. */
 .navbar{
-  position:sticky;top:0;z-index:50;
-  background:rgba(255,255,255,.86);
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(255,255,255,.62);
   backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);
+  transform:translateY(0);
+  transition:transform .35s var(--ease-out);
 }
+.navbar.is-hidden{transform:translateY(-100%);}
 .navbar--dark{
-  background:rgba(8,10,16,.86);
+  background:rgba(8,10,16,.55);
 }
 .navbar__inner{
   max-width:var(--container-max);margin:0 auto;
