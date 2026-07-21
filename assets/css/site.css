@@ -354,10 +354,13 @@
 }
 .case-hero--photo .case-hero__inner{position:relative;z-index:1;width:100%;}
 
-/* same background-photo treatment for generic dark hero sections (e.g. About) */
+/* same background-photo treatment for generic dark hero sections (e.g. About) —
+   uses contain (not cover) so a portrait photo is never cropped; the empty
+   side gutters are filled with a matching dark gray rather than stretching or cutting it */
 .section--photo{
   position:relative;overflow:hidden;
-  min-height:100vh;background-size:cover;background-position:center top;
+  min-height:100vh;background-size:contain;background-repeat:no-repeat;background-position:center top;
+  background-color:var(--surface-inverse-alt);
   justify-content:center;
 }
 .section--photo::before{
@@ -606,13 +609,19 @@
 .timeline{max-width:var(--container-narrow);margin:0 auto;}
 .timeline__item{display:flex;gap:var(--space-6);padding:var(--space-5) 0;border-top:1px solid var(--border-hairline);}
 .timeline__item:first-child{border-top:none;}
-.timeline__date{flex:0 0 160px;font-size:var(--text-body-sm);color:var(--text-tertiary);}
-.timeline__role{font-size:var(--text-body-lg);color:var(--text-primary);font-weight:var(--fw-medium);}
-.timeline__logo{height:26px;width:64px;object-fit:contain;object-position:left center;vertical-align:middle;margin-right:10px;}
+.timeline__date{flex:0 0 160px;font-size:var(--text-body-sm);color:var(--text-tertiary);padding-top:2px;}
+.timeline__role{font-size:var(--text-body-lg);color:var(--text-primary);font-weight:var(--fw-medium);flex:1;min-width:0;}
+.timeline__role--logo{display:grid;grid-template-columns:64px 1fr;column-gap:14px;align-items:start;}
+.timeline__logo{height:26px;width:64px;object-fit:contain;object-position:left center;margin-top:2px;}
 .timeline__logo-badge{
-  display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin-right:10px;
+  display:inline-flex;align-items:center;justify-content:center;margin-top:2px;
   width:26px;height:26px;border-radius:50%;border:1px solid var(--border-hairline);
   font-family:var(--font-display);font-size:9px;font-weight:var(--fw-semibold);color:var(--text-secondary);
+}
+.timeline__role-text{min-width:0;}
+@media(max-width:600px){
+  .timeline__role--logo{grid-template-columns:44px 1fr;}
+  .timeline__role--logo .timeline__logo{height:22px;width:44px;}
 }
 
 .list-grid{
