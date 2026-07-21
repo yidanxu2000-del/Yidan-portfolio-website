@@ -414,6 +414,49 @@
 .section--dark .prose blockquote{color:var(--text-on-dark);border-left-color:var(--accent);}
 .section--dark .prose a{color:var(--text-on-dark);}
 
+/* two-column "label + description" section intro, e.g. "LOGO Design  —  paragraph" */
+.split-row{
+  display:flex;gap:var(--space-7);align-items:baseline;
+  max-width:var(--container-max);margin:0 auto var(--space-7);
+}
+.split-row__label{
+  flex:0 0 220px;font-family:var(--font-display);font-size:var(--text-h3);font-weight:var(--fw-semibold);
+  letter-spacing:var(--ls-snug);color:var(--text-primary);
+}
+.split-row__body{flex:1;min-width:0;}
+.split-row__body p{font-size:var(--text-body-lg);line-height:var(--lh-body);color:var(--text-secondary);margin-bottom:var(--space-4);}
+.split-row__body p:last-child{margin-bottom:0;}
+.section--dark .split-row__label{color:var(--text-on-dark);}
+.section--dark .split-row__body p{color:var(--text-on-dark-secondary);}
+@media(max-width:720px){
+  .split-row{flex-direction:column;gap:var(--space-3);}
+  .split-row__label{flex:none;}
+}
+
+/* three-up plain feature cards, e.g. Collectibles Gallery / Showcase Your NFTs / NFT Community */
+.feature-cards{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5);
+  max-width:var(--container-max);margin:0 auto var(--space-9);
+}
+.feature-card{
+  padding:var(--space-6);border-radius:var(--radius-lg);background:var(--gray-1);border:1px solid var(--border-hairline);
+}
+.feature-card__title{font-family:var(--font-display);font-size:var(--text-body-lg);font-weight:var(--fw-semibold);margin-bottom:var(--space-3);color:var(--text-primary);}
+.feature-card__body{font-size:var(--text-body-sm);line-height:var(--lh-body);color:var(--text-secondary);}
+.section--dark .feature-card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);}
+.section--dark .feature-card__title{color:var(--text-on-dark);}
+.section--dark .feature-card__body{color:var(--text-on-dark-secondary);}
+@media(max-width:820px){
+  .feature-cards{grid-template-columns:1fr;}
+}
+
+/* full-bleed dark showcase figure, e.g. the NFT brand/character graphic on black */
+.showcase-figure{
+  background:#0a0a0a;border-radius:var(--radius-lg);overflow:hidden;
+  max-width:var(--container-max);margin:0 auto var(--space-9);
+}
+.showcase-figure img{width:100%;display:block;}
+
 /* signature "workflow philosophy" treatment, used for stand-out prose sections */
 .prose-section--signature{
   background:
