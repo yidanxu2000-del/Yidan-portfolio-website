@@ -13,15 +13,19 @@ MoodGuard sends a macOS notification, warning you to watch for a low mood
 and step in early. The menu-bar icon also quietly shifts (🙂 → 😐 → ⚠️ → 🚨)
 as the window closes in.
 
-## What's in v2
+## What's in v3
 
-- **A floating desktop widget**, frameless dark glass, always visible.
-  Drag it anywhere; it remembers its spot. Hide/show it from the menu-bar
-  icon.
-- **Customisable activities.** Click "✎ customise" on the widget (or the
+- **A redesigned card**, warm gradient background, glassy translucent
+  activity pills, Apple-widget styling.
+- **Tap-to-fill checkboxes.** Each activity is a circle that fills solid
+  with a checkmark once it's logged for today, instead of a plain text
+  toggle.
+- **A floating desktop widget**, always visible. Drag it anywhere; it
+  remembers its spot. Hide/show it from the menu-bar icon.
+- **Customisable activities.** Click "Customise" on the widget (or the
   menu-bar icon → "Customise activities…"), edit the list, one per line,
   up to 12. History for removed lines is kept.
-- Check-ins from the old menu-bar version carry over automatically.
+- Check-ins from earlier versions carry over automatically.
 
 ## Install (on your Mac)
 
@@ -43,12 +47,12 @@ bash uninstall.sh
 ## How it works
 
 - `mood_guard.py` — the app, built directly on AppKit via PyObjC. The
-  widget is a borderless, non-activating `NSPanel` with an
-  `NSVisualEffectView` glass background, floating above the desktop on
-  every Space. A background timer checks hourly whether 14 days have
-  passed since *any* activity was last logged, and fires a notification
-  via `osascript` (more reliable than unsigned-app notification APIs on
-  modern macOS).
+  widget is a borderless, non-activating `NSPanel` with a hand-drawn
+  gradient card (`NSGradient`) and custom pill rows (`NSBezierPath`),
+  floating above the desktop on every Space. A background timer checks
+  hourly whether 14 days have passed since *any* activity was last
+  logged, and fires a notification via `osascript` (more reliable than
+  unsigned-app notification APIs on modern macOS).
 - Data lives at `~/Library/Application Support/MoodGuard/data.json`: the
   activity list, a log of dates per activity, and the widget's position.
 - `com.yidanxu.moodguard.plist` + `install.sh` — a standard macOS

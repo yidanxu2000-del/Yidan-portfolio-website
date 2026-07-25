@@ -132,6 +132,7 @@ try:
         NSButton,
         NSColor,
         NSFont,
+        NSGradient,
         NSMakeRect,
         NSMenu,
         NSMenuItem,
@@ -140,10 +141,11 @@ try:
         NSPanel,
         NSScreen,
         NSScrollView,
+        NSShadow,
         NSStatusBar,
         NSTextField,
         NSTextView,
-        NSVisualEffectView,
+        NSView,
     )
     from PyObjCTools import AppHelper
 
@@ -153,31 +155,54 @@ except ImportError:  # keeps the pure logic above importable off-macOS
 
 
 if MACOS:
-    ACCENT = NSColor.colorWithCalibratedRed_green_blue_alpha_(0.62, 0.93, 0.78, 1.0)
-    TEXT_PRIMARY = NSColor.colorWithCalibratedWhite_alpha_(1.0, 0.92)
-    TEXT_SECONDARY = NSColor.colorWithCalibratedWhite_alpha_(1.0, 0.5)
-    TEXT_FAINT = NSColor.colorWithCalibratedWhite_alpha_(1.0, 0.28)
+    # ---- layout ----
+    WIDGET_W = 300
+    PAD = 24
+    CARD_RADIUS = 28.0
+    TITLE_SLOT = 14
+    NUMBER_SLOT = 52
+    DIVIDER_SLOT = 16
+    PILL_H = 52
+    ROW_GAP = 10
+    PRE_BTN_GAP = 16
+    BTN_H = 34
 
-    WIDGET_W = 292
-    PAD = 26
-    ROW_H = 34
+    def _c(r, g, b, a=1.0):
+        return NSColor.colorWithCalibratedRed_green_blue_alpha_(r, g, b, a)
 
-    def _label(text, font, color, frame, align_left=True):
-        f = NSTextField.alloc().initWithFrame_(frame)
-        f.setStringValue_(text)
-        f.setBezeled_(False)
-        f.setDrawsBackground_(False)
-        f.setEditable_(False)
-        f.setSelectable_(False)
-        f.setFont_(font)
-        f.setTextColor_(color)
-        if align_left:
-            f.setAlignment_(0)  # NSTextAlignmentLeft
-        return f
+    def _w(white, a):
+        return NSColor.colorWithCalibratedWhite_alpha_(white, a)
 
-    def _attr_title(text, font, color):
+    # warm-to-cool diagonal, in the spirit of Apple's own widget gradients
+    GRADIENT = NSGradient.alloc().initWithColors_(
+        [
+            _c(0.98, 0.82, 0.68),  # warm peach
+            _c(0.92, 0.60, 0.63),  # coral pink
+            _c(0.58, 0.44, 0.70),  # mauve
+            _c(0.22, 0.18, 0.36),  # deep indigo
+        ]
+    )
+
+    ACCENT = _c(0.80, 0.68, 1.0)  # soft lavender, used for the checked state
+    TEXT_PRIMARY = _w(1.0, 0.96)
+    TEXT_SECONDARY = _w(1.0, 0.68)
+    TEXT_FAINT = _w(1.0, 0.55)
+
+    ROW_FILL = _w(1.0, 0.15)
+    ROW_FILL_DONE = _w(1.0, 0.22)
+    ROW_BORDER = _w(1.0, 0.24)
+    CIRCLE_STROKE = _w(1.0, 0.62)
+    CHECK_FILL = ACCENT
+    CHECK_MARK = _w(0.12, 1.0)
+
+    TEXT_SHADOW = NSShadow.alloc().init()
+    TEXT_SHADOW.setShadowColor_(_w(0.0, 0.45))
+    TEXT_SHADOW.setShadowBlurRadius_(3.0)
+    TEXT_SHADOW.setShadowOffset_(AppKit.NSMakeSize(0, -1))
+
+    def _attr(text, font, color, align=0):
         style = NSMutableParagraphStyle.alloc().init()
-        style.setAlignment_(0)
+        style.setAlignment_(align)
         style.setLineBreakMode_(4)  # truncate tail
         return AppKit.NSAttributedString.alloc().initWithString_attributes_(
             text,
@@ -185,8 +210,84 @@ if MACOS:
                 AppKit.NSFontAttributeName: font,
                 AppKit.NSForegroundColorAttributeName: color,
                 AppKit.NSParagraphStyleAttributeName: style,
+                AppKit.NSShadowAttributeName: TEXT_SHADOW,
             },
         )
+
+    def _label(text, font, color, frame):
+        f = NSTextField.alloc().initWithFrame_(frame)
+        f.setBezeled_(False)
+        f.setDrawsBackground_(False)
+        f.setEditable_(False)
+        f.setSelectable_(False)
+        f.setAttributedStringValue_(_attr(text, font, color))
+        return f
+
+    class CardView(NSView):
+        """The whole widget's background: a soft gradient clipped to a
+        rounded card by the view's own layer (masksToBounds)."""
+
+        def drawRect_(self, rect):
+            GRADIENT.drawInRect_angle_(self.bounds(), 55.0)
+
+    class ActivityRow(NSView):
+        """One tappable pill: translucent glass, with a circular checkbox
+        that fills solid and gets a checkmark once it's done for today."""
+
+        def initWithFrame_(self, frame):
+            self = objc.super(ActivityRow, self).initWithFrame_(frame)
+            if self is None:
+                return None
+            self.label = ""
+            self.done = False
+            self.index = 0
+            self.app = None
+            return self
+
+        def drawRect_(self, rect):
+            b = self.bounds()
+            h = b.size.height
+            pill = AppKit.NSBezierPath.bezierPathWithRoundedRect_xRadius_yRadius_(
+                b, h / 2.0, h / 2.0
+            )
+            (ROW_FILL_DONE if self.done else ROW_FILL).setFill()
+            pill.fill()
+            pill.setLineWidth_(1.0)
+            ROW_BORDER.setStroke()
+            pill.stroke()
+
+            d = 24.0
+            cx = 14.0
+            cy = (h - d) / 2.0
+            circle = AppKit.NSBezierPath.bezierPathWithOvalInRect_(
+                AppKit.NSMakeRect(cx, cy, d, d)
+            )
+            if self.done:
+                CHECK_FILL.setFill()
+                circle.fill()
+                check = AppKit.NSBezierPath.bezierPath()
+                check.moveToPoint_(AppKit.NSMakePoint(cx + d * 0.26, cy + d * 0.52))
+                check.lineToPoint_(AppKit.NSMakePoint(cx + d * 0.42, cy + d * 0.34))
+                check.lineToPoint_(AppKit.NSMakePoint(cx + d * 0.76, cy + d * 0.66))
+                check.setLineWidth_(2.2)
+                check.setLineCapStyle_(AppKit.NSRoundLineCapStyle)
+                check.setLineJoinStyle_(AppKit.NSRoundLineJoinStyle)
+                CHECK_MARK.setStroke()
+                check.stroke()
+            else:
+                circle.setLineWidth_(1.6)
+                CIRCLE_STROKE.setStroke()
+                circle.stroke()
+
+            attr = _attr(self.label, NSFont.systemFontOfSize_weight_(14, AppKit.NSFontWeightMedium), TEXT_PRIMARY)
+            size = attr.size()
+            text_x = cx + d + 12
+            text_y = (h - size.height) / 2.0
+            attr.drawAtPoint_(AppKit.NSMakePoint(text_x, text_y))
+
+        def mouseDown_(self, event):
+            if self.app is not None:
+                self.app.toggleActivity_(self.index)
 
     class MoodGuardApp(NSObject):
         def applicationDidFinishLaunching_(self, _):
@@ -256,7 +357,16 @@ if MACOS:
 
         def windowHeight(self):
             n = len(self.data["activities"])
-            return PAD + 30 + 58 + 18 + n * ROW_H + 40 + PAD - 10
+            rows = n * PILL_H + max(0, n - 1) * ROW_GAP
+            return (
+                2 * PAD
+                + TITLE_SLOT
+                + NUMBER_SLOT
+                + DIVIDER_SLOT
+                + rows
+                + PRE_BTN_GAP
+                + BTN_H
+            )
 
         def refresh(self):
             h = self.windowHeight()
@@ -266,23 +376,18 @@ if MACOS:
                 NSMakeRect(frame.origin.x, top - h, WIDGET_W, h), True
             )
 
-            glass = NSVisualEffectView.alloc().initWithFrame_(NSMakeRect(0, 0, WIDGET_W, h))
-            glass.setMaterial_(AppKit.NSVisualEffectMaterialHUDWindow)
-            glass.setBlendingMode_(AppKit.NSVisualEffectBlendingModeBehindWindow)
-            glass.setState_(AppKit.NSVisualEffectStateActive)
-            glass.setWantsLayer_(True)
-            glass.layer().setCornerRadius_(22.0)
-            glass.layer().setMasksToBounds_(True)
-            glass.layer().setBorderWidth_(1.0)
-            glass.layer().setBorderColor_(
-                NSColor.colorWithCalibratedWhite_alpha_(1.0, 0.12).CGColor()
-            )
-            self.window.setContentView_(glass)
+            card = CardView.alloc().initWithFrame_(NSMakeRect(0, 0, WIDGET_W, h))
+            card.setWantsLayer_(True)
+            card.layer().setCornerRadius_(CARD_RADIUS)
+            card.layer().setMasksToBounds_(True)
+            card.layer().setBorderWidth_(1.0)
+            card.layer().setBorderColor_(_w(1.0, 0.28).CGColor())
+            self.window.setContentView_(card)
 
             y = h - PAD
 
-            y -= 14
-            glass.addSubview_(
+            y -= TITLE_SLOT
+            card.addSubview_(
                 _label(
                     "M O O D G U A R D",
                     NSFont.systemFontOfSize_weight_(11, AppKit.NSFontWeightSemibold),
@@ -293,12 +398,12 @@ if MACOS:
 
             days = days_since_last_activity(self.data)
             big = "–" if days is None else str(days)
-            y -= 52
-            glass.addSubview_(
+            y -= NUMBER_SLOT
+            card.addSubview_(
                 _label(
                     big,
-                    NSFont.systemFontOfSize_weight_(42, AppKit.NSFontWeightThin),
-                    ACCENT if (days is not None and days < 7) else TEXT_PRIMARY,
+                    NSFont.systemFontOfSize_weight_(40, AppKit.NSFontWeightThin),
+                    TEXT_PRIMARY,
                     NSMakeRect(PAD, y, 70, 50),
                 )
             )
@@ -307,61 +412,63 @@ if MACOS:
                 if days is None
                 else ("recharged today ✨" if days == 0 else "days since last recharge")
             )
-            glass.addSubview_(
+            card.addSubview_(
                 _label(
                     caption,
                     NSFont.systemFontOfSize_(11),
                     TEXT_SECONDARY,
-                    NSMakeRect(PAD + 62, y + 8, WIDGET_W - PAD - (PAD + 62), 16),
+                    NSMakeRect(PAD + 60, y + 6, WIDGET_W - PAD - (PAD + 60), 32),
                 )
             )
 
-            y -= 16
-            divider = AppKit.NSView.alloc().initWithFrame_(
-                NSMakeRect(PAD, y, WIDGET_W - 2 * PAD, 1)
+            y -= DIVIDER_SLOT
+            divider = NSView.alloc().initWithFrame_(
+                NSMakeRect(PAD, y + 8, WIDGET_W - 2 * PAD, 1)
             )
             divider.setWantsLayer_(True)
-            divider.layer().setBackgroundColor_(
-                NSColor.colorWithCalibratedWhite_alpha_(1.0, 0.1).CGColor()
-            )
-            glass.addSubview_(divider)
+            divider.layer().setBackgroundColor_(_w(1.0, 0.16).CGColor())
+            card.addSubview_(divider)
 
             today = date.today().isoformat()
-            font = NSFont.systemFontOfSize_(13)
             for i, label in enumerate(self.data["activities"]):
-                y -= ROW_H
-                done = today in self.data["log"].get(label, [])
-                btn = NSButton.alloc().initWithFrame_(
-                    NSMakeRect(PAD - 8, y, WIDGET_W - 2 * PAD + 16, ROW_H - 4)
+                if i > 0:
+                    y -= ROW_GAP
+                y -= PILL_H
+                row = ActivityRow.alloc().initWithFrame_(
+                    NSMakeRect(PAD, y, WIDGET_W - 2 * PAD, PILL_H)
                 )
-                btn.setBordered_(False)
-                btn.setTag_(i)
-                btn.setTarget_(self)
-                btn.setAction_("toggleActivity:")
-                text = ("✓  " + label) if done else label
-                color = ACCENT if done else TEXT_PRIMARY
-                btn.setAttributedTitle_(_attr_title(text, font, color))
-                glass.addSubview_(btn)
+                row.label = label
+                row.done = today in self.data["log"].get(label, [])
+                row.index = i
+                row.app = self
+                card.addSubview_(row)
 
-            y -= 36
-            edit = NSButton.alloc().initWithFrame_(
-                NSMakeRect(PAD - 8, y, WIDGET_W - 2 * PAD + 16, 24)
-            )
+            y -= PRE_BTN_GAP
+            y -= BTN_H
+            edit = NSButton.alloc().initWithFrame_(NSMakeRect(PAD, y, WIDGET_W - 2 * PAD, BTN_H))
             edit.setBordered_(False)
+            edit.setWantsLayer_(True)
+            edit.layer().setBackgroundColor_(_w(1.0, 0.14).CGColor())
+            edit.layer().setCornerRadius_(BTN_H / 2.0)
             edit.setTarget_(self)
             edit.setAction_("editActivities:")
             edit.setAttributedTitle_(
-                _attr_title("✎  customise", NSFont.systemFontOfSize_(11), TEXT_FAINT)
+                _attr(
+                    "Customise",
+                    NSFont.systemFontOfSize_weight_(12, AppKit.NSFontWeightMedium),
+                    TEXT_FAINT,
+                    align=2,  # centered
+                )
             )
-            glass.addSubview_(edit)
+            card.addSubview_(edit)
 
             self.status_item.button().setTitle_(
                 status_icon(days) + ("" if days is None else " {}d".format(days))
             )
 
         # ------------------------------------------------------------ actions
-        def toggleActivity_(self, sender):
-            label = self.data["activities"][sender.tag()]
+        def toggleActivity_(self, index):
+            label = self.data["activities"][index]
             today = date.today().isoformat()
             entries = self.data["log"].setdefault(label, [])
             if today in entries:
