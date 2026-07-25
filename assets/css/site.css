@@ -1029,3 +1029,35 @@ input,textarea,select{cursor:text;}
 
 /* inline video used the same way as .figure images */
 .figure video{width:100%;display:block;border-radius:var(--radius-md);}
+
+/* ---------- Then / now UI comparison ----------
+   Two versions of the same screen side by side, each explicitly dated, so
+   a redesign done today is never mistaken for what actually shipped. One
+   comparison per row: three across made each phone too small to read. */
+.thennow{max-width:var(--container-max);margin:0 auto var(--space-8);}
+.thennow__item{
+  display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:var(--space-6);
+  align-items:start;padding:var(--space-7) 0;border-top:1px solid var(--border-hairline);
+}
+.thennow__item:first-child{border-top:none;padding-top:var(--space-5);}
+.thennow__shot{margin:0;}
+.thennow__shot img{
+  width:100%;display:block;border-radius:16px;border:1px solid var(--border-hairline);
+  background:var(--gray-1);
+}
+.thennow__tag{
+  display:inline-block;margin-top:10px;font-family:var(--font-mono);font-size:11px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary);
+}
+.thennow__tag--new{color:var(--accent);}
+.thennow__cap{
+  font-size:var(--text-body);line-height:var(--lh-body);color:var(--text-secondary);
+}
+.thennow__cap strong{
+  display:block;color:var(--text-primary);font-weight:var(--fw-semibold);
+  font-family:var(--font-display);font-size:var(--text-body-lg);margin-bottom:var(--space-3);
+}
+@media(max-width:900px){
+  .thennow__item{grid-template-columns:1fr 1fr;gap:var(--space-5);}
+  .thennow__cap{grid-column:1 / -1;}
+}
