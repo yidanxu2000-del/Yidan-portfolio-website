@@ -264,19 +264,20 @@ body{background:#07080d;}
 .star-link--disabled{cursor:default;pointer-events:none;opacity:.4;}
 .star-link--disabled .star-link__dot{box-shadow:0 0 4px 0 rgba(255,255,255,.3);}
 
-/* a four-point star as the cursor over the starfield, in the site's blue so
-   it reads as *your* pointer rather than getting lost among the white stars */
-.starfield-section,
-.starfield-section .star-link:not(.star-link--disabled){
-  cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'><defs><radialGradient id='h'><stop offset='0' stop-color='%230080c8' stop-opacity='0.7'/><stop offset='1' stop-color='%230080c8' stop-opacity='0'/></radialGradient></defs><circle cx='15' cy='15' r='10' fill='url(%23h)'/><path d='M15 2 C15.9 10.4 19.6 14.1 28 15 C19.6 15.9 15.9 19.6 15 28 C14.1 19.6 10.4 15.9 2 15 C10.4 14.1 14.1 10.4 15 2 Z' fill='%2329a8ee'/></svg>") 15 15, pointer;
+/* ---------- Cursor ----------
+   A round glowing point of light, used across the whole site: a bright
+   core with a soft halo around it. Kept at 32px because browsers quietly
+   ignore custom cursors much beyond that. Every rule keeps a standard
+   keyword fallback (auto / pointer / text) so nothing becomes unusable if
+   the image is refused. */
+html,body{
+  cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><defs><radialGradient id='d'><stop offset='0' stop-color='%2329a8ee' stop-opacity='0.55'/><stop offset='0.55' stop-color='%230080c8' stop-opacity='0.18'/><stop offset='1' stop-color='%230080c8' stop-opacity='0'/></radialGradient></defs><circle cx='16' cy='16' r='15' fill='url(%23d)'/><circle cx='16' cy='16' r='3.6' fill='%236fc9ff'/><circle cx='16' cy='16' r='1.9' fill='%23ffffff'/></svg>") 16 16, auto;
 }
-.starfield-section.is-pressed,
-.starfield-section .star-link.is-pressed{
-  cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'><defs><radialGradient id='h2'><stop offset='0' stop-color='%2329a8ee' stop-opacity='0.9'/><stop offset='1' stop-color='%2329a8ee' stop-opacity='0'/></radialGradient></defs><circle cx='15' cy='15' r='13' fill='url(%23h2)'/><path d='M15 4 C15.7 10.8 18.7 13.8 25.5 14.5 C18.7 15.2 15.7 18.2 15 25 C14.3 18.2 11.3 15.2 4.5 14.5 C11.3 13.8 14.3 10.8 15 4 Z' fill='%235cc4ff'/></svg>") 15 15, pointer;
+a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
+.press-item__link:not(.press-item__link--pending),.video-facade,.btn{
+  cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><defs><radialGradient id='da'><stop offset='0' stop-color='%235cc4ff' stop-opacity='0.85'/><stop offset='0.55' stop-color='%2329a8ee' stop-opacity='0.3'/><stop offset='1' stop-color='%2329a8ee' stop-opacity='0'/></radialGradient></defs><circle cx='16' cy='16' r='16' fill='url(%23da)'/><circle cx='16' cy='16' r='5' fill='%238fd7ff'/><circle cx='16' cy='16' r='2.6' fill='%23ffffff'/></svg>") 16 16, pointer;
 }
-
-/* the trail the star cursor leaves behind */
-.star-trail{position:absolute;inset:0;z-index:3;pointer-events:none;}
+input,textarea,select{cursor:text;}
 
 /* smooth warp-out before navigating away from the starfield */
 .starfield-links.is-navigating{transition:opacity .4s var(--ease-out),transform .4s var(--ease-out);}

@@ -497,59 +497,6 @@
     });
   }
 
-  // ---- star cursor trail over the starfield -----------------------------
-  if(hasHover && !reduceMotion){
-    var field = document.querySelector('.starfield-section');
-    if(field){
-      var trail = document.createElement('canvas');
-      trail.className = 'star-trail';
-      field.appendChild(trail);
-      var tctx = trail.getContext('2d');
-      var dots = [];
-      var sizeTrail = function(){
-        var r = field.getBoundingClientRect();
-        trail.width = r.width; trail.height = r.height;
-        trail.style.width = r.width + 'px'; trail.style.height = r.height + 'px';
-      };
-      sizeTrail();
-      window.addEventListener('resize', sizeTrail);
-
-      var lastX = null, lastY = null;
-      field.addEventListener('mousemove', function(e){
-        var r = field.getBoundingClientRect();
-        var x = e.clientX - r.left, y = e.clientY - r.top;
-        // only drop a particle once the pointer has actually travelled, so
-        // resting the mouse doesn't pile sparks up in one spot
-        if(lastX !== null && Math.hypot(x - lastX, y - lastY) < 6) return;
-        lastX = x; lastY = y;
-        dots.push({x:x, y:y, life:1, r:1.7 + Math.random() * 2.3});
-        if(dots.length > 70) dots.shift();
-      });
-      field.addEventListener('mouseleave', function(){ lastX = lastY = null; });
-
-      var drawTrail = function(){
-        tctx.clearRect(0, 0, trail.width, trail.height);
-        // the site's blue, so the trail belongs to the cursor and stays
-        // distinguishable from the white stars it moves through
-        tctx.shadowColor = 'rgba(41,168,238,.9)';
-        for(var i = dots.length - 1; i >= 0; i--){
-          var d = dots[i];
-          d.life -= 0.018;
-          if(d.life <= 0){ dots.splice(i, 1); continue; }
-          d.y += 0.15; // drift, so the trail settles like dust rather than freezing
-          tctx.beginPath();
-          tctx.arc(d.x, d.y, d.r * d.life, 0, Math.PI * 2);
-          tctx.shadowBlur = 8 * d.life;
-          tctx.fillStyle = 'rgba(120,205,255,' + (d.life * 0.75) + ')';
-          tctx.fill();
-        }
-        tctx.shadowBlur = 0;
-        requestAnimationFrame(drawTrail);
-      };
-      requestAnimationFrame(drawTrail);
-    }
-  }
-
   var reveals = document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window && reveals.length){
     var io = new IntersectionObserver(function(entries){
