@@ -20,7 +20,7 @@ fi
 PYTHON_BIN="$(command -v python3)"
 echo "Using $PYTHON_BIN"
 
-"$PYTHON_BIN" -m pip install --user --upgrade pyobjc-framework-Cocoa
+"$PYTHON_BIN" -m pip install --user --upgrade pyobjc-framework-Cocoa pyobjc-framework-Quartz
 
 if ! "$PYTHON_BIN" -c "import AppKit" >/dev/null 2>&1; then
   echo "pyobjc installed, but $PYTHON_BIN still can't import AppKit." >&2

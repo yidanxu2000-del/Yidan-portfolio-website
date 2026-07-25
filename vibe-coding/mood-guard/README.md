@@ -20,8 +20,11 @@ as the window closes in.
 - **Tap-to-fill checkboxes.** Each activity is a circle that fills solid
   with a checkmark once it's logged for today, instead of a plain text
   toggle.
-- **A floating desktop widget**, always visible. Drag it anywhere; it
-  remembers its spot. Hide/show it from the menu-bar icon.
+- **Lives at desktop level, not floating on top.** It sits with your
+  desktop icons, not above your other windows, so it stays out of the
+  way while you work and shows through once you're looking at the
+  desktop. Drag it anywhere; it remembers its spot. Hide/show it from
+  the menu-bar icon.
 - **Customisable activities.** Click "Customise" on the widget (or the
   menu-bar icon → "Customise activities…"), edit the list, one per line,
   up to 12. History for removed lines is kept.
@@ -49,10 +52,12 @@ bash uninstall.sh
 - `mood_guard.py` — the app, built directly on AppKit via PyObjC. The
   widget is a borderless, non-activating `NSPanel` with a hand-drawn
   gradient card (`NSGradient`) and custom pill rows (`NSBezierPath`),
-  floating above the desktop on every Space. A background timer checks
-  hourly whether 14 days have passed since *any* activity was last
-  logged, and fires a notification via `osascript` (more reliable than
-  unsigned-app notification APIs on modern macOS).
+  set to the desktop-icon window level (via `Quartz`, when available)
+  on every Space, so it never sits on top of whatever app you're
+  actually using. A background timer checks hourly whether 14 days have
+  passed since *any* activity was last logged, and fires a notification
+  via `osascript` (more reliable than unsigned-app notification APIs on
+  modern macOS).
 - Data lives at `~/Library/Application Support/MoodGuard/data.json`: the
   activity list, a log of dates per activity, and the widget's position.
 - `com.yidanxu.moodguard.plist` + `install.sh` — a standard macOS

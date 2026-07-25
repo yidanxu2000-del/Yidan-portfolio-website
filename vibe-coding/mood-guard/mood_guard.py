@@ -153,6 +153,17 @@ try:
 except ImportError:  # keeps the pure logic above importable off-macOS
     MACOS = False
 
+if MACOS:
+    try:
+        # The real desktop-icon window level, looked up from the OS rather
+        # than hardcoded, since the underlying CoreGraphics values aren't
+        # guaranteed stable across macOS versions.
+        from Quartz import CGWindowLevelForKey, kCGDesktopIconWindowLevelKey
+
+        DESKTOP_LEVEL = CGWindowLevelForKey(kCGDesktopIconWindowLevelKey)
+    except Exception:
+        DESKTOP_LEVEL = -2147483624  # approximate desktop-icon level fallback
+
 
 if MACOS:
     # ---- layout ----
@@ -334,11 +345,16 @@ if MACOS:
                 NSBackingStoreBuffered,
                 False,
             )
-            self.window.setLevel_(AppKit.NSFloatingWindowLevel)
+            # Desktop-icon level, not floating: it should sit on the desktop
+            # like a widget, and disappear behind whatever app is in front,
+            # not hover on top of every window you're working in.
+            self.window.setLevel_(DESKTOP_LEVEL)
             self.window.setCollectionBehavior_(
                 AppKit.NSWindowCollectionBehaviorCanJoinAllSpaces
                 | AppKit.NSWindowCollectionBehaviorStationary
+                | AppKit.NSWindowCollectionBehaviorIgnoresCycle
             )
+            self.window.setIgnoresMouseEvents_(False)
             self.window.setOpaque_(False)
             self.window.setBackgroundColor_(NSColor.clearColor())
             self.window.setHasShadow_(True)
