@@ -582,8 +582,14 @@ input,textarea,select{cursor:text;}
 .section--dark .feature-card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);}
 .section--dark .feature-card__title{color:var(--text-on-dark);}
 .section--dark .feature-card__body{color:var(--text-on-dark-secondary);}
+/* two-up variant, for genuine pairs (offline vs online, goal A vs goal B)
+   where a third column would leave an odd gap */
+.feature-cards--two{grid-template-columns:repeat(2,1fr);}
+/* sits inside .prose, which is narrower than the page container — without
+   this the cards would try to break out of the column they're written in */
+.prose .feature-cards{max-width:100%;margin-bottom:var(--space-7);}
 @media(max-width:820px){
-  .feature-cards{grid-template-columns:1fr;}
+  .feature-cards,.feature-cards--two{grid-template-columns:1fr;}
 }
 
 /* full-bleed dark showcase figure, e.g. the NFT brand/character graphic on black */
