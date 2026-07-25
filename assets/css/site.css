@@ -989,3 +989,37 @@ input,textarea,select{cursor:text;}
 .now-card__text strong{color:var(--text-on-dark);font-weight:var(--fw-medium);}
 .now-card__stamp{font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary);margin-top:var(--space-4);}
 @media(max-width:600px){ .now-card{flex-direction:column;gap:var(--space-4);} }
+
+/* ---------- Testimonial with an anonymised portrait ----------
+   The face is deliberately blurred: the quote comes from a teammate
+   speaking about their own ADHD, so the words carry the weight and the
+   person stays unidentifiable. */
+.testimonial{
+  max-width:var(--container-narrow);margin:var(--space-7) auto;
+  display:flex;gap:var(--space-6);align-items:flex-start;
+  padding:var(--space-6);border-radius:var(--radius-lg);
+  background:var(--gray-1);border:1px solid var(--border-hairline);
+}
+.testimonial__avatar{
+  width:64px;height:64px;border-radius:50%;flex:0 0 64px;position:relative;overflow:hidden;
+  background:linear-gradient(150deg,#c9d6e4,#8ea6bd 55%,#6b7f96);
+}
+.testimonial__avatar::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 50% 34%, rgba(255,255,255,.85) 0 22%, transparent 23%),
+    radial-gradient(ellipse 62% 42% at 50% 96%, rgba(255,255,255,.8) 0 60%, transparent 61%);
+  filter:blur(6px);
+}
+.testimonial__quote{
+  font-size:var(--text-body-lg);line-height:var(--lh-body);color:var(--text-primary);
+  font-style:italic;margin:0 0 var(--space-4);
+}
+.testimonial__cite{font-size:var(--text-body-sm);color:var(--text-secondary);font-style:normal;}
+.section--dark .testimonial{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.13);}
+.section--dark .testimonial__quote{color:var(--text-on-dark);}
+.section--dark .testimonial__cite{color:var(--text-on-dark-secondary);}
+@media(max-width:600px){ .testimonial{flex-direction:column;gap:var(--space-4);} }
+
+/* inline video used the same way as .figure images */
+.figure video{width:100%;display:block;border-radius:var(--radius-md);}

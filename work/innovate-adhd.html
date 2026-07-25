@@ -93,8 +93,12 @@
     <p>I broke the assessment into bite-sized, gamified modules that felt engaging and low-pressure while preserving clinical accuracy, turning heavy, repetitive text into an interaction that felt more like checking in with yourself than sitting an exam. This improved user engagement and significantly increased completion and conversion rates, without compromising the validity of the assessment.</p>
 
     <figure class="figure">
-      <img src="../assets/images/innovate-adhd/quiz-demo.gif" alt="Screen recording of the live gamified Adult ADHD Self-Report Scale — a single question at a time, with a slider and a mood-face reaction, ending in a results screen" loading="lazy">
-      <figcaption>The gamified assessment, live: one question at a time, with a slider and an emoji reaction</figcaption>
+      <video autoplay muted loop playsinline preload="metadata" poster="../assets/images/innovate-adhd/quiz-flow-poster.jpg" aria-label="Screen recording of the live gamified Adult ADHD Self-Report Scale: one question at a time, answered with a slider and a mood face, with a six-step progress bar along the top">
+        <source src="../assets/images/innovate-adhd/quiz-flow.webm" type="video/webm">
+        <source src="../assets/images/innovate-adhd/quiz-flow.mp4" type="video/mp4">
+        <img src="../assets/images/innovate-adhd/quiz-flow-poster.jpg" alt="The gamified ADHD self-report scale, one question at a time" loading="lazy">
+      </video>
+      <figcaption>The whole assessment, start to finish. One question per screen, answered by dragging a slider rather than reading five text options, with a face that reacts as you move it and a progress bar that shows how little is left. The 18-question ASRS form is still all there underneath.</figcaption>
     </figure>
 
     <figure class="figure figure--narrow">
@@ -148,6 +152,14 @@
     </div>
 
     <h2>3 · Updated the design system: designing for ADHD cognition</h2>
+    <p><strong>The problem I found:</strong> the site had been designed the way most sites are designed, for a neurotypical reader. Restrained contrast, small type, dense paragraphs, subtle links: the visual language that usually reads as tasteful. For this audience it's the opposite of accessible. A design that asks you to hunt for the next step is asking for exactly the executive function ADHD makes expensive, which is the same trap the original assessment fell into.</p>
+    <p>So I rebuilt the design system around what this audience actually needs, not what looks understated:</p>
+    <ul>
+      <li><strong>Bolder, higher-contrast colour</strong> instead of muted neutrals, so the eye lands where it should without effort</li>
+      <li><strong>Unmistakable visual guidance</strong>: one clear next action per screen, progress made visible, and the path through the flow never left to inference</li>
+      <li><strong>Larger type and more generous spacing</strong>, trading information density for readability</li>
+      <li><strong>Fewer distractions</strong>: unnecessary animation and decorative movement stripped out, so nothing competes with the task</li>
+    </ul>
     <p><strong>Attention-focused design for ADHD users</strong>: I designed the platform specifically around ADHD user needs, creating a more focus-friendly and cognitively accessible interface. This included larger, more readable typography, a clear and guided structure, reduced distractions such as unnecessary animations, and a strong visual hierarchy to help users stay on track. Compared with conventional UI patterns, these choices intentionally prioritise clarity and attention over density and aesthetics.</p>
     <p>These design decisions were grounded in accessibility and cognitive principles, aiming to reduce cognitive load and better support sustained attention. The overall experience was also validated through accessibility checks, including contrast and readability standards, ensuring it aligns with established guidelines while being genuinely usable for this user group.</p>
 
@@ -168,17 +180,36 @@
     </div>
 
     <h2>4 · Results: completion, conversion, engagement</h2>
-    <p>Based on early-stage analytics and platform performance: the product achieved 1.3K+ page views shortly after launch without any marketing spend, indicating strong initial interest; reached 600+ unique users, validating early user acquisition; and maintained an 82%+ engagement rate, suggesting users were actively interacting with the content rather than bouncing off it. Average engagement depth showed users weren't just visiting; they were staying and exploring the platform.</p>
-    <p>Before I left, the product had already reached and maintained an active user base, with improved completion and conversion compared to the original assessment flow.</p>
+    <h3>The number that mattered most</h3>
+    <p>The whole project rested on one question: would people with ADHD actually reach the end of an ADHD assessment? Page views tell you the marketing worked. Completion tells you the design worked. That's why the engagement rate is the figure I watch: <strong>82%+ of visitors interacted rather than bounced</strong>, on a page whose entire job is a task the audience is known to abandon.</p>
+    <p>The rest of the numbers are early-stage, and I'd rather say so than dress them up. 1.3K+ page views and 600+ unique users, with no marketing spend, tell me the positioning found people. A 32.3% click-through rate at an average search position of 3.7 says the ones who found it were the right ones, not incidental traffic. What none of it proves yet is clinical outcome, which needs a longer run and a controlled comparison against the original form.</p>
+
+    <div class="testimonial">
+      <div class="testimonial__avatar" aria-hidden="true"></div>
+      <div>
+        <p class="testimonial__quote">"The logic is really clear, and the thing that made me happy is that I actually finished the basic ADHD test. I like it. It's genuinely fun."</p>
+        <div class="testimonial__cite">A teammate who has ADHD, testing the live assessment. Anonymised at their request.</div>
+      </div>
+    </div>
+
+    <p>That one is worth more to me than the analytics. It came from someone on our own team who has ADHD, testing the flow as a user rather than a colleague, and it names both things the redesign was aiming at: the structure was legible, and finishing felt good instead of exhausting. Enjoyment isn't a soft metric here. For this audience it <em>is</em> the completion mechanism.</p>
 
     <div class="figure-grid">
       <figure class="figure">
-        <img src="../assets/images/innovate-adhd/homepage-demo.gif" alt="Screen recording of the live Innovate ADHD homepage — 'Transform ADHD From A Challenge Into Your Strength', with a warm gradient background and a booking call to action" loading="lazy">
-        <figcaption>The live homepage</figcaption>
+        <video autoplay muted loop playsinline preload="metadata" poster="../assets/images/innovate-adhd/homepage-hero-poster.jpg" aria-label="Screen recording of the live Innovate ADHD homepage">
+          <source src="../assets/images/innovate-adhd/homepage-hero.webm" type="video/webm">
+          <source src="../assets/images/innovate-adhd/homepage-hero.mp4" type="video/mp4">
+          <img src="../assets/images/innovate-adhd/homepage-hero-poster.jpg" alt="The live Innovate ADHD homepage" loading="lazy">
+        </video>
+        <figcaption>The live homepage, running the updated design system</figcaption>
       </figure>
       <figure class="figure">
-        <img src="../assets/images/innovate-adhd/team-page-demo.gif" alt="Screen recording of the live 'Meet Our Team' page, showing clinical team member profiles" loading="lazy">
-        <figcaption>The live team page: real clinicians, booked through the platform</figcaption>
+        <video autoplay muted loop playsinline preload="metadata" poster="../assets/images/innovate-adhd/team-scroll-poster.jpg" aria-label="Screen recording of the live Meet Our Team page, scrolling through clinician profiles">
+          <source src="../assets/images/innovate-adhd/team-scroll.webm" type="video/webm">
+          <source src="../assets/images/innovate-adhd/team-scroll.mp4" type="video/mp4">
+          <img src="../assets/images/innovate-adhd/team-scroll-poster.jpg" alt="The live Meet Our Team page" loading="lazy">
+        </video>
+        <figcaption>Named clinicians with real credentials, bookable in the same flow: the trust step between finishing a test and asking for help</figcaption>
       </figure>
     </div>
 
@@ -192,6 +223,9 @@
         <figcaption>Continued growth over the following months</figcaption>
       </figure>
     </div>
+
+    <h3>What I'd do next</h3>
+    <p>Before I left, the product had an active user base and better completion and conversion than the original flow. The obvious next step is the one I didn't get to: instrument the assessment itself, question by question, so drop-off can be traced to a specific screen rather than inferred from a page-level number, and run the gamified version against the original form with real users on both sides. That turns "engagement improved" into a defensible claim about clinical completion.</p>
   </div>
 </section>
 
