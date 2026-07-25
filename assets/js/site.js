@@ -363,6 +363,24 @@
     });
   }
 
+  // Swap a video facade for the real player only once it's asked for, so
+  // nothing is requested from YouTube on page load and a blocked embed can
+  // never render as a bare black rectangle.
+  document.querySelectorAll('.video-embed--facade').forEach(function(wrap){
+    var facade = wrap.querySelector('.video-facade');
+    if(!facade) return;
+    facade.addEventListener('click', function(){
+      var id = wrap.getAttribute('data-video');
+      if(!id) return;
+      var frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+      frame.title = facade.querySelector('.video-facade__label').textContent;
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      frame.setAttribute('allowfullscreen', '');
+      wrap.replaceChild(frame, facade);
+    });
+  });
+
   var reveals = document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window && reveals.length){
     var io = new IntersectionObserver(function(entries){
