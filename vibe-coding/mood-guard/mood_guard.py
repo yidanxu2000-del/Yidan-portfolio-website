@@ -22,16 +22,29 @@ DATA_FILE = os.path.join(DATA_DIR, "data.json")
 WARNING_DAYS = 14
 
 DEFAULT_ACTIVITIES = [
-    "💛 Saw my boyfriend, 3+ hours",
-    "🐾 Long time with a cat or dog",
-    "🍽️ Restaurant, real food",
-    "✈️ Travel",
-    "🗣️ Meet new people, talk a lot",
-    "🏆 Big win at work",
-    "🏊 Swim",
+    "Saw my boyfriend, 3+ hours",
+    "Long time with a cat or dog",
+    "Restaurant, real food",
+    "Travel",
+    "Meet new people, talk a lot",
+    "Big win at work",
+    "Swim",
 ]
 
 MAX_ACTIVITIES = 12
+
+# Older versions shipped the same defaults with a leading emoji, and the
+# log is keyed by label — remap just those known labels so existing
+# check-ins survive the rename. Custom labels are left exactly as typed.
+RENAMED_DEFAULTS = {
+    "💛 Saw my boyfriend, 3+ hours": "Saw my boyfriend, 3+ hours",
+    "🐾 Long time with a cat or dog": "Long time with a cat or dog",
+    "🍽️ Restaurant, real food": "Restaurant, real food",
+    "✈️ Travel": "Travel",
+    "🗣️ Meet new people, talk a lot": "Meet new people, talk a lot",
+    "🏆 Big win at work": "Big win at work",
+    "🏊 Swim": "Swim",
+}
 
 # ---------------------------------------------------------------- pure logic
 
@@ -50,18 +63,24 @@ def load_data():
     # legacy v1 logs were keyed by short ids; fold them into label keys so
     # old check-ins keep counting toward days-since
     legacy = {
-        "date": "💛 Saw my boyfriend, 3+ hours",
-        "pet": "🐾 Long time with a cat or dog",
-        "food": "🍽️ Restaurant, real food",
-        "travel": "✈️ Travel",
-        "social": "🗣️ Meet new people, talk a lot",
-        "win": "🏆 Big win at work",
-        "swim": "🏊 Swim",
+        "date": "Saw my boyfriend, 3+ hours",
+        "pet": "Long time with a cat or dog",
+        "food": "Restaurant, real food",
+        "travel": "Travel",
+        "social": "Meet new people, talk a lot",
+        "win": "Big win at work",
+        "swim": "Swim",
     }
     for old_key, label in legacy.items():
         if old_key in data["log"]:
             merged = set(data["log"].get(label, [])) | set(data["log"].pop(old_key))
             data["log"][label] = sorted(merged)
+    # then fold the emoji-prefixed default labels into their plain names
+    for old_label, new_label in RENAMED_DEFAULTS.items():
+        if old_label in data["log"]:
+            merged = set(data["log"].get(new_label, [])) | set(data["log"].pop(old_label))
+            data["log"][new_label] = sorted(merged)
+    data["activities"] = [RENAMED_DEFAULTS.get(a, a) for a in data["activities"]]
     for label in data["activities"]:
         data["log"].setdefault(label, [])
     data.setdefault("last_warned", None)
@@ -166,21 +185,27 @@ if MACOS:
 
 
 if MACOS:
+    # macOS harmonised NSTextAlignment with UIKit, so the raw values are
+    # NOT the historical AppKit ones (where 2 meant centre — it now means
+    # right). Always go through the named constants.
+    ALIGN_LEFT = AppKit.NSTextAlignmentLeft
+    ALIGN_CENTER = AppKit.NSTextAlignmentCenter
+
     # ---- layout ----
-    WIDGET_W = 336
-    PAD = 18
-    CARD_RADIUS = 26.0
+    WIDGET_W = 320
+    PAD = 16
+    CARD_RADIUS = 24.0
     TITLE_SLOT = 14
-    NUMBER_SLOT = 46
-    DIVIDER_SLOT = 14
-    PILL_H = 44
-    ROW_GAP = 7
-    PRE_BTN_GAP = 12
-    BTN_H = 32
+    NUMBER_SLOT = 48
+    DIVIDER_SLOT = 12
+    PILL_H = 40
+    ROW_GAP = 6
+    PRE_BTN_GAP = 10
+    BTN_H = 28
 
     # inside a pill
-    CIRCLE_D = 19.0
-    CIRCLE_X = 13.0
+    CIRCLE_D = 18.0
+    CIRCLE_X = 12.0
     TEXT_GAP = 10.0
     TEXT_RIGHT_INSET = 12.0
 
@@ -190,26 +215,30 @@ if MACOS:
     def _w(white, a):
         return NSColor.colorWithCalibratedWhite_alpha_(white, a)
 
-    # A restrained wash rather than a rainbow: mostly neutral, with just a
-    # hint of blue-green, laid over the real blur so the wallpaper still
-    # reads through it.
+    # A dark wash, so the card reads like the stock Weather/Calendar
+    # widgets (dark translucent, white text) instead of a bright white
+    # slab that washes out its own text on a light wallpaper. Just a hint
+    # of blue-green, kept low-alpha so the blur still carries the look.
     TINT = NSGradient.alloc().initWithColors_(
         [
-            _c(0.44, 0.64, 0.63, 0.34),  # soft blue-green
-            _c(0.48, 0.57, 0.66, 0.26),  # cool slate
-            _c(0.42, 0.47, 0.57, 0.30),  # deeper slate
+            _c(0.16, 0.30, 0.33, 0.40),  # deep blue-green
+            _c(0.15, 0.23, 0.32, 0.36),  # dark slate blue
+            _c(0.13, 0.17, 0.26, 0.40),  # near-navy
         ]
     )
 
     ACCENT = _c(0.42, 0.86, 0.78)  # mint, used for the checked state
-    TEXT_PRIMARY = _w(1.0, 0.97)
-    TEXT_SECONDARY = _w(1.0, 0.72)
-    TEXT_FAINT = _w(1.0, 0.62)
+    TEXT_PRIMARY = _w(1.0, 0.95)
+    TEXT_SECONDARY = _w(1.0, 0.62)
+    TEXT_FAINT = _w(1.0, 0.55)
 
-    ROW_FILL = _w(1.0, 0.13)
-    ROW_FILL_DONE = _w(1.0, 0.20)
-    ROW_BORDER = _w(1.0, 0.22)
-    CIRCLE_STROKE = _w(1.0, 0.60)
+    # kept deliberately low: on top of a dark blur these read as a soft
+    # edge, not as white bars
+    ROW_FILL = _w(1.0, 0.08)
+    ROW_FILL_DONE = _w(1.0, 0.14)
+    ROW_BORDER = _w(1.0, 0.13)
+    CARD_BORDER = _w(1.0, 0.16)
+    CIRCLE_STROKE = _w(1.0, 0.45)
     CHECK_FILL = ACCENT
     CHECK_MARK = _w(0.10, 1.0)
 
@@ -218,9 +247,9 @@ if MACOS:
     TEXT_SHADOW.setShadowBlurRadius_(3.0)
     TEXT_SHADOW.setShadowOffset_(AppKit.NSMakeSize(0, -1))
 
-    def _attr(text, font, color, align=0):
+    def _attr(text, font, color, align=None):
         style = NSMutableParagraphStyle.alloc().init()
-        style.setAlignment_(align)
+        style.setAlignment_(ALIGN_LEFT if align is None else align)
         style.setLineBreakMode_(4)  # truncate tail
         return AppKit.NSAttributedString.alloc().initWithString_attributes_(
             text,
@@ -232,7 +261,7 @@ if MACOS:
             },
         )
 
-    def _label(text, font, color, frame, align=0):
+    def _label(text, font, color, frame, align=None):
         f = NSTextField.alloc().initWithFrame_(frame)
         f.setBezeled_(False)
         f.setDrawsBackground_(False)
@@ -348,7 +377,7 @@ if MACOS:
                 "Customise",
                 NSFont.systemFontOfSize_weight_(12, AppKit.NSFontWeightMedium),
                 TEXT_FAINT,
-                align=2,  # centred
+                align=ALIGN_CENTER,
             )
             text_h = attr.size().height
             attr.drawInRect_(
@@ -458,11 +487,18 @@ if MACOS:
             blur.setMaterial_(AppKit.NSVisualEffectMaterialHUDWindow)
             blur.setBlendingMode_(AppKit.NSVisualEffectBlendingModeBehindWindow)
             blur.setState_(AppKit.NSVisualEffectStateActive)
+            # force the dark variant, so a light wallpaper doesn't turn the
+            # card white and swallow the white text on it
+            dark = AppKit.NSAppearance.appearanceNamed_(
+                AppKit.NSAppearanceNameVibrantDark
+            )
+            if dark is not None:
+                blur.setAppearance_(dark)
             blur.setWantsLayer_(True)
             blur.layer().setCornerRadius_(CARD_RADIUS)
             blur.layer().setMasksToBounds_(True)
             blur.layer().setBorderWidth_(1.0)
-            blur.layer().setBorderColor_(_w(1.0, 0.22).CGColor())
+            blur.layer().setBorderColor_(CARD_BORDER.CGColor())
             self.window.setContentView_(blur)
 
             tint = TintView.alloc().initWithFrame_(NSMakeRect(0, 0, WIDGET_W, h))
@@ -488,29 +524,31 @@ if MACOS:
             blur.addSubview_(
                 _label(
                     big,
-                    NSFont.systemFontOfSize_weight_(38, AppKit.NSFontWeightThin),
+                    # same weight and scale as the stock Weather widget's
+                    # temperature, rather than an ultra-thin display number
+                    NSFont.systemFontOfSize_weight_(44, AppKit.NSFontWeightLight),
                     TEXT_PRIMARY,
-                    NSMakeRect(PAD, y, 62, 46),
+                    NSMakeRect(PAD, y, 68, 50),
                 )
             )
             caption = (
                 "no check-ins yet"
                 if days is None
-                else ("recharged today ✨" if days == 0 else "days since last recharge")
+                else ("recharged today" if days == 0 else "days since last recharge")
             )
             blur.addSubview_(
                 _label(
                     caption,
                     NSFont.systemFontOfSize_(11),
                     TEXT_SECONDARY,
-                    NSMakeRect(PAD + 58, y + 4, inner_w - 58, 30),
+                    NSMakeRect(PAD + 64, y + 6, inner_w - 64, 30),
                 )
             )
 
             y -= DIVIDER_SLOT
-            divider = NSView.alloc().initWithFrame_(NSMakeRect(PAD, y + 7, inner_w, 1))
+            divider = NSView.alloc().initWithFrame_(NSMakeRect(PAD, y + 6, inner_w, 1))
             divider.setWantsLayer_(True)
-            divider.layer().setBackgroundColor_(_w(1.0, 0.14).CGColor())
+            divider.layer().setBackgroundColor_(_w(1.0, 0.11).CGColor())
             blur.addSubview_(divider)
 
             today = date.today().isoformat()
