@@ -381,6 +381,175 @@
     });
   });
 
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- numbers count up when they first scroll into view ----------------
+  // Values are written by hand in the markup and come in a lot of shapes
+  // ("5", "1.3K+", "82%+", "2 wks", "2x"), so animate whatever leading
+  // number is there and leave any prefix/suffix untouched.
+  (function(){
+    var nodes = document.querySelectorAll('.stat__value, .prose-stat-callout__value');
+    if(!nodes.length || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(!entry.isIntersecting) return;
+        var el = entry.target;
+        io.unobserve(el);
+        var m = /^(\D*?)(\d+(?:\.\d+)?)(.*)$/.exec(el.textContent.trim());
+        if(!m) return;
+        var pre = m[1], target = parseFloat(m[2]), post = m[3];
+        if(reduceMotion || !isFinite(target)) return;
+        var decimals = (m[2].split('.')[1] || '').length;
+        var dur = 900, start = 0;
+        var step = function(ts){
+          if(!start) start = ts;
+          var p = Math.min(1, (ts - start) / dur);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = pre + (target * eased).toFixed(decimals) + post;
+          if(p < 1) requestAnimationFrame(step);
+          else el.textContent = pre + m[2] + post;
+        };
+        el.textContent = pre + (0).toFixed(decimals) + post;
+        requestAnimationFrame(step);
+      });
+    }, {threshold:.4});
+    nodes.forEach(function(el){ io.observe(el); });
+  })();
+
+  // ---- scroll progress bar + section rail -------------------------------
+  (function(){
+    var bar = document.createElement('div');
+    bar.className = 'scroll-progress';
+    document.body.appendChild(bar);
+    var onProgress = function(){
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
+    };
+    window.addEventListener('scroll', onProgress, {passive:true});
+    window.addEventListener('resize', onProgress);
+    onProgress();
+
+    // Only worth a rail on the long reads: the case studies, which are the
+    // pages built out of stacked .prose-section blocks.
+    var heads = Array.prototype.filter.call(
+      document.querySelectorAll('.prose-section h2, .section--tint .section__title'),
+      function(h){ return h.textContent.trim().length; }
+    );
+    if(heads.length < 3) return;
+
+    var rail = document.createElement('nav');
+    rail.className = 'section-rail';
+    rail.setAttribute('aria-label', 'Sections');
+    var items = heads.map(function(h, i){
+      if(!h.id) h.id = 'sec-' + (i + 1);
+      var a = document.createElement('a');
+      a.className = 'section-rail__item';
+      a.href = '#' + h.id;
+      a.innerHTML = '<span class="section-rail__tick"></span><span class="section-rail__label"></span>';
+      a.querySelector('.section-rail__label').textContent = h.textContent.trim();
+      rail.appendChild(a);
+      return a;
+    });
+    document.body.appendChild(rail);
+
+    var syncActive = function(){
+      var best = 0, bestTop = -Infinity;
+      heads.forEach(function(h, i){
+        var top = h.getBoundingClientRect().top - 120;
+        if(top <= 0 && top > bestTop){ bestTop = top; best = i; }
+      });
+      items.forEach(function(a, i){ a.classList.toggle('is-active', i === best); });
+    };
+    window.addEventListener('scroll', syncActive, {passive:true});
+    syncActive();
+  })();
+
+  // ---- hero rotating line -----------------------------------------------
+  (function(){
+    var word = document.querySelector('.hero-rotator__word');
+    if(!word) return;
+    var words = (word.getAttribute('data-words') || '').split('|').filter(Boolean);
+    if(words.length < 2) return;
+    if(reduceMotion) return; // leave the first word in place
+    var wi = 0, ci = words[0].length, deleting = true;
+    var tick = function(){
+      var full = words[wi];
+      ci += deleting ? -1 : 1;
+      word.textContent = full.slice(0, ci);
+      var delay = deleting ? 40 : 70;
+      if(!deleting && ci === full.length){ deleting = true; delay = 1900; }
+      else if(deleting && ci === 0){ deleting = false; wi = (wi + 1) % words.length; delay = 260; }
+      setTimeout(tick, delay);
+    };
+    setTimeout(tick, 2200);
+  })();
+
+  // ---- cursor-follow glow on dark sections ------------------------------
+  if(hasHover && !reduceMotion){
+    document.querySelectorAll('.glow-follow').forEach(function(el){
+      el.addEventListener('mousemove', function(e){
+        var r = el.getBoundingClientRect();
+        el.style.setProperty('--gx', ((e.clientX - r.left) / r.width * 100) + '%');
+        el.style.setProperty('--gy', ((e.clientY - r.top) / r.height * 100) + '%');
+        el.classList.add('is-glowing');
+      });
+      el.addEventListener('mouseleave', function(){ el.classList.remove('is-glowing'); });
+    });
+  }
+
+  // ---- star cursor trail over the starfield -----------------------------
+  if(hasHover && !reduceMotion){
+    var field = document.querySelector('.starfield-section');
+    if(field){
+      var trail = document.createElement('canvas');
+      trail.className = 'star-trail';
+      field.appendChild(trail);
+      var tctx = trail.getContext('2d');
+      var dots = [];
+      var sizeTrail = function(){
+        var r = field.getBoundingClientRect();
+        trail.width = r.width; trail.height = r.height;
+        trail.style.width = r.width + 'px'; trail.style.height = r.height + 'px';
+      };
+      sizeTrail();
+      window.addEventListener('resize', sizeTrail);
+
+      var lastX = null, lastY = null;
+      field.addEventListener('mousemove', function(e){
+        var r = field.getBoundingClientRect();
+        var x = e.clientX - r.left, y = e.clientY - r.top;
+        // only drop a particle once the pointer has actually travelled, so
+        // resting the mouse doesn't pile sparks up in one spot
+        if(lastX !== null && Math.hypot(x - lastX, y - lastY) < 6) return;
+        lastX = x; lastY = y;
+        dots.push({x:x, y:y, life:1, r:1.7 + Math.random() * 2.3});
+        if(dots.length > 70) dots.shift();
+      });
+      field.addEventListener('mouseleave', function(){ lastX = lastY = null; });
+
+      var drawTrail = function(){
+        tctx.clearRect(0, 0, trail.width, trail.height);
+        // the site's blue, so the trail belongs to the cursor and stays
+        // distinguishable from the white stars it moves through
+        tctx.shadowColor = 'rgba(41,168,238,.9)';
+        for(var i = dots.length - 1; i >= 0; i--){
+          var d = dots[i];
+          d.life -= 0.018;
+          if(d.life <= 0){ dots.splice(i, 1); continue; }
+          d.y += 0.15; // drift, so the trail settles like dust rather than freezing
+          tctx.beginPath();
+          tctx.arc(d.x, d.y, d.r * d.life, 0, Math.PI * 2);
+          tctx.shadowBlur = 8 * d.life;
+          tctx.fillStyle = 'rgba(120,205,255,' + (d.life * 0.75) + ')';
+          tctx.fill();
+        }
+        tctx.shadowBlur = 0;
+        requestAnimationFrame(drawTrail);
+      };
+      requestAnimationFrame(drawTrail);
+    }
+  }
+
   var reveals = document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window && reveals.length){
     var io = new IntersectionObserver(function(entries){
