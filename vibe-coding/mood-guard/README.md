@@ -15,8 +15,9 @@ as the window closes in.
 
 ## What's in v3
 
-- **A redesigned card**, warm gradient background, glassy translucent
-  activity pills, Apple-widget styling.
+- **A redesigned card**: a real gaussian blur of the wallpaper behind it,
+  with a restrained blue-green wash layered on top, and glassy
+  translucent activity pills.
 - **Tap-to-fill checkboxes.** Each activity is a circle that fills solid
   with a checkmark once it's logged for today, instead of a plain text
   toggle.
@@ -50,14 +51,15 @@ bash uninstall.sh
 ## How it works
 
 - `mood_guard.py` — the app, built directly on AppKit via PyObjC. The
-  widget is a borderless, non-activating `NSPanel` with a hand-drawn
-  gradient card (`NSGradient`) and custom pill rows (`NSBezierPath`),
-  set to the desktop-icon window level (via `Quartz`, when available)
-  on every Space, so it never sits on top of whatever app you're
-  actually using. A background timer checks hourly whether 14 days have
-  passed since *any* activity was last logged, and fires a notification
-  via `osascript` (more reliable than unsigned-app notification APIs on
-  modern macOS).
+  widget is a borderless, non-activating `NSPanel` whose content view is
+  an `NSVisualEffectView` (the real system blur), with a low-alpha
+  `NSGradient` wash and custom pill rows (`NSBezierPath`) drawn over it.
+  It's set to the desktop-icon window level (via `Quartz`, when
+  available) on every Space, so it never sits on top of whatever app
+  you're actually using. A background timer checks hourly whether 14
+  days have passed since *any* activity was last logged, and fires a
+  notification via `osascript` (more reliable than unsigned-app
+  notification APIs on modern macOS).
 - Data lives at `~/Library/Application Support/MoodGuard/data.json`: the
   activity list, a log of dates per activity, and the widget's position.
 - `com.yidanxu.moodguard.plist` + `install.sh` — a standard macOS
