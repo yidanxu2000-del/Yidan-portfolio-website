@@ -466,6 +466,11 @@ input,textarea,select{cursor:text;}
    same z-index — lift it above the video, and the copy above them both,
    otherwise the white title sits unreadable on a bright frame */
 .case-hero--video::before{z-index:1;}
+/* footage that is already dark drowns under the standard scrim: keep enough
+   of it to read the type, and let the picture stay a picture */
+.case-hero--video-dim::before{
+  background:linear-gradient(180deg, rgba(0,0,0,.34) 0%, rgba(0,0,0,.30) 40%, rgba(0,0,0,.82) 100%);
+}
 .case-hero--video .case-hero__inner{z-index:2;}
 @media(prefers-reduced-motion:reduce){
   .case-hero__video{display:none;}

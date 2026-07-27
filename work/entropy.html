@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Entropy — Yidan Xu</title>
-<meta name="description" content="A VR game set fifty years from now in a flooded, waste-choked West Westminster, teaching recycling through play.">
+<meta name="description" content="A VR shooting game built in Unity at the Royal College of Art: fifty years from now, a flood carries London's waste back into the city, and you have to sort it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <link rel="stylesheet" href="../assets/css/site.css">
@@ -29,16 +29,21 @@
   </div>
 </nav>
 
-<header class="case-hero case-hero--photo" style="background-image:url(&#39;../assets/images/entropy/vr-playtest.jpg&#39;)">
+<header class="case-hero case-hero--photo case-hero--video case-hero--video-dim" style="background-image:url('../assets/images/entropy/flooding-street-hero-poster.jpg')">
+  <video class="case-hero__video" autoplay muted loop playsinline poster="../assets/images/entropy/flooding-street-hero-poster.jpg">
+    <source src="../assets/images/entropy/flooding-street-hero.webm" type="video/webm">
+    <source src="../assets/images/entropy/flooding-street-hero.mp4" type="video/mp4">
+  </video>
   <div class="case-hero__inner reveal">
     <a class="back-link" href="../index.html#work">← All work</a>
-    <div class="case-hero__meta">2023 · IDE Project 02</div>
+    <div class="case-hero__meta">2023 · Royal College of Art · Game development</div>
     <h1 class="case-hero__title">Entropy</h1>
-    <p class="case-hero__subtitle">Fifty years from now, a flood carries the city's garbage back to human society. How should we deal with it?</p>
+    <p class="case-hero__subtitle">A VR shooting game built in Unity. Fifty years from now, a flood carries London's waste back into the city, and you have to decide what to do with it.</p>
     <div class="case-hero__tags tag-row" style="justify-content:flex-start">
       <span class="tag tag--dark">VR</span>
       <span class="tag tag--dark">Unity</span>
-      <span class="tag tag--dark">Gaming</span>
+      <span class="tag tag--dark">Game</span>
+      <span class="tag tag--dark">Interaction</span>
     </div>
   </div>
 </header>
@@ -46,11 +51,12 @@
 <section class="prose-section section--light">
   <div class="prose reveal">
     <h2>Project overview</h2>
-    <p>The game is set fifty years in the future in West Westminster, the area with London's lowest recycling rate and most serious environmental problems, also home to a large homeless population and at great risk of flooding. Our game envisages that fifty years from now, a flood carries garbage back to human society, and asks: how should we deal with it?</p>
+    <p>Entropy is a game-development project from my time at the Royal College of Art: a VR shooting game, built in Unity, played in a headset.</p>
+    <p>It is set fifty years in the future in West Westminster, the part of London with the lowest recycling rate and the most serious environmental problems, which is also a centre of the city's homeless population and sits at high risk of flooding. The premise is that fifty years from now the flood carries the rubbish back. Everything the city threw away returns to the street it was thrown away on, and the player has to deal with it.</p>
 
     <figure class="figure">
-      <img src="../assets/images/illustrator/flood-concept.jpg" alt="Two painted concept scenes of a flooded, rain-soaked Westminster street with a lone figure in silhouette standing amid floating debris" loading="lazy">
-      <figcaption>Concept paintings for the flooded, fifty-years-from-now Westminster</figcaption>
+      <img src="../assets/images/entropy/concept-street.jpg" alt="Concept render of a flooded Westminster street at night: water at knee height between Victorian buildings, gas lamps still lit, a lone figure wading towards the camera and a tower silhouetted in the mist" loading="lazy">
+      <figcaption>The premise in one frame: the water is up, the lamps are still on, and somebody is still walking through it</figcaption>
     </figure>
 
     <h2>My contributions</h2>
@@ -61,25 +67,131 @@
       <li>Interactive environment building</li>
       <li>Video editing</li>
     </ul>
-    <p>We designed a set of interactive mechanics, shooting and picking, combining garbage types with recycling colour codes, to teach players how to sort recyclable from non-recyclable waste and recycle it efficiently.</p>
 
-    <h2>Environment design</h2>
+    <h2>Design point</h2>
+    <p>The teaching problem came first. Recycling instructions are text, and nobody reads text in a headset. So we put the lesson into the two things the player's hands are already doing.</p>
+    <p>The mechanics are built around <strong>shooting</strong> and <strong>picking</strong>, with waste types tied to the colours of real recycling streams. Sorting stops being a rule you are told and becomes the thing you are physically doing: aim at what can't be recovered, reach for what can. The game never explains the colour system, it just makes you use it.</p>
+
+    <figure class="figure">
+      <img src="../assets/images/entropy/street-colour-code.jpg" alt="Concept painting of the flooded high street: a figure in a long coat stands in the water with rubbish drifting past, and a hoarding overhead carries four coloured dots in blue, green, red and black, the recycling stream colours the game borrows" loading="lazy">
+      <figcaption>The colour codes live in the world rather than in a menu. Blue, green, red, black: the streams the player sorts into, hung above the street like signage that outlived the council that put it there.</figcaption>
+    </figure>
+
+    <h2>Storyboarding for a headset</h2>
+    <p>This is where the project stopped resembling anything else I had drawn. A flat storyboard assumes a frame: you decide what the audience sees and crop away the rest. In a headset there is no frame, because the player owns the camera. You cannot compose a shot. You can only compose a place, and then earn attention inside it.</p>
+    <p>So the boards got drawn twice. First the conventional way, to settle the story beats. Then again on a curved canvas matching what a head actually sweeps through, with front and rear views laid out together and a top-down view added, so we could design what sat behind the player at each moment as deliberately as what sat in front of them.</p>
+
+    <figure class="figure">
+      <img src="../assets/images/entropy/storyboard.jpg" alt="The flat storyboard: panels in ink and yellow highlighter showing Westminster Bridge in the rain, hands holding a help-me sign, figures wading through floodwater, a face in close-up, a drowning figure underwater, and a boarded-up church doorway" loading="lazy">
+      <figcaption>The flat boards, drawn first, to settle the story beats</figcaption>
+    </figure>
+
+    <figure class="figure">
+      <img src="../assets/images/entropy/vr-storyboard.jpg" alt="The VR storyboard: the same scene redrawn across three curved panels representing what a player sweeps past inside a headset, with dashed sightlines marking the centre of each view and rotation arrows beneath them" loading="lazy">
+      <figcaption>The same scene as a VR board: curved to match the sweep of a head, sightlines marked, and a top-down view added. Drawing it this way is what made the space designable rather than just illustrated.</figcaption>
+    </figure>
+
+    <h2>Building the world</h2>
+    <p>We analysed each scene as a full 360-degree space rather than as a view, then modelled and edited the in-game geometry against the concept design and the storyboards.</p>
+
     <h3>01 · Street</h3>
-    <p>A flooded, trash-filled street environment, the primary interaction space for shooting and sorting garbage as it drifts past.</p>
-    <h3>02 · Sewer</h3>
-    <p>A darker, more claustrophobic underground space that raises the stakes as players push further into the reclaimed city.</p>
+    <p>The primary space: a flooded high street where waste drifts past at eye level, close enough to reach for and far enough to shoot at.</p>
 
-    <h2>Media captions</h2>
-    <ul>
-      <li>Demo test</li>
-      <li>Character</li>
-      <li>Flooding street environment</li>
-      <li>Interaction 01: shooting</li>
-      <li>Interaction 02: recycling</li>
-      <li>Sewer environment</li>
-      <li>Ending: death</li>
-      <li>Ending: survive</li>
-    </ul>
+    <figure class="figure">
+      <img src="../assets/images/entropy/swimming-in-waste.jpg" alt="Painted scene of a person swimming through churning grey floodwater thick with bottles, bags and debris, their face just above the surface" loading="lazy">
+      <figcaption>Concept for the street at its worst: the waste isn't scenery, it's the thing you are in</figcaption>
+    </figure>
+
+    <h3>02 · Sewer</h3>
+    <p>A darker, tighter space underneath it. Less room to aim, more to reach for, and the claustrophobia does the work a difficulty setting normally would.</p>
+
+    <figure class="figure">
+      <img src="../assets/images/entropy/sewer-concept.jpg" alt="Concept painting of the sewer level: a figure stands waist-deep in still water inside a brick tunnel, reaching up with a grabber to catch a floating plastic bag, with debris and faint coloured light in the distance" loading="lazy">
+      <figcaption>The sewer: waist-deep, low ceiling, and most of what's worth recovering is above your head</figcaption>
+    </figure>
+
+    <h2>In play</h2>
+    <p>Captured in engine.</p>
+
+    <div class="figure-grid">
+      <figure class="figure">
+        <video autoplay muted loop playsinline poster="../assets/images/entropy/interaction-shooting-poster.jpg" aria-label="Gameplay capture: the player aims and fires at drifting waste in the flooded street">
+          <source src="../assets/images/entropy/interaction-shooting.webm" type="video/webm">
+          <source src="../assets/images/entropy/interaction-shooting.mp4" type="video/mp4">
+        </video>
+        <figcaption>Interaction 01: shooting</figcaption>
+      </figure>
+      <figure class="figure">
+        <video autoplay muted loop playsinline poster="../assets/images/entropy/interaction-recycling-poster.jpg" aria-label="Gameplay capture: the player picks up an item and sorts it into a coloured recycling stream">
+          <source src="../assets/images/entropy/interaction-recycling.webm" type="video/webm">
+          <source src="../assets/images/entropy/interaction-recycling.mp4" type="video/mp4">
+        </video>
+        <figcaption>Interaction 02: recycling</figcaption>
+      </figure>
+    </div>
+
+    <div class="figure-grid">
+      <figure class="figure">
+        <video autoplay muted loop playsinline poster="../assets/images/entropy/flooding-street-poster.jpg" aria-label="Gameplay capture: the flooded street environment running in engine">
+          <source src="../assets/images/entropy/flooding-street.webm" type="video/webm">
+          <source src="../assets/images/entropy/flooding-street.mp4" type="video/mp4">
+        </video>
+        <figcaption>Flooding street environment</figcaption>
+      </figure>
+      <figure class="figure">
+        <video autoplay muted loop playsinline poster="../assets/images/entropy/sewer-poster.jpg" aria-label="Gameplay capture: the sewer environment running in engine">
+          <source src="../assets/images/entropy/sewer.webm" type="video/webm">
+          <source src="../assets/images/entropy/sewer.mp4" type="video/mp4">
+        </video>
+        <figcaption>Sewer environment</figcaption>
+      </figure>
+    </div>
+
+    <figure class="figure">
+      <video autoplay muted loop playsinline poster="../assets/images/entropy/demo-test-poster.jpg" aria-label="Demo test capture of the game running end to end">
+        <source src="../assets/images/entropy/demo-test.webm" type="video/webm">
+        <source src="../assets/images/entropy/demo-test.mp4" type="video/mp4">
+      </video>
+      <figcaption>Demo test</figcaption>
+    </figure>
+
+    <h3>Characters</h3>
+    <div class="figure-grid">
+      <figure class="figure">
+        <video autoplay muted loop playsinline poster="../assets/images/entropy/character-1-poster.jpg" aria-label="Character turnaround, first model">
+          <source src="../assets/images/entropy/character-1.webm" type="video/webm">
+          <source src="../assets/images/entropy/character-1.mp4" type="video/mp4">
+        </video>
+        <figcaption>Character</figcaption>
+      </figure>
+      <figure class="figure">
+        <video autoplay muted loop playsinline poster="../assets/images/entropy/character-2-poster.jpg" aria-label="Character turnaround, second model">
+          <source src="../assets/images/entropy/character-2.webm" type="video/webm">
+          <source src="../assets/images/entropy/character-2.mp4" type="video/mp4">
+        </video>
+        <figcaption>Character</figcaption>
+      </figure>
+    </div>
+
+    <h2>Two endings</h2>
+    <p>The game can end either way, and that is the argument. Sort well enough and the water goes down far enough to live in. Sort badly and it doesn't. Nobody has to say the word "consequence" out loud.</p>
+
+    <div class="figure-grid">
+      <figure class="figure">
+        <video autoplay muted loop playsinline poster="../assets/images/entropy/ending-death-poster.jpg" aria-label="Ending sequence in which the player does not survive">
+          <source src="../assets/images/entropy/ending-death.webm" type="video/webm">
+          <source src="../assets/images/entropy/ending-death.mp4" type="video/mp4">
+        </video>
+        <figcaption>Ending: death</figcaption>
+      </figure>
+      <figure class="figure">
+        <video autoplay muted loop playsinline poster="../assets/images/entropy/ending-survive-poster.jpg" aria-label="Ending sequence in which the player survives">
+          <source src="../assets/images/entropy/ending-survive.webm" type="video/webm">
+          <source src="../assets/images/entropy/ending-survive.mp4" type="video/mp4">
+        </video>
+        <figcaption>Ending: survive</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
