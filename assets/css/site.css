@@ -1241,3 +1241,49 @@ input,textarea,select{cursor:text;}
 }
 .spec-card__role{font-size:var(--text-body-sm);line-height:1.45;color:var(--text-secondary);}
 @media(max-width:820px){.spec-cards{grid-template-columns:1fr;}}
+
+/* ---------- Wire protocol panel ----------
+   A firmware listing is the least interesting artefact a hardware project
+   produces. The decisions are in the frame format, so show that instead and
+   keep the sketch itself behind a disclosure. */
+.wire-spec{
+  background:var(--gray-1);border:1px solid var(--border-hairline);border-radius:var(--radius-md);
+  padding:var(--space-6);margin:var(--space-6) 0 var(--space-5);
+}
+.wire-spec__frame{display:flex;gap:var(--space-3);align-items:stretch;margin-bottom:var(--space-5);}
+.wire-byte{
+  background:#fff;border:1px solid var(--border-hairline);border-radius:var(--radius-sm);
+  padding:var(--space-4) var(--space-4) var(--space-3);text-align:center;
+  display:flex;flex-direction:column;gap:4px;min-width:0;
+}
+.wire-byte--id{flex:0 0 auto;}
+.wire-byte--angle{flex:1 1 auto;}
+.wire-byte__pos{
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--text-tertiary);
+}
+.wire-byte__v{
+  font-family:var(--font-mono);font-size:var(--text-h4);font-weight:var(--fw-semibold);
+  color:var(--text-primary);letter-spacing:.22em;
+}
+.wire-byte--id .wire-byte__v{color:var(--accent);}
+.wire-byte__l{font-size:var(--text-body-sm);color:var(--text-secondary);}
+.wire-spec__note{font-size:var(--text-body-sm);line-height:1.55;color:var(--text-secondary);margin:0;}
+.wire-spec__note code{font-family:var(--font-mono);font-size:.92em;}
+
+.disclosure{
+  border:1px solid var(--border-hairline);border-radius:var(--radius-md);
+  margin:var(--space-6) 0 var(--space-7);overflow:hidden;background:var(--gray-1);
+}
+.disclosure > summary{
+  cursor:pointer;list-style:none;padding:var(--space-4) var(--space-5);
+  font-size:var(--text-body-sm);font-weight:var(--fw-medium);color:var(--text-secondary);
+  display:flex;align-items:center;gap:10px;
+}
+.disclosure > summary::-webkit-details-marker{display:none;}
+.disclosure > summary::before{
+  content:"+";font-family:var(--font-mono);color:var(--accent);font-weight:var(--fw-semibold);
+}
+.disclosure[open] > summary::before{content:"–";}
+.disclosure > summary:hover{color:var(--text-primary);}
+.disclosure pre{margin:0;border-radius:0;}
