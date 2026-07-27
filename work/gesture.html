@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gesture — Yidan Xu</title>
-<meta name="description" content="A gesture-controlled lock trained with machine learning. It opens only once every finger reaches its correct angle.">
+<meta name="description" content="A gesture-controlled lock trained with machine learning: Vision OSC to Processing to Wekinator to Arduino, driving six servos and an iris mechanism. It opens only once every finger reaches its correct angle.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <link rel="stylesheet" href="../assets/css/site.css">
@@ -29,16 +29,17 @@
   </div>
 </nav>
 
-<header class="case-hero case-hero--photo" style="background-image:url(&#39;../assets/images/gesture/device-front.jpg&#39;)">
+<header class="case-hero case-hero--photo" style="background-image:url('../assets/images/gesture/rings-macro.jpg')">
   <div class="case-hero__inner reveal">
     <a class="back-link" href="../index.html#work">← All work</a>
-    <div class="case-hero__meta">2023 · IDE Project 03</div>
+    <div class="case-hero__meta">2023 · Royal College of Art · Physical computing</div>
     <h1 class="case-hero__title">Gesture</h1>
-    <p class="case-hero__subtitle">A new approach to password exploration: a smart lock that uses machine learning to recognise gestures, one ring per finger.</p>
+    <p class="case-hero__subtitle">A new approach to passwords: a lock with no keypad, that reads four hand gestures and the exact angle each one turns to. It opens only when all four are right.</p>
     <div class="case-hero__tags tag-row" style="justify-content:flex-start">
-      <span class="tag tag--dark">AI</span>
-      <span class="tag tag--dark">Machine Learning</span>
+      <span class="tag tag--dark">Machine learning</span>
+      <span class="tag tag--dark">Gesture recognition</span>
       <span class="tag tag--dark">Arduino</span>
+      <span class="tag tag--dark">Physical computing</span>
     </div>
   </div>
 </header>
@@ -46,11 +47,15 @@
 <section class="prose-section section--light">
   <div class="prose reveal">
     <h2>Project overview</h2>
-    <p>A device for a new approach to password exploration, featuring a smart-lock structure that uses machine learning to recognise gestures. Each small circular ring corresponds to the angle of a finger, controlled by a small servo motor. When every gesture is correct, the lock opens.</p>
+    <p>A device exploring a new approach to passwords: a smart-lock structure that uses machine learning to recognise gestures. Each small circular ring corresponds to the angle of a finger and is driven by its own servo. When all the gestures are correct, the lock opens.</p>
+    <p>A keypad password is a thing you know, and anyone standing behind you can know it too. This one is a thing you <em>do</em>, in the air, at a distance, and the distinguishing information isn't just which gesture you make but how far you turn it. Four gestures, each with a continuous angle, and all four have to land.</p>
 
     <figure class="figure">
-      <img src="../assets/images/gesture/device-front.jpg" alt="Front view of the gesture-controlled lock device — a square panel with four concentric rotating rings around a central iris, with a phone propped in front for scale" loading="lazy">
-      <figcaption>The finished device: one ring per finger, iris mechanism at the centre</figcaption>
+      <video autoplay muted loop playsinline poster="../assets/images/gesture/ring-turn-poster.jpg" aria-label="The device on a white surface: a hand turns in the air above it and one of the concentric rings rotates to follow">
+        <source src="../assets/images/gesture/ring-turn.webm" type="video/webm">
+        <source src="../assets/images/gesture/ring-turn.mp4" type="video/mp4">
+      </video>
+      <figcaption>The whole interaction: a hand turns in the air, the matching ring turns with it</figcaption>
     </figure>
 
     <h2>My contributions</h2>
@@ -60,27 +65,99 @@
       <li>Responsible for laser cutting</li>
       <li>Responsible for training the machine-learning model</li>
     </ul>
-    <p>The device consists of four SG92R micro servos, one MG996R servo, one MG995R servo, and an Arduino. Each gesture corresponds to a circle whose rotation angle controls the actual rotation of the ring. When all four gestures reach their specified angle, the iris structure rotates open and an internal push rod releases the locked item.</p>
+
+    <h2>Design point</h2>
+    <p>The design logic is that each gesture corresponds to a circle, and the rotation angle of the gesture controls the actual rotation of that circle. When all four gestures are rotated to their specified angle, the iris structure rotates open and the internal push rod pushes the locked item out.</p>
+    <p>The interface is the mechanism. There is no screen telling you whether you're close, because the ring itself is the feedback: it tracks your hand continuously, so you can see how far off you are and correct in real time.</p>
 
     <figure class="figure">
-      <img src="../assets/images/gesture/device-hand.jpg" alt="A hand reaching toward the gesture-lock device to interact with its rings" loading="lazy">
-      <figcaption>Testing gesture recognition against the device</figcaption>
+      <img src="../assets/images/gesture/gesture-vocabulary.jpg" alt="A strip of five photographs of a hand against a grey background: one finger, two fingers, three fingers, four fingers and an open palm, each with a double-headed arrow showing the rotation the gesture controls" loading="lazy">
+      <figcaption>The vocabulary. Four counted gestures, each mapped to a ring, plus the open palm that commits the sequence. The arrows are the second dimension: how far you rotate is as much of the password as which gesture you make.</figcaption>
     </figure>
+
+    <h2>Technical implementation</h2>
+    <h3>The signal chain</h3>
+    <p>Five stages, four tools, and one continuous path from a hand in the air to a servo horn turning by a specific number of degrees.</p>
+
+    <div class="stack-flow">
+      <b>hand</b><i>→</i><b>Vision OSC</b><i>→</i><b>Processing</b><i>→</i><b>Wekinator</b>
+      <i>→</i><b>Processing</b><i>→</i><b>Arduino</b><i>→</i><em>servo, in degrees</em>
+    </div>
+
+    <div class="stack-grid">
+      <div class="stack-node">
+        <div class="stack-node__top">
+          <img class="stack-node__mark" src="../assets/images/gesture/logo-openframeworks.png" alt="openFrameworks logo" loading="lazy">
+          <span class="stack-node__n">01</span>
+        </div>
+        <span class="stack-node__name">Vision OSC</span>
+        <span class="stack-node__role">Input hand signals, use VisionOSC to recognise hand gestures, and output signals to Processing.</span>
+      </div>
+      <div class="stack-node">
+        <div class="stack-node__top">
+          <img class="stack-node__mark" src="../assets/images/gesture/logo-processing.png" alt="Processing logo" loading="lazy">
+          <span class="stack-node__n">02</span>
+        </div>
+        <span class="stack-node__name">Processing</span>
+        <span class="stack-node__role">Collect the OSC messages and convert them into binary signals Wekinator can analyse.</span>
+      </div>
+      <div class="stack-node">
+        <div class="stack-node__top">
+          <img class="stack-node__mark" src="../assets/images/gesture/logo-wekinator.jpg" alt="Wekinator logo" loading="lazy">
+          <span class="stack-node__n">03</span>
+        </div>
+        <span class="stack-node__name">Wekinator</span>
+        <span class="stack-node__role">Two models on the same input: <strong>classification</strong> to identify which gesture, and a <strong>custom regression</strong> to read the exact degree of rotation.</span>
+      </div>
+      <div class="stack-node">
+        <div class="stack-node__top">
+          <img class="stack-node__mark" src="../assets/images/gesture/logo-arduino.png" alt="Arduino logo" loading="lazy">
+          <span class="stack-node__n">04</span>
+        </div>
+        <span class="stack-node__name">Arduino</span>
+        <span class="stack-node__role">Receives both signals and drives the precise rotation of a specific servo according to gesture and degree, achieving mechanical control.</span>
+      </div>
+    </div>
+
+    <p>The part worth pausing on is stage three. One model would have given a lock with four states. Running classification and regression together means every gesture carries a continuous value as well as an identity, so the password space stops being four options and becomes four options times an angle.</p>
 
     <figure class="figure">
-      <img src="../assets/images/gesture/device.jpg" alt="Close-up of the gesture-controlled lock device, showing its ring mechanism, servo motors and wiring" loading="lazy">
-      <figcaption>The ring mechanism, servo motors and wiring, from the side</figcaption>
+      <video autoplay muted loop playsinline poster="../assets/images/gesture/hand-tracking-poster.jpg" aria-label="A laptop screen showing the live hand-tracking feed with the recognised hand skeleton drawn over the camera image">
+        <source src="../assets/images/gesture/hand-tracking.webm" type="video/webm">
+        <source src="../assets/images/gesture/hand-tracking.mp4" type="video/mp4">
+      </video>
+      <figcaption>Recognition running live: the hand is tracked on camera and turned into a stream of values before it ever reaches the lock</figcaption>
     </figure>
-
-    <h2>Technical implementation: gesture and angle design</h2>
-    <p><strong>Vision OSC</strong>: reads hand signals and recognises gestures, sending signals on to Processing. <strong>Processing</strong>: collects those messages and converts them into binary signals Wekinator can analyse. <strong>Wekinator</strong>: performs the machine learning: classification to identify each gesture, and a custom model to read the exact rotation angle. <strong>Arduino</strong>: receives both signals and drives the precise rotation of each servo to achieve mechanical control.</p>
 
     <h3>Hardware</h3>
-    <ul>
-      <li><strong>SG92R</strong>: controls the disc and connecting-rod motion</li>
-      <li><strong>MG996R</strong>: rotates 360°, controlling the iris structure's open/close</li>
-      <li><strong>MG995R</strong>: controls the telescopic structure's movement</li>
-    </ul>
+    <p>The device consists of four SG92R micro servos, one MG996R servo, one MG995R servo, and an Arduino, addressed through a PCA9685 driver.</p>
+
+    <div class="spec-cards">
+      <div class="spec-card">
+        <img src="../assets/images/gesture/servo-sg92r.jpg" alt="An SG92R micro servo: a small blue and pink plastic servo with three wires" loading="lazy">
+        <div class="spec-card__body">
+          <span class="spec-card__part">SG92R</span>
+          <span class="spec-card__qty">× 4 · micro servo</span>
+          <span class="spec-card__role">Controls the motion of the disc and connecting rod. One per finger ring.</span>
+        </div>
+      </div>
+      <div class="spec-card">
+        <img src="../assets/images/gesture/servo-mg996r.jpg" alt="An MG996R servo: a black digital high-torque servo with a metal output spline" loading="lazy">
+        <div class="spec-card__body">
+          <span class="spec-card__part">MG996R</span>
+          <span class="spec-card__qty">× 1 · continuous rotation</span>
+          <span class="spec-card__role">Rotates continuously; used to control the opening and closing of the iris structure.</span>
+        </div>
+      </div>
+      <div class="spec-card">
+        <img src="../assets/images/gesture/servo-mg995r.jpg" alt="An MG995 servo: a black high-speed servo with a metal output spline" loading="lazy">
+        <div class="spec-card__body">
+          <span class="spec-card__part">MG995R</span>
+          <span class="spec-card__qty">× 1 · high speed</span>
+          <span class="spec-card__role">Controls the movement of the telescopic structure that pushes the locked item out.</span>
+        </div>
+      </div>
+    </div>
 
     <h3>Arduino: receiving classification + angle, driving the servos</h3>
     <pre><code>#include "PCA9685.h"
@@ -129,7 +206,94 @@ void loop() {
     }
   }
 }</code></pre>
-    <p>Signals flow Vision OSC → Processing → Wekinator → Processing → Arduino, with the final stage forwarding a classification digit and a zero-padded angle string to the microcontroller over serial.</p>
+    <p>Each message on the wire is four bytes: one classification digit and a three-digit zero-padded angle. Keeping the protocol that dumb is what makes the chain reliable, because the microcontroller never has to parse anything it could get wrong.</p>
+
+    <h2>Structure</h2>
+    <p>The mechanism was drawn, sectioned and laser cut, then assembled around the servo positions.</p>
+
+    <div class="figure-grid">
+      <figure class="figure">
+        <img src="../assets/images/gesture/cad-model.jpg" alt="Two CAD views of the device: a wireframe showing the concentric ring plate with the servo bank and linkages behind it, and a second view of the assembled front face" loading="lazy">
+        <figcaption>CAD: rings at the front, servo bank behind</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="../assets/images/gesture/cad-section.jpg" alt="A technical section drawing of the device: exploded layer stack on the left with dimensions, and a coloured cutaway on the right showing the push rod in red and the base in blue" loading="lazy">
+        <figcaption>Section: the layer stack and the push rod that ejects the item</figcaption>
+      </figure>
+    </div>
+
+    <figure class="figure">
+      <img src="../assets/images/gesture/rings-macro.jpg" alt="A close-up of the device's front face at a raking angle: concentric laser-cut rings standing proud of a white panel, each with its own shadow" loading="lazy">
+      <figcaption>The laser-cut ring stack, raking light</figcaption>
+    </figure>
+
+    <div class="figure-grid">
+      <figure class="figure">
+        <img src="../assets/images/gesture/device-white.jpg" alt="The finished device standing on a white surface: a square panel with concentric rings, a dark iris at the centre and small black markers at ring positions" loading="lazy">
+        <figcaption>At rest, all rings home</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="../assets/images/gesture/device-back.jpg" alt="The back of the device: the servo bank in a row, wiring loom and the Arduino behind the ring panel" loading="lazy">
+        <figcaption>Behind the panel: the servo bank and loom</figcaption>
+      </figure>
+    </div>
+
+    <h2>In use</h2>
+    <p>Each gesture, held in front of the device, moves its own ring.</p>
+
+    <div class="figure-grid figure-grid--3">
+      <figure class="figure">
+        <img src="../assets/images/gesture/use-01.jpg" alt="A hand held in front of the device with one finger extended, the corresponding ring turned to its position" loading="lazy">
+      </figure>
+      <figure class="figure">
+        <img src="../assets/images/gesture/use-02.jpg" alt="A hand pointing towards the device with markers moved to a new position on the rings" loading="lazy">
+      </figure>
+      <figure class="figure">
+        <img src="../assets/images/gesture/use-03.jpg" alt="A hand with two fingers extended in front of the device, another ring rotated" loading="lazy">
+      </figure>
+      <figure class="figure">
+        <img src="../assets/images/gesture/use-04.jpg" alt="A hand with fingers spread in front of the device, several ring markers now at their target angles" loading="lazy">
+      </figure>
+      <figure class="figure">
+        <img src="../assets/images/gesture/use-05.jpg" alt="An open palm held above the device, the gesture that commits the sequence" loading="lazy">
+      </figure>
+    </div>
+
+    <h2>Demonstrated</h2>
+    <p>Shown and tested with people who had never used it before.</p>
+
+    <div class="figure-grid figure-grid--3">
+      <figure class="figure">
+        <video autoplay muted loop playsinline poster="../assets/images/gesture/demo-01-poster.jpg" aria-label="Demonstration footage: the device on a table at a show, a visitor gesturing at it">
+          <source src="../assets/images/gesture/demo-01.webm" type="video/webm">
+          <source src="../assets/images/gesture/demo-01.mp4" type="video/mp4">
+        </video>
+      </figure>
+      <figure class="figure">
+        <video autoplay muted loop playsinline poster="../assets/images/gesture/demo-02-poster.jpg" aria-label="Demonstration footage: a visitor holding a gesture in front of the device">
+          <source src="../assets/images/gesture/demo-02.webm" type="video/webm">
+          <source src="../assets/images/gesture/demo-02.mp4" type="video/mp4">
+        </video>
+      </figure>
+      <figure class="figure">
+        <video autoplay muted loop playsinline poster="../assets/images/gesture/demo-03-poster.jpg" aria-label="Demonstration footage: the rings rotating in response to a visitor's hand">
+          <source src="../assets/images/gesture/demo-03.webm" type="video/webm">
+          <source src="../assets/images/gesture/demo-03.mp4" type="video/mp4">
+        </video>
+      </figure>
+      <figure class="figure">
+        <video autoplay muted loop playsinline poster="../assets/images/gesture/demo-04-poster.jpg" aria-label="Demonstration footage: another visitor trying the gesture sequence">
+          <source src="../assets/images/gesture/demo-04.webm" type="video/webm">
+          <source src="../assets/images/gesture/demo-04.mp4" type="video/mp4">
+        </video>
+      </figure>
+      <figure class="figure">
+        <video autoplay muted loop playsinline poster="../assets/images/gesture/demo-05-poster.jpg" aria-label="Demonstration footage: the lock opening at the end of a successful sequence">
+          <source src="../assets/images/gesture/demo-05.webm" type="video/webm">
+          <source src="../assets/images/gesture/demo-05.mp4" type="video/mp4">
+        </video>
+      </figure>
+    </div>
   </div>
 </section>
 

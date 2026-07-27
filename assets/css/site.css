@@ -1180,3 +1180,64 @@ input,textarea,select{cursor:text;}
   .palette-morph__caption span{position:static;opacity:0;}
   .palette-morph__caption span.is-on{opacity:1;}
 }
+
+/* ---------- Technology stack ----------
+   The pipeline coded rather than screenshotted, so it stays sharp and
+   on-brand. Four cards will not sit in one row inside a 692px text column
+   without becoming unreadable, so the run reads as a mono strip and the
+   detail sits in a 2x2 grid beneath it. */
+.stack-flow{
+  display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px;
+  padding:var(--space-5) var(--space-5);margin:var(--space-6) 0 var(--space-5);
+  background:var(--gray-1);border:1px solid var(--border-hairline);border-radius:var(--radius-md);
+  font-family:var(--font-mono);font-size:var(--text-body-sm);color:var(--text-primary);
+}
+.stack-flow b{font-weight:var(--fw-semibold);white-space:nowrap;}
+.stack-flow i{font-style:normal;color:var(--text-tertiary);white-space:nowrap;}
+.stack-flow em{font-style:normal;color:var(--accent);white-space:nowrap;}
+
+.stack-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5);
+  margin:0 0 var(--space-7);
+}
+.stack-node{
+  padding:var(--space-5);background:var(--gray-1);
+  border:1px solid var(--border-hairline);border-radius:var(--radius-md);
+  display:flex;flex-direction:column;gap:var(--space-2);
+}
+.stack-node__top{display:flex;align-items:center;gap:10px;}
+.stack-node__mark{
+  width:32px;height:32px;border-radius:8px;object-fit:contain;background:#fff;
+  padding:3px;border:1px solid var(--border-hairline);flex:none;
+}
+.stack-node__n{
+  font-family:var(--font-mono);font-size:10px;font-weight:var(--fw-semibold);
+  color:var(--accent);letter-spacing:.06em;margin-left:auto;
+}
+.stack-node__name{font-size:var(--text-body);font-weight:var(--fw-semibold);color:var(--text-primary);line-height:1.2;}
+.stack-node__role{font-size:var(--text-body-sm);line-height:1.5;color:var(--text-secondary);}
+@media(max-width:720px){
+  .stack-grid{grid-template-columns:1fr;}
+}
+.section--dark .stack-node,.section--dark .stack-flow{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);}
+.section--dark .stack-node__name{color:var(--text-on-dark);}
+.section--dark .stack-node__role{color:var(--text-on-dark-secondary);}
+
+/* hardware spec cards: a part, its photo, and what it actually moves */
+.spec-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5);margin:var(--space-6) 0 var(--space-7);}
+.spec-card{
+  background:var(--gray-1);border:1px solid var(--border-hairline);border-radius:var(--radius-md);
+  overflow:hidden;display:flex;flex-direction:column;
+}
+.spec-card img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff;padding:var(--space-4);}
+.spec-card__body{padding:var(--space-4) var(--space-5) var(--space-5);}
+.spec-card__part{
+  font-family:var(--font-mono);font-size:var(--text-body-sm);font-weight:var(--fw-semibold);
+  color:var(--text-primary);letter-spacing:.02em;display:block;margin-bottom:6px;
+}
+.spec-card__qty{
+  font-size:10px;font-weight:var(--fw-semibold);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent);display:block;margin-bottom:8px;
+}
+.spec-card__role{font-size:var(--text-body-sm);line-height:1.45;color:var(--text-secondary);}
+@media(max-width:820px){.spec-cards{grid-template-columns:1fr;}}
