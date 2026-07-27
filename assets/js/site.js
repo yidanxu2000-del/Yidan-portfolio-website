@@ -541,6 +541,7 @@
     var bars = [].slice.call(sec.querySelectorAll('.pmorph'));
     var caps = [].slice.call(sec.querySelectorAll('.palette-morph__caption span'));
     var railFill = sec.querySelector('.palette-morph__rail i');
+    var swapLabel = sec.querySelector('.pgroup--swap .pgroup__label');
 
     bars.forEach(function(b){
       b._sw = b.querySelector('.pmorph__swatch');
@@ -583,6 +584,11 @@
             b._sw.style.boxShadow = 'none';
           }
           b.classList.toggle('pmorph--gone', empty);
+          if(swapLabel){
+            swapLabel.textContent = back > 0 ? 'New accent added'
+              : (out > .6 ? 'Removed from the system' : 'One dead colour');
+            swapLabel.classList.toggle('is-accent', back > 0);
+          }
           if(b._role) b._role.textContent = back > 0 ? b._roleTo : b._roleFrom;
           if(b._hex) b._hex.textContent = back > 0 ? rgb2hex(b._to)
             : (out > .6 ? 'removed' : rgb2hex(b._from));

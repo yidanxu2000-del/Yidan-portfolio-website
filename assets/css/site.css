@@ -1088,10 +1088,29 @@ input,textarea,select{cursor:text;}
   text-transform:uppercase;color:var(--text-on-dark-secondary);
 }
 .palette-morph__bars{
-  display:flex;align-items:flex-end;gap:clamp(6px,1.1vw,14px);
-  width:100%;max-width:880px;height:min(44vh,380px);
+  display:flex;align-items:stretch;gap:clamp(18px,3.2vw,48px);
+  width:100%;max-width:920px;height:min(44vh,380px);
 }
+/* The swapped slot is the actual argument, so it stands apart from the five
+   that only change value. Without the split the whole thing reads as "she
+   made everything blue" rather than "one colour out, one colour in". */
+.pgroup{display:flex;flex-direction:column;min-width:0;position:relative;}
+.pgroup--swap{flex:1 1 0;}
+.pgroup--kept{flex:5 1 0;}
+.pgroup--kept::before{
+  content:"";position:absolute;left:calc(-1 * clamp(9px,1.6vw,24px));
+  top:0;bottom:0;width:1px;background:rgba(255,255,255,.16);
+}
+.pgroup__label{
+  display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-on-dark-secondary);margin-bottom:var(--space-3);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  transition:color .35s var(--ease-out);
+}
+.pgroup__label.is-accent{color:#66CDDB;}
+.pgroup__row{display:flex;gap:clamp(6px,1.1vw,14px);flex:1;min-height:0;}
 .pmorph{flex:1;min-width:0;display:flex;flex-direction:column;height:100%;}
+.pgroup__row .pmorph{height:auto;}
 .pmorph__well{flex:1;display:flex;align-items:flex-end;min-height:0;}
 .pmorph__swatch{
   width:100%;height:0;border-radius:var(--radius-sm);background:#000;
@@ -1123,7 +1142,9 @@ input,textarea,select{cursor:text;}
 .palette-morph__rail i{display:block;height:100%;width:0;background:#66CDDB;box-shadow:0 0 12px 1px rgba(102,205,219,.7);}
 
 @media(max-width:720px){
-  .palette-morph__bars{height:min(38vh,300px);gap:5px;}
+  .palette-morph__bars{height:min(38vh,300px);gap:clamp(12px,3vw,20px);}
+  .pgroup__row{gap:5px;}
+  .pgroup__label{font-size:8px;letter-spacing:.06em;}
   .pmorph__hex{font-size:9px;}
   .pmorph__role{font-size:8px;letter-spacing:.05em;}
   .palette-morph__caption span{font-size:var(--text-body);}
