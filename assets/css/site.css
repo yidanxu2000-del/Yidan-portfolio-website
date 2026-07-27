@@ -719,6 +719,10 @@ input,textarea,select{cursor:text;}
 
 /* Not flex: a trailing <a> would become its own flex item and get pushed
    into a second column, breaking the sentence in half. */
+.section--dark .confidential{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  color:var(--text-on-dark-secondary);
+}
 .confidential{
   background:var(--gray-1);
   border-radius:var(--radius-md);padding:var(--space-5);font-size:var(--text-body);
