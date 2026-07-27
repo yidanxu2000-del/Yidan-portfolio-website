@@ -35,6 +35,70 @@
     }
   }
 
+  // ---- filterable illustration gallery + lightbox ----------------------
+  // The grid is the source of truth: the lightbox reads whatever is
+  // currently visible, so arrow keys walk the filtered set rather than
+  // jumping to a picture the viewer has just filtered away.
+  (function(){
+    var grid = document.querySelector('.gal-grid');
+    var box = document.querySelector('.lightbox');
+    if(!grid || !box) return;
+    var items = [].slice.call(grid.querySelectorAll('.gal-item'));
+    var chips = [].slice.call(document.querySelectorAll('.gal-chip'));
+    var img = box.querySelector('img');
+    var cap = box.querySelector('.lightbox__cap');
+    var count = box.querySelector('.lightbox__count');
+    var idx = 0, lastFocus = null;
+
+    function visible(){ return items.filter(function(el){ return !el.classList.contains('is-hidden'); }); }
+
+    chips.forEach(function(chip){
+      chip.addEventListener('click', function(){
+        var f = chip.dataset.filter;
+        chips.forEach(function(c){ c.setAttribute('aria-pressed', String(c === chip)); });
+        items.forEach(function(el){
+          el.classList.toggle('is-hidden', f !== 'all' && el.dataset.cat !== f);
+        });
+      });
+    });
+
+    function show(i){
+      var list = visible();
+      if(!list.length) return;
+      idx = (i + list.length) % list.length;
+      var el = list[idx];
+      var full = el.dataset.full || el.querySelector('img').src;
+      img.src = full;
+      img.alt = el.querySelector('img').alt;
+      cap.innerHTML = '<b>' + el.dataset.title + '</b>' + (el.dataset.note || '');
+      count.textContent = (idx + 1) + ' / ' + list.length;
+    }
+    function open(el){
+      lastFocus = document.activeElement;
+      show(visible().indexOf(el));
+      box.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      box.querySelector('.lightbox__close').focus();
+    }
+    function close(){
+      box.classList.remove('is-open');
+      document.body.style.overflow = '';
+      img.removeAttribute('src');
+      if(lastFocus) lastFocus.focus();
+    }
+    items.forEach(function(el){ el.addEventListener('click', function(){ open(el); }); });
+    box.querySelector('.lightbox__close').addEventListener('click', close);
+    box.querySelector('.lightbox__btn--prev').addEventListener('click', function(){ show(idx - 1); });
+    box.querySelector('.lightbox__btn--next').addEventListener('click', function(){ show(idx + 1); });
+    box.addEventListener('click', function(e){ if(e.target === box) close(); });
+    document.addEventListener('keydown', function(e){
+      if(!box.classList.contains('is-open')) return;
+      if(e.key === 'Escape') close();
+      else if(e.key === 'ArrowLeft') show(idx - 1);
+      else if(e.key === 'ArrowRight') show(idx + 1);
+    });
+  })();
+
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // true only on devices that actually have a mouse/trackpad — touch fires a
   // single synthetic mousemove at the tap point after tap-and-release, which
