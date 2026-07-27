@@ -584,6 +584,7 @@
             b._sw.style.boxShadow = 'none';
           }
           b.classList.toggle('pmorph--gone', empty);
+          sec.classList.toggle('is-accent-in', back > 0);
           if(swapLabel){
             swapLabel.textContent = back > 0 ? 'New accent added'
               : (out > .6 ? 'Removed from the system' : 'One dead colour');

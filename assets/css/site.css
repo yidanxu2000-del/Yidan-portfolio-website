@@ -1070,6 +1070,20 @@ input,textarea,select{cursor:text;}
   .thennow__cap{grid-column:1 / -1;}
 }
 
+/* the one line a case study is allowed to raise its voice for */
+.prose .prose-closing-line{
+  margin:var(--space-7) 0 0;padding-top:var(--space-6);
+  border-top:1px solid var(--border-hairline);
+  font-family:var(--font-display);font-size:var(--text-h3);font-weight:var(--fw-medium);
+  line-height:var(--lh-snug);letter-spacing:var(--ls-snug);color:var(--text-primary);
+}
+.prose .prose-closing-line em{font-style:normal;color:var(--accent);}
+.section--dark .prose .prose-closing-line,
+.section--alt-dark .prose .prose-closing-line{
+  border-top-color:var(--border-hairline-dark);color:var(--text-on-dark);
+}
+.section--dark .prose .prose-closing-line em{color:#7fbdf0;}
+
 /* ---------- Scroll-scrubbed palette morph ----------
    Tells the colour-system rebuild as a sequence instead of a table: the bars
    grow from the baseline, one colour is dropped out of the system entirely,
@@ -1100,7 +1114,10 @@ input,textarea,select{cursor:text;}
 .pgroup--kept::before{
   content:"";position:absolute;left:calc(-1 * clamp(9px,1.6vw,24px));
   top:0;bottom:0;width:1px;background:rgba(255,255,255,.16);
+  opacity:0;transition:opacity .55s var(--ease-out);
 }
+/* nothing to divide until the accent has actually arrived */
+.palette-morph.is-accent-in .pgroup--kept::before{opacity:1;}
 .pgroup__label{
   display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--text-on-dark-secondary);margin-bottom:var(--space-3);
