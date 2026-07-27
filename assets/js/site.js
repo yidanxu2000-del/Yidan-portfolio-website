@@ -512,3 +512,115 @@
     reveals.forEach(function(el){ el.classList.add('is-visible'); });
   }
 })();
+
+/* ---------- Scroll-scrubbed palette morph ----------
+   Reads the whole change out of the markup (each bar carries its own from/to
+   colour and the slice of scroll it animates across), so the story lives in
+   the HTML and this stays a generic driver. */
+(function(){
+  var sections = document.querySelectorAll('.palette-morph');
+  if(!sections.length) return;
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function hex2rgb(h){
+    h = (h || '').replace('#','');
+    if(h.length === 3) h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
+    var n = parseInt(h, 16);
+    return isNaN(n) ? null : [(n>>16)&255, (n>>8)&255, n&255];
+  }
+  function rgb2hex(c){
+    return '#' + c.map(function(v){
+      return ('0' + Math.round(v).toString(16)).slice(-2);
+    }).join('').toUpperCase();
+  }
+  function clamp(v){ return v < 0 ? 0 : v > 1 ? 1 : v; }
+  // ease so each bar settles rather than stopping dead at the end of its slice
+  function ease(t){ return t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2; }
+
+  sections.forEach(function(sec){
+    var bars = [].slice.call(sec.querySelectorAll('.pmorph'));
+    var caps = [].slice.call(sec.querySelectorAll('.palette-morph__caption span'));
+    var railFill = sec.querySelector('.palette-morph__rail i');
+
+    bars.forEach(function(b){
+      b._sw = b.querySelector('.pmorph__swatch');
+      b._hex = b.querySelector('.pmorph__hex');
+      b._role = b.querySelector('.pmorph__role');
+      b._from = hex2rgb(b.dataset.from);
+      b._to = hex2rgb(b.dataset.to);
+      b._start = parseFloat(b.dataset.start);
+      b._end = parseFloat(b.dataset.end);
+      b._mode = b.dataset.mode || 'shift';
+      b._mid = parseFloat(b.dataset.mid);
+      b._mid2 = parseFloat(b.dataset.mid2);
+      b._roleTo = b.dataset.roleTo || '';
+      b._roleFrom = b._role ? b._role.textContent : '';
+    });
+
+    function paint(p){
+      bars.forEach(function(b){
+        if(!b._sw) return;
+        var span = b._end - b._start;
+        var t = ease(clamp(span > 0 ? (p - b._start) / span : (p >= b._end ? 1 : 0)));
+
+        if(b._mode === 'swap'){
+          // One column carries the whole argument: the dead colour drains out
+          // of the system, the slot sits empty, then the accent rises into the
+          // space it left. Same column throughout, so nothing shifts sideways.
+          var out = ease(clamp((p - b._start) / (b._mid - b._start)));
+          var back = ease(clamp((p - b._mid2) / (b._end - b._mid2)));
+          var empty = out >= 1 && back <= 0;
+          if(back > 0){
+            b._sw.style.backgroundColor = rgb2hex(b._to);
+            b._sw.style.height = (100 * back) + '%';
+            b._sw.style.opacity = '1';
+            b._sw.style.boxShadow = '0 0 ' + (34 * back).toFixed(1) + 'px ' +
+              (5 * back).toFixed(1) + 'px rgba(102,205,219,' + (.5 * back).toFixed(2) + ')';
+          } else {
+            b._sw.style.backgroundColor = rgb2hex(b._from);
+            b._sw.style.height = (100 * (1 - out)) + '%';
+            b._sw.style.opacity = String(1 - out);
+            b._sw.style.boxShadow = 'none';
+          }
+          b.classList.toggle('pmorph--gone', empty);
+          if(b._role) b._role.textContent = back > 0 ? b._roleTo : b._roleFrom;
+          if(b._hex) b._hex.textContent = back > 0 ? rgb2hex(b._to)
+            : (out > .6 ? 'removed' : rgb2hex(b._from));
+          return;
+        }
+
+        // the ordinary case: one colour interpolating into another
+        var cur = [0,1,2].map(function(i){ return b._from[i] + (b._to[i] - b._from[i]) * t; });
+        b._sw.style.backgroundColor = rgb2hex(cur);
+        b._sw.style.height = '100%';
+        if(b._hex) b._hex.textContent = rgb2hex(cur);
+      });
+
+      var step = 0;
+      for(var i = 0; i < caps.length; i++){
+        if(p >= parseFloat(caps[i].dataset.at || 0)) step = i;
+      }
+      caps.forEach(function(c, i){ c.classList.toggle('is-on', i === step); });
+      if(railFill) railFill.style.width = (p * 100).toFixed(2) + '%';
+    }
+
+    if(reduceMotion){ paint(1); return; }
+
+    var ticking = false;
+    function frame(){
+      ticking = false;
+      var track = sec.querySelector('.palette-morph__track') || sec;
+      var r = track.getBoundingClientRect();
+      var total = track.offsetHeight - window.innerHeight;
+      paint(total > 0 ? clamp(-r.top / total) : 0);
+    }
+    function onScroll(){
+      if(ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(frame);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    frame();
+  });
+})();

@@ -1065,3 +1065,71 @@ input,textarea,select{cursor:text;}
   .thennow__item{grid-template-columns:1fr 1fr;gap:var(--space-5);}
   .thennow__cap{grid-column:1 / -1;}
 }
+
+/* ---------- Scroll-scrubbed palette morph ----------
+   Tells the colour-system rebuild as a sequence instead of a table: the bars
+   grow from the baseline, one colour is dropped out of the system entirely,
+   the blues lift, the greys turn into real colour, and the accent finally
+   rises into the slot the dropped colour left behind. Driven by scroll
+   position in site.js, which writes heights/colours directly. */
+.palette-morph{background:var(--surface-inverse);color:var(--text-on-dark);padding:0;}
+.palette-morph__track{height:460vh;position:relative;}
+.palette-morph__stage{
+  position:sticky;top:0;height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:var(--space-6);
+  padding:var(--space-8) var(--space-5);
+}
+.palette-morph__eyebrow{
+  font-size:var(--text-caption);font-weight:var(--fw-medium);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--text-on-dark-secondary);
+}
+.palette-morph__bars{
+  display:flex;align-items:flex-end;gap:clamp(6px,1.1vw,14px);
+  width:100%;max-width:880px;height:min(44vh,380px);
+}
+.pmorph{flex:1;min-width:0;display:flex;flex-direction:column;height:100%;}
+.pmorph__well{flex:1;display:flex;align-items:flex-end;min-height:0;}
+.pmorph__swatch{
+  width:100%;height:0;border-radius:var(--radius-sm);background:#000;
+  box-shadow:0 10px 30px -18px rgba(0,0,0,.9);
+}
+.pmorph__meta{margin-top:var(--space-3);min-height:2.6em;}
+.pmorph__role{
+  display:block;font-size:10px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--text-on-dark-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.pmorph__hex{
+  display:block;font-family:var(--font-mono);font-size:11px;color:#fff;
+  letter-spacing:.02em;white-space:nowrap;
+}
+.pmorph--gone .pmorph__role,.pmorph--gone .pmorph__hex{opacity:.35;}
+
+.palette-morph__caption{
+  position:relative;height:3.4em;width:100%;max-width:var(--container-narrow);text-align:center;
+}
+.palette-morph__caption span{
+  position:absolute;inset:0;font-size:var(--text-body-lg);line-height:1.45;
+  color:var(--text-on-dark);opacity:0;transform:translateY(8px);
+  transition:opacity .35s var(--ease-out),transform .35s var(--ease-out);
+}
+.palette-morph__caption span.is-on{opacity:1;transform:none;}
+.palette-morph__rail{
+  width:100%;max-width:880px;height:2px;border-radius:2px;background:rgba(255,255,255,.14);overflow:hidden;
+}
+.palette-morph__rail i{display:block;height:100%;width:0;background:#66CDDB;box-shadow:0 0 12px 1px rgba(102,205,219,.7);}
+
+@media(max-width:720px){
+  .palette-morph__bars{height:min(38vh,300px);gap:5px;}
+  .pmorph__hex{font-size:9px;}
+  .pmorph__role{font-size:8px;letter-spacing:.05em;}
+  .palette-morph__caption span{font-size:var(--text-body);}
+}
+/* No scrubbing without motion: collapse the tall track and let site.js paint
+   the finished palette once, so the section still says what it has to say. */
+@media(prefers-reduced-motion:reduce){
+  .palette-morph__track{height:auto;}
+  .palette-morph__stage{position:static;height:auto;}
+  .palette-morph__caption{height:auto;}
+  .palette-morph__caption span{position:static;opacity:0;}
+  .palette-morph__caption span.is-on{opacity:1;}
+}
