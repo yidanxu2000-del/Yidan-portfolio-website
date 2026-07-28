@@ -1,0 +1,59 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time. Queued runs wait rather than cancel, so a push is
+# never dropped halfway through publishing.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Assemble the published site
+        # Everything at the repo root ships, apart from the Webflow archive
+        # in site_backup. That folder stays in git as a backup, but it is
+        # 591 MB and it is not part of the site, so it does not get served.
+        run: |
+          mkdir -p _site
+          tar -cf - \
+            --exclude='./.git' \
+            --exclude='./.github' \
+            --exclude='./_site' \
+            --exclude='./site_backup' \
+            . | tar -xf - -C _site
+          touch _site/.nojekyll
+          echo "Published size:" && du -sh _site
+          test -f _site/index.html
+          test -f _site/CNAME
+          test ! -d _site/site_backup
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload the artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
