@@ -60,7 +60,7 @@
 
     <h3>The disease hides, so the person never goes</h3>
     <p>Chronic kidney disease is quiet for years. A person can lose a lot of kidney function and feel completely fine. No pain, no warning, nothing to point at.</p>
-    <p>That matters more than it sounds. People go to a doctor because something feels wrong. If nothing feels wrong, they do not go. So the disease is not hard to detect. It is hard to <em>catch</em>, because the person is never in the room.</p>
+    <p>That matters more than it sounds. People go to a doctor because something feels wrong. If nothing feels wrong, they do not go. The disease is easy enough to detect. The hard part is <em>catching</em> it, because the person is never in the room.</p>
 
     <div class="chain">
       <div class="chain__step"><span class="chain__n">01</span><p>The disease is silent for years.</p></div>
@@ -98,14 +98,14 @@
       <div class="prose-stat-callout__label">of the kits sent by direct mail came back. Around seven in eight women left them unused, even though they were already flagged as overdue for screening.<span class="prose-stat-callout__src">NHS YouScreen trial, London, HPV self-sampling posted to under-screened women</span></div>
     </div>
 
-    <p>That number changed how I thought about the problem. The barrier is not cost, and it is not access. Those had already been removed. What was left was the act itself: open it, do it, package it, post it. Four small steps, and around seven in eight people stopped.</p>
+    <p>That number changed how I thought about the problem. Cost and access had already been removed here. What was left was the act itself: open it, do it, package it, post it. Four small steps, and around seven in eight people stopped.</p>
     <p>So I stopped treating friction as something to reduce. <strong>Any friction at all is too much.</strong> The test cannot ask for four steps, or one step. It has to ask for none.</p>
     <p>The same trial makes the point twice over. When a nurse handed the kit to a woman in person, at an appointment she was already at, uptake was far higher than when it arrived in the post. Nothing about the test changed. Only the moment it reached her did.</p>
 
     <h3>So the test has to hide inside a habit people already have</h3>
     <p>So it has to sit inside something people already do, without thinking, and without deciding to.</p>
     <p>Then I looked for the habit. Almost everyone already buys something to clean the toilet. They buy it without a thought, they use it without a thought, and they replace it when it runs out. Nobody has to be persuaded.</p>
-    <p><strong>So Urify is a toilet cleaning tablet that also screens you.</strong> You buy it because you want a clean toilet. It does that job properly. It also watches for an early sign of kidney disease, and it tells you by changing colour. You did not sign up for a health product, and you did not change a single thing about your week.</p>
+    <p><strong>So Urify is a toilet cleaning tablet that gives you a health prompt.</strong> You buy it because you want a clean toilet. It does that job properly. While it does, it watches for an early sign of kidney disease, and it tells you by changing colour. The prompt is small and it is yours to act on. You never signed up for a health product, and your week stays exactly the same.</p>
 
     <h2>Six months, zero to one</h2>
     <p>I started with a research question and no product. Six months later I was presenting to the NHS. Here is what happened in between, in order.</p>
@@ -114,17 +114,22 @@
       <li>
         <span class="zero-one__step">01</span>
         <h3>Research</h3>
-        <p>I read the clinical literature on chronic kidney disease. The pattern was clear. The disease is quiet for years, and most people find out late. Screening exists, but it needs a clinic. So the gap was not detection. It was access.</p>
+        <p>I read the clinical literature on chronic kidney disease. The pattern was clear. The disease is quiet for years, and most people find out late. Screening exists, but it needs a clinic. So the gap sat in access, and detection was never the hard part.</p>
       </li>
       <li>
         <span class="zero-one__step">02</span>
         <h3>I went and asked nephrologists</h3>
-        <p>Reading is not enough for a medical product. I arranged meetings with kidney specialists and asked them what they would actually trust. They told me which marker matters, what a false positive costs a patient, and where a home test would fit in a real care pathway. That changed the product.</p>
+        <p>A medical product needs more than reading. I arranged meetings with kidney specialists and asked them what they would actually trust. They told me which marker matters, what a false positive costs a patient, and where a home test would fit in a real care pathway. That changed the product.</p>
       </li>
       <li>
         <span class="zero-one__step">03</span>
         <h3>I learned the chemistry</h3>
-        <p>I am a designer, not a chemist. To make the test I had to become useful in a lab. I learned the reaction the test depends on, then made and remade the tablet myself until the colour change was clear enough for a person to read without a chart.</p>
+        <p>I trained as a designer, so I had to become useful in a lab first. I learned the reaction the test depends on, then made and remade the tablet myself until the colour change was clear enough for a person to read without a chart.</p>
+
+        <figure class="figure">
+          <img src="../assets/images/urify/process-lab.jpg" alt="Three photographs from Yidan's lab process: a small yellow catalyst pellet in a petri dish labelled foam catalysis, artificial urine being poured into a foaming dish labelled artificial urine reaction, and two hands holding a dish where the liquid has turned green, labelled colour guidance" loading="lazy">
+          <figcaption>My own process shots from the lab. Foam catalysis, then the reaction against artificial urine, then reading the colour. I ran this loop over and over until the green was obvious to someone who had never seen the test before.</figcaption>
+        </figure>
       </li>
       <li>
         <span class="zero-one__step">04</span>
@@ -133,6 +138,16 @@
       </li>
       <li>
         <span class="zero-one__step">05</span>
+        <h3>I built a camera app to read the result</h3>
+        <p>Colour is hard for some people to judge. Lighting changes it, and so does eyesight. So I built a small companion app that reads the tablet through the phone camera. It uses computer vision to compare what it sees against the reference colours, and then it says in words what it found. The person gets a plain answer instead of a judgement call.</p>
+
+        <figure class="figure figure--narrow">
+          <img src="../assets/images/urify/cv-app.jpg" alt="Two hands holding a tablet computer. The top half shows the code running, and the bottom half shows the app's result screen with a photo of the test and the message 'Possible Proteinuria is detected'" loading="lazy">
+          <figcaption>The companion app running. It reads the test through the camera and returns a sentence: "Possible Proteinuria is detected".</figcaption>
+        </figure>
+      </li>
+      <li>
+        <span class="zero-one__step">06</span>
         <h3>I presented to the NHS</h3>
         <p>At the end of the six months I presented Urify to the NHS North West London ICHP team. That is the audience that decides whether a screening idea is worth anything. Getting in front of them was the point of the whole six months.</p>
       </li>

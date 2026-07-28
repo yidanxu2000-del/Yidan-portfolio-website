@@ -265,19 +265,10 @@ body{background:#07080d;}
 .star-link--disabled .star-link__dot{box-shadow:0 0 4px 0 rgba(255,255,255,.3);}
 
 /* ---------- Cursor ----------
-   A round glowing point of light, used across the whole site: a bright
-   core with a soft halo around it. Kept at 32px because browsers quietly
-   ignore custom cursors much beyond that. Every rule keeps a standard
-   keyword fallback (auto / pointer / text) so nothing becomes unusable if
-   the image is refused. */
-html,body{
-  cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><defs><radialGradient id='d'><stop offset='0' stop-color='%2329a8ee' stop-opacity='0.55'/><stop offset='0.55' stop-color='%230080c8' stop-opacity='0.18'/><stop offset='1' stop-color='%230080c8' stop-opacity='0'/></radialGradient></defs><circle cx='16' cy='16' r='15' fill='url(%23d)'/><circle cx='16' cy='16' r='3.6' fill='%236fc9ff'/><circle cx='16' cy='16' r='1.9' fill='%23ffffff'/></svg>") 16 16, auto;
-}
+   The browser default, everywhere. Interactive elements set their own
+   pointer where it matters. */
 a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
-.press-item__link:not(.press-item__link--pending),.video-facade,.btn{
-  cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><defs><radialGradient id='da'><stop offset='0' stop-color='%235cc4ff' stop-opacity='0.85'/><stop offset='0.55' stop-color='%2329a8ee' stop-opacity='0.3'/><stop offset='1' stop-color='%2329a8ee' stop-opacity='0'/></radialGradient></defs><circle cx='16' cy='16' r='16' fill='url(%23da)'/><circle cx='16' cy='16' r='5' fill='%238fd7ff'/><circle cx='16' cy='16' r='2.6' fill='%23ffffff'/></svg>") 16 16, pointer;
-}
-input,textarea,select{cursor:text;}
+.press-item__link:not(.press-item__link--pending),.video-facade,.btn{cursor:pointer;}
 
 /* smooth warp-out before navigating away from the starfield */
 .starfield-links.is-navigating{transition:opacity .4s var(--ease-out),transform .4s var(--ease-out);}
@@ -1625,7 +1616,7 @@ input,textarea,select{cursor:text;}
 .swatch{display:flex;flex-direction:column;gap:var(--space-3);}
 .swatch__chip{
   display:block;height:112px;border-radius:var(--radius-md);
-  background:var(--c);box-shadow:inset 0 0 0 1px rgba(29,29,31,.10);
+  background:var(--c,var(--swatch));box-shadow:inset 0 0 0 1px rgba(29,29,31,.10);
   transform:scaleY(.14);transform-origin:bottom;opacity:0;
   transition:transform .7s var(--ease-out),opacity .5s var(--ease-out);
 }
