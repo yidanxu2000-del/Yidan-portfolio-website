@@ -265,19 +265,10 @@ body{background:#07080d;}
 .star-link--disabled .star-link__dot{box-shadow:0 0 4px 0 rgba(255,255,255,.3);}
 
 /* ---------- Cursor ----------
-   A round glowing point of light, used across the whole site: a bright
-   core with a soft halo around it. Kept at 32px because browsers quietly
-   ignore custom cursors much beyond that. Every rule keeps a standard
-   keyword fallback (auto / pointer / text) so nothing becomes unusable if
-   the image is refused. */
-html,body{
-  cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><defs><radialGradient id='d'><stop offset='0' stop-color='%2329a8ee' stop-opacity='0.55'/><stop offset='0.55' stop-color='%230080c8' stop-opacity='0.18'/><stop offset='1' stop-color='%230080c8' stop-opacity='0'/></radialGradient></defs><circle cx='16' cy='16' r='15' fill='url(%23d)'/><circle cx='16' cy='16' r='3.6' fill='%236fc9ff'/><circle cx='16' cy='16' r='1.9' fill='%23ffffff'/></svg>") 16 16, auto;
-}
+   The browser default, everywhere. Interactive elements set their own
+   pointer where it matters. */
 a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
-.press-item__link:not(.press-item__link--pending),.video-facade,.btn{
-  cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><defs><radialGradient id='da'><stop offset='0' stop-color='%235cc4ff' stop-opacity='0.85'/><stop offset='0.55' stop-color='%2329a8ee' stop-opacity='0.3'/><stop offset='1' stop-color='%2329a8ee' stop-opacity='0'/></radialGradient></defs><circle cx='16' cy='16' r='16' fill='url(%23da)'/><circle cx='16' cy='16' r='5' fill='%238fd7ff'/><circle cx='16' cy='16' r='2.6' fill='%23ffffff'/></svg>") 16 16, pointer;
-}
-input,textarea,select{cursor:text;}
+.press-item__link:not(.press-item__link--pending),.video-facade,.btn{cursor:pointer;}
 
 /* smooth warp-out before navigating away from the starfield */
 .starfield-links.is-navigating{transition:opacity .4s var(--ease-out),transform .4s var(--ease-out);}
@@ -653,6 +644,10 @@ input,textarea,select{cursor:text;}
 .section--light .prose-stat-callout{background:var(--gray-1);border:1px solid var(--border-hairline);}
 .section--light .prose-stat-callout__value{color:var(--text-primary);}
 .section--light .prose-stat-callout__label{color:var(--text-secondary);}
+.prose-stat-callout__src{
+  display:block;margin-top:var(--space-2);font-size:var(--text-caption);
+  color:var(--text-tertiary);line-height:var(--lh-body);
+}
 
 /* ---------- Vibe coding section ---------- */
 .vibe-card{
@@ -1621,7 +1616,7 @@ input,textarea,select{cursor:text;}
 .swatch{display:flex;flex-direction:column;gap:var(--space-3);}
 .swatch__chip{
   display:block;height:112px;border-radius:var(--radius-md);
-  background:var(--c);box-shadow:inset 0 0 0 1px rgba(29,29,31,.10);
+  background:var(--c,var(--swatch));box-shadow:inset 0 0 0 1px rgba(29,29,31,.10);
   transform:scaleY(.14);transform-origin:bottom;opacity:0;
   transition:transform .7s var(--ease-out),opacity .5s var(--ease-out);
 }
@@ -1636,3 +1631,89 @@ input,textarea,select{cursor:text;}
 @media(prefers-reduced-motion:reduce){
   .swatch__chip{transform:none;opacity:1;}
 }
+
+/* Competitor marks, set as brand-coloured type rather than trademark files */
+.prose .brand-row{display:flex;flex-wrap:wrap;gap:var(--space-4);margin:var(--space-5) 0 var(--space-6);}
+.brand-chip{
+  display:inline-flex;align-items:center;height:44px;padding:0 22px;border-radius:var(--radius-pill);
+  font-family:var(--font-display);font-size:var(--text-body-lg);font-weight:var(--fw-semibold);
+  letter-spacing:-.01em;color:#fff;
+}
+.brand-chip--tinder{background:linear-gradient(96deg,#FE3C72,#FF6036);}
+.brand-chip--bumble{background:#FFC629;color:#3A2E00;}
+
+/* The ratio, as ten people rather than a sentence */
+.ratio{
+  background:var(--gray-1);border:1px solid var(--border-hairline);
+  border-radius:var(--radius-md);padding:var(--space-6);
+}
+.ratio__icons{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:var(--space-6);}
+.ratio__i{flex:none;}
+.ratio__key{
+  display:flex;gap:var(--space-6);justify-content:center;flex-wrap:wrap;
+  font-size:var(--text-body-sm);color:var(--text-secondary);
+}
+.ratio__key span{display:inline-flex;align-items:center;gap:8px;}
+.ratio__key i{width:10px;height:10px;border-radius:3px;display:block;}
+.santa{width:100%;max-width:320px;display:block;margin:0 auto;}
+.santa-scene{width:100%;height:auto;display:block;border-radius:var(--radius-lg);}
+.santa-notes{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--space-4);margin:var(--space-6) 0;
+}
+.santa-note{
+  padding:var(--space-5);border-radius:var(--radius-md);
+  background:var(--gray-1);border:1px solid var(--border-hairline);
+}
+.santa-note__n{
+  font-family:var(--font-mono,ui-monospace,monospace);font-size:var(--text-caption);
+  font-weight:var(--fw-semibold);color:var(--accent);letter-spacing:0.06em;
+  margin-bottom:var(--space-2);
+}
+.santa-note__t{
+  font-weight:var(--fw-semibold);color:var(--text-primary);
+  line-height:var(--lh-snug);margin-bottom:var(--space-2);
+}
+.prose .santa-note p{font-size:var(--text-caption);color:var(--text-secondary);margin:0;}
+@media (max-width:760px){
+  .santa-notes{grid-template-columns:1fr;}
+}
+
+/* A short causal chain, for arguments that only work in order */
+.prose .chain{
+  display:flex;align-items:stretch;gap:var(--space-2);flex-wrap:wrap;
+  margin:var(--space-6) 0 var(--space-8);
+}
+.chain__step{
+  flex:1 1 118px;min-width:0;padding:var(--space-4);
+  background:var(--gray-1);border:1px solid var(--border-hairline);border-radius:var(--radius-md);
+}
+.chain__step--end{background:var(--accent-tint);border-color:rgba(226,102,31,.28);}
+.chain__n{
+  display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;
+  color:var(--accent);font-weight:var(--fw-semibold);margin-bottom:var(--space-3);
+}
+.prose .chain__step p{margin:0;font-size:var(--text-body-sm);line-height:1.5;color:var(--text-secondary);}
+.chain__step--end p{color:var(--text-primary);font-weight:var(--fw-medium);}
+.chain__arrow{
+  display:flex;align-items:center;color:var(--text-tertiary);font-size:18px;flex:none;
+}
+@media(max-width:720px){
+  .chain{flex-direction:column;}
+  .chain__arrow{transform:rotate(90deg);justify-content:center;height:22px;}
+}
+
+/* Three things that already exist, and what each one asks of the person */
+.prose .fails{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:var(--space-5);margin:var(--space-6) 0 var(--space-8);
+}
+.fail{
+  padding:var(--space-5);border:1px solid var(--border-hairline);
+  border-radius:var(--radius-md);background:var(--gray-1);
+}
+.fail__name{
+  display:block;font-family:var(--font-display);font-size:var(--text-body-lg);
+  font-weight:var(--fw-semibold);color:var(--text-primary);margin-bottom:var(--space-3);
+}
+.prose .fail p{margin:0;font-size:var(--text-body-sm);line-height:1.55;color:var(--text-secondary);}

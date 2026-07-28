@@ -49,6 +49,139 @@
     <p>1Soul (OneSoul) is an AI-matchmaking product built around "Agent Cupid": instead of swiping through profiles, users talk to Cupid on WhatsApp, and Cupid introduces them to a small number of real, considered matches. It launched first among students at Imperial College London and has since expanded across London universities.</p>
     <p>I joined as Founding Product Manager, working alongside the founder rather than leading the venture. I independently owned product design, brand and trust-building, and the product's direction, running an AI-design-AI pipeline end to end: using AI to accelerate research synthesis and iteration, always grounded in real user evidence rather than AI's own assumptions.</p>
 
+    <h2>Product positioning</h2>
+    <p>The team had already decided what 1Soul was for by the time I joined: serious one-to-one connection, not casual dating. That was settled. What was not settled was how the product should work, and who it should be built for first. That part was mine.</p>
+    <p>I did this before anything was drawn. The website further down is what it looks like on screen. The thinking below is what decided it.</p>
+
+    <h3>Market research</h3>
+    <p>I looked at the dating apps people already use.</p>
+
+    <div class="brand-row">
+      <span class="brand-chip brand-chip--tinder">Tinder</span>
+      <span class="brand-chip brand-chip--bumble">Bumble</span>
+    </div>
+
+    <p>Most of them run at roughly six or seven men to three or four women. That gap is wide enough to shape everything else. It is the reason these products feel the way they feel. Men send a lot of messages and get nothing back. Women open the app and find themselves buried in messages from strangers. The product gets worse for both sides, and the ratio keeps getting worse with it.</p>
+
+    <figure class="figure figure--narrow">
+      <div class="ratio">
+        <div class="ratio__icons"><svg class="ratio__i" viewBox="0 0 16 24" width="30" height="45" aria-hidden="true"><circle cx="8" cy="5" r="4" fill="var(--accent)"/><path d="M1 24c0-4.4 3.1-8 7-8s7 3.6 7 8z" fill="var(--accent)"/></svg><svg class="ratio__i" viewBox="0 0 16 24" width="30" height="45" aria-hidden="true"><circle cx="8" cy="5" r="4" fill="var(--accent)"/><path d="M1 24c0-4.4 3.1-8 7-8s7 3.6 7 8z" fill="var(--accent)"/></svg><svg class="ratio__i" viewBox="0 0 16 24" width="30" height="45" aria-hidden="true"><circle cx="8" cy="5" r="4" fill="var(--accent)"/><path d="M1 24c0-4.4 3.1-8 7-8s7 3.6 7 8z" fill="var(--accent)"/></svg><svg class="ratio__i" viewBox="0 0 16 24" width="30" height="45" aria-hidden="true"><circle cx="8" cy="5" r="4" fill="var(--accent)"/><path d="M1 24c0-4.4 3.1-8 7-8s7 3.6 7 8z" fill="var(--accent)"/></svg><svg class="ratio__i" viewBox="0 0 16 24" width="30" height="45" aria-hidden="true"><circle cx="8" cy="5" r="4" fill="var(--accent)"/><path d="M1 24c0-4.4 3.1-8 7-8s7 3.6 7 8z" fill="var(--accent)"/></svg><svg class="ratio__i" viewBox="0 0 16 24" width="30" height="45" aria-hidden="true"><circle cx="8" cy="5" r="4" fill="var(--accent)"/><path d="M1 24c0-4.4 3.1-8 7-8s7 3.6 7 8z" fill="var(--accent)"/></svg><svg class="ratio__i" viewBox="0 0 16 24" width="30" height="45" aria-hidden="true"><circle cx="8" cy="5" r="4" fill="var(--accent)"/><path d="M1 24c0-4.4 3.1-8 7-8s7 3.6 7 8z" fill="var(--accent)"/></svg><svg class="ratio__i" viewBox="0 0 16 24" width="30" height="45" aria-hidden="true"><circle cx="8" cy="5" r="4" fill="#7C6BB0"/><path d="M1 24c0-4.4 3.1-8 7-8s7 3.6 7 8z" fill="#7C6BB0"/></svg><svg class="ratio__i" viewBox="0 0 16 24" width="30" height="45" aria-hidden="true"><circle cx="8" cy="5" r="4" fill="#7C6BB0"/><path d="M1 24c0-4.4 3.1-8 7-8s7 3.6 7 8z" fill="#7C6BB0"/></svg><svg class="ratio__i" viewBox="0 0 16 24" width="30" height="45" aria-hidden="true"><circle cx="8" cy="5" r="4" fill="#7C6BB0"/><path d="M1 24c0-4.4 3.1-8 7-8s7 3.6 7 8z" fill="#7C6BB0"/></svg></div>
+        <div class="ratio__key">
+          <span><i style="background:var(--accent)"></i>6&ndash;7 men</span>
+          <span><i style="background:#7C6BB0"></i>3&ndash;4 women</span>
+        </div>
+      </div>
+      <figcaption>In every ten people on these apps, six or seven are men.</figcaption>
+    </figure>
+
+    <h3>How people arrive</h3>
+    <p>Then I watched how people arrive. <strong>Women join a dating app because it makes them feel good. Men join because women are already there.</strong></p>
+    <p>The order matters, and most products have it backwards. Pull in a lot of men and you get volume with no retention. 1Soul is for serious connection, so we build for women first. The men come on their own after that.</p>
+    <p>So I set the positioning before we designed anything. <strong>1Soul is built for the serious woman first, and the product has to prove that in the first interaction, not in the marketing.</strong> Everything after this decision had to answer to it.</p>
+
+    <h3>What I borrowed: Secret Santa</h3>
+    <p>I needed a shape for the mechanic, so I looked at things women already enjoy. Secret Santa kept coming back. It is a room full of people who know each other. Every person has a gift with their name on it. Nobody knows who picked theirs, and the whole point is that you find out slowly.</p>
+
+    <figure class="figure">
+      <svg class="santa-scene" viewBox="0 0 640 372" role="img" aria-label="An illustrated Secret Santa scene: a decorated tree, three wrapped gifts on a table with kraft name tags, people in the background, and the centre gift's tag marked with a question mark">
+        <rect x="0" y="0" width="640" height="372" rx="16" fill="#F5F0E8"/>
+        <rect x="0" y="0" width="640" height="372" rx="16" fill="none" stroke="#E3DACC" stroke-width="1.5"/>
+
+        <g opacity=".16" fill="#8A8175">
+          <circle cx="452" cy="120" r="26"/><path d="M410 214c0-28 19-48 42-48s42 20 42 48z"/>
+          <circle cx="536" cy="136" r="22"/><path d="M500 214c0-24 16-42 36-42s36 18 36 42z"/>
+        </g>
+
+        <g>
+          <path d="M96 42 L138 116 L54 116 Z" fill="#A6B39C"/>
+          <path d="M96 86 L150 166 L42 166 Z" fill="#9AA891"/>
+          <path d="M96 132 L162 216 L30 216 Z" fill="#8E9D86"/>
+          <rect x="87" y="216" width="18" height="26" fill="#B4A895"/>
+          <circle cx="80" cy="104" r="5" fill="var(--accent)" opacity=".8"/>
+          <circle cx="118" cy="146" r="5" fill="var(--accent)" opacity=".55"/>
+          <circle cx="70" cy="188" r="5" fill="var(--accent)" opacity=".8"/>
+          <circle cx="126" cy="196" r="4.5" fill="#C9B9A4"/>
+          <circle cx="104" cy="70" r="4" fill="#C9B9A4"/>
+        </g>
+
+        <rect x="24" y="242" width="592" height="9" rx="4.5" fill="#E0D5C4"/>
+        <rect x="24" y="251" width="592" height="12" rx="2" fill="#D3C6B2"/>
+
+        <g>
+          <rect x="196" y="176" width="86" height="66" rx="7" fill="#EFE7DC" stroke="#DCD1C0" stroke-width="1.5"/>
+          <rect x="230" y="176" width="16" height="66" fill="#C9B9A4"/>
+          <rect x="196" y="198" width="86" height="13" fill="#C9B9A4"/>
+          <line x1="216" y1="242" x2="192" y2="286" stroke="#B9AFA1" stroke-width="1.5"/>
+          <rect x="150" y="284" width="66" height="34" rx="6" fill="#EDE2CE" stroke="#D3C3A6" stroke-width="1.5"/>
+          <circle cx="162" cy="301" r="3" fill="#C4B294"/>
+          <rect x="172" y="294" width="32" height="4" rx="2" fill="#C0AE8E"/>
+          <rect x="172" y="304" width="22" height="4" rx="2" fill="#C0AE8E"/>
+        </g>
+
+        <g>
+          <rect x="298" y="150" width="96" height="92" rx="8" fill="#FCF8F2" stroke="var(--accent)" stroke-width="2"/>
+          <rect x="336" y="150" width="18" height="92" fill="var(--accent)" opacity=".85"/>
+          <rect x="298" y="176" width="96" height="15" fill="var(--accent)" opacity=".85"/>
+          <path d="M345 150c-15-24-47-19-43 2 3 14 26 13 43-2zM345 150c15-24 47-19 43 2-3 14-26 13-43-2z" fill="var(--accent)"/>
+          <line x1="392" y1="216" x2="428" y2="272" stroke="#B9AFA1" stroke-width="1.5"/>
+          <rect x="404" y="268" width="70" height="40" rx="7" fill="#fff" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="417" cy="288" r="3.5" fill="var(--accent)" opacity=".5"/>
+          <text x="446" y="297" text-anchor="middle" font-family="ui-monospace, monospace" font-size="22" font-weight="700" fill="var(--accent)">?</text>
+        </g>
+
+        <g>
+          <rect x="440" y="184" width="74" height="58" rx="7" fill="#EFE7DC" stroke="#DCD1C0" stroke-width="1.5"/>
+          <rect x="468" y="184" width="14" height="58" fill="#C9B9A4"/>
+          <rect x="440" y="202" width="74" height="12" fill="#C9B9A4"/>
+          <line x1="508" y1="242" x2="540" y2="280" stroke="#B9AFA1" stroke-width="1.5"/>
+          <rect x="516" y="278" width="66" height="34" rx="6" fill="#EDE2CE" stroke="#D3C3A6" stroke-width="1.5"/>
+          <circle cx="528" cy="295" r="3" fill="#C4B294"/>
+          <rect x="538" y="288" width="32" height="4" rx="2" fill="#C0AE8E"/>
+          <rect x="538" y="298" width="22" height="4" rx="2" fill="#C0AE8E"/>
+        </g>
+      </svg>
+      <figcaption>Every gift already has a name on it. You just do not get to read yours yet.</figcaption>
+    </figure>
+
+    <p>Three things make it work, and I took all three.</p>
+
+    <div class="santa-notes">
+      <div class="santa-note">
+        <div class="santa-note__n">01</div>
+        <div class="santa-note__t">It happens in a safe place</div>
+        <p>You are in a room with people you already trust. Nobody is a stranger, and nobody is alone with a stranger. The setting does the reassuring before anything is opened.</p>
+      </div>
+      <div class="santa-note">
+        <div class="santa-note__n">02</div>
+        <div class="santa-note__t">You know one of them is yours</div>
+        <p>There is no worry about being left out. Your name is already on something. That certainty is what lets you enjoy the waiting instead of competing for attention.</p>
+      </div>
+      <div class="santa-note">
+        <div class="santa-note__n">03</div>
+        <div class="santa-note__t">You get a clue, and you decide</div>
+        <p>You are given one small hint, never the full answer. So you stay curious, you stay in control, and you choose when to open it. Nobody opens it for you.</p>
+      </div>
+    </div>
+
+    <p>That last one is the part dating apps get wrong. A dating app hands over a full profile, a photo and a name, and asks a woman to judge a stranger from a card. She gets everything at once and no say in when it arrives. Secret Santa suggested another way in: give her a little, let her be curious, and leave the decision with her.</p>
+    <p>This only makes sense because of what 1Soul is. <strong>It is built for people looking for a serious relationship.</strong> So slowing the first interaction down works in our favour. Someone who wants something serious will happily wait for one good introduction. Someone who wants to swipe will go elsewhere, and that is fine, because they were never who this is for.</p>
+
+    <h3>The mechanic: she gets the clue first</h3>
+    <p>The whole thing is set in a place she already trusts offline. A friend who knows you both says "there is someone you should meet", and tells you one thing about him. She does not send you a file. She does not ask you to swipe. That is the scene the mechanic copies.</p>
+    <p>So Cupid finds a match, and the woman hears about it first. She gets one specific human detail, not a profile. She decides whether to go further. The man does not get to open a queue and start sending.</p>
+
+    <h3>Deciding what got built first</h3>
+    <p>I wrote the feature list and I ordered it. Not everything could ship, so I ranked each feature against one question: does this make the first interaction feel safe for her?</p>
+    <ul>
+      <li><strong>Clue first.</strong> Highest priority. It is the mechanic, so nothing else mattered until it worked.</li>
+      <li><strong>No swipe queue.</strong> High. A queue would have undone the whole positioning, so we never built one.</li>
+      <li><strong>She sets the pace.</strong> High. No countdown and no pressure to reply, because urgency is what makes these products feel unsafe.</li>
+      <li><strong>Profile depth for men.</strong> Lower. Men were not the constraint. Adding more for them first would have cost us the thing we were solving.</li>
+    </ul>
+
+    <h3>Content planning for social</h3>
+    <p>A product like this lives or dies on how it is explained, so I planned the social content too. I wrote the video concepts and decided what each one had to do. Some pieces explained the mechanic, because "you get a clue first" needs showing rather than telling. Some pieces carried the tone, so the account felt like a person and not a brand. I also chose what we would not post: nothing that looked like a swipe queue, and nothing that promised a match.</p>
+
     <h2>User research</h2>
     <h3>Competitor signal mining</h3>
     <p>Before writing a word of positioning, I read through the comment section under a viral post about an AI-matchmaking competitor to see, unfiltered, what real daters feared about "AI-run dating." Three patterns stood out:</p>
@@ -68,7 +201,8 @@
     </ul>
 
     <h2>Website redesign</h2>
-    <p>The research reframed the brief: this wasn't a visual refresh, it was a trust and positioning problem. Three shifts drove the redesign: soften the "AI decides for you" framing, replace investor-speak social proof with something specific and local, and give safety its own first-class section instead of a passing mention. Every change below traces back to a specific line from the interviews or the comment-mining exercise, not a stylistic preference.</p>
+    <p>The site had to carry the positioning above. If a woman reads it and still thinks this is another swipe app, the copy on the page has failed, whatever the product does later.</p>
+    <p>The research reframed the brief. The real problem sat in trust and positioning, well underneath the visuals. Three shifts drove the redesign: soften the "AI decides for you" framing, replace investor-speak social proof with something specific and local, and give safety its own first-class section instead of a passing mention. Every change below traces back to a specific line from the interviews or the comment-mining exercise, not a stylistic preference.</p>
 
     <h3>Before</h3>
     <figure class="figure">
@@ -121,49 +255,49 @@
         <div class="swatch__chip"></div>
         <div class="swatch__hex">#D4E5D5</div>
         <div class="swatch__name">Sage</div>
-        <div class="swatch__note">Calm and grounded, replacing the old gold accent that read as "mystical"</div>
+        <div class="swatch__note">Calm and grounded. It took over from the old gold accent, which people read as mystical.</div>
       </div>
       <div class="swatch" role="listitem" style="--swatch:#F0C7C8">
         <div class="swatch__chip"></div>
         <div class="swatch__hex">#F0C7C8</div>
         <div class="swatch__name">Blush</div>
-        <div class="swatch__note">Warmth without cliché, used at the trust and safety moments</div>
+        <div class="swatch__note">Used at the trust and safety moments, where the page has to feel soft.</div>
       </div>
       <div class="swatch" role="listitem" style="--swatch:#B35D57">
         <div class="swatch__chip"></div>
         <div class="swatch__hex">#B35D57</div>
         <div class="swatch__name">Terracotta</div>
-        <div class="swatch__note">Human warmth carried into CTAs and highlights</div>
+        <div class="swatch__note">Carries the human warmth into buttons and highlights.</div>
       </div>
       <div class="swatch" role="listitem" style="--swatch:#794359">
         <div class="swatch__chip"></div>
         <div class="swatch__hex">#794359</div>
         <div class="swatch__name">Plum</div>
-        <div class="swatch__note">Serious, not spooky, where the old palette read as a "spellbook"</div>
+        <div class="swatch__note">Reads as serious. The old palette got called a spellbook, and this replaces it.</div>
       </div>
       <div class="swatch" role="listitem" style="--swatch:#4A222E">
         <div class="swatch__chip"></div>
         <div class="swatch__hex">#4A222E</div>
         <div class="swatch__name">Deep wine</div>
-        <div class="swatch__note">Depth without feeling secretive or "untrustworthy"</div>
+        <div class="swatch__note">Gives the page depth while staying open and readable.</div>
       </div>
       <div class="swatch" role="listitem" style="--swatch:#FBF7F1">
         <div class="swatch__chip" style="border:1px solid var(--border-hairline)"></div>
         <div class="swatch__hex">#FBF7F1</div>
         <div class="swatch__name">Cream</div>
-        <div class="swatch__note">The new base, replacing the old stark near-black backgrounds</div>
+        <div class="swatch__note">The new base colour, in place of the old near-black backgrounds.</div>
       </div>
       <div class="swatch" role="listitem" style="--swatch:#242220">
         <div class="swatch__chip"></div>
         <div class="swatch__hex">#242220</div>
         <div class="swatch__name">Near-black</div>
-        <div class="swatch__note">Kept as an anchor neutral, now paired with warm tones instead of standing alone</div>
+        <div class="swatch__note">Kept as the anchor neutral. It now sits alongside the warm tones.</div>
       </div>
     </div>
     <p style="font-size:var(--text-body-sm);color:var(--text-tertiary);margin-top:var(--space-3)">The rebuilt colour system: sage, blush, plum and wine in place of the old mysterious near-black and gold, directly answering the "spellbook," "untrustworthy" and "too heavy" feedback from research.</p>
 
-    <h2>A women-first strategy</h2>
-    <p>The interviews were clear that the sharpest hesitation belonged to women: being sent a name with no photo or shared context, and asked to trust an AI's judgement about who to meet. Rather than soften this with reassuring copy alone, I designed a concrete mechanic around it: <strong>she gets a clue first.</strong> When Cupid finds a match, the woman receives a small, specific hint on WhatsApp, a detail like "he plays the piano, just got back from Lisbon, and laughed at the exact same thing you did", enough to be curious, never enough to spoil the moment or feel like a dossier. The rest, and the decision of whether to go, stays entirely hers: <em>"You decide what you do, always."</em> "Girl first" isn't just a design principle here; it's literal copy inside the product's own onboarding flow.</p>
+    <h2>The mechanic, in detail</h2>
+    <p>The research backed the positioning. The sharpest hesitation belonged to women: being sent a name with no photo or shared context, and asked to trust an AI's judgement about who to meet. Reassuring copy would not have fixed that. The mechanic had to, and this is how <strong>she gets a clue first</strong> works in practice. When Cupid finds a match, the woman receives a small, specific hint on WhatsApp, a detail like "he plays the piano, just got back from Lisbon, and laughed at the exact same thing you did", enough to be curious, never enough to spoil the moment or feel like a dossier. The rest, and the decision of whether to go, stays entirely hers: <em>"You decide what you do, always."</em> "Girl first" isn't just a design principle here; it's literal copy inside the product's own onboarding flow.</p>
     <p>This turns an abstract safety promise into something she can feel on the first interaction: curiosity with consent, instead of a cold introduction she's asked to simply trust.</p>
 
     <figure class="figure figure--narrow">
@@ -208,7 +342,7 @@
     </figure>
 
     <h2>Also part of the role</h2>
-    <p>Alongside product and UX, I contributed to early growth and marketing, including an on-the-ground content strategy (street interviews at London universities) designed to pair content production with same-day sign-ups, plus platform-specific playbooks for Instagram and TikTok.</p>
+    <p>I worked on early growth as well. I ran an on-the-ground content strategy, which meant street interviews at London universities, timed so the filming and the sign-ups happened on the same day. I also wrote the playbooks for Instagram and TikTok, so each platform had its own plan rather than the same clip posted twice.</p>
 
     <div class="btn-row" style="margin-top:var(--space-7)">
       <a class="btn btn--primary" href="https://1soul.ai" target="_blank" rel="noreferrer">Visit 1soul.ai ↗</a>
