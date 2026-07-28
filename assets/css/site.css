@@ -1590,3 +1590,18 @@ input,textarea,select{cursor:text;}
 @media(max-width:600px){
   .zero-one li{padding-left:var(--space-7);}
 }
+
+/* A short row of figures, for scope rather than results */
+.prose .stat-row{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:var(--space-5);margin:var(--space-6) 0 var(--space-8);
+}
+.stat-cell{
+  padding:var(--space-5);border:1px solid var(--border-hairline);
+  border-radius:var(--radius-md);background:var(--gray-1);
+}
+.stat-cell__n{
+  display:block;font-family:var(--font-display);font-size:var(--text-h2);
+  font-weight:var(--fw-light);color:var(--accent);line-height:1;margin-bottom:var(--space-3);
+}
+.stat-cell__l{display:block;font-size:var(--text-body-sm);line-height:1.5;color:var(--text-secondary);}
