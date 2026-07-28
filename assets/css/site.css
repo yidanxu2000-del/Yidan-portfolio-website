@@ -120,18 +120,18 @@ body{background:#07080d;}
 }
 .tag--accent{background:var(--accent-tint);color:var(--accent);}
 .tag--dark{
-  color:var(--text-on-dark);
-  background:linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,255,255,.06) 60%);
+  color:var(--text-primary);
+  background:linear-gradient(135deg, rgba(255,255,255,.75), rgba(255,255,255,.45) 60%);
   -webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);
-  border:1px solid rgba(255,255,255,.3);
-  box-shadow:inset 0 1px 1px rgba(255,255,255,.35), inset 0 -6px 10px -8px rgba(0,0,0,.3);
+  border:1px solid rgba(29,29,31,.14);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.8), 0 1px 2px rgba(60,56,48,.06);
 }
 .tag-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
 
 /* ---------- Sections ---------- */
 .section{padding:var(--section-pad-y) var(--space-5);display:flex;flex-direction:column;align-items:center;}
 .section--full{min-height:100vh;justify-content:center;perspective:1200px;}
-.section--light{background:var(--surface-primary);color:var(--text-primary);}
+.section--light{background:var(--surface-inverse);color:var(--text-primary);}
 .section--tint{background:var(--surface-secondary);color:var(--text-primary);}
 .section--dark{background:var(--surface-inverse);color:var(--text-on-dark);}
 .section--alt-dark{background:var(--surface-inverse-alt);color:var(--text-on-dark);}
@@ -370,7 +370,8 @@ input,textarea,select{cursor:text;}
 .thinking-callout__body{font-size:var(--text-body-lg);line-height:var(--lh-body);color:var(--text-on-dark-secondary);max-width:640px;margin:0 auto var(--space-5);}
 .thinking-callout__cta{
   display:inline-flex;align-items:center;gap:6px;font-size:var(--text-body);font-weight:var(--fw-medium);
-  color:#fff;padding:12px 24px;border-radius:var(--radius-pill);border:1px solid rgba(255,255,255,.4);
+  color:var(--text-primary);padding:12px 24px;border-radius:var(--radius-pill);
+  border:1px solid rgba(29,29,31,.22);background:rgba(255,255,255,.6);
   transition:color var(--duration-fast) var(--ease-out), background var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
 }
 .thinking-callout__cta svg{transition:transform var(--duration-fast) var(--ease-out);}
@@ -379,12 +380,22 @@ input,textarea,select{cursor:text;}
 
 /* ---------- Project grid / cards ---------- */
 .project-story{padding:var(--space-8) var(--space-5);position:relative;}
-.project-story.section--dark{
-  background:
-    radial-gradient(ellipse 60% 80% at 15% 20%, rgba(226,102,31,.09), transparent 60%),
-    radial-gradient(ellipse 55% 70% at 85% 80%, rgba(226,102,31,.07), transparent 60%),
-    var(--surface-inverse);
+/* every project sits on the same paper, whichever modifier the markup uses */
+.project-story.section--light,
+.project-story.section--dark,
+.project-story.section--alt-dark{
+  background:var(--surface-inverse);
+  color:var(--text-primary);
 }
+/* the warm wash is decorative only: it fades out well before the edge, so
+   two stacked projects never show a join */
+.project-story.section--dark::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 52% 58% at 18% 34%, rgba(226,102,31,.055), transparent 66%),
+    radial-gradient(ellipse 48% 52% at 84% 70%, rgba(226,102,31,.045), transparent 66%);
+}
+.project-story__inner{position:relative;z-index:1;}
 .project-story__inner{max-width:1080px;margin:0 auto;}
 .project-card{
   display:flex;flex-direction:row;align-items:center;gap:var(--space-8);
@@ -449,7 +460,11 @@ input,textarea,select{cursor:text;}
 }
 .case-hero--photo::before{
   content:"";position:absolute;inset:0;z-index:0;
-  background:linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.68) 45%, rgba(0,0,0,.92) 100%);
+  background:linear-gradient(180deg,
+    rgba(250,248,244,.18) 0%,
+    rgba(250,248,244,.55) 42%,
+    rgba(250,248,244,.88) 74%,
+    rgba(250,248,244,.97) 100%);
 }
 .case-hero--photo .case-hero__inner{position:relative;z-index:1;width:100%;}
 
@@ -469,7 +484,8 @@ input,textarea,select{cursor:text;}
 /* footage that is already dark drowns under the standard scrim: keep enough
    of it to read the type, and let the picture stay a picture */
 .case-hero--video-dim::before{
-  background:linear-gradient(180deg, rgba(0,0,0,.34) 0%, rgba(0,0,0,.30) 40%, rgba(0,0,0,.82) 100%);
+  background:linear-gradient(180deg, rgba(250,248,244,.10) 0%, rgba(250,248,244,.34) 38%,
+             rgba(250,248,244,.86) 76%, rgba(250,248,244,.97) 100%);
 }
 .case-hero--video .case-hero__inner{z-index:2;}
 @media(prefers-reduced-motion:reduce){
@@ -1539,3 +1555,12 @@ input,textarea,select{cursor:text;}
   display:inline-block;
 }
 .hero-dice__roll.is-swapping{opacity:0;transform:translateY(-5px);}
+
+/* A little handwriting, used sparingly. It carries the warmth the rest of
+   the page deliberately does not, so it only appears twice. */
+.hero-dice__script,.dice-picker__script{
+  font-family:'Caveat',ui-rounded,'Segoe Script','Bradley Hand',cursive;
+  font-size:clamp(22px,2.6vw,30px);line-height:1;color:var(--accent);
+  margin:var(--space-5) 0 0;transform:rotate(-2.5deg);
+}
+.dice-picker__script{margin:0 0 var(--space-2);transform:rotate(-2deg);}

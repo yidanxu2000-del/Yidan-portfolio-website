@@ -182,12 +182,11 @@
     [].forEach.call(picker.querySelectorAll('.dice-map li'), function(li){
       map[li.dataset.n] = li.dataset;
     });
-    var rolling = false, timer = null;
+    var rolling = false;
 
     function roll(){
       if(rolling) return;
       rolling = true;
-      if(timer){ clearTimeout(timer); timer = null; }
       result.classList.remove('is-shown');
       result.hidden = true;
       var face = 1 + Math.floor(Math.random() * 6);
@@ -204,27 +203,15 @@
         void result.offsetWidth;
         result.classList.add('is-shown');
         rolling = false;
-        // give the reader a beat to see what came up, then take them there
-        if(!reduceMotion){
-          timer = setTimeout(function(){ window.location.href = item.href; }, 4200);
-        }
+        // No automatic jump. Most people want to roll again, and being thrown
+        // into a project takes that choice away.
       }, reduceMotion ? 60 : ROLL_MS);
     }
 
     // clicking the die is always 'throw it again', even while a result sits
-    // on screen and even while the jump is counting down
-    die.addEventListener('click', function(){
-      if(timer){ clearTimeout(timer); timer = null; }
-      roll();
-    });
-    if(again) again.addEventListener('click', function(){
-      if(timer){ clearTimeout(timer); timer = null; }
-      roll();
-    });
-    // stop the jump if the reader is clearly doing something else
-    picker.addEventListener('mouseleave', function(){
-      if(timer){ clearTimeout(timer); timer = null; }
-    });
+    // on screen
+    die.addEventListener('click', roll);
+    if(again) again.addEventListener('click', roll);
   })();
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
