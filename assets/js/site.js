@@ -99,6 +99,110 @@
     });
   })();
 
+  // ---- dice ------------------------------------------------------------
+  // The die is a real 3D cube. Opposite faces sum to seven: 1 front, 6 back,
+  // 3 right, 4 left, 5 top, 2 bottom. To show a face, turn the cube so that
+  // face ends up pointing at the viewer.
+  var FACE_TURN = {
+    1: [0, 0],      // front, already facing us
+    6: [0, 180],    // back
+    3: [0, -90],    // right
+    4: [0, 90],     // left
+    5: [90, 0],     // top
+    2: [-90, 0]     // bottom
+  };
+
+  function rollDie(die, face, spins){
+    var turn = FACE_TURN[face] || FACE_TURN[1];
+    // whole extra turns first, so it reads as a roll rather than a nudge
+    var x = turn[0] + 360 * (spins || 2);
+    var y = turn[1] + 360 * (spins || 2);
+    die.classList.add('is-controlled');
+    die.classList.remove('is-snapping');
+    // force a reflow so a repeat roll animates from where it actually is
+    void die.offsetWidth;
+    die.style.transform = 'rotateX(' + x + 'deg) rotateY(' + y + 'deg)';
+  }
+
+  function nudgeDie(die){
+    var current = die._nudge || 0;
+    current += 1;
+    die._nudge = current;
+    die.classList.add('is-controlled', 'is-snapping');
+    void die.offsetWidth;
+    die.style.transform = 'rotateX(' + (-14 + current * 360) + 'deg) rotateY(' + (current * 360) + 'deg)';
+  }
+
+  // hero: the die lands, then the words arrive
+  (function(){
+    var hero = document.querySelector('.hero-dice');
+    if(!hero) return;
+    var die = hero.querySelector('.die');
+    if(reduceMotion){
+      hero.classList.remove('is-intro');
+      hero.classList.add('is-lit');
+    } else {
+      setTimeout(function(){ hero.classList.add('is-lit'); }, 850);
+      setTimeout(function(){ hero.classList.remove('is-intro'); }, 1500);
+    }
+    if(die) die.addEventListener('click', function(){ nudgeDie(die); });
+  })();
+
+  // picker: roll, show what came up, then go there
+  (function(){
+    var picker = document.querySelector('.dice-picker');
+    if(!picker) return;
+    var die = picker.querySelector('.die');
+    var result = picker.querySelector('.dice-result');
+    var elNum = picker.querySelector('.dice-result__num');
+    var elName = picker.querySelector('.dice-result__name');
+    var elDesc = picker.querySelector('.dice-result__desc');
+    var elGo = picker.querySelector('.dice-result__go');
+    var again = picker.querySelector('.dice-result__again');
+    var map = {};
+    [].forEach.call(picker.querySelectorAll('.dice-map li'), function(li){
+      map[li.dataset.n] = li.dataset;
+    });
+    var rolling = false, timer = null;
+
+    function roll(){
+      if(rolling) return;
+      rolling = true;
+      if(timer){ clearTimeout(timer); timer = null; }
+      result.classList.remove('is-shown');
+      result.hidden = true;
+      var face = 1 + Math.floor(Math.random() * 6);
+      var item = map[face];
+      if(!item){ rolling = false; return; }
+      rollDie(die, face, reduceMotion ? 0 : 3);
+      setTimeout(function(){
+        elNum.textContent = 'Project ' + face;
+        elName.textContent = item.name;
+        elDesc.textContent = item.desc;
+        elGo.setAttribute('href', item.href);
+        elGo.textContent = 'Open ' + item.name;
+        result.hidden = false;
+        void result.offsetWidth;
+        result.classList.add('is-shown');
+        rolling = false;
+        // give the reader a beat to see what came up, then take them there
+        if(!reduceMotion){
+          timer = setTimeout(function(){ window.location.href = item.href; }, 2600);
+        }
+      }, reduceMotion ? 60 : 1500);
+    }
+
+    die.addEventListener('click', roll);
+    if(again) again.addEventListener('click', function(){
+      if(timer){ clearTimeout(timer); timer = null; }
+      roll();
+    });
+    // stop the jump if the reader is clearly doing something else
+    picker.addEventListener('mouseleave', function(){
+      if(timer){ clearTimeout(timer); timer = null; }
+    });
+  })();
+
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // true only on devices that actually have a mouse/trackpad — touch fires a
   // single synthetic mousemove at the tap point after tap-and-release, which

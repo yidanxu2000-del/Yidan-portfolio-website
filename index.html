@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar--dark">
+<nav class="navbar">
   <div class="navbar__inner">
     <a href="#top" class="navbar__logo">Yidan Xu</a>
     <div class="navbar__links">
@@ -31,16 +31,26 @@
 
 <div id="top"></div>
 
-<section class="section section--full section--dark">
-  <div class="hero-starfield" aria-hidden="true"><canvas></canvas></div>
-  <div class="section__inner reveal">
-    <div class="section__eyebrow">Product &amp; UX Designer — London</div>
-    <h1 class="section__title hero__name">Yidan Xu</h1>
-    <p class="hero-rotator">Currently designing <span class="hero-rotator__word" data-words="healthcare innovation|in-car interfaces|an AI matchmaker|small tools for myself">healthcare innovation</span><span class="hero-rotator__caret" aria-hidden="true"></span></p>
-    <p class="section__body">I design human-centred innovations that turn complex challenges into real-world solutions. Recognised by the James Dyson Award, covered by Reuters and Dezeen.</p>
-    <div class="section__content btn-row">
-      <a class="btn btn--primary" href="#work">View work</a>
-      <a class="btn btn--link" href="#contact">Get in touch<svg class="btn__arrow" width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<section class="hero-dice is-intro">
+  <div class="hero-dice__inner">
+    <div class="die-stage">
+      <button class="die die--interactive" type="button" aria-label="Roll the dice">
+        <span class="die__face die__face--front"><span class="die__pip die__pip--mc"></span></span>
+        <span class="die__face die__face--back"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--tr"></span><span class="die__pip die__pip--ml"></span><span class="die__pip die__pip--mr"></span><span class="die__pip die__pip--bl"></span><span class="die__pip die__pip--br"></span></span>
+        <span class="die__face die__face--right"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--mc"></span><span class="die__pip die__pip--br"></span></span>
+        <span class="die__face die__face--left"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--tr"></span><span class="die__pip die__pip--bl"></span><span class="die__pip die__pip--br"></span></span>
+        <span class="die__face die__face--top"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--tr"></span><span class="die__pip die__pip--mc"></span><span class="die__pip die__pip--bl"></span><span class="die__pip die__pip--br"></span></span>
+        <span class="die__face die__face--bottom"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--br"></span></span>
+      </button>
+    </div>
+
+    <p class="hero-dice__tagline hero-dice__reveal">I am a product designer. I work on health tech, car interfaces and small tools I want to exist.</p>
+    <h1 class="hero-dice__name hero-dice__reveal">Yidan Xu</h1>
+    <div class="hero-dice__meta hero-dice__reveal">Product &amp; UX Designer — London</div>
+
+    <div class="btn-row hero-dice__cta hero-dice__reveal">
+      <a class="btn btn--primary" href="#work">See the work</a>
+      <a class="btn btn--link" href="#contact">Say hello<svg class="btn__arrow" width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div>
 </section>
@@ -111,32 +121,44 @@
 </section>
 
 <div id="work">
-<section class="starfield-section" aria-label="Project navigation">
-  <canvas class="starfield-canvas" aria-hidden="true"></canvas>
-  <div class="starfield-intro">
+<section id="work" class="dice-picker">
+  <div class="dice-picker__inner reveal">
     <div class="section__eyebrow">Selected work</div>
-    <h2>Pick a star, open a project.</h2>
+    <h2>Not sure where to start?</h2>
+    <p class="dice-picker__sub">Click the dice. It will pick a project for you.</p>
+
+    <div class="die-stage">
+      <button class="die die--interactive" type="button" aria-label="Roll the dice to pick a project">
+        <span class="die__face die__face--front"><span class="die__pip die__pip--mc"></span></span>
+        <span class="die__face die__face--back"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--tr"></span><span class="die__pip die__pip--ml"></span><span class="die__pip die__pip--mr"></span><span class="die__pip die__pip--bl"></span><span class="die__pip die__pip--br"></span></span>
+        <span class="die__face die__face--right"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--mc"></span><span class="die__pip die__pip--br"></span></span>
+        <span class="die__face die__face--left"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--tr"></span><span class="die__pip die__pip--bl"></span><span class="die__pip die__pip--br"></span></span>
+        <span class="die__face die__face--top"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--tr"></span><span class="die__pip die__pip--mc"></span><span class="die__pip die__pip--bl"></span><span class="die__pip die__pip--br"></span></span>
+        <span class="die__face die__face--bottom"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--br"></span></span>
+      </button>
+    </div>
+
+    <div class="dice-result" hidden>
+      <span class="dice-result__num">Project 1</span>
+      <h3 class="dice-result__name">1Soul</h3>
+      <p class="dice-result__desc"></p>
+      <div class="dice-result__actions">
+        <a class="btn btn--primary dice-result__go" href="work/1soul.html">Open 1Soul</a>
+        <button class="dice-result__again" type="button">Roll again</button>
+      </div>
+    </div>
+
+    <ul class="dice-map" aria-hidden="true">
+      <li data-n="1" data-href="work/1soul.html" data-name="1Soul" data-desc="An AI matchmaker. People talk to a bot on WhatsApp, and it sends them a few real matches. I was the founding product manager."></li>
+      <li data-n="2" data-href="work/urify.html" data-name="Urify" data-desc="A colour-changing test that flags early kidney disease. I founded it on my own. It was a UK James Dyson Award runner-up."></li>
+      <li data-n="3" data-href="work/xiaomi-auto.html" data-name="Xiaomi Auto" data-desc="Screens inside the car, for the European market. I worked on the digital cockpit."></li>
+      <li data-n="4" data-href="work/nft.html" data-name="NFT" data-desc="A platform for making and trading NFT avatars. I was the founding designer."></li>
+      <li data-n="5" data-href="work/innovate-adhd.html" data-name="Innovate ADHD" data-desc="A remote ADHD assessment platform. I built it from nothing as product manager."></li>
+      <li data-n="6" data-href="work/huawei.html" data-name="Huawei" data-desc="One design language for five B2B apps. I was a design intern in the B2B team."></li>
+    </ul>
+
+    <p class="dice-picker__all">Or just scroll. Every project is below.</p>
   </div>
-  <div class="starfield-links">
-    <a class="star-link star-link--xl" href="work/urify.html" data-title="Urify" data-meta="Health Tech · 2026" data-desc="Founded solo. A colour-changing test that flags kidney disease early. UK James Dyson Award runner-up." style="left:50%;top:40%"><span class="star-link__dot"></span><span class="star-link__label">Urify</span></a>
-    <a class="star-link star-link--lg" href="work/1soul.html" data-title="1Soul" data-meta="Product · 2026" data-desc="Founding Product Manager. I built the design, brand and trust behind an AI matchmaker for serious daters." style="left:36%;top:50%"><span class="star-link__dot"></span><span class="star-link__label">1Soul</span></a>
-    <a class="star-link star-link--lg" href="work/xiaomi-auto.html" data-title="Xiaomi Auto" data-meta="HMI · 2025" data-desc="In-vehicle digital cockpit interfaces for the European market." style="left:65%;top:48%"><span class="star-link__dot"></span><span class="star-link__label">Xiaomi Auto</span></a>
-    <a class="star-link star-link--lg" href="work/huawei.html" data-title="Huawei" data-meta="UI/UX · 2024" data-desc="Design intern. Research-led interface improvements across the Huawei ecosystem." style="left:50%;top:62%"><span class="star-link__dot"></span><span class="star-link__label">Huawei</span></a>
-    <a class="star-link star-link--md" href="work/nft.html" data-title="NFT" data-meta="Web3 · 2023" data-desc="Founding designer. A platform for crafting and trading personalised NFT avatars." style="left:44%;top:32%"><span class="star-link__dot"></span><span class="star-link__label">NFT</span></a>
-    <a class="star-link" href="work/innovate-adhd.html" data-title="Innovate ADHD" data-meta="AI Product · 2025" data-desc="Product manager. A 0–1 remote ADHD assessment platform I built." style="left:70%;top:32%"><span class="star-link__dot"></span><span class="star-link__label">Innovate ADHD</span></a>
-    <a class="star-link" href="work/res.html" data-title="RES" data-meta="Health · 2025" data-desc="Hyperlocal pollen-sensing platform. DIA Award, and second prize at the Analytics for Society Award 2025." style="left:18%;top:58%"><span class="star-link__dot"></span><span class="star-link__label">RES</span></a>
-    <a class="star-link star-link--md" href="work/pulpatronics.html" data-title="Pulpatronics" data-meta="Branding · 2024" data-desc="Brand designer. Sustainable NFC-tag startup, London internship." style="left:82%;top:62%"><span class="star-link__dot"></span><span class="star-link__label">Pulpatronics</span></a>
-    <a class="star-link" href="work/entropy.html" data-title="Entropy" data-meta="VR Game · 2023" data-desc="A VR game set in a flooded future London that teaches recycling through play." style="left:36%;top:76%"><span class="star-link__dot"></span><span class="star-link__label">Entropy</span></a>
-    <a class="star-link" href="work/gesture.html" data-title="Gesture" data-meta="Hardware · 2023" data-desc="A gesture-controlled lock trained with machine learning." style="left:64%;top:78%"><span class="star-link__dot"></span><span class="star-link__label">Gesture</span></a>
-    <span class="star-link star-link--disabled" aria-hidden="true" style="left:50%;top:87%"><span class="star-link__dot"></span></span>
-    <a class="star-link" href="work/illustrator.html" data-title="Illustrator" data-meta="Illustration · 2024" data-desc="Freelance illustration work, 2019–2025." style="left:14%;top:76%"><span class="star-link__dot"></span><span class="star-link__label">Illustrator</span></a>
-  </div>
-  <div class="star-tooltip liquid-glass liquid-glass--dark" aria-hidden="true">
-    <div class="star-tooltip__title"></div>
-    <div class="star-tooltip__meta"></div>
-    <div class="star-tooltip__desc"></div>
-  </div>
-  <div class="starfield-hint">Tap or hover a star to open a project</div>
 </section>
 
 <!-- 1Soul -->
