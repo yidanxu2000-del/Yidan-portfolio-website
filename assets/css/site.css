@@ -1571,3 +1571,22 @@ input,textarea,select{cursor:text;}
   margin:var(--space-5) 0 0;transform:rotate(-2.5deg);
 }
 .dice-picker__script{margin:0 0 var(--space-2);transform:rotate(-2deg);}
+
+/* A numbered run of steps, for telling a project in order */
+.prose .zero-one{list-style:none;padding:0;margin:var(--space-6) 0 var(--space-8);counter-reset:none;}
+.zero-one li{
+  position:relative;padding:0 0 var(--space-6) var(--space-8);margin:0;
+  border-left:1px solid var(--border-hairline);
+}
+.zero-one li:last-child{border-left-color:transparent;padding-bottom:0;}
+.zero-one__step{
+  position:absolute;left:0;top:0;transform:translateX(-50%);
+  width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+  background:var(--accent);color:#fff;
+  font-family:var(--font-mono);font-size:11px;font-weight:var(--fw-semibold);
+}
+.prose .zero-one h3{margin:0 0 var(--space-2);font-size:var(--text-h4);}
+.prose .zero-one p{margin:0;}
+@media(max-width:600px){
+  .zero-one li{padding-left:var(--space-7);}
+}
