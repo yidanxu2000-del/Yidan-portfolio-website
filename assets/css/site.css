@@ -1529,3 +1529,12 @@ input,textarea,select{cursor:text;}
   .die{--die:96px;}
   .dice-picker .die{--die:88px;}
 }
+
+/* the hero line swaps its last phrase as the die lands on a new face */
+.hero-dice__words{display:none;}
+.hero-dice__roll{
+  color:var(--accent);font-weight:var(--fw-medium);
+  transition:opacity .28s var(--ease-out),transform .28s var(--ease-out);
+  display:inline-block;
+}
+.hero-dice__roll.is-swapping{opacity:0;transform:translateY(-5px);}

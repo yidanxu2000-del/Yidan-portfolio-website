@@ -112,32 +112,34 @@
     2: [-90, 0]     // bottom
   };
 
+  var ROLL_MS = 2600;
+
+  // Every roll adds whole turns on top of the last resting angle, so the die
+  // always spins forward. Reusing absolute angles would make it unwind.
   function rollDie(die, face, spins){
     var turn = FACE_TURN[face] || FACE_TURN[1];
-    // whole extra turns first, so it reads as a roll rather than a nudge
-    var x = turn[0] + 360 * (spins || 2);
-    var y = turn[1] + 360 * (spins || 2);
+    var laps = die._laps || 0;
+    laps += (spins || 4);
+    die._laps = laps;
+    var x = turn[0] + 360 * laps;
+    var y = turn[1] + 360 * laps;
     die.classList.add('is-controlled');
     die.classList.remove('is-snapping');
-    // force a reflow so a repeat roll animates from where it actually is
     void die.offsetWidth;
     die.style.transform = 'rotateX(' + x + 'deg) rotateY(' + y + 'deg)';
   }
 
-  function nudgeDie(die){
-    var current = die._nudge || 0;
-    current += 1;
-    die._nudge = current;
-    die.classList.add('is-controlled', 'is-snapping');
-    void die.offsetWidth;
-    die.style.transform = 'rotateX(' + (-14 + current * 360) + 'deg) rotateY(' + (current * 360) + 'deg)';
-  }
-
-  // hero: the die lands, then the words arrive
+  // hero: the die lands, then the words arrive. After that every click rolls
+  // a new face, and the line under the die changes to match it.
   (function(){
     var hero = document.querySelector('.hero-dice');
     if(!hero) return;
     var die = hero.querySelector('.die');
+    var word = hero.querySelector('.hero-dice__roll');
+    var faces = [];
+    [].forEach.call(hero.querySelectorAll('.hero-dice__words li'), function(li){
+      faces[+li.dataset.n] = li.textContent;
+    });
     if(reduceMotion){
       hero.classList.remove('is-intro');
       hero.classList.add('is-lit');
@@ -145,7 +147,24 @@
       setTimeout(function(){ hero.classList.add('is-lit'); }, 850);
       setTimeout(function(){ hero.classList.remove('is-intro'); }, 1500);
     }
-    if(die) die.addEventListener('click', function(){ nudgeDie(die); });
+    if(!die) return;
+    var last = 1, busy = false;
+    die.addEventListener('click', function(){
+      if(busy) return;
+      busy = true;
+      var face = 1 + Math.floor(Math.random() * 6);
+      if(face === last) face = (face % 6) + 1;   // always a visible change
+      last = face;
+      rollDie(die, face, 4);
+      if(word && faces[face]){
+        word.classList.add('is-swapping');
+        setTimeout(function(){
+          word.textContent = faces[face];
+          word.classList.remove('is-swapping');
+        }, ROLL_MS * 0.62);
+      }
+      setTimeout(function(){ busy = false; }, ROLL_MS);
+    });
   })();
 
   // picker: roll, show what came up, then go there
@@ -174,7 +193,7 @@
       var face = 1 + Math.floor(Math.random() * 6);
       var item = map[face];
       if(!item){ rolling = false; return; }
-      rollDie(die, face, reduceMotion ? 0 : 3);
+      rollDie(die, face, reduceMotion ? 0 : 5);
       setTimeout(function(){
         elNum.textContent = 'Project ' + face;
         elName.textContent = item.name;
@@ -187,12 +206,17 @@
         rolling = false;
         // give the reader a beat to see what came up, then take them there
         if(!reduceMotion){
-          timer = setTimeout(function(){ window.location.href = item.href; }, 2600);
+          timer = setTimeout(function(){ window.location.href = item.href; }, 4200);
         }
-      }, reduceMotion ? 60 : 1500);
+      }, reduceMotion ? 60 : ROLL_MS);
     }
 
-    die.addEventListener('click', roll);
+    // clicking the die is always 'throw it again', even while a result sits
+    // on screen and even while the jump is counting down
+    die.addEventListener('click', function(){
+      if(timer){ clearTimeout(timer); timer = null; }
+      roll();
+    });
     if(again) again.addEventListener('click', function(){
       if(timer){ clearTimeout(timer); timer = null; }
       roll();
