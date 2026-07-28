@@ -653,6 +653,10 @@ input,textarea,select{cursor:text;}
 .section--light .prose-stat-callout{background:var(--gray-1);border:1px solid var(--border-hairline);}
 .section--light .prose-stat-callout__value{color:var(--text-primary);}
 .section--light .prose-stat-callout__label{color:var(--text-secondary);}
+.prose-stat-callout__src{
+  display:block;margin-top:var(--space-2);font-size:var(--text-caption);
+  color:var(--text-tertiary);line-height:var(--lh-body);
+}
 
 /* ---------- Vibe coding section ---------- */
 .vibe-card{
@@ -1661,6 +1665,28 @@ input,textarea,select{cursor:text;}
 .ratio__key span{display:inline-flex;align-items:center;gap:8px;}
 .ratio__key i{width:10px;height:10px;border-radius:3px;display:block;}
 .santa{width:100%;max-width:320px;display:block;margin:0 auto;}
+.santa-scene{width:100%;height:auto;display:block;border-radius:var(--radius-lg);}
+.santa-notes{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--space-4);margin:var(--space-6) 0;
+}
+.santa-note{
+  padding:var(--space-5);border-radius:var(--radius-md);
+  background:var(--gray-1);border:1px solid var(--border-hairline);
+}
+.santa-note__n{
+  font-family:var(--font-mono,ui-monospace,monospace);font-size:var(--text-caption);
+  font-weight:var(--fw-semibold);color:var(--accent);letter-spacing:0.06em;
+  margin-bottom:var(--space-2);
+}
+.santa-note__t{
+  font-weight:var(--fw-semibold);color:var(--text-primary);
+  line-height:var(--lh-snug);margin-bottom:var(--space-2);
+}
+.prose .santa-note p{font-size:var(--text-caption);color:var(--text-secondary);margin:0;}
+@media (max-width:760px){
+  .santa-notes{grid-template-columns:1fr;}
+}
 
 /* A short causal chain, for arguments that only work in order */
 .prose .chain{
