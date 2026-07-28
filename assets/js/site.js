@@ -214,6 +214,22 @@
     if(again) again.addEventListener('click', roll);
   })();
 
+  // swatches fill in when they reach the viewport
+  (function(){
+    var chips = document.querySelectorAll('.swatch');
+    if(!chips.length) return;
+    if(!('IntersectionObserver' in window)){
+      [].forEach.call(chips, function(c){ c.classList.add('is-in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, {threshold:.35});
+    [].forEach.call(chips, function(c){ io.observe(c); });
+  })();
+
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // true only on devices that actually have a mouse/trackpad — touch fires a
   // single synthetic mousemove at the tap point after tap-and-release, which
