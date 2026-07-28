@@ -184,12 +184,25 @@
     });
     var rolling = false;
 
+    // Face 1 is weighted 15% above each of the others, so the project I most
+    // want read comes up a little more often. Everything still lands.
+    var FACE_WEIGHT = [1.15, 1, 1, 1, 1, 1];
+    var WEIGHT_TOTAL = FACE_WEIGHT.reduce(function(a, b){ return a + b; }, 0);
+    function pickFace(){
+      var r = Math.random() * WEIGHT_TOTAL;
+      for(var i = 0; i < FACE_WEIGHT.length; i++){
+        r -= FACE_WEIGHT[i];
+        if(r < 0) return i + 1;
+      }
+      return 1;
+    }
+
     function roll(){
       if(rolling) return;
       rolling = true;
       result.classList.remove('is-shown');
       result.hidden = true;
-      var face = 1 + Math.floor(Math.random() * 6);
+      var face = pickFace();
       var item = map[face];
       if(!item){ rolling = false; return; }
       rollDie(die, face, reduceMotion ? 0 : 5);
