@@ -1661,3 +1661,42 @@ input,textarea,select{cursor:text;}
 .ratio__key span{display:inline-flex;align-items:center;gap:8px;}
 .ratio__key i{width:10px;height:10px;border-radius:3px;display:block;}
 .santa{width:100%;max-width:320px;display:block;margin:0 auto;}
+
+/* A short causal chain, for arguments that only work in order */
+.prose .chain{
+  display:flex;align-items:stretch;gap:var(--space-2);flex-wrap:wrap;
+  margin:var(--space-6) 0 var(--space-8);
+}
+.chain__step{
+  flex:1 1 118px;min-width:0;padding:var(--space-4);
+  background:var(--gray-1);border:1px solid var(--border-hairline);border-radius:var(--radius-md);
+}
+.chain__step--end{background:var(--accent-tint);border-color:rgba(226,102,31,.28);}
+.chain__n{
+  display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;
+  color:var(--accent);font-weight:var(--fw-semibold);margin-bottom:var(--space-3);
+}
+.prose .chain__step p{margin:0;font-size:var(--text-body-sm);line-height:1.5;color:var(--text-secondary);}
+.chain__step--end p{color:var(--text-primary);font-weight:var(--fw-medium);}
+.chain__arrow{
+  display:flex;align-items:center;color:var(--text-tertiary);font-size:18px;flex:none;
+}
+@media(max-width:720px){
+  .chain{flex-direction:column;}
+  .chain__arrow{transform:rotate(90deg);justify-content:center;height:22px;}
+}
+
+/* Three things that already exist, and what each one asks of the person */
+.prose .fails{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:var(--space-5);margin:var(--space-6) 0 var(--space-8);
+}
+.fail{
+  padding:var(--space-5);border:1px solid var(--border-hairline);
+  border-radius:var(--radius-md);background:var(--gray-1);
+}
+.fail__name{
+  display:block;font-family:var(--font-display);font-size:var(--text-body-lg);
+  font-weight:var(--fw-semibold);color:var(--text-primary);margin-bottom:var(--space-3);
+}
+.prose .fail p{margin:0;font-size:var(--text-body-sm);line-height:1.55;color:var(--text-secondary);}
