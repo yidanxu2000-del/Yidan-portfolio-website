@@ -11,21 +11,21 @@
   --gray-6:#424245;
   --gray-7:#1d1d1f;
   --black:#000000;
-  --accent:#0080c8;
-  --accent-hover:#0068a3;
-  --accent-tint:#e6f4fa;
+  --accent:#E2661F;
+  --accent-hover:#C4551A;
+  --accent-tint:#FBEEE4;
   --surface-primary:var(--white);
   --surface-secondary:var(--gray-1);
-  --surface-inverse:var(--black);
-  --surface-inverse-alt:#1d1d1f;
+  --surface-inverse:#FAF8F4;
+  --surface-inverse-alt:#F1F3F5;
   --text-primary:var(--gray-7);
   --text-secondary:var(--gray-5);
   --text-tertiary:var(--gray-4);
-  --text-on-dark:var(--white);
-  --text-on-dark-secondary:#a1a1a6;
+  --text-on-dark:#1d1d1f;
+  --text-on-dark-secondary:#6E7278;
   --text-link:var(--accent);
   --border-hairline:rgba(0,0,0,0.08);
-  --border-hairline-dark:rgba(255,255,255,0.14);
+  --border-hairline-dark:rgba(29,29,31,0.12);
 
   /* type — SF Pro is Apple's proprietary font and isn't redistributable, so the
      system stack renders true SF Pro on Apple devices and falls back to Inter
