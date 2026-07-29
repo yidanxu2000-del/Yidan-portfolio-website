@@ -13,15 +13,29 @@ good.** So this optimises for judgement and quality per application, not volume.
 
 ## Start here
 
+**Every time after the first:** double-click **`Start Job Copilot.command`**
+(Mac) or **`Start Job Copilot.bat`** (Windows) in this folder. It starts the
+server if it isn't running, or just opens your browser to it if it already is
+— either way, no terminal. Close its window to stop it.
+
+The first double-click also creates `config.toml` for you. Terminal is only
+needed once, to get the code:
+
 ```bash
+git clone https://github.com/yidanxu2000-del/Yidan-portfolio-website.git
+cd Yidan-portfolio-website
+git checkout claude/linkedin-auto-application-tool-vi5ajo
 cd vibe-coding/job-copilot
-pip install -r requirements.txt
-export ANTHROPIC_API_KEY=sk-ant-...          # analysis, tailoring, letters
-cp config.example.toml config.toml           # then edit it
-python3 run.py
 ```
 
-Open http://127.0.0.1:8765.
+Then double-click the launcher for your OS. Opens
+http://127.0.0.1:8765 automatically.
+
+Want `ANTHROPIC_API_KEY` set for analysis/tailoring/letters? Set it once,
+permanently, and the double-click launcher picks it up from then on:
+- **Mac:** add `export ANTHROPIC_API_KEY=sk-ant-...` to `~/.zshrc`.
+- **Windows:** System Properties → Environment Variables → New, under your
+  user account.
 
 **Runs without an API key.** Analysis becomes a weighted scorer — role-title
 match, skill overlap, location fit, plus the two deterministic scans below —
