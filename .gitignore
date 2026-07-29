@@ -3,4 +3,4 @@ node_modules
 vibe-coding/mood-guard/__pycache__/
 vibe-coding/job-copilot/data/
 vibe-coding/job-copilot/config.toml
-vibe-coding/job-copilot/__pycache__/
+vibe-coding/job-copilot/**/__pycache__/
