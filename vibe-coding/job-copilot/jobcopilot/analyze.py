@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 
+from .lexicon import bullet_index, profile_tokens, skill_tokens, tokens
 from .llm import Claude
 from .profile import evidence_digest
 from .schemas import JobAnalysis
@@ -50,32 +51,10 @@ URL: {url}
 Assess the fit.
 """
 
-# Rough keyword scoring, used when no API key is set so the tool still sorts a
-# sweep into something readable. It is a triage aid, not an assessment.
-_STOP = {
-    "and", "the", "for", "with", "you", "our", "are", "will", "have", "this",
-    "that", "from", "your", "who", "all", "can", "not", "but", "has", "was",
-    "role", "team", "work", "working", "job", "about", "they", "them", "their",
-    "also", "any", "another", "been", "both", "each", "either", "every", "few",
-    "how", "into", "its", "least", "like", "looking", "many", "may", "might",
-    "more", "most", "much", "must", "need", "needs", "nice", "own", "per",
-    "should", "some", "such", "than", "then", "there", "these", "those",
-    "through", "very", "want", "well", "what", "when", "where", "which",
-    "while", "why", "would", "years", "year", "plus", "etc", "including",
-    "able", "across", "along", "already", "always", "level", "new", "get",
-    "help", "make", "take", "use", "using", "join", "join us", "one", "two",
-}
-
-
-def _tokens(text: str) -> set[str]:
-    """Words worth comparing. Trailing punctuation stripped so 'engineers.' isn't a term."""
-    words = set()
-    for raw in re.findall(r"[a-z][a-z+#/.\-]{2,}", (text or "").lower()):
-        word = raw.strip(".-/")
-        if len(word) >= 3 and word not in _STOP:
-            words.add(word)
-    return words
-
+# The whole free-mode scorer below is deliberately weighted and transparent — no
+# API key needed, and every component is something you could recompute by hand.
+# It is still a triage aid, not an assessment: it cannot read intent, tone, or
+# anything the posting doesn't say in words. Set ANTHROPIC_API_KEY for that.
 
 """Deterministic scans for the two things that waste the most time when missed."""
 
@@ -171,41 +150,125 @@ def scan_years_required(description: str, profile: dict) -> tuple[int, str]:
     return 0, ""
 
 
+_LONDON_UK = re.compile(r"\b(london|united kingdom|england|uk)\b", re.I)
+
+# One bullet-list line, however the posting marks it.
+_REQ_LINE = re.compile(r"^[ \t]*[-*•‣▪●○][ \t]*(.+?)[ \t]*$", re.M)
+
+
+def score_role_title(title: str, profile: dict) -> float:
+    """0–35. An exact target-role phrase in the title scores full; partial word
+    overlap scores proportionally, so 'Design Technologist' still beats 'Designer
+    Advocate' without either scoring zero."""
+    text = (title or "").lower()
+    best = 0.0
+    for role in profile.get("target_roles", []):
+        role_l = role.lower()
+        if role_l in text:
+            best = max(best, 35.0)
+            continue
+        words = [w for w in role_l.split() if len(w) > 2]
+        if not words:
+            continue
+        hits = sum(1 for w in words if w in text)
+        best = max(best, 35.0 * hits / len(words) * 0.65)
+    return best
+
+
+def score_location(job: dict, profile: dict) -> float:
+    """0–20. This is the fix for the bug where Tel Aviv and São Paulo roles
+    outranked London ones — location now carries real weight, not zero."""
+    location = job.get("location") or ""
+    if _LONDON_UK.search(location):
+        return 20.0
+    targets = [t.lower() for t in profile.get("target_locations", []) if "remote" not in t.lower()]
+    if any(t in location.lower() for t in targets):
+        return 20.0
+    if job.get("remote") is True:
+        return 12.0
+    if not location.strip():
+        return 6.0
+    return 0.0
+
+
+def score_skill_overlap(job_words: set[str], profile: dict) -> tuple[float, set[str]]:
+    """0–25, scaled against the profile's own skill vocabulary rather than every
+    word in the posting — so a long JD full of boilerplate can't dilute this."""
+    skills = skill_tokens(profile)
+    overlap = job_words & skills
+    if not skills:
+        return 0.0, overlap
+    ratio = len(overlap) / len(skills)
+    return min(25.0, ratio * 60), overlap
+
+
+def extract_requirements(description: str) -> list[str]:
+    """Bullet-list lines from the posting — usually the Requirements section."""
+    seen: set[str] = set()
+    out: list[str] = []
+    for raw in _REQ_LINE.findall(description or ""):
+        line = raw.strip()
+        key = line.lower()
+        if 12 <= len(line) <= 240 and key not in seen:
+            seen.add(key)
+            out.append(line)
+    return out[:12]
+
+
+def match_requirements(description: str, profile: dict) -> list[dict]:
+    """Each requirement line against the bullet bank and skill list.
+
+    This is doing the same job the model does in JobAnalysis.must_haves, just
+    with word overlap instead of judgment — it can tell you 'design systems'
+    appears in both places, not whether your version of it is deep enough. Read
+    the evidence, don't just trust the status label.
+    """
+    reqs = extract_requirements(description)
+    if not reqs:
+        return []
+    bindex = bullet_index(profile)
+    skills = skill_tokens(profile)
+    out = []
+    for req in reqs:
+        rwords = tokens(req)
+        best_id, best_hits = "", 0
+        for bid, bwords in bindex.items():
+            hits = len(rwords & bwords)
+            if hits > best_hits:
+                best_id, best_hits = bid, hits
+        skill_hits = len(rwords & skills)
+        if best_hits >= 2 or best_hits + skill_hits >= 3:
+            status = "met"
+        elif best_hits + skill_hits >= 1:
+            status = "partial"
+        else:
+            status = "gap"
+        evidence = (
+            best_id if best_hits > 0 else ("your skills list" if skill_hits > 0 else "no match in your profile")
+        )
+        out.append({"requirement": req, "status": status, "evidence": evidence})
+    return out
+
+
 def heuristic_analysis(job: dict, profile: dict) -> dict:
-    """Keyword overlap between posting and profile. Cheap, blunt, better than nothing."""
-    profile_text = " ".join(
-        [
-            profile.get("summary", ""),
-            profile.get("headline", ""),
-            " ".join(" ".join(v) for v in (profile.get("skills") or {}).values()),
-            " ".join(
-                bullet["text"]
-                for role in profile.get("experience", [])
-                for bullet in role.get("bullets", [])
-            ),
-            " ".join(p.get("pitch", "") for p in profile.get("projects", [])),
-        ]
-    )
-    profile_words = _tokens(profile_text)
-    job_words = _tokens(f"{job.get('title', '')} {job.get('description', '')}")
-    if not job_words:
-        overlap, missing, score = set(), [], 0
-    else:
-        overlap = profile_words & job_words
-        missing = sorted(job_words - profile_words)[:20]
-        score = min(95, round(100 * len(overlap) / max(len(job_words), 1) * 2.2))
-
-    title = (job.get("title") or "").lower()
-    if any(
-        role.split()[0].lower() in title
-        for role in profile.get("target_roles", [])
-        if role
-    ):
-        score += 8
-
+    """Weighted, explainable scoring: title fit + skill overlap + location + the
+    two deterministic risk scans. No model, no judgment about depth or tone —
+    just the things a spreadsheet could check, checked properly."""
     description = job.get("description") or ""
-    risks: list[str] = []
+    job_words = tokens(f"{job.get('title', '')} {description}")
+    overlap = job_words & profile_tokens(profile)
+    missing = sorted(job_words - profile_tokens(profile))[:20]
 
+    title_score = score_role_title(job.get("title", ""), profile)
+    skill_score, _ = score_skill_overlap(job_words, profile)
+    location_score = score_location(job, profile)
+    # A small residual credit for general overlap, so two postings tied on
+    # title/skill/location don't score identically regardless of everything else.
+    overlap_bonus = min(10.0, 30.0 * len(overlap) / len(job_words)) if job_words else 0.0
+
+    score = title_score + skill_score + location_score + overlap_bonus
+
+    risks: list[str] = []
     work_auth = scan_work_authorisation(description)
     if work_auth["stance"] == "restricted":
         risks.append(f"Right to work — check this against your status: {work_auth['evidence']}")
@@ -219,22 +282,39 @@ def heuristic_analysis(job: dict, profile: dict) -> dict:
         )
         score -= 14
 
-    # Capped below the range a real assessment uses, so a keyword score never
+    if location_score == 0 and (job.get("location") or "").strip():
+        risks.append(f"Location doesn't match your targets: {job.get('location')}")
+
+    must_haves = match_requirements(description, profile)
+    gaps = [r for r in must_haves if r["status"] == "gap"]
+    if len(gaps) >= 3:
+        score -= 6
+
+    # Capped below the range a real assessment uses, so a heuristic score never
     # reads as a confident verdict.
-    score = max(0, min(72, score))
+    score = max(0, min(72, round(score)))
+
+    bits = []
+    bits.append("title matches" if title_score >= 25 else "title is adjacent" if title_score else "title doesn't match your target roles")
+    if location_score >= 20:
+        bits.append("right location")
+    elif location_score == 0 and (job.get("location") or "").strip():
+        bits.append("wrong location")
+    if gaps:
+        bits.append(f"{len(gaps)} likely gap(s)")
 
     return {
         "engine": "keyword",
         "fit_score": score,
         "verdict": "possible" if score >= 45 else "weak",
         "one_line": (
-            f"Keyword overlap only ({len(overlap)} shared terms), capped at 72. "
+            f"Keyword estimate, capped at 72 — {', '.join(bits)}. "
             "Set ANTHROPIC_API_KEY for a real assessment."
         ),
         "role_family": "",
         "seniority": f"posting asks for {years}+ years" if years else "",
         "work_authorisation": work_auth,
-        "must_haves": [],
+        "must_haves": must_haves,
         "keywords": sorted(overlap)[:25],
         "keywords_missing": missing,
         "lead_projects": [],

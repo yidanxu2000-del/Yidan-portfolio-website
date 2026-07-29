@@ -23,8 +23,18 @@ python3 run.py
 
 Open http://127.0.0.1:8765.
 
-It runs without an API key — you get keyword-overlap triage and a template
-letter, which is enough to see the shape of things but not enough to send.
+**Runs without an API key.** Analysis becomes a weighted scorer — role-title
+match, skill overlap, location fit, plus the two deterministic scans below —
+capped at 72 so it never reads as a confident verdict. The resume tailor
+selects and reorders real bullets from your bank by keyword match; nothing is
+rewritten, so there's zero fabrication risk even without a model. The cover
+letter without a key is a plain template — that part genuinely needs a model
+to write well, so leave it for by-hand editing, or paste postings into a
+Claude chat directly (see below).
+
+What free mode can't do: judge whether your *depth* on a requirement is
+enough, write in your voice, or catch anything the posting doesn't say in
+plain words. Set `ANTHROPIC_API_KEY` when you want that.
 
 Your profile is already seeded from your resume and yidan-xu.com: every role,
 every bullet, every project with its case-study link. Nothing to set up before

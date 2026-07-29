@@ -279,8 +279,11 @@ function viewResume(application) {
   }
   const file = application.files?.resume;
   return `
-    ${resume.engine === "none" ? `<div class="callout callout--warn section">
-      Not tailored — no API key, so this is your full bullet bank in its natural order.</div>` : ""}
+    ${resume.engine === "keyword" ? `<div class="callout section">
+      <strong>Selected by keyword match, not rewritten.</strong>
+      <p class="note" style="margin-top:4px">Every word below is exactly as you wrote it — this only picked
+        and reordered your own bullets. Set <code>ANTHROPIC_API_KEY</code> to have it rephrased in the
+        posting's own language too.</p></div>` : ""}
     ${resume.unsourced?.length ? `<div class="callout callout--bad section">
       <strong>${resume.unsourced.length} bullet(s) cite a source that isn't in your bank.</strong>
       <p class="note" style="margin-top:4px">Read these before sending:</p>

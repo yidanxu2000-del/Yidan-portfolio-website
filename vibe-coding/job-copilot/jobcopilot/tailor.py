@@ -7,6 +7,7 @@ check any line against the source in one step.
 
 from __future__ import annotations
 
+from .lexicon import tokens
 from .llm import Claude
 from .profile import evidence_digest
 from .schemas import TailoredResume
@@ -54,34 +55,87 @@ Produce the tailored resume.
 """
 
 
+def heuristic_tailor(job: dict, profile: dict) -> dict:
+    """Select and reorder real bullets by keyword match. Nothing is rewritten.
+
+    Every word here is copied verbatim from the bank, so there is zero
+    fabrication risk — the only judgment this makes is which of your own true
+    statements to put first and which to leave off. Rephrasing to match the
+    posting's language is what the model does; this only picks and orders.
+    """
+    description = job.get("description") or ""
+    job_words = tokens(f"{job.get('title', '')} {description}")
+
+    scored_roles = []
+    for role in profile.get("experience", []):
+        bullet_scores = []
+        for i, bullet in enumerate(role.get("bullets", [])):
+            bwords = tokens(bullet.get("text", "") + " " + " ".join(bullet.get("tags", [])))
+            bullet_scores.append((len(job_words & bwords), i, bullet))
+        kept = sorted((b for b in bullet_scores if b[0] > 0), key=lambda b: (-b[0], b[1]))
+        if kept:
+            scored_roles.append((sum(s for s, _, _ in kept), role, kept))
+    scored_roles.sort(key=lambda r: -r[0])
+
+    if scored_roles:
+        roles_out = [
+            {
+                "company": role["company"],
+                "role": role["role"],
+                "dates": role["dates"],
+                "bullets": [
+                    {"source": f"{role['id']}.{i}", "text": bullet["text"]}
+                    for _, i, bullet in sorted(kept, key=lambda b: b[1])
+                ],
+            }
+            for _, role, kept in scored_roles
+        ]
+        matched_ids = {role["id"] for _, role, _ in scored_roles}
+        omitted = [
+            f"{role['role']} at {role['company']} — nothing in it matched this posting's wording"
+            for role in profile.get("experience", [])
+            if role["id"] not in matched_ids
+        ]
+    else:
+        # Nothing matched well enough to select from — show everything rather
+        # than an empty resume, and say plainly why.
+        roles_out = [
+            {
+                "company": role["company"],
+                "role": role["role"],
+                "dates": role["dates"],
+                "bullets": [
+                    {"source": f"{role['id']}.{i}", "text": bullet["text"]}
+                    for i, bullet in enumerate(role.get("bullets", []))
+                ],
+            }
+            for role in profile.get("experience", [])
+        ]
+        omitted = [
+            "Nothing in the posting matched well enough to select from, so nothing "
+            "was left out — this is your full bank."
+        ]
+
+    all_skills = [s for group in profile.get("skills", {}).values() for s in group]
+    matched = [s for s in all_skills if tokens(s) & job_words]
+    rest = [s for s in all_skills if s not in matched]
+
+    return {
+        "engine": "keyword",
+        "headline": profile.get("headline", ""),
+        "summary": profile.get("summary", ""),
+        "roles": roles_out,
+        "skills": matched + rest,
+        "keyword_coverage": sorted(job_words & {t for s in all_skills for t in tokens(s)}),
+        "omitted": omitted,
+    }
+
+
 def tailor_resume(job: dict, profile: dict, analysis: dict, claude: Claude) -> dict:
     if not claude.available:
-        # Without a model, hand back the full bank in its natural order. It's a
-        # valid resume, just not tailored — and it's honest about that.
-        return {
-            "engine": "none",
-            "headline": profile.get("headline", ""),
-            "summary": profile.get("summary", ""),
-            "roles": [
-                {
-                    "company": role["company"],
-                    "role": role["role"],
-                    "dates": role["dates"],
-                    "bullets": [
-                        {"source": f"{role['id']}.{i}", "text": b["text"]}
-                        for i, b in enumerate(role.get("bullets", []))
-                    ],
-                }
-                for role in profile.get("experience", [])
-            ],
-            "skills": [
-                skill
-                for group in (profile.get("skills") or {}).values()
-                for skill in group
-            ],
-            "keyword_coverage": [],
-            "omitted": ["Not tailored — no ANTHROPIC_API_KEY set."],
-        }
+        payload = heuristic_tailor(job, profile)
+        payload["unsourced"] = _unsourced_bullets(payload, profile)
+        return payload
 
     must_haves = "; ".join(
         f"{r.get('requirement', '')} [{r.get('status', '')}]"
