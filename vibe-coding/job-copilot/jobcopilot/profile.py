@@ -396,8 +396,16 @@ DEFAULT_PROFILE: dict = {
         "Four short paragraphs, under 250 words total.",
         # Added after a real edit — she cut every one of these from a draft.
         # Casual means shorter and plainer, not more decorated.
-        "No self-aware asides about what you're saying or why ('not saying this "
-        "to show off, more just—'). State the fact and move to the next one.",
+        "Two different things both got called 'self-aware asides' before — split "
+        "them. Cut performative hedges about why you're saying something ('not "
+        "saying this to show off, more just—'), those add nothing. Keep honest "
+        "self-assessment that admits how something lands ('it might sound really "
+        "old, but—', 'this is obvious, but—') — that's a real voice, not "
+        "decoration, and it's usually followed by the actual point ('but the "
+        "combination of X did something new').",
+        "Shorthand like 'Emotion+AI+Voice' — words strung together with a plain "
+        "+ instead of written out as a sentence — is fine and often better than "
+        "spelling it out properly.",
         "No callback or wrap-up sentences that circle back for cleverness "
         "('which sounds like a normal day at a 23-person agency', 'if you only "
         "click on two things'). If a sentence only exists to sound good, cut it.",
