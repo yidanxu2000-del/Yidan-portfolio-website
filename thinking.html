@@ -34,7 +34,7 @@
     <a class="back-link" href="index.html">← Home</a>
     <div class="case-hero__meta">Thinking · AI · HMI</div>
     <h1 class="case-hero__title">Designing the seam between people and machines that decide.</h1>
-    <p class="case-hero__subtitle">Two projects, one question underneath both: how much should the system decide, and how do you make that boundary legible enough to trust?</p>
+    <p class="case-hero__subtitle">Two projects, one question under both. How much should the system decide on its own, and how do you make that line easy enough to see that people trust it?</p>
   </div>
 </header>
 
@@ -42,55 +42,64 @@
   <div class="prose reveal">
     <div class="prose-signature-kicker">Starting point</div>
     <h2>AI has to find the scenario, not the other way round</h2>
-    <p>I keep relearning the same lesson across every project that touches AI: it's only useful once it's found the right scenario to sit inside. AI has to integrate into the work, not the work bend to fit the AI. I don't ask AI to "make it smarter" or "make it feel more AI." I ask it to do one specific thing: cluster raw interview transcripts by problem type, narrow a field of candidates before a human decides, hold a conversation's context so a driver doesn't have to. Those are tasks where speed and pattern-finding remove real friction without removing my judgement, or the user's, about what actually matters.</p>
-    <p>The two projects below are the clearest version of this I've built: <strong>1Soul</strong>, where AI mediates a human relationship decision, and <strong>Xiaomi Auto</strong>'s digital cockpit, where software mediates a human's control of a physical machine at speed. Different domains, same underlying design problem.</p>
+    <p>I keep relearning the same thing on every project that touches AI. It only becomes useful once it has found the right scenario to sit inside. The AI has to fit the work. The work should not bend to fit the AI.</p>
+    <p>So I never ask AI to "make it smarter" or "make it feel more AI". I ask it to do one specific job. Cluster raw interview transcripts by problem type. Narrow a field of candidates before a person decides. Hold the context of a conversation so a driver does not have to. In each of those, speed and pattern-finding take real work off someone, and the judgement about what matters stays with me or with the user.</p>
+    <p>Two projects show this most clearly. <strong>1Soul</strong>, where AI sits between a person and a decision about a relationship. And the <strong>Xiaomi Auto</strong> cockpit, where software sits between a person and control of a machine moving at speed. Different fields. Same design problem.</p>
   </div>
 </section>
 
 <section class="prose-section section--light">
   <div class="prose reveal">
-    <h2>The common thread: legible boundaries, not invisible automation</h2>
-    <p>Both projects put a system between a person and a consequential moment: who they'll meet, or what their car does next. In both, the wrong move is the same: let the system quietly decide more than the person realises, and trust breaks the instant they notice. The right move is also the same: make the boundary between "the system narrows this" and "you decide this" visible, stated, and consistent, not just implied through polish.</p>
+    <h2>The common thread: show people where the line is</h2>
+    <p>Both projects put a system between a person and a moment that matters. Who they will meet. What their car does next.</p>
+    <p>The failure is the same in both. The system quietly decides more than the person realised, and the moment they notice, trust is gone. So the fix is also the same. Draw a clear line between "the system narrows this" and "you decide this". Then say it out loud, in the same words, every time. Polish alone will not carry it.</p>
 
     <h3>1Soul: AI narrows the field, she decides</h3>
-    <p>Research surfaced a specific fear: a match arriving with a name but no context, and an implicit expectation to just trust an algorithm's judgement about who to meet. Reassuring copy would not have fixed that, so the fix was a mechanic. Cupid narrows candidates and offers one small, human clue first, and the decision to go further is restated as explicitly hers, every time. The AI's authority stops at "worth considering"; it never quietly extends into "worth meeting."</p>
+    <p>Research turned up one specific fear. A match arrives with a name and nothing else, and you are expected to trust an algorithm about who to meet. Copy could not fix that, so I built a mechanic instead. Cupid narrows the field, then gives her one small human clue. Going further is her call, and the product says so every time. The AI's authority stops at "worth considering". It never quietly stretches into "worth meeting".</p>
 
     <h3>Xiaomi Auto: the cockpit narrates itself</h3>
-    <p>A digital cockpit is the same trust boundary at higher stakes: the system is making micro-decisions about what to surface (a navigation update, a driving-assist prompt, a rear-display alert) while the driver needs to stay in control at speed. The design work was about sequencing and hierarchy: what the interface says now versus what it holds back, so a driver's attention is never split between "what is the car doing" and "what should I do," and every automated suggestion reads as a suggestion, not a fait accompli.</p>
+    <p>A cockpit is the same line, with more at stake. The system is constantly choosing what to show. A navigation update. A driving-assist prompt. An alert on the rear display. Meanwhile the driver has to stay in control at speed.</p>
+    <p>So the work was about order and weight. What does the interface say right now, and what does it hold back. A driver should never be splitting attention between "what is the car doing" and "what should I do". And every suggestion has to read as a suggestion, with the choice still open.</p>
 
-    <p>Written side by side, the throughline is a working principle I now carry into everything: <em>an interface earns the right to automate more only by first making it completely legible what it isn't deciding for you.</em></p>
+    <p>Put side by side, they gave me a rule I now use everywhere. <em>An interface earns the right to automate more by first making it completely clear what it is leaving to you.</em></p>
   </div>
 </section>
 
 <section class="prose-section section--dark">
   <div class="prose reveal">
     <h2>A closer look: diagnosing why a dating product didn't feel trustworthy</h2>
-    <p>When I audited 1Soul's homepage, the question wasn't "does this look nice"; it was "would a stranger actually believe this is a serious product built for them." I broke that down into four things a visitor's brain checks in the first few seconds, roughly in order: is this real or a novelty, who's actually using it, does it understand why they hate the alternatives, and would meeting someone through it be safe. The homepage as it stood had a gap at every one of them.</p>
+    <p>When I audited 1Soul's homepage I was not asking whether it looked nice. I was asking whether a stranger would believe this is a serious product built for them.</p>
+    <p>That splits into four things a visitor checks in the first few seconds, roughly in this order. Is this real, or a novelty? Who is actually using it? Does it understand why I hate the alternatives? Would meeting someone through it be safe? The homepage had a gap at all four.</p>
 
     <p>The plainest example was the copy itself. The public-facing line was <em>"Your agent is already dating on your behalf."</em> It was meant to sound futuristic. What it actually said was the exact thing a first-time visitor is primed to fear: that the AI is the one making contact. It is the same boundary-legibility problem I describe above, failing inside a single sentence this time. I rewrote the hero around a plainer promise, built for people who want something serious, and moved the "AI narrows this down for you" framing to where it actually helps: after someone already trusts the product enough to want the shortcut.</p>
 
-    <p>The brand tone told a quieter version of the same story. The site ran on a deep maroon that a couple of testers independently described as feeling "like a magic book": moody and mysterious, better suited to a fantasy app than a platform whose entire premise is who your next serious relationship might be. If a colour choice needs explaining before someone understands what kind of product they're looking at, the palette isn't doing its job.</p>
+    <p>The brand tone said the same thing more quietly. The site ran on a deep maroon. Two testers, separately, called it "like a magic book". Moody and mysterious. That suits a fantasy app. It does not suit a product whose whole premise is your next serious relationship. If a colour needs explaining before someone knows what kind of product they are looking at, the palette has failed.</p>
 
-    <p><strong>Safety became its own section, not a line item.</strong> Every interview came back to the same unresolved worry, meeting a stranger from an app, and the homepage answered it with one reassuring sentence buried mid-page. I pulled safety out as a first-class section on its own, and rewrote it around specific, checkable mechanisms rather than adjectives: verified student and real-identity accounts, first meetings held at verified campus venues, background context on a match before you meet them, visible ID checks at in-person events. The principle I took away and still use: a safety claim only works if it's backed by a feature you can point to. An unsupported "we're safe" reads as worse than saying nothing at all.</p>
+    <p><strong>Safety got its own section.</strong> Every interview came back to the same worry: meeting a stranger from an app. The homepage answered it with one reassuring sentence buried in the middle of the page.</p>
+    <p>So I pulled safety out into a section of its own, and rewrote it around things you can check. Verified student and real-identity accounts. First meetings at verified campus venues. Background context on a match before you meet. Visible ID checks at in-person events.</p>
+    <p>The rule I took from it, and still use: a safety claim only works if you can point at the feature behind it. An unsupported "we're safe" is worse than saying nothing.</p>
 
-    <p>I restructured the rest of the homepage around the order a visitor actually needs answers in: lead with the pain points real users named (dating fatigue, conversations that go nowhere, feeling disrespected) before any feature list; translate every feature into the benefit it protects ("not endless swiping" becomes "every match is vetted before you see it"); and only then bring in social proof and the product's more playful ideas, like a "Secret Match" campus event kept genuinely surprising rather than over-explained.</p>
+    <p>Then I reordered the rest of the homepage to match the order a visitor needs answers in. Pain points first, in the words real users used: dating fatigue, conversations that go nowhere, feeling disrespected. Then every feature turned into the thing it protects, so "not endless swiping" becomes "every match is vetted before you see it". Social proof and the playful ideas come last, including a "Secret Match" campus event that we kept genuinely surprising instead of explaining to death.</p>
 
-    <p>None of it was about making the product louder. It was about closing the gap between what the founders already knew to be true about 1Soul, and what a stranger, given five seconds, could actually tell.</p>
+    <p>None of this made the product louder. It closed the gap between what the founders already knew about 1Soul and what a stranger could tell in five seconds.</p>
   </div>
 </section>
 
 <section class="prose-section section--light">
   <div class="prose reveal">
     <h2>A closer look: what eight months building system UI taught me about HMI</h2>
-    <p>Working inside a team shipping system UI across a real product line is a different discipline to designing one screen. The interface has to hold up across car variants, screen sizes, hardware configurations and languages (Chinese first, then English as the international rollout followed) without the underlying logic falling apart at any of those seams.</p>
+    <p>Shipping system UI across a real product line is a different job from designing one screen. The interface has to hold up across car variants, screen sizes, hardware configurations and languages. Chinese first, then English once the international rollout started. The logic underneath has to survive every one of those seams.</p>
 
-    <p>The clearest lesson was about compensating for hardware with design. Apple's Dynamic Island made its designers famous for turning a hardware limitation, a front-camera cutout, into a feature. At Xiaomi Auto, that's not a rare, celebrated exception; it's routine. Different devices have different comfortable reach-zones for a driver's hand; a rear-entertainment screen added to one car variant could, in an edge case, partially block the rear-view mirror. In an industry still young in China, hardware rarely arrives perfect, and design is often the last, quiet layer that makes the imperfect thing usable. My mentor once took what should have been three separate hardware hubs and, through interaction design alone, made them read as two.</p>
+    <p>The clearest lesson was about covering for hardware with design. Apple's Dynamic Island made its designers famous by turning a front-camera cutout into a feature. At Xiaomi Auto that kind of save happens all the time, and nobody celebrates it.</p>
+    <p>Different devices have different comfortable reach zones for a driver's hand. A rear-entertainment screen added to one variant could, in an edge case, partly block the rear-view mirror. The car industry in China is still young, so hardware rarely arrives perfect. Design is often the last quiet layer that makes the imperfect thing usable. My mentor once took what should have been three separate hardware hubs and, through interaction design alone, made them read as two.</p>
 
     <p>I also learned to use AI as a second check on my own judgement. I run a shadow system or a colour decision back through AI to catch what my eye had gotten used to, while still making sure I could produce the same quality of work without it. That has become a working rule I hold everywhere now: AI should sharpen a decision I have already made.</p>
 
-    <p>In practice that meant building Figma Make and Gemini into the actual design loop, not just using them for inspiration. I'd use them to explore a wider set of directions in the time it used to take to sketch two or three, which let iteration move faster without cutting corners on how many options actually got considered. But the more useful habit was running my own decisions back through AI to reverse-verify them, rather than only asking it to generate: feeding it a colour system I'd already chosen and asking it to independently optimise for contrast and hierarchy, then comparing its answer against mine to see whether my choice actually held up or whether I'd just gotten used to it. I did the same with grouping and layout. For a screen with a lot of competing functions, I'd let AI work out its own best path through the information architecture, then treat any place where it diverged from my structure as a prompt to ask why, not as an answer to copy. AI stayed a way of pressure-testing my design, never the source of it.</p>
+    <p>In practice that meant putting Figma Make and Gemini inside the design loop, and not just using them for inspiration. I could explore a wider set of directions in the time it used to take to sketch two or three. Iteration got faster, and the number of options that actually got considered went up rather than down.</p>
+    <p>The more useful habit was the other direction. I ran my own decisions back through AI to check them. I would give it a colour system I had already chosen and ask it to optimise for contrast and hierarchy on its own, then compare its answer to mine. That tells you whether your choice holds up, or whether your eye has just got used to it.</p>
+    <p>I did the same with grouping and layout. On a screen with a lot of competing functions, I would let AI work out its own path through the information architecture. Anywhere it diverged from my structure, I treated that as a reason to ask why, never as an answer to copy. AI stayed a way of pressure-testing my design. It was never the source of it.</p>
 
-    <p>The last lesson was about scale. At a startup I owned a project end to end, research through shipped product. At a company the size of Xiaomi, nobody does; every person owns one link in a much longer chain, and being good at the job means understanding your link well enough to hand off cleanly in both directions. It reframed how I think about my own range: not as one person who can do everything, but as someone who can plug into a chain at almost any link and still move it forward.</p>
+    <p>The last lesson was about scale. At a startup I owned a project end to end, from research to shipped product. At a company the size of Xiaomi nobody does that. Every person owns one link in a much longer chain, and doing the job well means knowing your link well enough to hand off cleanly in both directions. That changed how I think about my own range. The useful version of it is being able to plug into the chain at almost any link and still move it forward.</p>
   </div>
 </section>
 
