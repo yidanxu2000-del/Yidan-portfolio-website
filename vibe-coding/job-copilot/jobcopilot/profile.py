@@ -388,6 +388,20 @@ DEFAULT_PROFILE: dict = {
         "Say what you'd do in the role, not just what you've done.",
         "No superlatives about yourself. No 'passionate', 'thrilled', 'dynamic'.",
         "Four short paragraphs, under 250 words total.",
+        # Added after a real edit — she cut every one of these from a draft.
+        # Casual means shorter and plainer, not more decorated.
+        "No self-aware asides about what you're saying or why ('not saying this "
+        "to show off, more just—'). State the fact and move to the next one.",
+        "No callback or wrap-up sentences that circle back for cleverness "
+        "('which sounds like a normal day at a 23-person agency', 'if you only "
+        "click on two things'). If a sentence only exists to sound good, cut it.",
+        "Don't chain reasoning with connectors like 'so X, which means Y' — "
+        "state the two things back to back and let the reader connect them.",
+        "A little grammatical looseness is fine and doesn't need smoothing over "
+        "— write like a fast honest email, not a polished document.",
+        "Sign off plainly ('Looking forward to hearing from you') and list "
+        "portfolio and LinkedIn as their own lines in the signature, not folded "
+        "into a sentence.",
     ],
 }
 
