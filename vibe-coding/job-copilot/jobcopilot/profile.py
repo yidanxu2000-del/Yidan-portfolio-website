@@ -35,7 +35,8 @@ DEFAULT_PROFILE: dict = {
     "target_roles": [
         "AI Product Designer",
         "Product Designer",
-        "Senior Product Designer",
+        "Junior Product Designer",
+        "Associate Product Designer",
         "UX Designer",
         "Product Manager (AI / 0-1)",
         "HMI / Automotive UX Designer",
@@ -48,7 +49,12 @@ DEFAULT_PROFILE: dict = {
         "Unpaid or equity-only positions",
         "Roles with no design ownership",
     ],
-    "seniority": "Mid-level — 2 to 4 years, including two 0-to-1 founding roles",
+    # 2025 graduate — no full-time role before graduation. The 0-1 titles
+    # (Product Manager, Solo Founder) happened during or immediately after the
+    # dual master's, not as prior employment. Target entry-level, junior,
+    # associate, or graduate titles — not senior/lead/staff/principal, even
+    # when the years-required number in a posting looks low enough on paper.
+    "seniority": "2025 graduate, entry-level — 0-1 years post-graduation",
     "skills": {
         "design": [
             "Product design",

@@ -22,9 +22,13 @@ means don't bother. Most postings are not above 80; a distribution where \
 everything scores well is a broken one.
 
 Two things carry disproportionate weight because they waste the most time when \
-missed: seniority mismatch (a posting wanting 8+ years is not a fit for a \
-mid-level candidate, however good the work), and right-to-work restrictions. \
-Read the posting for both and report what it actually says.
+missed: seniority mismatch, and right-to-work restrictions. A posting wanting \
+more years than the candidate's own stated seniority is not a fit, however good \
+the work — and a title alone can signal this even when the body names no \
+specific number: "Senior", "Lead", "Staff", "Principal" usually mean more \
+experience than an entry-level candidate has, regardless of what years figure \
+(if any) appears in the text. Read the posting for both and report what it \
+actually says.
 
 For lead_projects, use only the project slugs given in the profile.
 """
@@ -148,6 +152,32 @@ def scan_years_required(description: str, profile: dict) -> tuple[int, str]:
     if worst > ceiling + 1:
         return worst, evidence
     return 0, ""
+
+
+_SENIOR_TITLE = re.compile(
+    r"\b(senior|sr\.?|lead(?:er)?|staff|principal|director|head of|vp\b|chief|"
+    r"executive)\b",
+    re.I,
+)
+
+
+def detect_title_seniority_risk(title: str, profile: dict) -> str:
+    """Catches the gap scan_years_required can't: many senior postings never
+    put a number in the body at all — the title alone carries the requirement.
+    'Lead Product Designer' and 'Staff Product Designer' at Monzo are exactly
+    this — no years figure to scan for, just a title an entry-level candidate
+    shouldn't apply to. Only fires when the candidate's own ceiling is
+    entry-level, so it stays silent for anyone more senior."""
+    if _candidate_max_years(profile) > 2:
+        return ""
+    match = _SENIOR_TITLE.search(title or "")
+    if not match:
+        return ""
+    return (
+        f"Job title says '{match.group(0)}' — that alone usually means more "
+        f"experience than a {profile.get('seniority', 'candidate at your level')}, "
+        "even if the posting states no year number."
+    )
 
 
 _LONDON_UK = re.compile(r"\b(london|united kingdom|england|uk)\b", re.I)
@@ -282,6 +312,11 @@ def heuristic_analysis(job: dict, profile: dict) -> dict:
         )
         score -= 14
 
+    title_risk = detect_title_seniority_risk(job.get("title", ""), profile)
+    if title_risk:
+        risks.append(title_risk)
+        score -= 20
+
     if location_score == 0 and (job.get("location") or "").strip():
         risks.append(f"Location doesn't match your targets: {job.get('location')}")
 
@@ -296,6 +331,8 @@ def heuristic_analysis(job: dict, profile: dict) -> dict:
 
     bits = []
     bits.append("title matches" if title_score >= 25 else "title is adjacent" if title_score else "title doesn't match your target roles")
+    if title_risk:
+        bits.append("title reads senior")
     if location_score >= 20:
         bits.append("right location")
     elif location_score == 0 and (job.get("location") or "").strip():
@@ -390,6 +427,13 @@ def _reconcile(job: dict, profile: dict, analysis: dict) -> dict:
         note = f"Asks for {years}+ years against your {profile.get('seniority', 'level')}"
         if not any("years" in risk.lower() for risk in analysis.get("risks", [])):
             analysis.setdefault("risks", []).append(f"{note}: {evidence}")
+
+    title_risk = detect_title_seniority_risk(job.get("title", ""), profile)
+    if title_risk and not any(
+        w in " ".join(analysis.get("risks", [])).lower()
+        for w in ("senior", "lead", "staff", "principal", "director")
+    ):
+        analysis.setdefault("risks", []).append(title_risk)
 
     analysis["fit_score"] = max(0, min(100, int(analysis.get("fit_score", 0))))
     return analysis
