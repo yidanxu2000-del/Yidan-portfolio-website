@@ -18,6 +18,7 @@
     <div class="navbar__links">
       <a href="../index.html#work">Work</a>
       <a href="../about.html">About</a>
+      <a href="../assets/cv/Yidan-Xu-CV.pdf" download>CV</a>
       <a href="../index.html#contact">Contact</a>
     </div>
     <button class="navbar__toggle" aria-label="Menu">☰</button>
@@ -25,6 +26,7 @@
   <div class="navbar__mobile">
     <a href="../index.html#work">Work</a>
     <a href="../about.html">About</a>
+      <a href="../assets/cv/Yidan-Xu-CV.pdf" download>CV</a>
     <a href="../index.html#contact">Contact</a>
   </div>
 </nav>
@@ -87,6 +89,54 @@
       <figcaption>One of the user workshops. Faces are obscured at the participants' request.</figcaption>
     </figure>
 
+    <h3>The feature workshop: users ranked their own needs</h3>
+    <p>Desk research and interviews gave us ten features people said they wanted. Ten is too many to build, and asking a designer to pick five is guessing.</p>
+    <p>So I ran a workshop instead. Everyone in the room had a pollen allergy. I put all ten features on torn paper cards and asked them to group them, order them, and say out loud why they needed each one. They built the product, and they defended it.</p>
+
+    <div class="figure-grid">
+      <figure class="figure">
+        <img src="../assets/images/res/workshop-cards-1.jpg" alt="A workshop board with ten hand-written feature cards torn from paper and arranged by participants: Air Filter, Real-Time Pollen Detection, Personalised Allergy Profile, Pollen Forecast, Reminders and Notifications, Allergy Risk Alerts" loading="lazy">
+        <figcaption>The ten features, on torn cards, arranged by the people who would use them.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="../assets/images/res/workshop-cards-2.jpg" alt="A second workshop participant's arrangement of the same ten feature cards in a different order" loading="lazy">
+        <figcaption>Each participant grouped them their own way, then explained the order.</figcaption>
+      </figure>
+    </div>
+
+    <figure class="figure">
+      <img src="../assets/images/res/workshop-session.jpg" alt="The workshop being filmed: two participants at a table covered in sketches and torn paper cards, with a facilitator standing and holding a white prototype of the RES sensor, a camera and boom microphone set up in front of them" loading="lazy">
+      <figcaption>The session, recorded so we could go back to the reasoning and not only the ranking. Faces are blurred at the participants&#8217; request.</figcaption>
+    </figure>
+
+    <p>Five came out on top, in this order:</p>
+    <ol class="rank-list">
+      <li><span class="rank-list__n">1</span><span class="rank-list__t">Predicting an allergy before it starts</span></li>
+      <li><span class="rank-list__n">2</span><span class="rank-list__t">Medication reminders</span></li>
+      <li><span class="rank-list__n">3</span><span class="rank-list__t">Route recommendations</span></li>
+      <li><span class="rank-list__n">4</span><span class="rank-list__t">Allergen analysis</span></li>
+      <li><span class="rank-list__n">5</span><span class="rank-list__t">The pollen map</span></li>
+    </ol>
+
+    <p>Everything we designed after this answered to that list. The ranking came from users, so the roadmap did too. It also killed features that had looked reasonable on paper, which saved us building them.</p>
+
+    <h3>A/B testing the map: region, or precise point?</h3>
+    <p>The workshop told us people wanted a pollen map. It did not tell us what the map should show. So we tested it.</p>
+    <p>We put two versions in front of users. One showed precise density at individual points, a scatter of exact readings. The other showed a whole area shaded as one. We asked which they would act on.</p>
+
+    <figure class="figure">
+      <img src="../assets/images/res/ab-test.jpg" alt="The A/B test: two phone screens side by side. On the left, a map scattered with individual hexagonal pollen readings at precise points. On the right, the same map with a single alert card reading 'you are passing through high rag allergy area'" loading="lazy">
+      <figcaption>A: precise readings at individual points. B: the area treated as one, with a single alert.</figcaption>
+    </figure>
+
+    <p>Users chose the area version, and the reason was consistent. A precise number at one street corner does not tell you whether to walk down that street. What people want to know is whether the place they are heading into is bad. Exact points made them do the summarising themselves, and they did not want to.</p>
+    <p>So the final map shades by region instead of plotting points.</p>
+
+    <figure class="figure figure--narrow">
+      <img src="../assets/images/res/pollen-map-region.jpg" alt="The final RES pollen map on a phone held in a hand: an aerial view of a street with a green-to-blue gradient washed across a whole area rather than individual points, a location pin, and a card below reading '30 mins predict — You have estimated 30 mins to be allergic'" loading="lazy">
+      <figcaption>The result: colour across a region, with the prediction stated in plain words underneath.</figcaption>
+    </figure>
+
     <h3>Stakeholder workshop</h3>
     <p>Today's pollen-measurement system still carries last century's design, with real drawbacks:</p>
     <ul>
@@ -119,7 +169,7 @@
       <figcaption>Sensor and app as one product: the hardware widens the data, the app is what turns it into a decision</figcaption>
     </figure>
 
-    <p>Shows people how to avoid pollen or mitigate their allergies with more bespoke antihistamine dosages, multiplying the sensor's effective reach, not just reporting its readings.</p>
+    <p>Shows people how to avoid pollen or mitigate their allergies with more bespoke antihistamine dosages, multiplying the sensor's effective reach, and it does more than report its readings.</p>
 
     <figure class="figure figure--narrow">
       <img src="../assets/images/res/app-alert.jpg" alt="RES app alert screen over a map, reading 'You are staying in a high rag pollen area. Suggest you take 2 pills in 30 minutes', with Ignore and continue buttons" loading="lazy">
