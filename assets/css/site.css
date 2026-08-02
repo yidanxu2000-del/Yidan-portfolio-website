@@ -2,9 +2,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* Dark page backdrop so the sticky nav's glass blur always has something dark
-   to sample behind it, instead of washing out against a white body background */
-body{background:#07080d;}
+/* The page ground. Every section paints its own background over this, so it
+   only shows through where nothing else does: overscroll bounce, and any gap
+   between sections. It was left at near-black from the dark-theme version,
+   which made those gaps read as holes in a light page. */
+body{background:var(--surface-primary);}
 
 /* ---------- Liquid glass ----------
    Clear, refractive glass, matching Apple's own Control Centre material —
@@ -1769,3 +1771,67 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   font-weight:var(--fw-regular);color:var(--text-tertiary);
   letter-spacing:0;padding:0 4px;
 }
+
+/* ---------- Ranked list, for user-generated priorities ---------- */
+.prose .rank-list{
+  list-style:none;margin:var(--space-5) 0;padding:0;
+  display:flex;flex-direction:column;gap:var(--space-2);
+}
+.prose .rank-list li{
+  display:flex;align-items:center;gap:var(--space-4);margin:0;
+  padding:var(--space-3) var(--space-4);border-radius:var(--radius-md);
+  background:var(--gray-1);border:1px solid var(--border-hairline);
+}
+.rank-list__n{
+  flex:0 0 auto;width:26px;height:26px;border-radius:50%;
+  display:grid;place-items:center;background:var(--accent);color:#fff;
+  font-family:var(--font-mono);font-size:var(--text-caption);font-weight:var(--fw-semibold);
+}
+.rank-list__t{font-weight:var(--fw-medium);color:var(--text-primary);}
+
+/* ---------- CV download ---------- */
+.cv-line{
+  display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-4);
+  margin-top:var(--space-5);
+}
+
+/* ---------- 20-second summary at the top of a case ---------- */
+.tldr{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--space-5);margin:0 0 var(--space-7);
+  padding:var(--space-6);border-radius:var(--radius-lg);
+  background:var(--gray-1);border:1px solid var(--border-hairline);
+}
+.tldr__k{
+  font-family:var(--font-mono);font-size:var(--text-caption);
+  font-weight:var(--fw-semibold);letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:var(--space-2);
+}
+.prose .tldr p{margin:0;font-size:var(--text-body-sm);line-height:1.55;color:var(--text-primary);}
+@media(max-width:760px){
+  .tldr{grid-template-columns:1fr;gap:var(--space-4);}
+}
+
+/* ---------- More work: the second tier, folded away by default ---------- */
+.more-work{background:var(--surface-primary);border-top:1px solid var(--border-hairline);}
+.more-work__summary{
+  list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;
+  gap:var(--space-4);max-width:1200px;margin:0 auto;
+  padding:var(--space-7) var(--space-6);
+}
+.more-work__summary::-webkit-details-marker{display:none;}
+.more-work__label{
+  font-family:var(--font-display);font-size:var(--text-h3);
+  font-weight:var(--fw-semibold);letter-spacing:var(--ls-tight);color:var(--text-primary);
+}
+.more-work__hint{
+  font-size:var(--text-body-sm);color:var(--text-secondary);
+  display:inline-flex;align-items:center;gap:var(--space-3);
+}
+.more-work__arrow{
+  display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;
+  background:var(--gray-2);color:var(--text-primary);font-size:13px;
+  transition:transform .25s var(--ease-out);
+}
+.more-work[open] .more-work__arrow{transform:rotate(180deg);}
+.more-work__summary:hover .more-work__label{color:var(--accent);}

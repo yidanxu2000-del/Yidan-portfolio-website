@@ -18,6 +18,7 @@
     <div class="navbar__links">
       <a href="../index.html#work">Work</a>
       <a href="../about.html">About</a>
+      <a href="../assets/cv/Yidan-Xu-CV.pdf" download>CV</a>
       <a href="../index.html#contact">Contact</a>
     </div>
     <button class="navbar__toggle" aria-label="Menu">☰</button>
@@ -25,6 +26,7 @@
   <div class="navbar__mobile">
     <a href="../index.html#work">Work</a>
     <a href="../about.html">About</a>
+      <a href="../assets/cv/Yidan-Xu-CV.pdf" download>CV</a>
     <a href="../index.html#contact">Contact</a>
   </div>
 </nav>
@@ -45,6 +47,11 @@
 
 <section class="prose-section section--light">
   <div class="prose reveal">
+    <div class="tldr">
+      <div><div class="tldr__k">Problem</div><p>Dating apps run at six or seven men to every three or four women. The page read as a website problem. The real one was positioning, and women did not trust it.</p></div>
+      <div><div class="tldr__k">What I did</div><p>Founding product manager. Set the positioning, designed the clue-first mechanic, ranked the feature list, rebuilt the site and planned the social content.</p></div>
+      <div><div class="tldr__k">Result</div><p>Female sign-ups up 25%. Over 1,000 members with serious intent and 360+ introductions made. Research to shipped redesign in about 20 hours.</p></div>
+    </div>
     <h2>Project overview</h2>
     <p>1Soul (OneSoul) is an AI-matchmaking product built around "Agent Cupid": instead of swiping through profiles, users talk to Cupid on WhatsApp, and Cupid introduces them to a small number of real, considered matches. It launched first among students at Imperial College London and has since expanded across London universities.</p>
     <p>I joined as Founding Product Manager, working alongside the founder rather than leading the venture. I independently owned product design, brand and trust-building, and the product's direction, running an AI-design-AI pipeline end to end: using AI to accelerate research synthesis and iteration, always grounded in real user evidence rather than AI's own assumptions.</p>
@@ -264,7 +271,7 @@
       <figcaption>"The world's first Relationship Infrastructure" is investor language, not dater language. No participant used a word like "infrastructure" to describe what they wanted from a dating product.</figcaption>
     </figure>
 
-    <p>Women's distrust of the platform wasn't just a research finding. It showed up directly in who actually turned up. At early events, the gender split ran roughly 9:1, men to women.</p>
+    <p>Women's distrust of the platform showed up in the room, and not only in the research. It showed up directly in who turned up. At early events, the gender split ran roughly 9:1, men to women.</p>
     <div class="prose-stat-callout">
       <div class="prose-stat-callout__value">9:1</div>
       <div class="prose-stat-callout__label">Male-to-female ratio at early events: a direct, measurable consequence of the trust gap the interviews described</div>
@@ -290,7 +297,7 @@
     <p>Design principle: keep the mechanic (AI narrows the field), remove every word that implies the AI decides <em>for</em> you instead of <em>with</em> you, and replace every vague claim with a number a sceptical dater could sanity-check themselves. Research had called the original brand "like a spellbook," "untrustworthy," and "too heavy," so the redesign also meant rebuilding the colour system itself, away from mysterious near-black and gold toward a considered palette of sage, blush, plum and deep wine that reads as warm and serious rather than secretive.</p>
     <figure class="figure figure--narrow">
       <img src="../assets/images/1soul/after-hero-desktop.jpg" alt="Redesigned 1soul.ai homepage hero — a warm street-photography background of a couple walking, headline 'Be seriously matched, not just casually seen', with 'Imperial College London, first launch' and '1000+ students with serious intention'" loading="lazy">
-      <figcaption>A warmer, human hero with specific, local, verifiable social proof. Starting from Imperial College London wasn't just an audience clarification. It was a deliberate strategy to launch from somewhere people already trust: a familiar university crowd, not an anonymous, unverifiable "everyone."</figcaption>
+      <figcaption>A warmer, human hero with specific, local, verifiable social proof. Starting from Imperial College London was a deliberate strategy. We launched from somewhere people already trust, a familiar university crowd, instead of an anonymous "everyone" nobody can check.</figcaption>
     </figure>
     <figure class="figure figure--narrow">
       <img src="../assets/images/1soul/after-painpoints-desktop.jpg" alt="A logo strip reading 'Trusted by students across London' with UCL, LSE, King's, QMUL, Imperial, above a pain-point section: 'Finding love shouldn't feel like this,' with speech-bubble quotes including 'I don't want to put my face for strangers and deepfakes'" loading="lazy">
@@ -343,12 +350,12 @@
     <p style="font-size:var(--text-body-sm);color:var(--text-tertiary);margin-top:var(--space-3)">The rebuilt colour system: sage, blush, plum and wine in place of the old mysterious near-black and gold, directly answering the "spellbook," "untrustworthy" and "too heavy" feedback from research.</p>
 
     <h2>The mechanic, in detail</h2>
-    <p>The research backed the positioning. The sharpest hesitation belonged to women: being sent a name with no photo or shared context, and asked to trust an AI's judgement about who to meet. Reassuring copy would not have fixed that. The mechanic had to, and this is how <strong>she gets a clue first</strong> works in practice. When Cupid finds a match, the woman receives a small, specific hint on WhatsApp, a detail like "he plays the piano, just got back from Lisbon, and laughed at the exact same thing you did", enough to be curious, never enough to spoil the moment or feel like a dossier. The rest, and the decision of whether to go, stays entirely hers: <em>"You decide what you do, always."</em> "Girl first" isn't just a design principle here; it's literal copy inside the product's own onboarding flow.</p>
+    <p>The research backed the positioning. The sharpest hesitation belonged to women: being sent a name with no photo or shared context, and asked to trust an AI's judgement about who to meet. Reassuring copy would not have fixed that. The mechanic had to, and this is how <strong>she gets a clue first</strong> works in practice. When Cupid finds a match, the woman receives a small, specific hint on WhatsApp, a detail like "he plays the piano, just got back from Lisbon, and laughed at the exact same thing you did", enough to be curious, never enough to spoil the moment or feel like a dossier. The rest, and the decision of whether to go, stays entirely hers: <em>"You decide what you do, always."</em> "Girl first" is literal copy inside the product's own onboarding flow, and not only a principle we held internally.</p>
     <p>This turns an abstract safety promise into something she can feel on the first interaction. She gets curiosity with consent, and the introduction never arrives cold.</p>
 
     <figure class="figure figure--narrow">
       <img src="../assets/images/1soul/after-clue-desktop.jpg" alt="'For her eyes only — She gets a clue first' section, with a mock WhatsApp conversation from Agent Cupid revealing one hint about a match, and a 'You decide what you do, always' badge" loading="lazy">
-      <figcaption>The mechanic made visible on the site itself, before anyone even opens WhatsApp, so the trust promise is legible on first scroll, not just discovered later.</figcaption>
+      <figcaption>The mechanic made visible on the site itself, before anyone even opens WhatsApp, so the trust promise is readable on the first scroll, well before anyone has to go looking for it.</figcaption>
     </figure>
 
     <div class="flow-diagram" role="list">
@@ -373,7 +380,7 @@
       <div class="flow-diagram__step" role="listitem">
         <div class="flow-diagram__step-num">04</div>
         <div class="flow-diagram__step-title">She decides, always</div>
-        <div class="flow-diagram__step-desc">Confirming the meeting is explicitly her call, restated on-product, not just implied.</div>
+        <div class="flow-diagram__step-desc">Confirming the meeting is explicitly her call, and the product says so in words.</div>
       </div>
     </div>
 
@@ -384,7 +391,7 @@
 
     <figure class="figure figure--narrow">
       <img src="../assets/images/1soul/after-testimonial-desktop.jpg" alt="'Our couples are saying...' testimonial carousel, showing a real couple's photo and a quote: 'I'd given up on dating apps after a year of pointless swiping. Cupid actually listened to what I wanted and matched me with Sonchoy on the first try.' — Aoishee x Sonchoy" loading="lazy">
-      <figcaption>Real outcomes, in daters' own words: the same "listened to what I wanted, not just showed me a queue" trust the redesign was built to earn.</figcaption>
+      <figcaption>Real outcomes, in daters' own words. The same trust the redesign was built to earn: someone listened to what I wanted, and gave me a person instead of a queue.</figcaption>
     </figure>
 
     <h2>Also part of the role</h2>
@@ -416,7 +423,7 @@
       <li><strong>Claude, ChatGPT and Gemini, in parallel</strong>: running the raw interview material through all three at once, cross-checking their reads against each other and flagging what any single model missed, to produce one complete, gap-checked report before any synthesis begins</li>
       <li><strong>Claude</strong>: research synthesis and reasoning: clustering four raw interview transcripts into a prioritised, actionable framework in hours instead of days, and drafting positioning and copy directions grounded directly in that evidence, not generated in a vacuum</li>
       <li><strong>Claude → Figma</strong>: turning an approved direction into an editable Figma file, so visual iteration (spacing, hierarchy, imagery) happens fast and stays reviewable before anything is built</li>
-      <li><strong>Claude Code</strong>: building and iterating the actual product from the approved Figma file: the website redesign shown above and the logic behind Agent Cupid were built and refined in code, not just mocked up</li>
+      <li><strong>Claude Code</strong>: building and iterating the actual product from the approved Figma file: the website redesign shown above and the logic behind Agent Cupid were built and refined in real code, well past the mockup stage</li>
       <li><strong>GitHub</strong>: version control across iterations, so every redesign round (like the before/after above) is a real, reviewable change, not a one-off file</li>
       <li><strong>Vercel</strong>: deployment, so a design decision made in the morning can be live and in front of real daters the same day</li>
       <li><strong>AI, again, after launch</strong>: once a version is live, AI helps me re-check copy, flows and edge cases against how real users actually respond, closing the loop back into the next research round</li>
