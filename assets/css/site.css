@@ -1876,38 +1876,8 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   .prose .wf-step{flex-direction:column;gap:var(--space-3);padding:var(--space-5);}
 }
 
-/* ---------- Home: the method callout ----------
-   Same restraint as the page it links to: open on the paper ground, no
-   card, no fill. A hairline separates it and the type does the rest. */
-.method-callout{
-  display:block;max-width:var(--container-narrow);margin:0 auto;text-align:center;
-  text-decoration:none;color:inherit;
-  padding:var(--space-8) var(--space-6) var(--space-7);
-  border-top:1px solid var(--border-hairline);
-}
-.method-callout__kicker{
-  font-family:var(--font-mono);font-size:var(--text-caption);
-  font-weight:var(--fw-semibold);letter-spacing:0.08em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:var(--space-4);
-}
-.method-callout__title{
-  font-family:var(--font-display);font-size:var(--text-h2);font-weight:var(--fw-semibold);
-  letter-spacing:var(--ls-tight);color:var(--text-primary);margin-bottom:var(--space-5);
-}
-.method-callout__body{
-  font-size:var(--text-body-lg);line-height:var(--lh-body);color:var(--text-secondary);
-  max-width:620px;margin:0 auto var(--space-6);text-wrap:pretty;
-}
-.method-callout__body strong{color:var(--text-primary);font-weight:var(--fw-semibold);}
-.method-callout__cta{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:var(--text-body);font-weight:var(--fw-medium);color:var(--text-primary);
-  padding-bottom:4px;border-bottom:1px solid var(--text-primary);
-  transition:color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
-}
-.method-callout__cta svg{transition:transform var(--duration-fast) var(--ease-out);}
-.method-callout:hover .method-callout__cta{color:var(--accent);border-color:var(--accent);}
-.method-callout:hover .method-callout__cta svg{transform:translateX(4px);}
+/* the method section on the home page uses the standard .section language,
+   so it needs no rules of its own */
 
 /* ---------- Two-part page: the jump links at the top ---------- */
 .page-jump{
