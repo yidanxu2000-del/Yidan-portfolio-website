@@ -1896,6 +1896,7 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   font-size:var(--text-body-lg);line-height:var(--lh-body);color:var(--text-secondary);
   max-width:640px;margin:0 auto var(--space-5);
 }
+.method-callout__body strong{color:var(--text-primary);}
 .method-callout__cta{
   display:inline-flex;align-items:center;gap:6px;
   font-size:var(--text-body);font-weight:var(--fw-medium);
@@ -1932,3 +1933,76 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 }
 .page-jump__d{display:block;font-size:var(--text-body-sm);line-height:var(--lh-body);color:var(--text-secondary);}
 @media(max-width:700px){ .page-jump{grid-template-columns:1fr;} }
+
+/* ---------- A hero that carries a full sentence, not a two-word title ----------
+   The default hero size is built for short titles. At 90+ characters it turns
+   into four lines of billboard type that swamp the page and collide with the
+   sticky nav, so a sentence gets its own smaller, balanced setting. */
+.case-hero__title--sentence{
+  font-size:clamp(28px,3.4vw,46px);
+  line-height:1.18;
+  letter-spacing:var(--ls-snug);
+  max-width:940px;
+  text-wrap:balance;
+}
+.case-hero__title--sentence + .case-hero__subtitle{
+  margin-top:var(--space-5);
+  max-width:640px;
+}
+
+/* ============================================================
+   The method page: one white ground, restrained, space does the
+   separating rather than alternating background colours.
+   ============================================================ */
+.page-method .prose-section,
+.page-method .section{background:var(--surface-primary);color:var(--text-primary);}
+.page-method .prose-section::before,
+.page-method .section::before{display:none;}
+
+/* sections are told apart by air and a hairline, not by colour */
+.page-method .prose-section{
+  padding:var(--space-9) var(--space-5);
+  border-top:1px solid var(--border-hairline);
+}
+.page-method .prose-section--signature{border-top:0;}
+.page-method .prose h2{margin-top:0;}
+
+/* the two part markers: quiet, centred, no fill */
+.page-method .part-marker{
+  padding:var(--space-9) var(--space-5) var(--space-6);
+  border-top:1px solid var(--text-primary);
+}
+.page-method .part-marker .section__eyebrow{color:var(--accent);}
+.page-method .part-marker .section__title{margin-bottom:0;}
+.page-method .part-marker .section__body{margin-top:var(--space-4);}
+
+/* jump cards: hairline only */
+.page-method .page-jump__item{
+  background:transparent;
+  border:1px solid var(--border-hairline);
+}
+.page-method .page-jump__item:hover{background:transparent;border-color:var(--text-primary);}
+
+/* the five stages: no card fill, a rule and a hanging number */
+.page-method .wf-step{
+  background:transparent;border:0;
+  border-top:1px solid var(--border-hairline);
+  border-radius:0;
+  padding:var(--space-6) 0;
+}
+.page-method .wf-steps{gap:0;}
+.page-method .wf-step__n{
+  color:var(--text-tertiary);font-size:var(--text-caption);
+  min-width:44px;
+}
+
+/* the aside keeps a tint, but only a whisper of one */
+.page-method .wf-note{
+  background:transparent;
+  border-left:2px solid var(--accent);
+  border-radius:0;
+  padding:var(--space-2) var(--space-6);
+}
+
+/* colour is reserved for the two or three places it has to mean something */
+.page-method .prose-signature-kicker{color:var(--accent);}

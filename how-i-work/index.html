@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How I work with AI — Yidan Xu</title>
+<meta name="description" content="Yidan Xu's working method with AI, stage by stage, and what building this way taught her about how much a system should decide on its own.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body class="page-method">
+
+<nav class="navbar navbar--dark">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__logo">Yidan Xu</a>
+    <div class="navbar__links">
+      <a href="../index.html#work">Work</a>
+      <a href="../about.html">About</a>
+      <a href="./">How I work</a>
+      <a href="../assets/cv/Yidan-Xu-CV.pdf" download>CV</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+    <button class="navbar__toggle" aria-label="Menu">☰</button>
+  </div>
+  <div class="navbar__mobile">
+    <a href="../index.html#work">Work</a>
+    <a href="../about.html">About</a>
+      <a href="./">How I work</a>
+      <a href="../assets/cv/Yidan-Xu-CV.pdf" download>CV</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="case-hero__inner reveal">
+    <a class="back-link" href="../index.html">&larr; Home</a>
+    <div class="case-hero__meta">How I work &middot; AI &middot; HMI</div>
+    <h1 class="case-hero__title case-hero__title--sentence">AI spends most of its time adding. The taste for taking things away has to stay with a person.</h1>
+    <p class="case-hero__subtitle">Everyone has the same tools now, so the tools are not the skill. This page is two things: the loop I actually run, and what building this way has taught me about where a system should stop deciding for people.</p>
+  </div>
+</header>
+
+<section class="section section--tight">
+  <div class="section__inner reveal">
+    <div class="page-jump">
+      <a class="page-jump__item" href="#how-i-work">
+        <span class="page-jump__n">Part one</span>
+        <span class="page-jump__t">How I work with AI</span>
+        <span class="page-jump__d">The five stages, and who does what at each one.</span>
+      </a>
+      <a class="page-jump__item" href="#what-i-think">
+        <span class="page-jump__n">Part two</span>
+        <span class="page-jump__t">What it taught me</span>
+        <span class="page-jump__d">Where a system should stop deciding, and how to make that line visible.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight part-marker" id="how-i-work">
+  <div class="section__inner reveal">
+    <div class="section__eyebrow">Part one</div>
+    <h2 class="section__title">How I work with AI.</h2>
+  </div>
+</section>
+
+<section class="prose-section prose-section--signature">
+  <div class="prose reveal">
+    <div class="prose-signature-kicker">The rule underneath everything</div>
+    <h2>AI keeps handing me more. Someone has to decide what to throw away</h2>
+    <p>Ask AI for options and it will give you more of them. More features, more sections, more copy, more variants. That is genuinely useful, and it is also the whole problem. A product does not get good by accumulating. It gets good when someone with taste removes the parts that do not earn their place.</p>
+    <p>So I use AI for the addition, and I keep the subtraction. Deciding what to cut is a judgement about people, and that part stays human. It is true of product decisions and it is true of a single screen.</p>
+    <p class="prose-closing-line">Everything below is the same idea, applied stage by stage.</p>
+  </div>
+</section>
+
+<section class="prose-section">
+  <div class="prose reveal">
+    <h2>One AI gets things wrong. A group of them checks each other</h2>
+    <p>I do not use one model and trust it. I use several, and I make them argue.</p>
+    <p>Claude does the reasoning and the writing. Replit and Claude Code do the building. Figma Make and Claude do the visual generation. When something matters, I give the same problem to more than one of them and compare what comes back. Where they disagree is where I look hardest, because that is usually where the real question is.</p>
+    <p><strong>Markdown is what makes this work.</strong> I keep the context of a project in <code>.md</code> files: the research findings, the decisions already made, the constraints, the tone. That file travels between tools. It means I can move a problem from one model to another without re-explaining it, and it means the reasoning is written down somewhere a person can read too. The file outlives any one tool.</p>
+
+    <div class="wf-note">
+      <div class="wf-note__k">Why it matters</div>
+      <p>Getting good at one model took me a few weeks. Working out which one to distrust, and building something that catches it, took actual projects.</p>
+    </div>
+  </div>
+</section>
+
+<section class="prose-section">
+  <div class="prose reveal">
+    <h2>The five stages, and who does what</h2>
+    <p>This is the loop I run. The split is deliberate: the closer the work is to a person, the more of it I do by hand.</p>
+
+    <ol class="wf-steps">
+      <li class="wf-step">
+        <div class="wf-step__n">01</div>
+        <div class="wf-step__body">
+          <h3>Talking to people. Mine.</h3>
+          <p>Interviews, workshops, sitting with someone while they use the thing. I run these myself and I write them up myself, in Notion. Hearing someone hesitate is not something I can get from a summary.</p>
+          <p><strong>Where AI comes in:</strong> once the raw material exists, I use AI to cluster transcripts by problem type rather than by interviewee, and to pull the core points back out. It removes days of manual tagging without removing my judgement about what matters.</p>
+        </div>
+      </li>
+
+      <li class="wf-step">
+        <div class="wf-step__n">02</div>
+        <div class="wf-step__body">
+          <h3>Turning findings into the real question</h3>
+          <p>I use AI in reverse here. Instead of asking it to solve, I ask it to attack: what is wrong with this product as it stands, what would a sceptical user say, where does this argument break. Then I take those problems into the design myself.</p>
+          <p>Starting from the objections is a different thing from starting from a brief.</p>
+        </div>
+      </li>
+
+      <li class="wf-step">
+        <div class="wf-step__n">03</div>
+        <div class="wf-step__body">
+          <h3>Designing, fast, and then cutting</h3>
+          <p>Figma Make and Claude generate. I iterate quickly and widely, because exploring ten directions now costs what two used to. When something needs real craft I connect Figma over MCP and keep refining it there, with AI assisting on the detail.</p>
+          <p>Then the subtraction. Most of what gets generated does not ship, and choosing what does is the actual work.</p>
+        </div>
+      </li>
+
+      <li class="wf-step">
+        <div class="wf-step__n">04</div>
+        <div class="wf-step__body">
+          <h3>Testing twice: once with AI, once with people</h3>
+          <p>Before I put anything in front of a person I have AI walk the flow and tell me where it loses the thread. It catches the obvious breakage cheaply.</p>
+          <p>Then real users, always. A/B tests on the decisions that matter, and testing for the three things I care about: does the workflow hold, is it clear, can they finish. AI finds the breakage. Whether it feels right is something only a person tells me.</p>
+        </div>
+      </li>
+
+      <li class="wf-step">
+        <div class="wf-step__n">05</div>
+        <div class="wf-step__body">
+          <h3>Shipping, and then still being there</h3>
+          <p>Claude Code writes it, GitHub holds it, and it deploys straight from the repository. This site is built that way, and it goes live within a minute of a merge. Shipping is not the end of the project. I keep maintaining what I put out.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="prose-section">
+  <div class="prose reveal">
+    <h2>I am usually the second person</h2>
+    <p>Imagine I hand in my notice. Someone new sits down in my chair and opens the folder. What would they want to find? A system and a record they can carry on from, or a pile of finished screens with nothing underneath to build on?</p>
+    <p>I think about this because I am often that second person. I get handed a set of polished interfaces, usually made with AI, and I have no idea what research sits behind each section or what anyone was thinking when they made it. Then I am asked to improve something that looks finished and has nothing under it. That is harder than starting from scratch.</p>
+    <p><strong>So every project now leaves a design and memory file behind.</strong> Tokens, components, the decisions and the reasons behind them, all written down.</p>
+    <p class="prose-closing-line">Leaving a system behind has always been part of the work. It is like versioning a release. AI needs that memory file too.</p>
+  </div>
+</section>
+
+<section class="prose-section">
+  <div class="prose reveal">
+    <h2>What it looked like on 1Soul</h2>
+    <p>Founding product manager, one designer, an AI matchmaking product. The whole loop ran on it.</p>
+    <ul>
+      <li><strong>By hand:</strong> four in-depth interviews with London university students, plus eight online interviews with heavy users of social and dating apps. Written up in Notion.</li>
+      <li><strong>AI extracted:</strong> the transcripts clustered by problem type. Eight areas came out, with brand tone and trust for women at the top.</li>
+      <li><strong>AI attacked:</strong> I had it read the site as a sceptical first-time visitor. It found the same thing the interviews had, which is how I knew the finding was real.</li>
+      <li><strong>Human judgement:</strong> the mechanic. She gets a clue first, and the decision stays hers. That came from sitting with one participant's discomfort, and no model would have proposed it.</li>
+      <li><strong>AI built:</strong> positioning into copy, copy into Figma, Figma into shipped code. Research finding to live redesign in about twenty hours.</li>
+      <li><strong>Measured:</strong> female sign-ups up 25%.</li>
+    </ul>
+    <p class="prose-closing-line">The AI moved fast on everything downstream of a decision. It never made the decision.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section__inner reveal">
+    <div class="section__eyebrow">The short version</div>
+    <h2 class="section__title">Five things I hold to.</h2>
+  </div>
+  <div class="section__content list-grid reveal">
+    <div class="list-grid__group">
+      <ul>
+        <li><strong>Anything involving a person, I do myself.</strong> Interviews, workshops, watching someone struggle. That is where the real findings are and it does not compress.</li>
+        <li><strong>Use more than one model, and make them disagree.</strong> The gap between two answers is where the question actually is.</li>
+        <li><strong>Keep the context in markdown.</strong> It moves between tools, it survives the tool going away, and a person can read it.</li>
+        <li><strong>AI generates, I cut.</strong> The value is in what does not ship.</li>
+        <li><strong>Leave a memory file.</strong> I am often the second person on a project, so I know what it costs when there is nothing under the screens.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight part-marker" id="what-i-think">
+  <div class="section__inner reveal">
+    <div class="section__eyebrow">Part two</div>
+    <h2 class="section__title">What building this way taught me.</h2>
+    <p class="section__body">The method above is how the work gets made. This part is what kept turning up while making it: the same question in two very different products, and what I now believe about it.</p>
+  </div>
+</section>
+
+<section class="prose-section prose-section--signature">
+  <div class="prose reveal">
+    <div class="prose-signature-kicker">Starting point</div>
+    <h2>AI only gets useful once it has found the right job to sit inside</h2>
+    <p>I keep relearning the same thing on every project that touches AI. It only becomes useful once it has found the right scenario to sit inside. The AI has to fit the work. The work should not bend to fit the AI.</p>
+    <p>So I never ask AI to "make it smarter" or "make it feel more AI". I ask it to do one specific job. Cluster raw interview transcripts by problem type. Narrow a field of candidates before a person decides. Hold the context of a conversation so a driver does not have to. In each of those, speed and pattern-finding take real work off someone, and the judgement about what matters stays with me or with the user.</p>
+    <p>Two projects show this most clearly. <strong>1Soul</strong>, where AI sits between a person and a decision about a relationship. And the <strong>Xiaomi Auto</strong> cockpit, where software sits between a person and control of a machine moving at speed. Different fields. Same design problem.</p>
+  </div>
+</section>
+
+<section class="prose-section">
+  <div class="prose reveal">
+    <h2>The common thread: show people where the line is</h2>
+    <p>Both projects put a system between a person and a moment that matters. Who they will meet. What their car does next.</p>
+    <p>The failure is the same in both. The system quietly decides more than the person realised, and the moment they notice, trust is gone. So the fix is also the same. Draw a clear line between "the system narrows this" and "you decide this". Then say it out loud, in the same words, every time. Polish alone will not carry it.</p>
+
+    <h3>1Soul: AI narrows the field, she decides</h3>
+    <p>Research turned up one specific fear. A match arrives with a name and nothing else, and you are expected to trust an algorithm about who to meet. Copy could not fix that, so I built a mechanic instead. Cupid narrows the field, then gives her one small human clue. Going further is her call, and the product says so every time. The AI's authority stops at "worth considering". It never quietly stretches into "worth meeting".</p>
+
+    <h3>Xiaomi Auto: the cockpit narrates itself</h3>
+    <p>A cockpit is the same line, with more at stake. The system is constantly choosing what to show. A navigation update. A driving-assist prompt. An alert on the rear display. Meanwhile the driver has to stay in control at speed.</p>
+    <p>So the work was about order and weight. What does the interface say right now, and what does it hold back. A driver should never be splitting attention between "what is the car doing" and "what should I do". And every suggestion has to read as a suggestion, with the choice still open.</p>
+
+    <p>Put side by side, they gave me a rule I now use everywhere. <em>An interface earns the right to automate more by first making it completely clear what it is leaving to you.</em></p>
+  </div>
+</section>
+
+<section class="prose-section">
+  <div class="prose reveal">
+    <h2>A closer look: diagnosing why a dating product didn't feel trustworthy</h2>
+    <p>When I audited 1Soul's homepage I was not asking whether it looked nice. I was asking whether a stranger would believe this is a serious product built for them.</p>
+    <p>That splits into four things a visitor checks in the first few seconds, roughly in this order. Is this real, or a novelty? Who is actually using it? Does it understand why I hate the alternatives? Would meeting someone through it be safe? The homepage had a gap at all four.</p>
+
+    <p>The plainest example was the copy itself. The public-facing line was <em>"Your agent is already dating on your behalf."</em> It was meant to sound futuristic. What it actually said was the exact thing a first-time visitor is primed to fear: that the AI is the one making contact. It is the same boundary-legibility problem I describe above, failing inside a single sentence this time. I rewrote the hero around a plainer promise, built for people who want something serious, and moved the "AI narrows this down for you" framing to where it actually helps: after someone already trusts the product enough to want the shortcut.</p>
+
+    <p>The brand tone said the same thing more quietly. The site ran on a deep maroon. Two testers, separately, called it "like a magic book". Moody and mysterious. That suits a fantasy app. It does not suit a product whose whole premise is your next serious relationship. If a colour needs explaining before someone knows what kind of product they are looking at, the palette has failed.</p>
+
+    <p><strong>Safety got its own section.</strong> Every interview came back to the same worry: meeting a stranger from an app. The homepage answered it with one reassuring sentence buried in the middle of the page.</p>
+    <p>So I pulled safety out into a section of its own, and rewrote it around things you can check. Verified student and real-identity accounts. First meetings at verified campus venues. Background context on a match before you meet. Visible ID checks at in-person events.</p>
+    <p>The rule I took from it, and still use: a safety claim only works if you can point at the feature behind it. An unsupported "we're safe" is worse than saying nothing.</p>
+
+    <p>Then I reordered the rest of the homepage to match the order a visitor needs answers in. Pain points first, in the words real users used: dating fatigue, conversations that go nowhere, feeling disrespected. Then every feature turned into the thing it protects, so "not endless swiping" becomes "every match is vetted before you see it". Social proof and the playful ideas come last, including a "Secret Match" campus event that we kept genuinely surprising instead of explaining to death.</p>
+
+    <p>None of this made the product louder. It closed the gap between what the founders already knew about 1Soul and what a stranger could tell in five seconds.</p>
+  </div>
+</section>
+
+<section class="prose-section">
+  <div class="prose reveal">
+    <h2>A closer look: what eight months building system UI taught me about HMI</h2>
+    <p>Shipping system UI across a real product line is a different job from designing one screen. The interface has to hold up across car variants, screen sizes, hardware configurations and languages. Chinese first, then English once the international rollout started. The logic underneath has to survive every one of those seams.</p>
+
+    <p>The clearest lesson was about covering for hardware with design. Apple's Dynamic Island made its designers famous by turning a front-camera cutout into a feature. At Xiaomi Auto that kind of save happens all the time, and nobody celebrates it.</p>
+    <p>Different devices have different comfortable reach zones for a driver's hand. A rear-entertainment screen added to one variant could, in an edge case, partly block the rear-view mirror. The car industry in China is still young, so hardware rarely arrives perfect. Design is often the last quiet layer that makes the imperfect thing usable. My mentor once took what should have been three separate hardware hubs and, through interaction design alone, made them read as two.</p>
+
+    <p>I also learned to use AI as a second check on my own judgement. I run a shadow system or a colour decision back through AI to catch what my eye had gotten used to, while still making sure I could produce the same quality of work without it. That has become a working rule I hold everywhere now: AI should sharpen a decision I have already made.</p>
+
+    <p>In practice that meant putting Figma Make and Gemini inside the design loop, and and stopped using them only for inspiration. I could explore a wider set of directions in the time it used to take to sketch two or three. Iteration got faster, and the number of options that actually got considered went up rather than down.</p>
+    <p>The more useful habit was the other direction. I ran my own decisions back through AI to check them. I would give it a colour system I had already chosen and ask it to optimise for contrast and hierarchy on its own, then compare its answer to mine. That tells you whether your choice holds up, or whether your eye has just got used to it.</p>
+    <p>I did the same with grouping and layout. On a screen with a lot of competing functions, I would let AI work out its own path through the information architecture. Anywhere it diverged from my structure, I treated that as a reason to ask why, never as an answer to copy. AI stayed a way of pressure-testing my design. It was never the source of it.</p>
+
+    <p>The last lesson was about scale. At a startup I owned a project end to end, from research to shipped product. At a company the size of Xiaomi nobody does that. Every person owns one link in a much longer chain, and doing the job well means knowing your link well enough to hand off cleanly in both directions. That changed how I think about my own range. The useful version of it is being able to plug into the chain at almost any link and still move it forward.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section__inner reveal">
+    <div class="section__eyebrow">Working principles</div>
+    <h2 class="section__title">What I keep coming back to.</h2>
+  </div>
+  <div class="section__content list-grid reveal">
+    <div class="list-grid__group">
+      <ul>
+        <li><strong>AI narrows the field; it doesn't make the choice.</strong> The moment a user feels the system decided <em>for</em> them instead of <em>with</em> them, trust is gone, and no amount of polish earns it back.</li>
+        <li><strong>Trust is a UI problem before it's a policy problem.</strong> A privacy promise buried in terms and conditions doesn't work if the interface itself feels like it's hiding something.</li>
+        <li><strong>State the boundary, don't just imply it.</strong> "You decide, always" restated on-product outperforms a reassuring tone that never actually says who's in control.</li>
+        <li><strong>The best AI-assisted interface is invisible in the credits.</strong> Nobody looking at a shipped product should be able to tell which parts moved fast because of AI, only that the whole thing feels considered.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="section__inner reveal">
+    <div class="section__eyebrow">See it applied</div>
+    <div class="btn-row" style="margin-top:var(--space-5)">
+      <a class="btn btn--primary" href="../work/1soul.html">1Soul: the AI-native workflow →</a>
+      <a class="btn btn--secondary" href="../work/xiaomi-auto.html">Xiaomi Auto: the digital cockpit →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__top">
+    <div class="footer__name">Yidan Xu</div>
+    <div class="footer__links">
+      <a href="mailto:yidanxu2000@outlook.com">Email me</a>
+      <a href="https://www.linkedin.com/in/yidan-xu-profile/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div class="footer__bottom">© <span id="year"></span> Yidan Xu. All rights reserved.</div>
+</footer>
+
+<script src="../assets/js/site.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
