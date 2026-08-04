@@ -692,6 +692,10 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 .vibe-card__shots{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5);margin-bottom:var(--space-5);align-items:start;animation:vibe-shots-in .35s var(--ease-out) both;}
 @keyframes vibe-shots-in{0%{opacity:0;transform:translateY(6px);}100%{opacity:1;transform:translateY(0);}}
 .vibe-shot{margin:0;}
+/* the menu-bar strip is ~8:1, so it gets the full width of the shots grid */
+.vibe-shot--wide{grid-column:1 / -1;}
+.vibe-shot--wide img{max-width:100%;}
+.vibe-shot--wide figcaption{max-width:none;}
 .vibe-shot img{width:100%;max-width:340px;display:block;border-radius:12px;border:1px solid rgba(255,255,255,.14);box-shadow:0 8px 28px rgba(0,0,0,.4);}
 .vibe-shot figcaption{font-family:var(--font-mono);font-size:12px;line-height:1.55;color:var(--text-on-dark-secondary);margin-top:var(--space-3);max-width:340px;}
 @media(max-width:600px){.vibe-card__body{padding:var(--space-5);}.vibe-card__shots{grid-template-columns:1fr;}}
@@ -1835,3 +1839,70 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 }
 .more-work[open] .more-work__arrow{transform:rotate(180deg);}
 .more-work__summary:hover .more-work__label{color:var(--accent);}
+
+/* ---------- Method page: the five-stage loop ---------- */
+.prose .wf-steps{
+  list-style:none;margin:var(--space-6) 0;padding:0;
+  display:flex;flex-direction:column;gap:var(--space-5);
+}
+.prose .wf-step{
+  display:flex;gap:var(--space-5);margin:0;
+  padding:var(--space-6);border-radius:var(--radius-lg);
+  background:var(--gray-1);border:1px solid var(--border-hairline);
+}
+.wf-step__n{
+  flex:0 0 auto;font-family:var(--font-mono);font-size:var(--text-body-sm);
+  font-weight:var(--fw-semibold);color:var(--accent);letter-spacing:0.06em;
+  padding-top:2px;
+}
+.wf-step__body{min-width:0;}
+.prose .wf-step__body h3{margin-top:0;margin-bottom:var(--space-3);}
+.prose .wf-step__body p{margin:0 0 var(--space-3);}
+.prose .wf-step__body p:last-child{margin-bottom:0;}
+
+/* a short aside that explains why a step matters */
+.wf-note{
+  margin:var(--space-6) 0;padding:var(--space-5) var(--space-6);
+  border-radius:var(--radius-md);background:var(--accent-tint);
+  border-left:3px solid var(--accent);
+}
+.wf-note__k{
+  font-family:var(--font-mono);font-size:var(--text-caption);
+  font-weight:var(--fw-semibold);letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:var(--space-2);
+}
+.prose .wf-note p{margin:0;}
+@media(max-width:640px){
+  .prose .wf-step{flex-direction:column;gap:var(--space-3);padding:var(--space-5);}
+}
+
+/* ---------- Home: the method callout ---------- */
+.method-callout{
+  display:block;max-width:var(--container-narrow);margin:0 auto;text-align:center;
+  text-decoration:none;color:inherit;
+  padding:var(--space-7) var(--space-6);border-radius:var(--radius-lg);
+  background:var(--accent-tint);border:1px solid rgba(226,102,31,.22);
+}
+.method-callout__kicker{
+  font-family:var(--font-mono);font-size:var(--text-caption);
+  font-weight:var(--fw-semibold);letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:var(--space-4);
+}
+.method-callout__title{
+  font-family:var(--font-display);font-size:var(--text-h2);font-weight:var(--fw-semibold);
+  letter-spacing:var(--ls-tight);color:var(--text-primary);margin-bottom:var(--space-4);
+}
+.method-callout__body{
+  font-size:var(--text-body-lg);line-height:var(--lh-body);color:var(--text-secondary);
+  max-width:640px;margin:0 auto var(--space-5);
+}
+.method-callout__cta{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:var(--text-body);font-weight:var(--fw-medium);
+  color:#fff;background:var(--accent);border:1px solid var(--accent);
+  padding:12px 24px;border-radius:var(--radius-pill);
+  transition:background var(--duration-fast) var(--ease-out);
+}
+.method-callout__cta svg{transition:transform var(--duration-fast) var(--ease-out);}
+.method-callout:hover .method-callout__cta{background:var(--accent-hover);border-color:var(--accent-hover);}
+.method-callout:hover .method-callout__cta svg{transform:translateX(4px);}
