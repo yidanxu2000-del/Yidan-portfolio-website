@@ -692,6 +692,10 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 .vibe-card__shots{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5);margin-bottom:var(--space-5);align-items:start;animation:vibe-shots-in .35s var(--ease-out) both;}
 @keyframes vibe-shots-in{0%{opacity:0;transform:translateY(6px);}100%{opacity:1;transform:translateY(0);}}
 .vibe-shot{margin:0;}
+/* the menu-bar strip is ~8:1, so it gets the full width of the shots grid */
+.vibe-shot--wide{grid-column:1 / -1;}
+.vibe-shot--wide img{max-width:100%;}
+.vibe-shot--wide figcaption{max-width:none;}
 .vibe-shot img{width:100%;max-width:340px;display:block;border-radius:12px;border:1px solid rgba(255,255,255,.14);box-shadow:0 8px 28px rgba(0,0,0,.4);}
 .vibe-shot figcaption{font-family:var(--font-mono);font-size:12px;line-height:1.55;color:var(--text-on-dark-secondary);margin-top:var(--space-3);max-width:340px;}
 @media(max-width:600px){.vibe-card__body{padding:var(--space-5);}.vibe-card__shots{grid-template-columns:1fr;}}
@@ -1835,3 +1839,141 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 }
 .more-work[open] .more-work__arrow{transform:rotate(180deg);}
 .more-work__summary:hover .more-work__label{color:var(--accent);}
+
+/* ---------- Method page: the five-stage loop ---------- */
+.prose .wf-steps{
+  list-style:none;margin:var(--space-6) 0;padding:0;
+  display:flex;flex-direction:column;gap:var(--space-5);
+}
+.prose .wf-step{
+  display:flex;gap:var(--space-5);margin:0;
+  padding:var(--space-6);border-radius:var(--radius-lg);
+  background:var(--gray-1);border:1px solid var(--border-hairline);
+}
+.wf-step__n{
+  flex:0 0 auto;font-family:var(--font-mono);font-size:var(--text-body-sm);
+  font-weight:var(--fw-semibold);color:var(--accent);letter-spacing:0.06em;
+  padding-top:2px;
+}
+.wf-step__body{min-width:0;}
+.prose .wf-step__body h3{margin-top:0;margin-bottom:var(--space-3);}
+.prose .wf-step__body p{margin:0 0 var(--space-3);}
+.prose .wf-step__body p:last-child{margin-bottom:0;}
+
+/* a short aside that explains why a step matters */
+.wf-note{
+  margin:var(--space-6) 0;padding:var(--space-5) var(--space-6);
+  border-radius:var(--radius-md);background:var(--accent-tint);
+  border-left:3px solid var(--accent);
+}
+.wf-note__k{
+  font-family:var(--font-mono);font-size:var(--text-caption);
+  font-weight:var(--fw-semibold);letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:var(--space-2);
+}
+.prose .wf-note p{margin:0;}
+@media(max-width:640px){
+  .prose .wf-step{flex-direction:column;gap:var(--space-3);padding:var(--space-5);}
+}
+
+/* the method section on the home page uses the standard .section language,
+   so it needs no rules of its own */
+
+/* ---------- Two-part page: the jump links at the top ---------- */
+.page-jump{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:var(--space-5);max-width:var(--container-narrow);margin:0 auto;
+}
+.page-jump__item{
+  display:block;text-decoration:none;color:inherit;
+  padding:var(--space-6);border-radius:var(--radius-lg);
+  background:var(--gray-1);border:1px solid var(--border-hairline);
+  transition:border-color var(--duration-fast) var(--ease-out),
+             background var(--duration-fast) var(--ease-out);
+}
+.page-jump__item:hover{border-color:var(--accent);background:var(--accent-tint);}
+.page-jump__n{
+  display:block;font-family:var(--font-mono);font-size:var(--text-caption);
+  font-weight:var(--fw-semibold);letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:var(--space-3);
+}
+.page-jump__t{
+  display:block;font-family:var(--font-display);font-size:var(--text-h3);
+  font-weight:var(--fw-semibold);letter-spacing:var(--ls-tight);
+  color:var(--text-primary);margin-bottom:var(--space-2);
+}
+.page-jump__d{display:block;font-size:var(--text-body-sm);line-height:var(--lh-body);color:var(--text-secondary);}
+@media(max-width:700px){ .page-jump{grid-template-columns:1fr;} }
+
+/* ---------- A hero that carries a full sentence, not a two-word title ----------
+   The default hero size is built for short titles. At 90+ characters it turns
+   into four lines of billboard type that swamp the page and collide with the
+   sticky nav, so a sentence gets its own smaller, balanced setting. */
+.case-hero__title--sentence{
+  font-size:clamp(28px,3.4vw,46px);
+  line-height:1.18;
+  letter-spacing:var(--ls-snug);
+  max-width:940px;
+  text-wrap:balance;
+}
+.case-hero__title--sentence + .case-hero__subtitle{
+  margin-top:var(--space-5);
+  max-width:640px;
+}
+
+/* ============================================================
+   The method page: one white ground, restrained, space does the
+   separating rather than alternating background colours.
+   ============================================================ */
+.page-method .prose-section,
+.page-method .section{background:var(--surface-primary);color:var(--text-primary);}
+.page-method .prose-section::before,
+.page-method .section::before{display:none;}
+
+/* sections are told apart by air and a hairline, not by colour */
+.page-method .prose-section{
+  padding:var(--space-9) var(--space-5);
+  border-top:1px solid var(--border-hairline);
+}
+.page-method .prose-section--signature{border-top:0;}
+.page-method .prose h2{margin-top:0;}
+
+/* the two part markers: quiet, centred, no fill */
+.page-method .part-marker{
+  padding:var(--space-9) var(--space-5) var(--space-6);
+  border-top:1px solid var(--text-primary);
+}
+.page-method .part-marker .section__eyebrow{color:var(--accent);}
+.page-method .part-marker .section__title{margin-bottom:0;}
+.page-method .part-marker .section__body{margin-top:var(--space-4);}
+
+/* jump cards: hairline only */
+.page-method .page-jump__item{
+  background:transparent;
+  border:1px solid var(--border-hairline);
+}
+.page-method .page-jump__item:hover{background:transparent;border-color:var(--text-primary);}
+
+/* the five stages: no card fill, a rule and a hanging number */
+.page-method .wf-step{
+  background:transparent;border:0;
+  border-top:1px solid var(--border-hairline);
+  border-radius:0;
+  padding:var(--space-6) 0;
+}
+.page-method .wf-steps{gap:0;}
+.page-method .wf-step__n{
+  color:var(--text-tertiary);font-size:var(--text-caption);
+  min-width:44px;
+}
+
+/* the aside keeps a tint, but only a whisper of one */
+.page-method .wf-note{
+  background:transparent;
+  border-left:2px solid var(--accent);
+  border-radius:0;
+  padding:var(--space-2) var(--space-6);
+}
+
+/* colour is reserved for the two or three places it has to mean something */
+.page-method .prose-signature-kicker{color:var(--accent);}
