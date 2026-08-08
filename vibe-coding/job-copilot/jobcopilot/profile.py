@@ -14,7 +14,7 @@ from .store import Store
 
 DEFAULT_PROFILE: dict = {
     "name": "Yidan Xu",
-    "headline": "AI-native Product & UX Designer",
+    "headline": "Product Designer / Manager, AI",
     "location": "London, UK",
     "email": "yidanxu2000@outlook.com",
     "phone": "+44 7852886916",
@@ -29,8 +29,11 @@ DEFAULT_PROFILE: dict = {
     # Right-to-work is a real filter on London roles. Stating it lets the
     # analyser flag postings that exclude you before you spend time on them.
     "work_authorisation": (
-        "Based in London with UK work authorisation. Flag any role that states it "
-        "cannot sponsor, or requires citizenship or an existing settled status."
+        "Based in London. No sponsorship required, now or in future — full UK "
+        "work authorisation. Still flag any role that states it cannot sponsor "
+        "or requires citizenship, so it can be checked, but this is not "
+        "actually a blocker for her the way it would be for someone who needs "
+        "sponsorship."
     ),
     "target_roles": [
         "AI Product Designer",
@@ -139,6 +142,14 @@ DEFAULT_PROFILE: dict = {
                     "text": "Designed the brand and trust layer an AI matchmaker needs before anyone will hand it something personal.",
                     "tags": ["brand", "trust", "ai", "product design"],
                 },
+                {
+                    "text": "Took a redesign from research to shipped in about 20 hours using the AI-design-AI pipeline, not the usual multi-week cycle.",
+                    "tags": ["ai", "speed", "workflow", "product design"],
+                },
+                {
+                    "text": "Drove female sign-ups up 25%, past 1,000 members with serious intent, and 360+ introductions made.",
+                    "tags": ["metrics", "growth", "product", "0-1"],
+                },
             ],
         },
         {
@@ -220,6 +231,14 @@ DEFAULT_PROFILE: dict = {
                 {
                     "text": "As the only designer in an early-stage startup, covered marketing, design strategy, web design, developer handoff and report design.",
                     "tags": ["ownership", "startup", "generalist", "0-1"],
+                },
+                {
+                    "text": "Rebuilt an 18-question clinical ADHD assessment into one question per screen, kept it clinically valid throughout, and shipped in two weeks.",
+                    "tags": ["ux", "healthcare", "redesign", "speed"],
+                },
+                {
+                    "text": "Reached 82% engagement on the redesigned assessment.",
+                    "tags": ["metrics", "engagement", "healthcare", "ux"],
                 },
             ],
         },
