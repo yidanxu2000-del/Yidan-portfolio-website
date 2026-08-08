@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Job Copilot</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='11' fill='%230080c8'/></svg>">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar__brand">
+    <span class="bar__dot"></span>
+    <h1>Job Copilot</h1>
+    <span class="bar__sub" id="engine">—</span>
+  </div>
+  <div class="bar__stats" id="stats"></div>
+  <div class="bar__actions">
+    <button class="btn" data-act="discover">Sweep sources</button>
+    <button class="btn" data-act="analyse">Analyse new</button>
+    <button class="btn btn--primary" data-act="prepare-top">Draft top 5</button>
+    <button class="btn btn--ghost" data-act="add">Add a role</button>
+  </div>
+</header>
+
+<div id="toast" class="toast" hidden></div>
+
+<main class="layout">
+  <section class="panel panel--list">
+    <div class="listbar">
+      <input id="filter" class="input input--sm" placeholder="Filter by company, title, location">
+      <select id="view" class="input input--sm">
+        <option value="all">All</option>
+        <option value="scored">Scored</option>
+        <option value="strong">Score 65+</option>
+        <option value="drafted">Has draft</option>
+        <option value="needs_detail">Needs description</option>
+        <option value="sent">Sent</option>
+      </select>
+    </div>
+    <div id="list" class="list"></div>
+  </section>
+
+  <section class="panel panel--detail" id="detail">
+    <div class="empty">
+      <h2>Nothing selected</h2>
+      <p>Sweep your sources, or add a role by pasting a job description. Analysis
+         reads the posting against your profile and scores the fit; drafting
+         produces a tailored resume and a cover letter you can edit.</p>
+      <p class="empty__note">Nothing is ever sent without you approving it
+         individually.</p>
+    </div>
+  </section>
+</main>
+
+<!-- Add a role by URL or by paste. -->
+<dialog id="add-dialog" class="dialog">
+  <form method="dialog" class="dialog__inner">
+    <h2>Add a role</h2>
+    <label class="field">
+      <span>Job page URL</span>
+      <input id="add-url" class="input" placeholder="https://…">
+      <small>Tries to read the description off the page. Plenty of boards render
+        in JavaScript and come back empty — paste below if so.</small>
+    </label>
+    <button class="btn" id="add-url-go" type="button">Fetch from URL</button>
+    <div class="dialog__rule"><span>or paste it</span></div>
+    <div class="dialog__grid">
+      <label class="field"><span>Company</span><input id="add-company" class="input"></label>
+      <label class="field"><span>Title</span><input id="add-title" class="input"></label>
+      <label class="field"><span>Location</span><input id="add-location" class="input"></label>
+      <label class="field"><span>Apply-to email (optional)</span><input id="add-email" class="input"></label>
+    </div>
+    <label class="field">
+      <span>Job description</span>
+      <textarea id="add-description" class="input input--area" rows="10"
+        placeholder="Paste the full posting — requirements included."></textarea>
+    </label>
+    <footer class="dialog__foot">
+      <button class="btn btn--ghost" value="cancel">Close</button>
+      <button class="btn btn--primary" id="add-paste-go" type="button">Add role</button>
+    </footer>
+  </form>
+</dialog>
+
+<script src="/app.js"></script>
+</body>
+</html>
