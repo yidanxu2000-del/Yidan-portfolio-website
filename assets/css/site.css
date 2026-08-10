@@ -1502,7 +1502,7 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 }
 .hero-dice__name{
   font-family:var(--font-display);font-weight:var(--fw-medium);
-  font-size:clamp(50px,10.5vw,158px);line-height:.94;letter-spacing:-.035em;
+  font-size:clamp(56px,13vw,200px);line-height:.92;letter-spacing:-.035em;
   color:var(--text-primary);margin:var(--space-6) 0 0;white-space:nowrap;
 }
 /* How to say it. People read a name they cannot pronounce and skip past it. */
