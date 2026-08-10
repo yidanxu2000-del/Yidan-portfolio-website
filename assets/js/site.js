@@ -179,6 +179,7 @@
     var elDesc = picker.querySelector('.dice-result__desc');
     var elGo = picker.querySelector('.dice-result__go');
     var again = picker.querySelector('.dice-result__again');
+    var cue = picker.querySelector('.dice-cue');
     var map = {};
     [].forEach.call(picker.querySelectorAll('.dice-map li'), function(li){
       map[li.dataset.n] = li.dataset;
@@ -201,6 +202,7 @@
     function roll(){
       if(rolling) return;
       rolling = true;
+      picker.classList.add('has-rolled');
       result.classList.remove('is-shown');
       result.hidden = true;
       var face = pickFace();
@@ -236,6 +238,7 @@
     // on screen
     die.addEventListener('click', roll);
     if(again) again.addEventListener('click', roll);
+    if(cue) cue.addEventListener('click', roll);
   })();
 
   // swatches fill in when they reach the viewport
