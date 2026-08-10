@@ -409,14 +409,15 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   letter-spacing:var(--ls-snug);color:var(--text-primary);
 }
 .section--dark .project-card__title{color:var(--text-on-dark);}
-/* The result travels with the name. Someone scanning the page for ten
-   seconds should get what the project was and what came of it in one line. */
+/* The result is part of the headline, not a caption under it. Same size as
+   the name, one weight lighter, so a recruiter scanning the page reads the
+   outcome before they decide whether to stop. */
 .project-card__result{
-  display:block;margin-top:6px;font-family:var(--font-text);
-  font-size:var(--text-body-lg);font-weight:var(--fw-regular);line-height:1.45;
-  letter-spacing:0;color:var(--text-secondary);
+  display:block;margin-top:4px;
+  font-size:var(--text-h3);font-weight:var(--fw-regular);line-height:1.2;
+  letter-spacing:var(--ls-snug);color:var(--text-primary);
 }
-.section--dark .project-card__result{color:var(--text-on-dark-secondary);}
+.section--dark .project-card__result{color:var(--text-on-dark);}
 .project-card__desc{font-size:var(--text-body);color:var(--text-secondary);line-height:var(--lh-body);}
 .section--dark .project-card__desc{color:var(--text-on-dark-secondary);}
 .project-card__meta{font-size:var(--text-caption);color:var(--text-tertiary);letter-spacing:var(--ls-snug);}
