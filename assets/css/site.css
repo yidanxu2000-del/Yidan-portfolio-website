@@ -1568,30 +1568,34 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 /* Nobody worked out the die was clickable, so the invitation now sits
    directly above it and is a button in its own right. */
 .dice-cue{
-  display:inline-flex;align-items:center;gap:10px;
-  margin:0 auto var(--space-5);padding:9px var(--space-5);
-  border:1px solid var(--border-hairline);border-radius:999px;
-  background:rgba(255,255,255,.55);cursor:pointer;
-  font-family:var(--font-text);font-size:var(--text-body-sm);
-  color:var(--text-secondary);
+  /* the die sits in front of it: the pill tucks up under the die so the
+     two read as one object, and stays quiet enough not to compete */
+  position:relative;z-index:0;
+  display:inline-flex;align-items:center;gap:9px;
+  margin:0 auto -12px;padding:7px var(--space-5) 18px;
+  border:1px solid rgba(0,0,0,.055);border-radius:999px;
+  background:none;cursor:pointer;
+  font-family:var(--font-text);font-size:13px;letter-spacing:.01em;
+  color:var(--text-tertiary);
   opacity:0;transform:translateY(8px);
   transition:opacity .7s var(--ease-out),transform .7s var(--ease-out),
              border-color var(--duration-fast) var(--ease-out),
              color var(--duration-fast) var(--ease-out);
 }
 .hero-dice:not(.is-intro) .dice-cue{opacity:1;transform:none;}
-.dice-cue:hover{border-color:var(--accent);color:var(--text-primary);}
+.dice-cue:hover{border-color:var(--border-hairline);color:var(--text-secondary);}
 .dice-cue__icon{
-  color:var(--accent);font-size:15px;line-height:1;
-  transition:transform var(--duration-base) var(--ease-out);
+  color:var(--accent);opacity:.6;font-size:14px;line-height:1;
+  transition:transform var(--duration-base) var(--ease-out),opacity var(--duration-fast) var(--ease-out);
 }
+.dice-cue:hover .dice-cue__icon{opacity:1;}
 .dice-cue:hover .dice-cue__icon{transform:rotate(180deg);}
 /* the cue has done its job once someone has rolled */
 .dice-picker.has-rolled .dice-cue{color:var(--text-tertiary);}
 @media(prefers-reduced-motion:reduce){
   .dice-cue{opacity:1;transform:none;}
 }
-.dice-picker--hero .die-stage{margin:0 auto;}
+.dice-picker--hero .die-stage{margin:0 auto;position:relative;z-index:1;}
 .dice-picker--hero .dice-result{margin-top:var(--space-6);}
 /* The name stays the size it is. When a roll lands below the fold, the
    script scrolls the result into view instead of shrinking the hero. */
