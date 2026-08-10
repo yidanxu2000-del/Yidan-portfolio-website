@@ -21,7 +21,6 @@
       <a href="#work">Work</a>
       <a href="about.html">About</a>
       <a href="how-i-work/">How I work</a>
-      <a href="assets/cv/Yidan-Xu-CV.pdf" download>CV</a>
       <a href="#contact">Contact</a>
     </div>
     <button class="navbar__toggle" aria-label="Menu">☰</button>
@@ -30,7 +29,6 @@
     <a href="#work">Work</a>
     <a href="about.html">About</a>
       <a href="how-i-work/">How I work</a>
-      <a href="assets/cv/Yidan-Xu-CV.pdf" download>CV</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
@@ -38,9 +36,9 @@
 <div id="top"></div>
 
 <section class="hero-dice is-intro">
-  <div class="hero-dice__inner">
+  <div class="hero-dice__inner dice-picker dice-picker--hero">
     <div class="die-stage">
-      <button class="die die--interactive" type="button" aria-label="Roll the dice">
+      <button class="die die--interactive" type="button" aria-label="Roll the dice to pick a project">
         <span class="die__face die__face--front"><span class="die__pip die__pip--mc"></span></span>
         <span class="die__face die__face--back"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--tr"></span><span class="die__pip die__pip--ml"></span><span class="die__pip die__pip--mr"></span><span class="die__pip die__pip--bl"></span><span class="die__pip die__pip--br"></span></span>
         <span class="die__face die__face--right"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--mc"></span><span class="die__pip die__pip--br"></span></span>
@@ -50,25 +48,217 @@
       </button>
     </div>
 
-    <p class="hero-dice__script hero-dice__reveal">hello, and welcome</p>
-    <p class="hero-dice__tagline hero-dice__reveal">I am a product designer. Today I am thinking about <span class="hero-dice__roll">health tech</span>.</p>
-    <ul class="hero-dice__words" aria-hidden="true">
-      <li data-n="1">health tech</li>
-      <li data-n="2">car interfaces</li>
-      <li data-n="3">small tools I want to exist</li>
-      <li data-n="4">how much a system should decide</li>
-      <li data-n="5">roadmaps, and what gets built first</li>
-      <li data-n="6">games, and what a headset changes</li>
-    </ul>
+    <button class="dice-cue" type="button">click the dice, it picks a project</button>
+
+    <p class="hero-dice__tagline hero-dice__reveal">I turn ambiguous problems into shipped products.</p>
     <h1 class="hero-dice__name hero-dice__reveal">Yidan Xu</h1>
-    <div class="hero-dice__meta hero-dice__reveal">Product &amp; UX Designer — London</div>
+    <p class="hero-dice__say hero-dice__reveal">
+      <span class="hero-dice__say-pinyin">Yīdān Xú</span>
+      <span class="hero-dice__say-sep" aria-hidden="true">&middot;</span>
+      <span class="hero-dice__say-en">&ldquo;ee-dahn shoo&rdquo;</span>
+    </p>
+    <div class="hero-dice__meta hero-dice__reveal">Product Designer &amp; Product Manager &mdash; London</div>
 
     <div class="btn-row hero-dice__cta hero-dice__reveal">
       <a class="btn btn--primary" href="#work">See the work</a>
       <a class="btn btn--link" href="#contact">Say hello<svg class="btn__arrow" width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
+
+    <div class="dice-result" hidden>
+      <span class="dice-result__num">Project 1</span>
+      <h2 class="dice-result__name">1Soul</h2>
+      <p class="dice-result__desc"></p>
+      <div class="dice-result__actions">
+        <a class="btn btn--primary dice-result__go" href="work/1soul.html">Open 1Soul</a>
+        <button class="dice-result__again" type="button">Roll again</button>
+      </div>
+    </div>
+
+    <ul class="dice-map" aria-hidden="true">
+      <li data-n="1" data-href="work/1soul.html" data-name="1Soul" data-desc="In my second month designing there, female sign-ups went up about 25%, and users more than tripled."></li>
+      <li data-n="2" data-href="work/innovate-adhd.html" data-name="Innovate ADHD" data-desc="Rebuilt the ADHD assessment in two weeks, and 82% of visitors stayed to do it."></li>
+      <li data-n="3" data-href="work/urify.html" data-name="Urify" data-desc="A toilet tablet that catches kidney disease early, and runner-up for the UK James Dyson Award."></li>
+      <li data-n="4" data-href="work/xiaomi-auto.html" data-name="Xiaomi Auto" data-desc="A new EV cockpit, taken into Europe. Eight system modules and the System UI specification."></li>
+      <li data-n="5" data-href="work/huawei.html" data-name="Huawei" data-desc="One design language across five B2B apps, grounded in behaviour data."></li>
+      <li data-n="6" data-href="work/res.html" data-name="RES" data-desc="Users ranked ten features in a workshop, and their top five became the roadmap."></li>
+    </ul>
   </div>
 </section>
+
+<div id="work">
+
+<!-- 1Soul -->
+<section class="project-story section--light">
+  <div class="project-story__inner reveal">
+    <a class="project-card" href="work/1soul.html">
+      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/1soul/after-hero-desktop.jpg" alt="1Soul homepage &mdash; &lsquo;Be seriously matched, not just casually seen&rsquo;" loading="lazy"></div>
+      <div class="project-card__body">
+        <span class="project-card__meta">2026 · AI · Product strategy · Website</span>
+        <h3 class="project-card__title">1Soul<span class="project-card__result">In my second month designing there, female sign-ups went up about 25%.</span></h3>
+        <p class="project-card__desc">The only product person at an AI startup. Product manager for the strategy, designer for the site and the system under it. Users more than tripled over the same period.</p>
+        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Innovate ADHD -->
+<section class="project-story section--dark glow-follow">
+  <div class="project-story__inner reveal">
+    <a class="project-card" href="work/innovate-adhd.html">
+      <div class="project-card__cover"><video class="project-card__cover-img" autoplay muted loop playsinline preload="metadata" poster="assets/images/innovate-adhd/homepage-hero-poster.jpg" aria-label="Screen recording of the live Innovate ADHD homepage"><source src="assets/images/innovate-adhd/homepage-hero.webm" type="video/webm"><source src="assets/images/innovate-adhd/homepage-hero.mp4" type="video/mp4"><img class="project-card__cover-img" src="assets/images/innovate-adhd/homepage-hero-poster.jpg" alt="The live Innovate ADHD homepage" loading="lazy"></video></div>
+      <div class="project-card__body">
+        <span class="project-card__meta">2025 · Health · AI · 0&ndash;1</span>
+        <h3 class="project-card__title">Innovate ADHD<span class="project-card__result">We rebuilt the ADHD assessment in two weeks, and 82% of visitors stayed to do it.</span></h3>
+        <p class="project-card__desc">A clinical form this audience is known to abandon, redesigned around how ADHD actually behaves. Product manager, the only designer, and the person doing the marketing.</p>
+        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Urify -->
+<section class="project-story section--light">
+  <div class="project-story__inner reveal">
+    <a class="project-card" href="work/urify.html">
+      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/urify/jda-award-product.jpg" alt="The Urify product, photographed for its James Dyson Award 2025 entry" loading="lazy"></div>
+      <div class="project-card__body">
+        <span class="project-card__meta">2026 · Health care · 0&ndash;1 · Startup</span>
+        <h3 class="project-card__title">Urify<span class="project-card__result">A toilet tablet that catches kidney disease early, and runner-up for the UK James Dyson Award.</span></h3>
+        <p class="project-card__desc">Founded solo. Covered by Reuters and Dezeen, incubated by Imperial College London, and taken to the NHS.</p>
+        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Xiaomi Auto -->
+<section class="project-story section--dark glow-follow">
+  <div class="project-story__inner reveal">
+    <a class="project-card" href="work/xiaomi-auto.html">
+      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/xiaomi-auto/detail.jpg" alt="Xiaomi SU7 digital cockpit interior" loading="lazy"></div>
+      <div class="project-card__body">
+        <span class="project-card__meta">2025 · HMI · Digital cockpit</span>
+        <h3 class="project-card__title">Xiaomi Auto<span class="project-card__result">A new EV cockpit, taken into Europe.</span></h3>
+        <p class="project-card__desc">Eight system modules and the System UI specification, across the central and rear screens.</p>
+        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Huawei -->
+<section class="project-story section--light">
+  <div class="project-story__inner reveal">
+    <a class="project-card" href="work/huawei.html">
+      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/huawei/workshop.jpg" alt="Presenting research findings to the Huawei product team" loading="lazy"></div>
+      <div class="project-card__body">
+        <span class="project-card__meta">2024 · UI/UX · Data-driven</span>
+        <h3 class="project-card__title">Huawei<span class="project-card__result">One design language across five B2B apps.</span></h3>
+        <p class="project-card__desc">Three projects on identity, structure and cross-app consistency, all grounded in behaviour data.</p>
+        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- RES -->
+<section class="project-story section--dark glow-follow">
+  <div class="project-story__inner reveal">
+    <a class="project-card" href="work/res.html">
+      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/res/device-app-hero.jpg" alt="A hand holding a phone showing the RES app&rsquo;s Breathe Easy welcome screen, with the RES sensor standing behind it" loading="lazy"></div>
+      <div class="project-card__body">
+        <span class="project-card__meta">2025 · Health · Product · Design system</span>
+        <h3 class="project-card__title">RES<span class="project-card__result">Users ranked ten features in a workshop, and their top five became the roadmap.</span></h3>
+        <p class="project-card__desc">Pollen data people act on. The map was A/B tested. DIA Award, and second prize at the Analytics for Society Award 2025.</p>
+        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Pulpatronics -->
+<section class="project-story section--light">
+  <div class="project-story__inner reveal">
+    <a class="project-card" href="work/pulpatronics.html">
+      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/pulpatronics/website-hero.jpg" alt="PulpaTronics website hero &mdash; hanging paper NFC tags" loading="lazy"></div>
+      <div class="project-card__body">
+        <span class="project-card__meta">2024 · UI/UX · Branding · Startup</span>
+        <h3 class="project-card__title">Pulpatronics<span class="project-card__result">A brand for a paper-electronics startup.</span></h3>
+        <p class="project-card__desc">The only designer in a team of eight. Colour system, promotional material, and the visual support for their workshops.</p>
+        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- NFT -->
+<section class="project-story section--dark glow-follow">
+  <div class="project-story__inner reveal">
+    <a class="project-card" href="work/nft.html">
+      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/nft/mint-cert.jpg" alt="A minted NFT collectible shown on a phone mockup" loading="lazy"></div>
+      <div class="project-card__body">
+        <span class="project-card__meta">2023 · Web3 · Startup</span>
+        <h3 class="project-card__title">NFT<span class="project-card__result">A platform for making and trading your own avatar.</span></h3>
+        <p class="project-card__desc">A Chinese NFT marketplace built in a one-month sprint, with the avatar builder at the centre of it.</p>
+        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<details class="more-work" id="more-work">
+  <summary class="more-work__summary">
+    <span class="more-work__label">More work</span>
+    <span class="more-work__hint">Interactive products and illustration<span class="more-work__arrow" aria-hidden="true">&#8595;</span></span>
+  </summary>
+<!-- Entropy -->
+<section class="project-story section--light">
+  <div class="project-story__inner reveal">
+    <a class="project-card" href="work/entropy.html">
+      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/entropy/vr-playtest.jpg" alt="A playtester wearing a VR headset, controllers raised, in front of the flooded Westminster game world" loading="lazy"></div>
+      <div class="project-card__body">
+        <span class="project-card__meta">2023 · Interactive product · VR · Unity</span>
+        <h3 class="project-card__title">Entropy<span class="project-card__result">A VR world in a flooded Westminster.</span></h3>
+        <p class="project-card__desc">I designed the whole loop: what a player sees, what they can do, and what the system does back.</p>
+        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Gesture -->
+<section class="project-story section--dark glow-follow">
+  <div class="project-story__inner reveal">
+    <a class="project-card" href="work/gesture.html">
+      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/gesture/device-front.jpg" alt="The gesture-controlled lock device" loading="lazy"></div>
+      <div class="project-card__body">
+        <span class="project-card__meta">2023 · Interactive product · Machine learning · Hardware</span>
+        <h3 class="project-card__title">Gesture<span class="project-card__result">A lock with no keypad.</span></h3>
+        <p class="project-card__desc">It reads four hand gestures and the angle each one turns to. Taken from an idea to a working device, machine learning included.</p>
+        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Illustrator -->
+<section class="project-story section--light">
+  <div class="project-story__inner reveal">
+    <a class="project-card" href="work/illustrator.html">
+      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/illustrator/commission-2024-character.jpg" alt="Fantasy-style illustration of a character holding a small glowing white rabbit" loading="lazy"></div>
+      <div class="project-card__body">
+        <span class="project-card__meta">2024 · Design · Illustration</span>
+        <h3 class="project-card__title">Illustrator<span class="project-card__result">Freelance illustration, 2019&ndash;2025.</span></h3>
+        <p class="project-card__desc">Commission work, with the method and the style adapted to each client.</p>
+        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+</details>
+</div>
 
 <section id="about" class="section section--light">
   <div class="section__inner reveal">
@@ -141,221 +331,6 @@
   </div>
 </section>
 
-<div id="work">
-<section id="work" class="dice-picker">
-  <div class="dice-picker__inner reveal">
-    <div class="section__eyebrow">Selected work</div>
-    <p class="dice-picker__script">go on, give it a throw</p>
-    <h2>Not sure where to start?</h2>
-    <p class="dice-picker__sub">Click the dice. It will pick a project for you.</p>
-
-    <div class="die-stage">
-      <button class="die die--interactive" type="button" aria-label="Roll the dice to pick a project">
-        <span class="die__face die__face--front"><span class="die__pip die__pip--mc"></span></span>
-        <span class="die__face die__face--back"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--tr"></span><span class="die__pip die__pip--ml"></span><span class="die__pip die__pip--mr"></span><span class="die__pip die__pip--bl"></span><span class="die__pip die__pip--br"></span></span>
-        <span class="die__face die__face--right"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--mc"></span><span class="die__pip die__pip--br"></span></span>
-        <span class="die__face die__face--left"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--tr"></span><span class="die__pip die__pip--bl"></span><span class="die__pip die__pip--br"></span></span>
-        <span class="die__face die__face--top"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--tr"></span><span class="die__pip die__pip--mc"></span><span class="die__pip die__pip--bl"></span><span class="die__pip die__pip--br"></span></span>
-        <span class="die__face die__face--bottom"><span class="die__pip die__pip--tl"></span><span class="die__pip die__pip--br"></span></span>
-      </button>
-    </div>
-
-    <div class="dice-result" hidden>
-      <span class="dice-result__num">Project 1</span>
-      <h3 class="dice-result__name">1Soul</h3>
-      <p class="dice-result__desc"></p>
-      <div class="dice-result__actions">
-        <a class="btn btn--primary dice-result__go" href="work/1soul.html">Open 1Soul</a>
-        <button class="dice-result__again" type="button">Roll again</button>
-      </div>
-    </div>
-
-    <ul class="dice-map" aria-hidden="true">
-      <li data-n="1" data-href="work/1soul.html" data-name="1Soul" data-desc="An AI matchmaker. People talk to a bot on WhatsApp, and it sends them a few real matches. I was the founding product manager."></li>
-      <li data-n="2" data-href="work/urify.html" data-name="Urify" data-desc="A colour-changing test that flags early kidney disease. I founded it on my own. It was a UK James Dyson Award runner-up."></li>
-      <li data-n="3" data-href="work/innovate-adhd.html" data-name="Innovate ADHD" data-desc="A remote ADHD assessment platform. I built it from nothing as product manager, and shipped it in two weeks."></li>
-      <li data-n="4" data-href="work/xiaomi-auto.html" data-name="Xiaomi Auto" data-desc="Screens inside the car, for the European market. I worked on the digital cockpit and the system UI guidelines."></li>
-      <li data-n="5" data-href="work/huawei.html" data-name="Huawei" data-desc="One design language for five B2B apps. I was a design intern in the user-centred design team."></li>
-      <li data-n="6" data-href="work/res.html" data-name="RES" data-desc="Pollen detection turned into something people act on. Users ranked the features themselves in a workshop, and we A/B tested the map."></li>
-    </ul>
-
-    <p class="dice-picker__all">Or just scroll. Every project is below.</p>
-  </div>
-</section>
-
-<!-- 1Soul -->
-<section class="project-story section--light">
-  <div class="project-story__inner reveal">
-    <a class="project-card" href="work/1soul.html">
-      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/1soul/after-hero-desktop.jpg" alt="1Soul homepage — 'Be seriously matched, not just casually seen'" loading="lazy"></div>
-      <div class="project-card__body">
-        <span class="project-card__meta">2026 · AI · Product · Website</span>
-        <h3 class="project-card__title">1Soul</h3>
-        <p class="project-card__desc">I was the sole designer on an AI matchmaking product: research-led repositioning, a full before/after redesign, and an AI-accelerated workflow grounded in real user interviews.</p>
-        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- Urify -->
-<section class="project-story section--dark glow-follow">
-  <div class="project-story__inner reveal">
-    <a class="project-card" href="work/urify.html">
-      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/urify/jda-award-product.jpg" alt="The Urify product, photographed for its James Dyson Award 2025 entry" loading="lazy"></div>
-      <div class="project-card__body">
-        <span class="project-card__meta">2026 · Health Care · 0–1 · Startup</span>
-        <h3 class="project-card__title">Urify</h3>
-        <p class="project-card__desc">A 0–1 health-innovation product I founded solo, recognised as a UK James Dyson Award finalist and covered by Reuters.</p>
-        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- Innovate ADHD -->
-<section class="project-story section--light">
-  <div class="project-story__inner reveal">
-    <a class="project-card" href="work/innovate-adhd.html">
-      <div class="project-card__cover"><video class="project-card__cover-img" autoplay muted loop playsinline preload="metadata" poster="assets/images/innovate-adhd/homepage-hero-poster.jpg" aria-label="Screen recording of the live Innovate ADHD homepage"><source src="assets/images/innovate-adhd/homepage-hero.webm" type="video/webm"><source src="assets/images/innovate-adhd/homepage-hero.mp4" type="video/mp4"><img class="project-card__cover-img" src="assets/images/innovate-adhd/homepage-hero-poster.jpg" alt="The live Innovate ADHD homepage" loading="lazy"></video></div>
-      <div class="project-card__body">
-        <span class="project-card__meta">2025 · AI · Product · UI/UX</span>
-        <h3 class="project-card__title">Innovate ADHD</h3>
-        <p class="project-card__desc">Designed and built a remote ADHD assessment platform from 0–1, shaped around the cognitive and behavioural characteristics of ADHD users.</p>
-        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- Xiaomi Auto -->
-<section class="project-story section--dark glow-follow">
-  <div class="project-story__inner reveal">
-    <a class="project-card" href="work/xiaomi-auto.html">
-      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/xiaomi-auto/detail.jpg" alt="Xiaomi SU7 digital cockpit interior" loading="lazy"></div>
-      <div class="project-card__body">
-        <span class="project-card__meta">2025 · HMI · Digital Cockpit</span>
-        <h3 class="project-card__title">Xiaomi Auto</h3>
-        <p class="project-card__desc">Contributed to the design and optimisation of in-vehicle interfaces, including central and rear displays, ensuring compliance with European standards and regulations.</p>
-        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- Huawei -->
-<section class="project-story section--light">
-  <div class="project-story__inner reveal">
-    <a class="project-card" href="work/huawei.html">
-      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/huawei/workshop.jpg" alt="Presenting research findings to the Huawei product team" loading="lazy"></div>
-      <div class="project-card__body">
-        <span class="project-card__meta">2024 · UI/UX · Data-Driven</span>
-        <h3 class="project-card__title">Huawei</h3>
-        <p class="project-card__desc">Design improvements grounded in real user behaviour across three projects covering user identity, structural optimisation and cross-app consistency.</p>
-        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- RES -->
-<section class="project-story section--dark glow-follow">
-  <div class="project-story__inner reveal">
-    <a class="project-card" href="work/res.html">
-      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/res/device-app-hero.jpg" alt="A hand holding a phone showing the RES app's Breathe Easy welcome screen, with the RES sensor standing behind it" loading="lazy"></div>
-      <div class="project-card__body">
-        <span class="project-card__meta">2025 · Health · Product · UI/UX System</span>
-        <h3 class="project-card__title">RES</h3>
-        <p class="project-card__desc">Precise pollen detection turned into actionable insight, helping people breathe easier and live better. DIA Award, and second prize at the Analytics for Society Award 2025.</p>
-        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- Pulpatronics -->
-<section class="project-story section--light">
-  <div class="project-story__inner reveal">
-    <a class="project-card" href="work/pulpatronics.html">
-      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/pulpatronics/website-hero.jpg" alt="PulpaTronics website hero — hanging paper NFC tags" loading="lazy"></div>
-      <div class="project-card__body">
-        <span class="project-card__meta">2024 · UI/UX · Branding · Startup</span>
-        <h3 class="project-card__title">Pulpatronics</h3>
-        <p class="project-card__desc">Brand building for a sustainable-tech startup during a London internship: colour system, promotional materials and workshop visual support.</p>
-        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-    </a>
-  </div>
-</section>
-
-
-<!-- NFT -->
-<section class="project-story section--dark glow-follow">
-  <div class="project-story__inner reveal">
-    <a class="project-card" href="work/nft.html">
-      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/nft/mint-cert.jpg" alt="A minted NFT collectible shown on a phone mockup" loading="lazy"></div>
-      <div class="project-card__body">
-        <span class="project-card__meta">2023 · Web3 · Startup</span>
-        <h3 class="project-card__title">NFT</h3>
-        <p class="project-card__desc">A Chinese NFT platform where users can autonomously craft personalised NFT profile pictures and both buy and sell NFTs.</p>
-        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-    </a>
-  </div>
-</section>
-
-<details class="more-work" id="more-work">
-  <summary class="more-work__summary">
-    <span class="more-work__label">More work</span>
-    <span class="more-work__hint">Interactive products and illustration<span class="more-work__arrow" aria-hidden="true">&#8595;</span></span>
-  </summary>
-<!-- Entropy -->
-<section class="project-story section--light">
-  <div class="project-story__inner reveal">
-    <a class="project-card" href="work/entropy.html">
-      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/entropy/vr-playtest.jpg" alt="A playtester wearing a VR headset, controllers raised, in front of the flooded Westminster game world" loading="lazy"></div>
-      <div class="project-card__body">
-        <span class="project-card__meta">2023 · Interactive product · VR · Unity</span>
-        <h3 class="project-card__title">Entropy</h3>
-        <p class="project-card__desc">An interactive VR product set fifty years from now, in a flooded West Westminster. I designed the whole loop: what a player sees, what they can do, and what the system does back.</p>
-        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- Gesture -->
-<section class="project-story section--dark glow-follow">
-  <div class="project-story__inner reveal">
-    <a class="project-card" href="work/gesture.html">
-      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/gesture/device-front.jpg" alt="The gesture-controlled lock device" loading="lazy"></div>
-      <div class="project-card__body">
-        <span class="project-card__meta">2023 · Interactive product · Machine learning · Hardware</span>
-        <h3 class="project-card__title">Gesture</h3>
-        <p class="project-card__desc">A password with no keypad. A lock that reads four hand gestures and the angle each one turns to, taken from idea to working device.</p>
-        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- Illustrator -->
-<section class="project-story section--light">
-  <div class="project-story__inner reveal">
-    <a class="project-card" href="work/illustrator.html">
-      <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/illustrator/commission-2024-character.jpg" alt="Fantasy-style illustration of a character holding a small glowing white rabbit" loading="lazy"></div>
-      <div class="project-card__body">
-        <span class="project-card__meta">2024 · Design · Illustration</span>
-        <h3 class="project-card__title">Illustrator</h3>
-        <p class="project-card__desc">Freelance illustration work from 2019–2025, adapting drawing method and style to each client's needs.</p>
-        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-    </a>
-  </div>
-</section>
-</div>
-
-</details>
 
 <section class="section section--dark section--tight" id="now">
   <div class="now-card reveal">
@@ -375,7 +350,6 @@
     <p class="section__body">Open to product design roles and collaborations in London and remotely.</p>
     <div class="section__content btn-row">
       <a class="btn btn--primary" href="mailto:yidanxu2000@outlook.com">Email me</a>
-      <a class="btn btn--secondary" href="assets/cv/Yidan-Xu-CV.pdf" download>Download CV ↓</a>
       <a class="btn btn--link" href="https://www.linkedin.com/in/yidan-xu-profile/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
     </div>
   </div>

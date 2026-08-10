@@ -409,6 +409,15 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   letter-spacing:var(--ls-snug);color:var(--text-primary);
 }
 .section--dark .project-card__title{color:var(--text-on-dark);}
+/* The result is part of the headline, not a caption under it. Same size as
+   the name, one weight lighter, so a recruiter scanning the page reads the
+   outcome before they decide whether to stop. */
+.project-card__result{
+  display:block;margin-top:6px;
+  font-size:clamp(18px,1.55vw,22px);font-weight:var(--fw-regular);line-height:1.35;
+  letter-spacing:var(--ls-snug);color:var(--text-primary);
+}
+.section--dark .project-card__result{color:var(--text-on-dark);}
 .project-card__desc{font-size:var(--text-body);color:var(--text-secondary);line-height:var(--lh-body);}
 .section--dark .project-card__desc{color:var(--text-on-dark-secondary);}
 .project-card__meta{font-size:var(--text-caption);color:var(--text-tertiary);letter-spacing:var(--ls-snug);}
@@ -1489,13 +1498,22 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 
 .hero-dice__tagline{
   font-size:var(--text-body-lg);line-height:1.6;color:var(--text-secondary);
-  max-width:34ch;margin:var(--space-6) auto 0;
+  max-width:50ch;margin:var(--space-6) auto 0;
 }
 .hero-dice__name{
-  font-family:var(--font-display);font-weight:var(--fw-light);
-  font-size:clamp(56px,13.5vw,210px);line-height:.92;letter-spacing:-.035em;
+  font-family:var(--font-display);font-weight:var(--fw-medium);
+  font-size:clamp(56px,13vw,200px);line-height:.92;letter-spacing:-.035em;
   color:var(--text-primary);margin:var(--space-6) 0 0;white-space:nowrap;
 }
+/* How to say it. People read a name they cannot pronounce and skip past it. */
+.hero-dice__say{
+  display:flex;justify-content:center;align-items:baseline;flex-wrap:wrap;
+  gap:0 var(--space-3);margin:var(--space-4) 0 0;
+  font-size:var(--text-body-sm);color:var(--text-tertiary);
+}
+.hero-dice__say-pinyin{font-family:var(--font-mono);letter-spacing:.02em;color:var(--text-secondary);}
+.hero-dice__say-sep{color:var(--text-tertiary);opacity:.5;}
+.hero-dice__say-en{font-style:italic;}
 .hero-dice__meta{
   font-size:var(--text-body-sm);letter-spacing:.14em;text-transform:uppercase;
   color:var(--text-tertiary);margin-top:var(--space-4);
@@ -1515,7 +1533,6 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   font-family:var(--font-display);font-size:var(--text-h1);font-weight:var(--fw-light);
   letter-spacing:-.025em;line-height:1.1;color:var(--text-primary);margin:var(--space-3) 0 var(--space-4);
 }
-.dice-picker__sub{font-size:var(--text-body-lg);color:var(--text-secondary);margin-bottom:var(--space-8);}
 .dice-picker .die-stage{--bob:12px;margin:0 auto var(--space-8);}
 .dice-picker .die{--die:104px;}
 
@@ -1543,6 +1560,32 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 .dice-picker__all{margin-top:var(--space-8);font-size:var(--text-body-sm);color:var(--text-tertiary);}
 .dice-picker__all a{color:var(--text-link);}
 .dice-map{display:none;}
+
+/* In the hero the picker is the hero: no ground of its own, no second
+   heading. The die opens the page and the result lands under the name. */
+.dice-picker--hero{padding:0;background:none;}
+
+/* The invitation sits under the die, in the handwriting the old hero used
+   there. It is a button, so the line rolls the dice as well as the die. */
+.dice-cue{
+  display:block;margin:var(--space-5) auto 0;padding:2px 6px;
+  border:0;background:none;cursor:pointer;
+  font-family:'Caveat',ui-rounded,'Segoe Script','Bradley Hand',cursive;
+  font-size:clamp(22px,2.6vw,30px);line-height:1.1;color:var(--accent);
+  transform:rotate(-2.5deg);
+  opacity:0;transition:opacity .7s var(--ease-out),color var(--duration-fast) var(--ease-out);
+}
+.hero-dice:not(.is-intro) .dice-cue{opacity:1;}
+.dice-cue:hover{color:var(--accent-hover);}
+.dice-picker.has-rolled .dice-cue{opacity:.65;}
+@media(prefers-reduced-motion:reduce){
+  .dice-cue{opacity:1;}
+}
+
+.dice-picker--hero .die-stage{margin:0 auto;}
+.dice-picker--hero .dice-result{margin-top:var(--space-6);}
+/* The name stays the size it is. When a roll lands below the fold, the
+   script scrolls the result into view instead of shrinking the hero. */
 
 @media(prefers-reduced-motion:reduce){
   .die-stage,.die-stage::after{animation:none;}
@@ -1812,9 +1855,28 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   color:var(--accent);margin-bottom:var(--space-2);
 }
 .prose .tldr p{margin:0;font-size:var(--text-body-sm);line-height:1.55;color:var(--text-primary);}
+.tldr--two{grid-template-columns:repeat(2,minmax(0,1fr));}
 @media(max-width:760px){
   .tldr{grid-template-columns:1fr;gap:var(--space-4);}
+  .tldr--two{grid-template-columns:1fr;}
 }
+
+/* Depth kept one click away, so the 60-second read stays 60 seconds */
+.prose-more{
+  margin:var(--space-6) 0 var(--space-8);
+  border-top:1px solid var(--border-hairline);
+  border-bottom:1px solid var(--border-hairline);
+}
+.prose-more__summary{
+  list-style:none;cursor:pointer;padding:var(--space-4) 0;
+  display:flex;align-items:baseline;gap:var(--space-3);
+  font-size:var(--text-body-sm);color:var(--text-secondary);
+}
+.prose-more__summary::-webkit-details-marker{display:none;}
+.prose-more__summary:hover{color:var(--text-primary);}
+.prose-more__arrow{color:var(--accent);transition:transform var(--duration-fast) var(--ease-out);}
+.prose-more[open] .prose-more__arrow{transform:rotate(180deg);}
+.prose-more > :not(summary):last-child{padding-bottom:var(--space-5);}
 
 /* ---------- More work: the second tier, folded away by default ---------- */
 .more-work{background:var(--surface-primary);border-top:1px solid var(--border-hairline);}

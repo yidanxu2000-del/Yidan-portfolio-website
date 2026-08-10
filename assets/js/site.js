@@ -129,12 +129,13 @@
     die.style.transform = 'rotateX(' + x + 'deg) rotateY(' + y + 'deg)';
   }
 
-  // hero: the die lands, then the words arrive. After that every click rolls
-  // a new face, and the line under the die changes to match it.
+  // hero: the reveal. On the home page the die inside the hero belongs to the
+  // picker below, so this block only runs the intro and leaves that die alone.
   (function(){
     var hero = document.querySelector('.hero-dice');
     if(!hero) return;
-    var die = hero.querySelector('.die');
+    var picker = hero.querySelector('.dice-picker');
+    var die = picker ? null : hero.querySelector('.die');
     var word = hero.querySelector('.hero-dice__roll');
     var faces = [];
     [].forEach.call(hero.querySelectorAll('.hero-dice__words li'), function(li){
@@ -178,6 +179,7 @@
     var elDesc = picker.querySelector('.dice-result__desc');
     var elGo = picker.querySelector('.dice-result__go');
     var again = picker.querySelector('.dice-result__again');
+    var cue = picker.querySelector('.dice-cue');
     var map = {};
     [].forEach.call(picker.querySelectorAll('.dice-map li'), function(li){
       map[li.dataset.n] = li.dataset;
@@ -200,6 +202,7 @@
     function roll(){
       if(rolling) return;
       rolling = true;
+      picker.classList.add('has-rolled');
       result.classList.remove('is-shown');
       result.hidden = true;
       var face = pickFace();
@@ -216,6 +219,16 @@
         void result.offsetWidth;
         result.classList.add('is-shown');
         rolling = false;
+        // In the hero the name is deliberately large, so on shorter screens
+        // the result lands below the fold. Bring it up rather than shrink
+        // the thing the page opens with.
+        var box = result.getBoundingClientRect();
+        if(box.bottom > window.innerHeight - 8){
+          result.scrollIntoView({
+            behavior: reduceMotion ? 'auto' : 'smooth',
+            block: 'center'
+          });
+        }
         // No automatic jump. Most people want to roll again, and being thrown
         // into a project takes that choice away.
       }, reduceMotion ? 60 : ROLL_MS);
@@ -225,6 +238,7 @@
     // on screen
     die.addEventListener('click', roll);
     if(again) again.addEventListener('click', roll);
+    if(cue) cue.addEventListener('click', roll);
   })();
 
   // swatches fill in when they reach the viewport
