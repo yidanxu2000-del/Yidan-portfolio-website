@@ -217,6 +217,16 @@
         void result.offsetWidth;
         result.classList.add('is-shown');
         rolling = false;
+        // In the hero the name is deliberately large, so on shorter screens
+        // the result lands below the fold. Bring it up rather than shrink
+        // the thing the page opens with.
+        var box = result.getBoundingClientRect();
+        if(box.bottom > window.innerHeight - 8){
+          result.scrollIntoView({
+            behavior: reduceMotion ? 'auto' : 'smooth',
+            block: 'center'
+          });
+        }
         // No automatic jump. Most people want to roll again, and being thrown
         // into a project takes that choice away.
       }, reduceMotion ? 60 : ROLL_MS);
