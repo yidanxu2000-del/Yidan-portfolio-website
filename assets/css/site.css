@@ -1497,7 +1497,7 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 
 .hero-dice__tagline{
   font-size:var(--text-body-lg);line-height:1.6;color:var(--text-secondary);
-  max-width:34ch;margin:var(--space-6) auto 0;
+  max-width:50ch;margin:var(--space-6) auto 0;
 }
 .hero-dice__name{
   font-family:var(--font-display);font-weight:var(--fw-medium);
@@ -1532,7 +1532,6 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   font-family:var(--font-display);font-size:var(--text-h1);font-weight:var(--fw-light);
   letter-spacing:-.025em;line-height:1.1;color:var(--text-primary);margin:var(--space-3) 0 var(--space-4);
 }
-.dice-picker__sub{font-size:var(--text-body-lg);color:var(--text-secondary);margin-bottom:var(--space-8);}
 .dice-picker .die-stage{--bob:12px;margin:0 auto var(--space-8);}
 .dice-picker .die{--die:104px;}
 
@@ -1592,14 +1591,7 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   .dice-cue{opacity:1;transform:none;}
 }
 .dice-picker--hero .die-stage{margin:0 auto;}
-.dice-picker--hero .dice-picker__sub{
-  font-size:var(--text-body);color:var(--text-tertiary);
-  max-width:46ch;margin:var(--space-5) auto 0;
-}
 .dice-picker--hero .dice-result{margin-top:var(--space-6);}
-@media(max-width:720px){
-  .dice-picker--hero .dice-picker__sub{font-size:var(--text-body-sm);}
-}
 /* The name stays the size it is. When a roll lands below the fold, the
    script scrolls the result into view instead of shrinking the hero. */
 
