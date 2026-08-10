@@ -129,12 +129,13 @@
     die.style.transform = 'rotateX(' + x + 'deg) rotateY(' + y + 'deg)';
   }
 
-  // hero: the die lands, then the words arrive. After that every click rolls
-  // a new face, and the line under the die changes to match it.
+  // hero: the reveal. On the home page the die inside the hero belongs to the
+  // picker below, so this block only runs the intro and leaves that die alone.
   (function(){
     var hero = document.querySelector('.hero-dice');
     if(!hero) return;
-    var die = hero.querySelector('.die');
+    var picker = hero.querySelector('.dice-picker');
+    var die = picker ? null : hero.querySelector('.die');
     var word = hero.querySelector('.hero-dice__roll');
     var faces = [];
     [].forEach.call(hero.querySelectorAll('.hero-dice__words li'), function(li){

@@ -409,6 +409,14 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   letter-spacing:var(--ls-snug);color:var(--text-primary);
 }
 .section--dark .project-card__title{color:var(--text-on-dark);}
+/* The result travels with the name. Someone scanning the page for ten
+   seconds should get what the project was and what came of it in one line. */
+.project-card__result{
+  display:block;margin-top:6px;font-family:var(--font-text);
+  font-size:var(--text-body-lg);font-weight:var(--fw-regular);line-height:1.45;
+  letter-spacing:0;color:var(--text-secondary);
+}
+.section--dark .project-card__result{color:var(--text-on-dark-secondary);}
 .project-card__desc{font-size:var(--text-body);color:var(--text-secondary);line-height:var(--lh-body);}
 .section--dark .project-card__desc{color:var(--text-on-dark-secondary);}
 .project-card__meta{font-size:var(--text-caption);color:var(--text-tertiary);letter-spacing:var(--ls-snug);}
@@ -1489,12 +1497,12 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 
 .hero-dice__tagline{
   font-size:var(--text-body-lg);line-height:1.6;color:var(--text-secondary);
-  max-width:34ch;margin:var(--space-6) auto 0;
+  max-width:38ch;margin:var(--space-5) auto 0;
 }
 .hero-dice__name{
   font-family:var(--font-display);font-weight:var(--fw-light);
-  font-size:clamp(56px,13.5vw,210px);line-height:.92;letter-spacing:-.035em;
-  color:var(--text-primary);margin:var(--space-6) 0 0;white-space:nowrap;
+  font-size:clamp(48px,10vw,152px);line-height:.94;letter-spacing:-.035em;
+  color:var(--text-primary);margin:var(--space-5) 0 0;white-space:nowrap;
 }
 .hero-dice__meta{
   font-size:var(--text-body-sm);letter-spacing:.14em;text-transform:uppercase;
@@ -1543,6 +1551,32 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 .dice-picker__all{margin-top:var(--space-8);font-size:var(--text-body-sm);color:var(--text-tertiary);}
 .dice-picker__all a{color:var(--text-link);}
 .dice-map{display:none;}
+
+/* In the hero the picker is the hero: no ground of its own, no second
+   heading. The die opens the page and the result lands under the name. */
+.dice-picker--hero{padding:0;background:none;}
+.dice-picker--hero .die-stage{margin:0 auto;}
+.dice-picker--hero .dice-picker__sub{
+  font-size:var(--text-body);color:var(--text-tertiary);
+  max-width:46ch;margin:var(--space-5) auto 0;
+}
+.dice-picker--hero .dice-result{margin-top:var(--space-6);}
+@media(max-width:720px){
+  .dice-picker--hero .dice-picker__sub{font-size:var(--text-body-sm);}
+}
+/* Short laptop screens. The rolled project has to land above the fold,
+   otherwise the one thing the die is for happens off screen. */
+@media(min-width:721px) and (max-height:860px){
+  .hero-dice{padding-top:var(--space-8);padding-bottom:var(--space-6);}
+  .hero-dice__name{font-size:clamp(48px,6.4vw,104px);margin-top:var(--space-4);}
+  .hero-dice__meta{margin-top:var(--space-3);}
+  .hero-dice__tagline{margin-top:var(--space-4);max-width:56ch;}
+  .dice-picker--hero .die-stage{margin-bottom:var(--space-4);}
+  .dice-picker--hero .die{--die:80px;}
+  .dice-picker--hero .dice-picker__sub{margin-top:var(--space-4);}
+  .dice-picker--hero .dice-result{margin-top:var(--space-5);}
+  .dice-result__name{font-size:var(--text-h3);}
+}
 
 @media(prefers-reduced-motion:reduce){
   .die-stage,.die-stage::after{animation:none;}
