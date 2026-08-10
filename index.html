@@ -37,11 +37,6 @@
 
 <section class="hero-dice is-intro">
   <div class="hero-dice__inner dice-picker dice-picker--hero">
-    <button class="dice-cue" type="button">
-      <span class="dice-cue__icon" aria-hidden="true">&#8635;</span>
-      <span class="dice-cue__text">Click the dice, it picks a project</span>
-    </button>
-
     <div class="die-stage">
       <button class="die die--interactive" type="button" aria-label="Roll the dice to pick a project">
         <span class="die__face die__face--front"><span class="die__pip die__pip--mc"></span></span>
@@ -53,6 +48,9 @@
       </button>
     </div>
 
+    <button class="dice-cue" type="button">click the dice, it picks a project</button>
+
+    <p class="hero-dice__tagline hero-dice__reveal">I turn ambiguous problems into shipped products.</p>
     <h1 class="hero-dice__name hero-dice__reveal">Yidan Xu</h1>
     <p class="hero-dice__say hero-dice__reveal">
       <span class="hero-dice__say-pinyin">Yīdān Xú</span>
@@ -60,7 +58,11 @@
       <span class="hero-dice__say-en">&ldquo;ee-dahn shoo&rdquo;</span>
     </p>
     <div class="hero-dice__meta hero-dice__reveal">Product Designer &amp; Product Manager &mdash; London</div>
-    <p class="hero-dice__tagline hero-dice__reveal">I turn ambiguous problems into shipped products.</p>
+
+    <div class="btn-row hero-dice__cta hero-dice__reveal">
+      <a class="btn btn--primary" href="#work">See the work</a>
+      <a class="btn btn--link" href="#contact">Say hello<svg class="btn__arrow" width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
 
     <div class="dice-result" hidden>
       <span class="dice-result__num">Project 1</span>
