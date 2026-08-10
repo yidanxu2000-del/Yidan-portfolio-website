@@ -1878,6 +1878,18 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 .prose-more[open] .prose-more__arrow{transform:rotate(180deg);}
 .prose-more > :not(summary):last-child{padding-bottom:var(--space-5);}
 
+/* Context a reader outside the market will not have. Same card language as
+   the summary above it, so it reads as part of the brief, not a boast. */
+.prose .scale-note{
+  margin:0 0 var(--space-7);padding:var(--space-5) var(--space-6);
+  border-radius:var(--radius-lg);
+  background:var(--gray-1);border:1px solid var(--border-hairline);
+}
+.prose .scale-note p{margin:0;font-size:var(--text-body-sm);line-height:1.6;color:var(--text-secondary);}
+.prose .scale-note__src{margin-top:var(--space-3)!important;font-size:var(--text-caption);color:var(--text-tertiary);}
+.prose .scale-note__src a{color:var(--text-tertiary);text-decoration:underline;text-underline-offset:2px;}
+.prose .scale-note__src a:hover{color:var(--text-primary);}
+
 /* ---------- More work: the second tier, folded away by default ---------- */
 .more-work{background:var(--surface-primary);border-top:1px solid var(--border-hairline);}
 .more-work__summary{
