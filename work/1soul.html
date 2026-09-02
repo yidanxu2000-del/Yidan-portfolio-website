@@ -72,7 +72,6 @@
     <p>The audience at launch was narrow and specific. <strong>University women in London who want a serious relationship.</strong> The narrowness is what made every decision after it possible.</p>
 
     <h3>Market research</h3>
-    <p>I looked at the dating apps people already use.</p>
 
     <div class="logo-row" role="list">
       <span class="logo-mark" role="listitem"><img src="../assets/images/1soul/logo-tinder.png" alt="Tinder" loading="lazy"></span>
@@ -162,7 +161,6 @@
       <figcaption>Every gift already has a name on it. You just do not get to read yours yet.</figcaption>
     </figure>
 
-    <p>Three things make it work, and I took all three.</p>
 
     <div class="santa-notes">
       <div class="santa-note">
@@ -202,7 +200,7 @@
     </ul>
 
     <h3>Content planning for social</h3>
-    <p>A product like this lives or dies on how it is explained, so I wrote the video concepts and decided what each one had to do. Some showed the mechanic, because "you get a clue first" needs showing. Some carried the tone, so the account felt like a person. I also set what we would never post: nothing resembling a swipe queue, and nothing that promised a match.</p>
+    <p>I wrote the video concepts and decided what each had to do. Some showed the mechanic, because "you get a clue first" needs showing. I also set what we would never post: nothing resembling a swipe queue, and nothing that promised a match.</p>
     <p>The biggest rule came from watching the Bumble post fail. <strong>We kept the talk about AI to a minimum.</strong> Leading with the technology is what set people off there, so our posts lead with the people and the evening and let Cupid stay in the background.</p>
 
     <h2>User research</h2>
@@ -263,7 +261,6 @@
 
     <h2>Website redesign</h2>
     <p>The site had to carry the positioning. If a woman reads it and still thinks this is another swipe app, the page has failed, whatever the product does later.</p>
-    <p>The research reframed the brief. The real problem sat in trust and positioning, well underneath the visuals. Three shifts drove the redesign: soften the "AI decides for you" framing, replace investor-speak social proof with something specific and local, and give safety its own first-class section. Every change below traces back to a specific line from the interviews or the comment-mining exercise.</p>
 
     <h3>Before</h3>
     <figure class="figure">
@@ -305,7 +302,7 @@
     <p>Three rules. Keep the mechanic, because AI narrowing the field is the good part. Cut every word that implies the AI decides <em>for</em> you. Replace every vague claim with a number a sceptical dater can check.</p>
     <p>Research had called the original brand "like a spellbook," "untrustworthy," and "too heavy," so the redesign went all the way down to the colour system: sage, blush, plum and deep wine, in place of the mysterious near-black and gold.</p>
     <figure class="figure figure--narrow">
-      <img src="../assets/images/1soul/after-hero-desktop.jpg" alt="Redesigned 1soul.ai homepage hero — a warm street-photography background of a couple walking, headline 'Be seriously matched, not just casually seen', with 'Imperial College London, first launch' and '1000+ students with serious intention'" loading="lazy">
+      <img src="../assets/images/1soul/after-hero-desktop.jpg" alt="Redesigned 1soul.ai homepage hero — a couple holding hands in a park, headline 'Be seriously matched, not just casually seen', a WhatsApp number field with a 'Text Cupid' button, and 'Imperial College London, first launch'" loading="lazy">
       <figcaption>A warmer, human hero with specific, local, verifiable social proof. Starting from Imperial College London was a deliberate strategy. We launched from somewhere people already trust, a familiar university crowd, instead of an anonymous "everyone" nobody can check.</figcaption>
     </figure>
     <figure class="figure figure--narrow">
@@ -361,7 +358,6 @@
     <h2>The mechanic, in detail</h2>
     <p>The sharpest hesitation in the research belonged to women: being sent a name with no photo and no shared context, and asked to trust an AI's judgement about who to meet. Reassuring copy would not have fixed that. The mechanic had to.</p>
     <p>So when Cupid finds a match, the woman gets a small, specific hint on WhatsApp. Something like "he plays the piano, just got back from Lisbon, and laughed at the exact same thing you did". Enough to be curious, never enough to spoil it or read like a dossier. The decision of whether to go stays hers: <em>"You decide what you do, always."</em> "Girl first" is literal copy in the onboarding flow, and something we held to internally.</p>
-    <p>It turns an abstract safety promise into something she feels on the first interaction. Curiosity with consent, and an introduction that never arrives cold.</p>
 
     <figure class="figure figure--narrow">
       <img src="../assets/images/1soul/after-clue-desktop.jpg" alt="'For her eyes only — She gets a clue first' section, with a mock WhatsApp conversation from Agent Cupid revealing one hint about a match, and a 'You decide what you do, always' badge" loading="lazy">
@@ -436,26 +432,8 @@
       <li><strong>AI built.</strong> Positioning into copy, copy into Figma, Figma into shipped code. Research finding to live redesign in about twenty hours.</li>
       <li><strong>Measured.</strong> Female sign-ups up 25%, users more than tripled.</li>
     </ul>
-    <p>The AI moved fast on everything downstream of a decision. It never made the decision.</p>
-    <p><a href="../how-i-work/">The full loop, stage by stage &rarr;</a></p>
 
-    <h3>AI only gets useful once it has found the right job to sit inside</h3>
-    <p>The lesson I keep relearning here: AI only gets useful once it has found the right job to sit inside. I never ask it to "make the website better." I ask it to cluster four interview transcripts by problem type, because that removes days of manual tagging and none of my judgement. I never asked it to invent "she gets a clue first" either. That came from sitting with one participant's discomfort. I asked it to turn that decision into copy, into a Figma file, into shipped code, fast.</p>
-    <p>What this project pushed further is treating that as a repeatable loop: <strong>Claude → Figma → Claude Code → GitHub → Vercel</strong>, each stage handing off to the next with almost no idle time. A decision made in the morning can be in front of real daters the same day.</p>
-
-    <details class="prose-more">
-      <summary class="prose-more__summary">What each stage of the loop actually does <span class="prose-more__arrow" aria-hidden="true">&#8595;</span></summary>
-      <ul>
-        <li><strong>Claude, ChatGPT and Gemini, in parallel</strong>: the raw interview material through all three at once, cross-checking their reads, so anything a single model missed shows up as a gap between them.</li>
-        <li><strong>Claude</strong>: research synthesis. Four transcripts into a prioritised framework in hours instead of days, then positioning and copy grounded in that evidence.</li>
-        <li><strong>Claude &rarr; Figma</strong>: an approved direction into an editable file, so spacing, hierarchy and imagery stay reviewable before anything is built.</li>
-        <li><strong>Claude Code</strong>: the real thing. The redesign above and the logic behind Agent Cupid were built in code, well past the mockup stage.</li>
-        <li><strong>GitHub and Vercel</strong>: every round is a reviewable change, and a design decision can ship the same day.</li>
-        <li><strong>AI again, after launch</strong>: re-checking copy, flows and edge cases against how real users respond, which feeds the next research round.</li>
-      </ul>
-    </details>
-
-    <p>Research, design, build and correction all run through the same loop, with the founder, engineering and ops, rather than me sitting upstream of them. What I am building toward is a way of designing where the tool disappears into the craft. Nobody should be able to tell which parts moved fast because of AI. It should just feel considered.</p>
+    <p>The AI moved fast on everything downstream of a decision. It never made the decision. <a href="../how-i-work/">The full loop, stage by stage &rarr;</a></p>
   </div>
 </section>
 
