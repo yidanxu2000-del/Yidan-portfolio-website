@@ -1,0 +1,6 @@
+# Required for analysis, tailoring and letter writing.
+anthropic>=0.70.0
+
+# Optional. Only needed for the LinkedIn assisted-search source, which is off by
+# default. Chromium is expected to be installed already.
+# playwright>=1.44.0

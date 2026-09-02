@@ -1,0 +1,76 @@
+# Copy to config.toml and edit. config.toml is gitignored.
+# Secrets go in the environment, never in here:
+#   ANTHROPIC_API_KEY            required for analysis, tailoring, letters
+#   JOBCOPILOT_IMAP_PASSWORD     for reading LinkedIn job-alert emails
+#   JOBCOPILOT_SMTP_PASSWORD     for sending
+#   JOBCOPILOT_ADZUNA_KEY        for the Adzuna source
+
+model = "claude-opus-5"
+max_tokens = 16000
+host = "127.0.0.1"
+port = 8765
+
+# Drafts are only auto-prepared for roles scoring at or above this.
+min_score_to_draft = 65
+
+
+[sources]
+# Company job boards, read through each ATS's public JSON API. This is the
+# highest-signal source: real companies you actually want, no aggregator noise.
+# Find the token in the careers-page URL — boards.greenhouse.io/TOKEN etc.
+# The ones below are examples; replace them with companies you'd work for.
+greenhouse = ["figma", "duolingo", "monzo"]
+lever = ["palantir"]
+ashby = ["ramp", "linear"]
+workable = []
+smartrecruiters = []
+recruitee = []
+
+# Aggregators. Wider net, lower signal — the pre-filter drops the obvious noise.
+remotive_queries = ["product designer", "ux designer"]
+arbeitnow = false
+jobicy_queries = ["design"]
+
+# Adzuna covers ordinary UK listings the remote boards miss.
+# Free keys from developer.adzuna.com; put the key in JOBCOPILOT_ADZUNA_KEY.
+adzuna_app_id = ""
+adzuna_country = "gb"
+adzuna_queries = ["product designer london", "ux designer london"]
+
+
+[linkedin]
+# The supported path: create job alerts on LinkedIn, then let this read the
+# alert emails out of your own mailbox. Nothing touches LinkedIn's servers.
+# Alert emails carry the title and link but not the description, so those roles
+# arrive flagged — paste the description in before analysing.
+alerts_enabled = false
+imap_host = "outlook.office365.com"
+imap_port = 993
+imap_user = "yidanxu2000@outlook.com"
+imap_folder = "INBOX"
+lookback_days = 7
+# For outlook.com with two-factor auth you need an app password, not your
+# account password: account.microsoft.com/security -> App passwords.
+
+# Reads search results in a browser you're already signed into. Off by default:
+# automated access is against LinkedIn's User Agreement and can get an account
+# restricted. It never applies to anything — discovery only.
+assisted_enabled = false
+assisted_searches = []
+assisted_max_results = 25
+browser_profile_dir = ""
+
+
+[send]
+# "review"  — prepare everything, send nothing. Start here.
+# "approve" — send only what you approve, one application at a time.
+# There is no autonomous mode, on purpose.
+mode = "review"
+daily_cap = 10
+
+smtp_host = "smtp-mail.outlook.com"
+smtp_port = 587
+smtp_user = "yidanxu2000@outlook.com"
+from_name = "Yidan Xu"
+from_email = "yidanxu2000@outlook.com"
+bcc_self = true
