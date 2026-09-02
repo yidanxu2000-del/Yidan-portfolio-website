@@ -48,16 +48,28 @@
       </button>
     </div>
 
-    <button class="dice-cue" type="button">click the dice, it picks a project</button>
+    <button class="dice-cue" type="button">
+      <svg class="dice-cue__pointer" width="22" height="26" viewBox="0 0 22 26" fill="none" aria-hidden="true">
+        <path d="M2 2.2 2 18.4 6.1 14.6 9 21.8 12.2 20.5 9.3 13.4 14.7 13z" fill="currentColor" stroke="var(--paper)" stroke-width="1.3" stroke-linejoin="round"/>
+      </svg>
+      <span class="dice-cue__text">click me</span>
+    </button>
 
-    <p class="hero-dice__tagline hero-dice__reveal">I turn ambiguous problems into shipped products.</p>
     <h1 class="hero-dice__name hero-dice__reveal">Yidan Xu</h1>
     <p class="hero-dice__say hero-dice__reveal">
       <span class="hero-dice__say-pinyin">Yīdān Xú</span>
       <span class="hero-dice__say-sep" aria-hidden="true">&middot;</span>
       <span class="hero-dice__say-en">&ldquo;ee-dahn shoo&rdquo;</span>
     </p>
-    <div class="hero-dice__meta hero-dice__reveal">Product Designer &amp; Product Manager &mdash; London</div>
+
+    <p class="hero-dice__tagline hero-dice__reveal">I turn ambiguous problems into shipped products.</p>
+    <div class="hero-dice__meta hero-dice__reveal">Product Designer &middot; 0&ndash;1 &middot; AI &middot; London</div>
+    <ul class="hero-proof hero-dice__reveal">
+      <li><a href="https://www.jamesdysonaward.org/2025/project/urify-1" target="_blank" rel="noreferrer">James Dyson Award</a></li>
+      <li><a href="https://www.youtube.com/watch?v=qNXJFdz2LeY" target="_blank" rel="noreferrer">Reuters</a></li>
+      <li><a href="https://www.dezeen.com/2025/10/16/urify-toilet-cleaning-tablet-kidney-disease/" target="_blank" rel="noreferrer">Dezeen</a></li>
+      <li>Imperial College London</li>
+    </ul>
 
     <div class="btn-row hero-dice__cta hero-dice__reveal">
       <a class="btn btn--primary" href="#work">See the work</a>
@@ -76,12 +88,12 @@
 
     <ul class="dice-map" aria-hidden="true">
       <li data-n="1" data-href="work/1soul.html" data-name="1Soul" data-desc="In my second month designing there, female sign-ups went up about 25%, and users more than tripled."></li>
-      <li data-n="2" data-href="work/innovate-adhd.html" data-name="Innovate ADHD" data-desc="Rebuilt the ADHD assessment in two weeks, and 82% of visitors stayed to do it."></li>
-      <li data-n="3" data-href="work/urify.html" data-name="Urify" data-desc="A toilet tablet that catches kidney disease early, and runner-up for the UK James Dyson Award."></li>
+      <li data-n="2" data-href="work/urify.html" data-name="Urify" data-desc="A toilet tablet that catches kidney disease early, and runner-up for the UK James Dyson Award."></li>
+      <li data-n="3" data-href="work/innovate-adhd.html" data-name="Innovate ADHD" data-desc="Rebuilt the ADHD assessment in two weeks, and 82% of visitors stayed to do it."></li>
       <li data-n="4" data-href="work/xiaomi-auto.html" data-name="Xiaomi Auto" data-desc="A new EV cockpit, taken into Europe. Xiaomi's first car, and it outsold the Tesla Model 3 in China."></li>
       <li data-n="5" data-href="work/huawei.html" data-name="Huawei" data-desc="One design language across five B2B apps, grounded in behaviour data."></li>
       <li data-n="6" data-href="work/res.html" data-name="RES" data-desc="Users ranked ten features in a workshop, and their top five became the roadmap."></li>
-    </ul>
+  </ul>
   </div>
 </section>
 
@@ -102,23 +114,8 @@
   </div>
 </section>
 
-<!-- Innovate ADHD -->
-<section class="project-story section--dark glow-follow">
-  <div class="project-story__inner reveal">
-    <a class="project-card" href="work/innovate-adhd.html">
-      <div class="project-card__cover"><video class="project-card__cover-img" autoplay muted loop playsinline preload="metadata" poster="assets/images/innovate-adhd/homepage-hero-poster.jpg" aria-label="Screen recording of the live Innovate ADHD homepage"><source src="assets/images/innovate-adhd/homepage-hero.webm" type="video/webm"><source src="assets/images/innovate-adhd/homepage-hero.mp4" type="video/mp4"><img class="project-card__cover-img" src="assets/images/innovate-adhd/homepage-hero-poster.jpg" alt="The live Innovate ADHD homepage" loading="lazy"></video></div>
-      <div class="project-card__body">
-        <span class="project-card__meta">2025 · Health · AI · 0&ndash;1</span>
-        <h3 class="project-card__title">Innovate ADHD<span class="project-card__result">We rebuilt the ADHD assessment in two weeks, and 82% of visitors stayed to do it.</span></h3>
-        <p class="project-card__desc">A clinical form this audience is known to abandon, redesigned around how ADHD actually behaves. Product manager, the only designer, and the person doing the marketing.</p>
-        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
-    </a>
-  </div>
-</section>
-
 <!-- Urify -->
-<section class="project-story section--light">
+<section class="project-story section--dark glow-follow">
   <div class="project-story__inner reveal">
     <a class="project-card" href="work/urify.html">
       <div class="project-card__cover"><img class="project-card__cover-img" src="assets/images/urify/jda-award-product.jpg" alt="The Urify product, photographed for its James Dyson Award 2025 entry" loading="lazy"></div>
@@ -126,6 +123,21 @@
         <span class="project-card__meta">2026 · Health care · 0&ndash;1 · Startup</span>
         <h3 class="project-card__title">Urify<span class="project-card__result">A toilet tablet that catches kidney disease early, and runner-up for the UK James Dyson Award.</span></h3>
         <p class="project-card__desc">Founded solo. Covered by Reuters and Dezeen, incubated by Imperial College London, and taken to the NHS.</p>
+        <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Innovate ADHD -->
+<section class="project-story section--light">
+  <div class="project-story__inner reveal">
+    <a class="project-card" href="work/innovate-adhd.html">
+      <div class="project-card__cover"><video class="project-card__cover-img" autoplay muted loop playsinline preload="metadata" poster="assets/images/innovate-adhd/homepage-hero-poster.jpg" aria-label="Screen recording of the live Innovate ADHD homepage"><source src="assets/images/innovate-adhd/homepage-hero.webm" type="video/webm"><source src="assets/images/innovate-adhd/homepage-hero.mp4" type="video/mp4"><img class="project-card__cover-img" src="assets/images/innovate-adhd/homepage-hero-poster.jpg" alt="The live Innovate ADHD homepage" loading="lazy"></video></div>
+      <div class="project-card__body">
+        <span class="project-card__meta">2025 · Health · AI · 0&ndash;1</span>
+        <h3 class="project-card__title">Innovate ADHD<span class="project-card__result">We rebuilt the ADHD assessment in two weeks, and 82% of visitors stayed to do it.</span></h3>
+        <p class="project-card__desc">A clinical form this audience is known to abandon, redesigned around how ADHD actually behaves. Product manager, the only designer, and the person doing the marketing.</p>
         <span class="project-card__cta">View case study<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5.5 1.5M9 5L5.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
     </a>
@@ -291,9 +303,9 @@
 
 <section class="section section--dark section--tight glow-follow" id="vibe-coding">
   <div class="section__inner reveal">
-    <div class="section__eyebrow">Vibe coding</div>
-    <h2 class="section__title">I build things too.</h2>
-    <p class="section__body">I also build software for myself. I use AI to help me write the code. These are not case studies. They are small tools I use every day. I will add more here as I make them.</p>
+    <div class="section__eyebrow">Prototyping with AI</div>
+    <h2 class="section__title">I build the prototype, so the answer comes from use.</h2>
+    <p class="section__body">A mockup tells you what something looks like. It cannot tell you whether anyone comes back to it on day nine. So when a question needs real use to answer, I use AI to build the working thing and put it in front of someone. Below is one I kept using myself, which is the honest test.</p>
   </div>
   <div class="vibe-card reveal">
     <div class="vibe-card__chrome">
@@ -304,7 +316,7 @@
     </div>
     <div class="vibe-card__body">
       <h3 class="vibe-card__title">MoodGuard</h3>
-      <div class="vibe-card__meta">macOS desktop widget · Python + AppKit · built with Claude Code</div>
+      <div class="vibe-card__meta">A prototype I still use · macOS widget · built with Claude Code</div>
       <p class="vibe-card__desc">I work alone on urgent things a lot. When I do, I get absorbed and forget the rest. I forget food. I forget sleep. I forget people. So I built MoodGuard. It is a widget, and it sits on the desktop next to the stock ones. It tracks the things that recharge me. You pick your own list. Each activity gets one pill, and you tap a pill to fill it in. A big number counts the days since the last one. Go 14 days with no real recharge and it warns you. Then you can do something before a low mood lands. It is free, and you can change all of it.</p>
       <details class="vibe-shots-toggle">
         <summary>What it looks like <span class="vibe-shots-toggle__arrow">↓</span></summary>

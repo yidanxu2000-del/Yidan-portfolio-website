@@ -1497,7 +1497,7 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 .hero-dice.is-intro .die-stage{transform:scale(2.55) translateY(26px);}
 
 .hero-dice__tagline{
-  font-size:var(--text-body-lg);line-height:1.6;color:var(--text-secondary);
+  font-size:var(--text-body-lg);line-height:1.5;color:var(--text-primary);
   max-width:50ch;margin:var(--space-6) auto 0;
 }
 .hero-dice__name{
@@ -1515,10 +1515,10 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 .hero-dice__say-sep{color:var(--text-tertiary);opacity:.5;}
 .hero-dice__say-en{font-style:italic;}
 .hero-dice__meta{
-  font-size:var(--text-body-sm);letter-spacing:.14em;text-transform:uppercase;
-  color:var(--text-tertiary);margin-top:var(--space-4);
+  font-size:var(--text-body-sm);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text-tertiary);margin-top:var(--space-3);
 }
-.hero-dice__cta{margin-top:var(--space-7);}
+.hero-dice__cta{margin-top:var(--space-6);}
 .hero-dice__reveal{opacity:0;transform:translateY(14px);
   transition:opacity .9s var(--ease-out),transform .9s var(--ease-out);}
 .hero-dice.is-lit .hero-dice__reveal{opacity:1;transform:none;}
@@ -1565,22 +1565,53 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
    heading. The die opens the page and the result lands under the name. */
 .dice-picker--hero{padding:0;background:none;}
 
-/* The invitation sits under the die, in the handwriting the old hero used
-   there. It is a button, so the line rolls the dice as well as the die. */
+/* The invitation sits under the die. A pointer taps at it, because a line
+   of text alone never told anyone the die was the way in. */
 .dice-cue{
-  display:block;margin:var(--space-5) auto 0;padding:2px 6px;
+  display:inline-flex;align-items:center;gap:7px;
+  margin:var(--space-4) auto 0;padding:2px 6px;
   border:0;background:none;cursor:pointer;
   font-family:'Caveat',ui-rounded,'Segoe Script','Bradley Hand',cursive;
-  font-size:clamp(22px,2.6vw,30px);line-height:1.1;color:var(--accent);
+  font-size:clamp(20px,2.2vw,26px);line-height:1.1;color:var(--accent);
   transform:rotate(-2.5deg);
   opacity:0;transition:opacity .7s var(--ease-out),color var(--duration-fast) var(--ease-out);
 }
 .hero-dice:not(.is-intro) .dice-cue{opacity:1;}
 .dice-cue:hover{color:var(--accent-hover);}
-.dice-picker.has-rolled .dice-cue{opacity:.65;}
+.dice-cue__pointer{
+  flex:none;color:var(--accent);
+  animation:cue-tap 2.6s var(--ease-out) infinite;
+  transform-origin:2px 2px;
+}
+@keyframes cue-tap{
+  0%,62%,100%{transform:translate(0,0) scale(1);}
+  70%{transform:translate(-3px,-3px) scale(.92);}
+  78%{transform:translate(0,0) scale(1);}
+  86%{transform:translate(-2px,-2px) scale(.95);}
+}
+/* once it has been rolled the pointer has made its point */
+.dice-picker.has-rolled .dice-cue{opacity:.55;}
+.dice-picker.has-rolled .dice-cue__pointer{animation:none;}
 @media(prefers-reduced-motion:reduce){
   .dice-cue{opacity:1;}
+  .dice-cue__pointer{animation:none;}
 }
+
+/* Role, then the names people already trust. Both quiet, both scannable. */
+.hero-proof{
+  list-style:none;padding:0;
+  margin:var(--space-4) 0 0;
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:6px var(--space-4);
+  font-size:var(--text-body-sm);color:var(--text-tertiary);
+}
+.hero-proof li{display:flex;align-items:center;gap:var(--space-4);}
+.hero-proof li + li::before{
+  content:"";width:3px;height:3px;border-radius:50%;
+  background:var(--text-tertiary);opacity:.45;flex:none;
+}
+.hero-proof a{color:var(--text-secondary);text-decoration:none;border-bottom:1px solid transparent;}
+.hero-proof a:hover{color:var(--text-primary);border-bottom-color:var(--accent);}
 
 .dice-picker--hero .die-stage{margin:0 auto;}
 .dice-picker--hero .dice-result{margin-top:var(--space-6);}
