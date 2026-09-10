@@ -1978,6 +1978,11 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   font-family:var(--font-display);font-size:var(--text-body-lg);
   font-weight:var(--fw-semibold);color:var(--text-primary);
 }
+.stage__i{
+  display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;font-weight:var(--fw-semibold);
+  color:var(--accent);margin-bottom:6px;
+}
 .stage__k{
   display:block;font-size:var(--text-caption);letter-spacing:.06em;
   text-transform:uppercase;color:var(--text-tertiary);margin-bottom:6px;
@@ -2007,29 +2012,15 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   width:13px;height:13px;background:var(--accent);
   box-shadow:0 0 0 4px rgba(226,102,31,.16);
 }
-.rail__tick--now span{color:var(--accent);font-weight:var(--fw-semibold);}
-/* the arrow that curves backwards. It is the point of the diagram,
-   so it is the one thing here in the accent colour. */
-.rail__back{
-  position:relative;height:44px;max-width:220px;margin-left:8%;
+.rail__tick--now span{
+  color:var(--accent);font-weight:var(--fw-semibold);
+  top:auto;bottom:14px;
 }
-.rail__back::before{
-  content:"";position:absolute;left:0;right:0;top:0;bottom:12px;
-  border:1.5px dashed var(--accent);border-bottom:0;
-  border-radius:var(--radius-lg) var(--radius-lg) 0 0;
-  opacity:.85;
+.rail__ends{
+  display:flex;justify-content:space-between;gap:var(--space-4);
+  font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);
 }
-.rail__back::after{
-  content:"";position:absolute;left:-1px;bottom:6px;
-  border:5px solid transparent;border-top-color:var(--accent);
-}
-.rail__back b{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-40%);
-  background:var(--surface-inverse);padding:0 8px;
-  font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--accent);font-weight:var(--fw-semibold);
-}
-
+.rail__ends span:last-child{text-align:right;}
 /* 07 · the same idea again: the leap forward, and the way back */
 .prose .chain{margin-bottom:var(--space-4);}
 .leap{position:relative;height:46px;margin:0 0 var(--space-8);}
@@ -2077,7 +2068,48 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   font-size:var(--text-body-sm);line-height:1.45;color:var(--text-secondary);
 }
 .compare__col--now .compare__attrs li{color:var(--text-primary);}
+
+/* three states side by side: what I inherited, and the two changes after it */
+.compare--three{
+  grid-template-columns:repeat(3,1fr);gap:var(--space-5);
+  /* three homepages side by side need more room than the prose column has,
+     so the block reaches out into the margins where there is space for it. */
+  --breakout:clamp(0px, calc((100vw - var(--container-narrow)) / 2 - 96px), 130px);
+  margin-left:calc(-1 * var(--breakout));
+  margin-right:calc(-1 * var(--breakout));
+}
+.compare--three .compare__shot{max-height:none;height:190px;}
+/* four rows shared across the three columns, so the labels, the screenshots
+   and the reasons all sit on the same lines however the text wraps. */
+.compare--three{grid-template-rows:auto auto auto auto;}
+.compare--three .compare__col{
+  display:grid;grid-row:span 4;grid-template-rows:subgrid;align-content:start;
+}
+.prose .compare__why{
+  margin:var(--space-4) 0 var(--space-4);
+  font-size:var(--text-body-sm);line-height:1.45;
+  font-weight:var(--fw-medium);color:var(--text-primary);
+}
+.compare__col--now .compare__why{color:var(--accent);}
+.compare--three .compare__attrs{margin-top:0;}
+@media(max-width:900px){
+  .compare--three{grid-template-columns:1fr;gap:var(--space-6);--breakout:0px;}
+  .compare--three .compare__shot{max-height:280px;}
+}
 @media(max-width:720px){.compare{grid-template-columns:1fr;}}
+
+/* the two looping screen captures. Held near their native width so they stay
+   sharp, and swapped for a still frame when the reader asks for less motion. */
+.figure--anim{
+  width:fit-content;max-width:100%;margin-left:auto;margin-right:auto;
+}
+.figure--anim picture{display:block;}
+/* the captures are small files, so they are held at their own size rather
+   than blown up. The still frame underneath is free to fill the column. */
+.figure--anim img{
+  max-width:100%;height:auto;display:block;
+  border-radius:var(--radius-md);border:1px solid var(--border-hairline);
+}
 
 /* the colour system, reduced to one bar. The reasoning folds away. */
 .colour-bar{display:flex;height:40px;border-radius:var(--radius-md);overflow:hidden;margin:var(--space-5) 0 var(--space-3);}
