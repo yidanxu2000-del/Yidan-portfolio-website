@@ -1411,12 +1411,7 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   font-family:var(--font-mono);font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.08em;
 }
 
-/* ============================================================
-   Dice theme
-   Warm paper grey against Apple's cool grey. The die is a real
-   CSS 3D cube, so it can be rolled to a named face rather than
-   faked with a sprite.
-   ============================================================ */
+/* Warm paper greys, kept from the dice theme: still used by the hero ground */
 :root{
   --paper:#F7F5F1;
   --paper-2:#EFECE5;
@@ -1424,68 +1419,6 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   --cool-2:#E3E6EA;
   --die-ink:#232B36;
 }
-
-.die-stage{
-  display:grid;place-items:center;perspective:900px;
-  animation:die-bob 2.4s cubic-bezier(.4,0,.35,1) infinite;
-}
-@keyframes die-bob{
-  0%,100%{transform:translateY(0);}
-  38%{transform:translateY(calc(var(--bob, 14px) * -1));}
-  62%{transform:translateY(calc(var(--bob, 14px) * .18));}
-}
-.die-stage::after{
-  content:"";position:absolute;bottom:calc(var(--die) * -0.34);
-  width:calc(var(--die) * .78);height:calc(var(--die) * .16);border-radius:50%;
-  background:radial-gradient(ellipse,rgba(90,86,78,.20),rgba(90,86,78,0) 70%);
-  animation:die-shadow 2.4s cubic-bezier(.4,0,.35,1) infinite;
-}
-@keyframes die-shadow{
-  0%,100%{transform:scale(1);opacity:.75;}
-  38%{transform:scale(.7);opacity:.35;}
-}
-
-.die{
-  --die:120px;
-  width:var(--die);height:var(--die);position:relative;flex:none;
-  transform-style:preserve-3d;padding:0;border:0;background:none;
-  animation:die-spin 14s linear infinite;
-}
-.die--interactive{cursor:pointer;}
-@keyframes die-spin{
-  from{transform:rotateX(-14deg) rotateY(0deg);}
-  to{transform:rotateX(-14deg) rotateY(360deg);}
-}
-/* once JS takes over the transform, the idle spin has to stop or the two
-   fight each other and the die never lands on the face it was told to */
-.die.is-controlled{animation:none;transition:transform 1.5s cubic-bezier(.16,.84,.28,1);}
-.die.is-snapping{transition:transform .5s cubic-bezier(.2,1.5,.4,1);}
-
-.die__face{
-  position:absolute;inset:.5px;border-radius:calc(var(--die) * .17);
-  background:linear-gradient(148deg,#FCFBF9 0%,#F1EFEA 52%,#E4E2DB 100%);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.95),
-             inset 0 calc(var(--die) * -.05) calc(var(--die) * .11) rgba(122,117,107,.17),
-             0 0 0 1px rgba(160,156,146,.16);
-  display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);
-  padding:calc(var(--die) * .13);
-}
-.die__face--front {transform:translateZ(calc(var(--die) / 2));}
-.die__face--back  {transform:rotateY(180deg) translateZ(calc(var(--die) / 2));}
-.die__face--right {transform:rotateY(90deg)  translateZ(calc(var(--die) / 2));}
-.die__face--left  {transform:rotateY(-90deg) translateZ(calc(var(--die) / 2));}
-.die__face--top   {transform:rotateX(-90deg) translateZ(calc(var(--die) / 2));}
-.die__face--bottom{transform:rotateX(90deg)  translateZ(calc(var(--die) / 2));}
-
-.die__pip{
-  width:calc(var(--die) * .155);height:calc(var(--die) * .155);border-radius:50%;
-  align-self:center;justify-self:center;
-  background:radial-gradient(circle at 34% 30%,#54606F 0%,var(--die-ink) 68%);
-  box-shadow:inset 0 1px 1px rgba(255,255,255,.22);
-}
-.die__pip--tl{grid-area:1/1;} .die__pip--tc{grid-area:1/2;} .die__pip--tr{grid-area:1/3;}
-.die__pip--ml{grid-area:2/1;} .die__pip--mc{grid-area:2/2;} .die__pip--mr{grid-area:2/3;}
-.die__pip--bl{grid-area:3/1;} .die__pip--bc{grid-area:3/2;} .die__pip--br{grid-area:3/3;}
 
 /* ---------- Hero ---------- */
 .hero-dice{
@@ -1499,9 +1432,6 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   width:100%;max-width:var(--container-max);margin:0 auto;text-align:center;
   display:flex;flex-direction:column;align-items:center;
 }
-/* the die opens big, then settles to its resting size above the words */
-.hero-dice .die-stage{--bob:16px;transition:transform 1.1s cubic-bezier(.2,.9,.25,1);}
-.hero-dice.is-intro .die-stage{transform:scale(2.55) translateY(26px);}
 
 .hero-dice__tagline{
   font-size:var(--text-body-lg);line-height:1.5;color:var(--text-primary);
@@ -1530,80 +1460,6 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   transition:opacity .9s var(--ease-out),transform .9s var(--ease-out);}
 .hero-dice.is-lit .hero-dice__reveal{opacity:1;transform:none;}
 
-/* ---------- Project picker ---------- */
-.dice-picker{
-  padding:var(--space-9) var(--space-6);
-  background:linear-gradient(180deg, var(--cool-2) 0%, var(--paper) 48%, var(--paper-2) 100%);
-}
-.dice-picker__inner{max-width:var(--container-narrow);margin:0 auto;text-align:center;}
-.dice-picker h2{
-  font-family:var(--font-display);font-size:var(--text-h1);font-weight:var(--fw-light);
-  letter-spacing:-.025em;line-height:1.1;color:var(--text-primary);margin:var(--space-3) 0 var(--space-4);
-}
-.dice-picker .die-stage{--bob:12px;margin:0 auto var(--space-8);}
-.dice-picker .die{--die:104px;}
-
-.dice-result{
-  max-width:44ch;margin:0 auto;opacity:0;transform:translateY(10px);
-  transition:opacity .45s var(--ease-out),transform .45s var(--ease-out);
-}
-.dice-result.is-shown{opacity:1;transform:none;}
-.dice-result__num{
-  font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--accent);display:block;margin-bottom:8px;
-}
-.dice-result__name{
-  font-family:var(--font-display);font-size:var(--text-h2);font-weight:var(--fw-medium);
-  letter-spacing:-.02em;color:var(--text-primary);margin:0 0 var(--space-3);
-}
-.dice-result__desc{font-size:var(--text-body);line-height:1.6;color:var(--text-secondary);margin-bottom:var(--space-5);}
-.dice-result__actions{display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;align-items:center;}
-.dice-result__again{
-  background:none;border:0;cursor:pointer;font-family:var(--font-text);
-  font-size:var(--text-body-sm);color:var(--text-tertiary);text-decoration:underline;
-  text-underline-offset:3px;padding:0;
-}
-.dice-result__again:hover{color:var(--text-primary);}
-.dice-picker__all{margin-top:var(--space-8);font-size:var(--text-body-sm);color:var(--text-tertiary);}
-.dice-picker__all a{color:var(--text-link);}
-.dice-map{display:none;}
-
-/* In the hero the picker is the hero: no ground of its own, no second
-   heading. The die opens the page and the result lands under the name. */
-.dice-picker--hero{padding:0;background:none;}
-
-/* The invitation sits under the die. A pointer taps at it, because a line
-   of text alone never told anyone the die was the way in. */
-.dice-cue{
-  display:inline-flex;align-items:center;gap:7px;
-  margin:var(--space-4) auto 0;padding:2px 6px;
-  border:0;background:none;cursor:pointer;
-  font-family:'Caveat',ui-rounded,'Segoe Script','Bradley Hand',cursive;
-  font-size:clamp(20px,2.2vw,26px);line-height:1.1;color:var(--accent);
-  transform:rotate(-2.5deg);
-  opacity:0;transition:opacity .7s var(--ease-out),color var(--duration-fast) var(--ease-out);
-}
-.hero-dice:not(.is-intro) .dice-cue{opacity:1;}
-.dice-cue:hover{color:var(--accent-hover);}
-.dice-cue__pointer{
-  flex:none;color:var(--accent);
-  animation:cue-tap 2.6s var(--ease-out) infinite;
-  transform-origin:2px 2px;
-}
-@keyframes cue-tap{
-  0%,62%,100%{transform:translate(0,0) scale(1);}
-  70%{transform:translate(-3px,-3px) scale(.92);}
-  78%{transform:translate(0,0) scale(1);}
-  86%{transform:translate(-2px,-2px) scale(.95);}
-}
-/* once it has been rolled the pointer has made its point */
-.dice-picker.has-rolled .dice-cue{opacity:.55;}
-.dice-picker.has-rolled .dice-cue__pointer{animation:none;}
-@media(prefers-reduced-motion:reduce){
-  .dice-cue{opacity:1;}
-  .dice-cue__pointer{animation:none;}
-}
-
 /* Role, then the names people already trust. Both quiet, both scannable. */
 .hero-proof{
   list-style:none;padding:0;
@@ -1620,40 +1476,12 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 .hero-proof a{color:var(--text-secondary);text-decoration:none;border-bottom:1px solid transparent;}
 .hero-proof a:hover{color:var(--text-primary);border-bottom-color:var(--accent);}
 
-.dice-picker--hero .die-stage{margin:0 auto;}
-.dice-picker--hero .dice-result{margin-top:var(--space-6);}
-/* The name stays the size it is. When a roll lands below the fold, the
-   script scrolls the result into view instead of shrinking the hero. */
-
 @media(prefers-reduced-motion:reduce){
-  .die-stage,.die-stage::after{animation:none;}
-  .die{animation:none;transform:rotateX(-14deg) rotateY(22deg);}
-  .hero-dice.is-intro .die-stage{transform:none;}
   .hero-dice__reveal{opacity:1;transform:none;}
 }
 @media(max-width:720px){
   .hero-dice__name{font-size:clamp(44px,16vw,90px);}
-  .die{--die:96px;}
-  .dice-picker .die{--die:88px;}
 }
-
-/* the hero line swaps its last phrase as the die lands on a new face */
-.hero-dice__words{display:none;}
-.hero-dice__roll{
-  color:var(--accent);font-weight:var(--fw-medium);
-  transition:opacity .28s var(--ease-out),transform .28s var(--ease-out);
-  display:inline-block;
-}
-.hero-dice__roll.is-swapping{opacity:0;transform:translateY(-5px);}
-
-/* A little handwriting, used sparingly. It carries the warmth the rest of
-   the page deliberately does not, so it only appears twice. */
-.hero-dice__script,.dice-picker__script{
-  font-family:'Caveat',ui-rounded,'Segoe Script','Bradley Hand',cursive;
-  font-size:clamp(22px,2.6vw,30px);line-height:1;color:var(--accent);
-  margin:var(--space-5) 0 0;transform:rotate(-2.5deg);
-}
-.dice-picker__script{margin:0 0 var(--space-2);transform:rotate(-2deg);}
 
 /* A numbered run of steps, for telling a project in order */
 .prose .zero-one{list-style:none;padding:0;margin:var(--space-6) 0 var(--space-8);counter-reset:none;}
@@ -1680,8 +1508,7 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   gap:var(--space-5);margin:var(--space-6) 0 var(--space-8);
 }
 .stat-cell{
-  padding:var(--space-5);border:1px solid var(--border-hairline);
-  border-radius:var(--radius-md);background:var(--gray-1);
+  padding:var(--space-4) 0 0;border-top:1px solid var(--border-hairline);
 }
 .stat-cell__n{
   display:block;font-family:var(--font-display);font-size:var(--text-h2);
@@ -1773,16 +1600,14 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   margin:var(--space-6) 0 var(--space-8);
 }
 .chain__step{
-  flex:1 1 118px;min-width:0;padding:var(--space-4);
-  background:var(--gray-1);border:1px solid var(--border-hairline);border-radius:var(--radius-md);
+  flex:1 1 118px;min-width:0;padding:var(--space-4) 0 0;
+  border-top:1px solid var(--border-hairline);
 }
-.chain__step--end{background:var(--accent-tint);border-color:rgba(226,102,31,.28);}
 .chain__n{
   display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;
   color:var(--accent);font-weight:var(--fw-semibold);margin-bottom:var(--space-3);
 }
 .prose .chain__step p{margin:0;font-size:var(--text-body-sm);line-height:1.5;color:var(--text-secondary);}
-.chain__step--end p{color:var(--text-primary);font-weight:var(--fw-medium);}
 .chain__arrow{
   display:flex;align-items:center;color:var(--text-tertiary);font-size:18px;flex:none;
 }
@@ -2089,3 +1914,229 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 
 /* colour is reserved for the two or three places it has to mean something */
 .page-method .prose-signature-kicker{color:var(--accent);}
+
+/* ============================================================
+   1Soul case study
+   The page has to carry five diagrams and a lot of folded
+   detail. Everything here is HTML and CSS on the existing
+   tokens, so nothing new enters the visual language.
+   ============================================================ */
+
+/* An image that breaks the prose column and runs edge to edge */
+.bleed{margin:0 0 var(--space-9);}
+.bleed img{width:100%;display:block;}
+.bleed figcaption{
+  max-width:var(--container-narrow);margin:var(--space-3) auto 0;
+  padding:0 var(--space-5);
+  font-size:var(--text-body-sm);color:var(--text-tertiary);
+}
+
+/* The one line the project rests on. Given room, and no ornament. */
+.thesis{
+  max-width:var(--container-narrow);margin:0 auto;
+  padding:var(--space-8) 0 var(--space-7);
+}
+.prose .thesis p{
+  font-family:var(--font-display);
+  font-size:clamp(23px,2.5vw,33px);line-height:1.35;letter-spacing:-.015em;
+  color:var(--text-primary);margin:0 0 var(--space-5);
+}
+.prose .thesis p:last-child{
+  font-family:var(--font-text);font-size:var(--text-body-lg);
+  line-height:var(--lh-body);color:var(--text-secondary);letter-spacing:0;
+  margin-bottom:0;
+}
+
+/* 02 · the four Agent Cupid frames */
+.frames{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-5);
+  margin:var(--space-6) 0 var(--space-8);
+}
+.frame{margin:0;}
+.frame img{
+  width:100%;display:block;border-radius:var(--radius-md);
+  border:1px solid var(--border-hairline);
+}
+.prose .frame figcaption{
+  margin-top:var(--space-3);font-size:var(--text-body-sm);
+  line-height:1.45;color:var(--text-secondary);
+}
+@media(max-width:860px){.frames{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:460px){.frames{grid-template-columns:1fr;}}
+
+/* 05 · the stage map. Three columns, each saying what the product
+   claims and what the person has to believe to go along with it. */
+.stage-map{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);
+  margin:var(--space-6) 0 var(--space-5);
+}
+.stage{
+  padding:var(--space-4) 0 0;border-top:1px solid var(--border-hairline);
+  display:flex;flex-direction:column;gap:var(--space-4);
+}
+.stage__n{
+  font-family:var(--font-display);font-size:var(--text-body-lg);
+  font-weight:var(--fw-semibold);color:var(--text-primary);
+}
+.stage__k{
+  display:block;font-size:var(--text-caption);letter-spacing:.06em;
+  text-transform:uppercase;color:var(--text-tertiary);margin-bottom:6px;
+}
+.prose .stage p{
+  margin:0;font-size:var(--text-body-sm);line-height:1.5;color:var(--text-primary);
+}
+.prose .stage__believe p{color:var(--text-secondary);font-style:italic;}
+@media(max-width:760px){.stage-map{grid-template-columns:1fr;}}
+
+/* the 0 to 1 rail, with the step we took back marked on it */
+.rail{margin:0 0 var(--space-8);padding-top:var(--space-6);}
+.rail__line{
+  position:relative;height:1px;background:var(--border-hairline);
+  margin:0 6px var(--space-5);
+}
+.rail__tick{
+  position:absolute;top:50%;transform:translate(-50%,-50%);
+  width:7px;height:7px;border-radius:50%;background:var(--gray-3);
+}
+.rail__tick span{
+  position:absolute;top:14px;left:50%;transform:translateX(-50%);
+  font-family:var(--font-mono);font-size:10px;color:var(--text-tertiary);
+  white-space:nowrap;
+}
+.rail__tick--now{
+  width:13px;height:13px;background:var(--accent);
+  box-shadow:0 0 0 4px rgba(226,102,31,.16);
+}
+.rail__tick--now span{color:var(--accent);font-weight:var(--fw-semibold);}
+/* the arrow that curves backwards. It is the point of the diagram,
+   so it is the one thing here in the accent colour. */
+.rail__back{
+  position:relative;height:44px;max-width:220px;margin-left:8%;
+}
+.rail__back::before{
+  content:"";position:absolute;left:0;right:0;top:0;bottom:12px;
+  border:1.5px dashed var(--accent);border-bottom:0;
+  border-radius:var(--radius-lg) var(--radius-lg) 0 0;
+  opacity:.85;
+}
+.rail__back::after{
+  content:"";position:absolute;left:-1px;bottom:6px;
+  border:5px solid transparent;border-top-color:var(--accent);
+}
+.rail__back b{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-40%);
+  background:var(--surface-inverse);padding:0 8px;
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent);font-weight:var(--fw-semibold);
+}
+
+/* 07 · the same idea again: the leap forward, and the way back */
+.prose .chain{margin-bottom:var(--space-4);}
+.leap{position:relative;height:46px;margin:0 0 var(--space-8);}
+/* the way back. The chain above already shows the forward run, so this
+   arc is the only thing here in the accent colour. */
+.leap__back{
+  position:absolute;left:0;right:0;top:0;height:26px;
+  border:1.5px dashed var(--accent);border-top:0;
+  border-radius:0 0 var(--radius-lg) var(--radius-lg);
+}
+.leap__back::after{
+  content:"";position:absolute;left:-1px;top:-1px;
+  border:5px solid transparent;border-bottom-color:var(--accent);
+}
+.leap__back b{
+  position:absolute;left:50%;bottom:-6px;transform:translate(-50%,100%);
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent);font-weight:var(--fw-semibold);
+  white-space:nowrap;background:var(--surface-inverse);padding:0 8px;
+}
+@media(max-width:720px){.leap{display:none;}}
+
+/* 08 · the product before and after, side by side */
+.compare{
+  display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);
+  margin:var(--space-6) 0 var(--space-8);
+}
+.compare__col{margin:0;}
+.compare__k{
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text-tertiary);
+  padding-bottom:var(--space-3);margin-bottom:var(--space-4);
+  border-bottom:1px solid var(--border-hairline);
+}
+.compare__col--now .compare__k{color:var(--accent);border-bottom-color:rgba(226,102,31,.3);}
+.compare__shot{
+  width:100%;display:block;border-radius:var(--radius-md);
+  border:1px solid var(--border-hairline);
+  max-height:420px;object-fit:cover;object-position:top;
+}
+.compare__attrs{list-style:none;padding:0;margin:var(--space-4) 0 0;}
+.prose .compare__attrs li{
+  margin:0;padding:var(--space-3) 0;
+  border-top:1px solid var(--border-hairline);
+  font-size:var(--text-body-sm);line-height:1.45;color:var(--text-secondary);
+}
+.compare__col--now .compare__attrs li{color:var(--text-primary);}
+@media(max-width:720px){.compare{grid-template-columns:1fr;}}
+
+/* the colour system, reduced to one bar. The reasoning folds away. */
+.colour-bar{display:flex;height:40px;border-radius:var(--radius-md);overflow:hidden;margin:var(--space-5) 0 var(--space-3);}
+.colour-bar span{flex:1;}
+
+/* 09 · what people did, and what I changed */
+.panels{
+  display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);
+  margin:var(--space-6) 0 var(--space-8);
+}
+.panel{margin:0;}
+.panel__k{
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text-tertiary);margin-bottom:var(--space-4);
+}
+.panel img{width:100%;display:block;border-radius:var(--radius-md);border:1px solid var(--border-hairline);}
+.ph{
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  aspect-ratio:4/3;padding:var(--space-5);
+  border:1.5px dashed var(--border-hairline);border-radius:var(--radius-md);
+  background:var(--gray-1);
+}
+.prose .ph p{
+  margin:0;font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--text-tertiary);line-height:1.6;
+}
+@media(max-width:720px){.panels{grid-template-columns:1fr;}}
+
+/* 10 · every trust promise, next to the thing that carries it */
+.decisions{list-style:none;padding:0;margin:var(--space-6) 0 var(--space-8);}
+.prose .decisions li{
+  display:flex;gap:var(--space-5);align-items:center;
+  padding:var(--space-5) 0;margin:0;
+  border-top:1px solid var(--border-hairline);
+}
+.prose .decisions li:last-child{border-bottom:1px solid var(--border-hairline);}
+.decision__shot{
+  flex:0 0 92px;width:92px;height:60px;object-fit:cover;object-position:top;
+  border-radius:var(--radius-sm);display:block;
+  border:1px solid var(--border-hairline);
+}
+.decision__body{min-width:0;}
+.decision__what{
+  display:block;font-size:var(--text-body);font-weight:var(--fw-medium);
+  color:var(--text-primary);line-height:1.4;margin-bottom:4px;
+}
+.decision__why{display:block;font-size:var(--text-body-sm);color:var(--text-secondary);line-height:1.5;}
+@media(max-width:560px){
+  .prose .decisions li{flex-direction:column;align-items:flex-start;gap:var(--space-4);}
+  .decision__shot{flex:none;}
+}
+
+/* the closing figures, set as one line of plain facts */
+.tally{
+  display:flex;flex-wrap:wrap;gap:var(--space-3) var(--space-5);
+  margin:0 0 var(--space-6);padding:0;list-style:none;
+}
+.prose .tally li{
+  margin:0;font-family:var(--font-mono);font-size:var(--text-body-sm);
+  color:var(--text-secondary);
+}
+.prose .tally li strong{color:var(--accent);font-weight:var(--fw-semibold);}

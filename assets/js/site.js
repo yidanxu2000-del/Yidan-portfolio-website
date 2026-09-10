@@ -99,148 +99,6 @@
     });
   })();
 
-  // ---- dice ------------------------------------------------------------
-  // The die is a real 3D cube. Opposite faces sum to seven: 1 front, 6 back,
-  // 3 right, 4 left, 5 top, 2 bottom. To show a face, turn the cube so that
-  // face ends up pointing at the viewer.
-  var FACE_TURN = {
-    1: [0, 0],      // front, already facing us
-    6: [0, 180],    // back
-    3: [0, -90],    // right
-    4: [0, 90],     // left
-    5: [90, 0],     // top
-    2: [-90, 0]     // bottom
-  };
-
-  var ROLL_MS = 2600;
-
-  // Every roll adds whole turns on top of the last resting angle, so the die
-  // always spins forward. Reusing absolute angles would make it unwind.
-  function rollDie(die, face, spins){
-    var turn = FACE_TURN[face] || FACE_TURN[1];
-    var laps = die._laps || 0;
-    laps += (spins || 4);
-    die._laps = laps;
-    var x = turn[0] + 360 * laps;
-    var y = turn[1] + 360 * laps;
-    die.classList.add('is-controlled');
-    die.classList.remove('is-snapping');
-    void die.offsetWidth;
-    die.style.transform = 'rotateX(' + x + 'deg) rotateY(' + y + 'deg)';
-  }
-
-  // hero: the reveal. On the home page the die inside the hero belongs to the
-  // picker below, so this block only runs the intro and leaves that die alone.
-  (function(){
-    var hero = document.querySelector('.hero-dice');
-    if(!hero) return;
-    var picker = hero.querySelector('.dice-picker');
-    var die = picker ? null : hero.querySelector('.die');
-    var word = hero.querySelector('.hero-dice__roll');
-    var faces = [];
-    [].forEach.call(hero.querySelectorAll('.hero-dice__words li'), function(li){
-      faces[+li.dataset.n] = li.textContent;
-    });
-    if(reduceMotion){
-      hero.classList.remove('is-intro');
-      hero.classList.add('is-lit');
-    } else {
-      setTimeout(function(){ hero.classList.add('is-lit'); }, 850);
-      setTimeout(function(){ hero.classList.remove('is-intro'); }, 1500);
-    }
-    if(!die) return;
-    var last = 1, busy = false;
-    die.addEventListener('click', function(){
-      if(busy) return;
-      busy = true;
-      var face = 1 + Math.floor(Math.random() * 6);
-      if(face === last) face = (face % 6) + 1;   // always a visible change
-      last = face;
-      rollDie(die, face, 4);
-      if(word && faces[face]){
-        word.classList.add('is-swapping');
-        setTimeout(function(){
-          word.textContent = faces[face];
-          word.classList.remove('is-swapping');
-        }, ROLL_MS * 0.62);
-      }
-      setTimeout(function(){ busy = false; }, ROLL_MS);
-    });
-  })();
-
-  // picker: roll, show what came up, then go there
-  (function(){
-    var picker = document.querySelector('.dice-picker');
-    if(!picker) return;
-    var die = picker.querySelector('.die');
-    var result = picker.querySelector('.dice-result');
-    var elNum = picker.querySelector('.dice-result__num');
-    var elName = picker.querySelector('.dice-result__name');
-    var elDesc = picker.querySelector('.dice-result__desc');
-    var elGo = picker.querySelector('.dice-result__go');
-    var again = picker.querySelector('.dice-result__again');
-    var cue = picker.querySelector('.dice-cue');
-    var map = {};
-    [].forEach.call(picker.querySelectorAll('.dice-map li'), function(li){
-      map[li.dataset.n] = li.dataset;
-    });
-    var rolling = false;
-
-    // Face 1 is weighted 15% above each of the others, so the project I most
-    // want read comes up a little more often. Everything still lands.
-    var FACE_WEIGHT = [1.15, 1, 1, 1, 1, 1];
-    var WEIGHT_TOTAL = FACE_WEIGHT.reduce(function(a, b){ return a + b; }, 0);
-    function pickFace(){
-      var r = Math.random() * WEIGHT_TOTAL;
-      for(var i = 0; i < FACE_WEIGHT.length; i++){
-        r -= FACE_WEIGHT[i];
-        if(r < 0) return i + 1;
-      }
-      return 1;
-    }
-
-    function roll(){
-      if(rolling) return;
-      rolling = true;
-      picker.classList.add('has-rolled');
-      result.classList.remove('is-shown');
-      result.hidden = true;
-      var face = pickFace();
-      var item = map[face];
-      if(!item){ rolling = false; return; }
-      rollDie(die, face, reduceMotion ? 0 : 5);
-      setTimeout(function(){
-        elNum.textContent = 'Project ' + face;
-        elName.textContent = item.name;
-        elDesc.textContent = item.desc;
-        elGo.setAttribute('href', item.href);
-        elGo.textContent = 'Open ' + item.name;
-        result.hidden = false;
-        void result.offsetWidth;
-        result.classList.add('is-shown');
-        rolling = false;
-        // In the hero the name is deliberately large, so on shorter screens
-        // the result lands below the fold. Bring it up rather than shrink
-        // the thing the page opens with.
-        var box = result.getBoundingClientRect();
-        if(box.bottom > window.innerHeight - 8){
-          result.scrollIntoView({
-            behavior: reduceMotion ? 'auto' : 'smooth',
-            block: 'center'
-          });
-        }
-        // No automatic jump. Most people want to roll again, and being thrown
-        // into a project takes that choice away.
-      }, reduceMotion ? 60 : ROLL_MS);
-    }
-
-    // clicking the die is always 'throw it again', even while a result sits
-    // on screen
-    die.addEventListener('click', roll);
-    if(again) again.addEventListener('click', roll);
-    if(cue) cue.addEventListener('click', roll);
-  })();
-
   // swatches fill in when they reach the viewport
   (function(){
     var chips = document.querySelectorAll('.swatch');
@@ -264,6 +122,20 @@
   // continuously-moving pointer, ballooning up several nearby stars at once
   // on a screen where a 240px glow radius covers half the width
   var hasHover = !window.matchMedia || window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  // hero: the name, the line and the buttons fade in on load
+  (function(){
+    var hero = document.querySelector('.hero-dice');
+    if(!hero) return;
+    if(reduceMotion){
+      hero.classList.remove('is-intro');
+      hero.classList.add('is-lit');
+    } else {
+      setTimeout(function(){ hero.classList.add('is-lit'); }, 250);
+      setTimeout(function(){ hero.classList.remove('is-intro'); }, 900);
+    }
+  })();
+
 
   // shared twinkling star-canvas renderer, reused by the interactive
   // starfield and the ambient (decorative) hero version
