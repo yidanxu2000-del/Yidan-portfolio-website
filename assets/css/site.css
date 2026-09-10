@@ -1724,6 +1724,13 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   .tldr--two{grid-template-columns:1fr;}
 }
 
+/* the whole arc in one paragraph, for a reader who has a minute */
+.prose .prose-lede{
+  font-size:var(--text-body-lg);line-height:1.5;color:var(--text-primary);
+  padding-top:var(--space-5);margin-bottom:var(--space-8);
+  border-top:1px solid var(--border-hairline);
+}
+
 /* Depth kept one click away, so the 60-second read stays 60 seconds */
 .prose-more{
   margin:var(--space-6) 0 var(--space-8);
@@ -2109,6 +2116,22 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 .figure--anim img{
   max-width:100%;height:auto;display:block;
   border-radius:var(--radius-md);border:1px solid var(--border-hairline);
+}
+
+/* screen, then the reason for it. Wide shots, so one to a row. */
+.screens{display:grid;gap:var(--space-7);margin:var(--space-5) 0 0;}
+.screen{margin:0;}
+.screen img{
+  width:100%;display:block;border-radius:var(--radius-md);
+  border:1px solid var(--border-hairline);
+}
+.prose .screen figcaption{
+  margin-top:var(--space-4);text-align:left;
+  font-size:var(--text-body-sm);line-height:1.55;color:var(--text-secondary);
+}
+.prose .screen figcaption b{
+  display:block;margin-bottom:6px;
+  color:var(--text-primary);font-weight:var(--fw-semibold);
 }
 
 /* the colour system, reduced to one bar. The reasoning folds away. */
