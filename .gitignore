@@ -1,3 +1,13 @@
 .DS_Store
 node_modules
 vibe-coding/mood-guard/__pycache__/
+
+# Private material. A real user's relationship conversation must never be
+# committed: the repo is public. The only chat imagery on the site is the
+# Olivia mockup built from the WhatsApp UI kit.
+/private/
+*[Ww]hats[Aa]pp*.jpg
+*[Ww]hats[Aa]pp*.jpeg
+*[Ww]hats[Aa]pp*.png
+*[Ww]hats[Aa]pp*.zip
+_chat.txt
