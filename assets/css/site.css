@@ -2107,10 +2107,12 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 
 /* the two looping screen captures. Held near their native width so they stay
    sharp, and swapped for a still frame when the reader asks for less motion. */
-.figure--anim{
-  width:fit-content;max-width:100%;margin-left:auto;margin-right:auto;
+.figure--anim{margin-left:auto;margin-right:auto;}
+/* the capture keeps its own width; the caption is free to run wider, so the
+   box is sized on the picture rather than on the figure. */
+.figure--anim picture{
+  display:block;width:fit-content;max-width:100%;margin:0 auto;
 }
-.figure--anim picture{display:block;}
 /* the captures are small files, so they are held at their own size rather
    than blown up. The still frame underneath is free to fill the column. */
 .figure--anim img{
