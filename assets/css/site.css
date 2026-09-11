@@ -2139,6 +2139,13 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   border-radius:var(--radius-md);border:1px solid var(--border-hairline);
 }
 
+/* an unfolded screens block gets a quiet lead-in instead of a summary row */
+.prose h4.screens-lede{
+  font-family:var(--font-display);font-size:var(--text-body-lg);
+  font-weight:var(--fw-semibold);letter-spacing:var(--ls-snug);
+  color:var(--text-primary);margin:var(--space-7) 0 var(--space-4);
+}
+
 /* screen, then the reason for it. Wide shots, so one to a row. */
 .screens{display:grid;gap:var(--space-7);margin:var(--space-5) 0 0;}
 .screen{margin:0;}
