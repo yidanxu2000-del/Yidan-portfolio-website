@@ -2315,7 +2315,9 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   margin:0;font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;
   text-transform:uppercase;color:var(--text-tertiary);line-height:1.6;
 }
-@media(max-width:720px){.panels{grid-template-columns:1fr;}}
+/* a placeholder for something wide, like a colour scale or a message */
+.ph--wide{aspect-ratio:16/7;}
+@media(max-width:720px){.panels{grid-template-columns:1fr;}.ph--wide{aspect-ratio:4/3;}}
 
 /* 10 · every trust promise, next to the thing that carries it */
 .decisions{list-style:none;padding:0;margin:var(--space-6) 0 var(--space-8);}
