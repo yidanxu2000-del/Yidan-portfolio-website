@@ -2005,7 +2005,19 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   margin:0;font-size:var(--text-body-sm);line-height:1.5;color:var(--text-primary);
 }
 .prose .stage__believe p{color:var(--text-secondary);font-style:italic;}
-@media(max-width:760px){.stage-map{grid-template-columns:1fr;}}
+/* the three rungs, each with the moment it describes above it */
+/* .stage is a <figure> here, so the browser default side margin has to go
+   or the image sizes to 140px inside a 215px column */
+.stage-map--illustrated .stage{margin:0;padding-top:0;border-top:0;gap:var(--space-3);}
+.stage__img{
+  width:100%;height:190px;object-fit:cover;object-position:top;
+  display:block;border-radius:var(--radius-md);
+  border:1px solid var(--border-hairline);margin-bottom:var(--space-2);
+}
+@media(max-width:760px){
+  .stage-map{grid-template-columns:1fr;}
+  .stage__img{height:220px;}
+}
 
 /* the 0 to 1 rail, with the step we took back marked on it */
 .rail{margin:0 0 var(--space-8);padding-top:var(--space-6);}
