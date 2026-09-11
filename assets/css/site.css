@@ -2143,6 +2143,59 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   color:var(--text-primary);font-weight:var(--fw-semibold);
 }
 
+/* a design decision, the reason for it, and the screen that proves it */
+.decision-rows{display:grid;gap:var(--space-7);margin:var(--space-5) 0 var(--space-5);}
+.decision-row{
+  display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);
+  gap:var(--space-6);align-items:start;
+  padding-top:var(--space-5);border-top:1px solid var(--border-hairline);
+}
+.decision-row__shot{margin:0;}
+.decision-row__shot img{
+  width:100%;display:block;border-radius:var(--radius-sm);
+  border:1px solid var(--border-hairline);
+}
+.prose .decision-row__shot figcaption{
+  margin-top:var(--space-3);text-align:left;
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--text-tertiary);
+}
+.prose .decision-row__body h4{
+  font-family:var(--font-display);font-size:var(--text-body-lg);
+  font-weight:var(--fw-semibold);letter-spacing:var(--ls-snug);
+  color:var(--text-primary);margin:0 0 var(--space-3);
+}
+.prose .decision-row__body h4 ~ h4{margin-top:var(--space-5);}
+.prose .decision-row__body p{margin:0;}
+.decision-row__n{
+  font-weight:var(--fw-semibold);color:var(--accent);
+  font-size:1.12em;white-space:nowrap;
+}
+/* the click map is the whole argument, so it gets the full width */
+.decision-row--stacked{grid-template-columns:1fr;gap:var(--space-5);}
+@media(max-width:760px){
+  .decision-row{grid-template-columns:1fr;gap:var(--space-4);}
+}
+
+/* the decisions with no number behind them. One line each, no images. */
+.decision-list{list-style:none;padding:0;margin:var(--space-4) 0 var(--space-6);}
+.prose .decision-list li{
+  margin:0;padding:var(--space-3) 0;
+  border-top:1px solid var(--border-hairline);
+  font-size:var(--text-body-sm);line-height:1.5;color:var(--text-secondary);
+}
+.prose .decision-list li b{color:var(--text-primary);font-weight:var(--fw-semibold);}
+
+/* two screens side by side, for the rule that held across both versions */
+@media(min-width:761px){
+  .screens--two{grid-template-columns:1fr 1fr;gap:var(--space-6);}
+  /* the two crops are different shapes, so the box is a fixed size and each
+     image sits inside it whole rather than being cropped to fit */
+  .screens--two .screen img{
+    height:300px;object-fit:contain;background:var(--gray-1);
+  }
+}
+
 /* the colour system, reduced to one bar. The reasoning folds away. */
 .colour-bar{display:flex;height:40px;border-radius:var(--radius-md);overflow:hidden;margin:var(--space-5) 0 var(--space-3);}
 .colour-bar span{flex:1;}
