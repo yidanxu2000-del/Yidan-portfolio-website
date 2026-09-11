@@ -530,6 +530,13 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 .case-hero__title{font-family:var(--font-display);font-size:var(--text-hero);font-weight:var(--fw-semibold);letter-spacing:var(--ls-tight);line-height:var(--lh-tight);}
 .case-hero__subtitle{font-size:var(--text-body-lg);color:var(--text-on-dark-secondary);margin-top:var(--space-4);max-width:var(--container-narrow);}
 .case-hero__tags{margin-top:var(--space-5);}
+/* context a reader outside the scene would not have, kept quieter than the
+   lines above it so it explains without competing */
+.case-hero__note{
+  font-size:var(--text-body-sm);line-height:1.55;
+  color:var(--text-on-dark-secondary);
+  margin-top:var(--space-4);max-width:560px;
+}
 
 .prose-section{padding:var(--space-9) var(--space-5);}
 .prose-section--tint{background:var(--surface-secondary);}
