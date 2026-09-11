@@ -2155,6 +2155,22 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   color:var(--text-primary);font-weight:var(--fw-semibold);
 }
 
+/* a tall screenshot, kept to a window you scroll instead of a column of
+   page height. The frame is focusable so a keyboard can reach the scroll. */
+.longshot{
+  max-height:520px;overflow-y:auto;overscroll-behavior:contain;
+  border-radius:var(--radius-md);border:1px solid var(--border-hairline);
+  background:var(--gray-1);
+}
+.longshot img{width:100%;display:block;border:0;border-radius:0;}
+.longshot:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.longshot--tall{max-height:420px;}
+/* two screens to a row where there is width for it */
+@media(min-width:820px){
+  .screens{grid-template-columns:1fr 1fr;gap:var(--space-6) var(--space-5);}
+  .screens--two{grid-template-columns:1fr 1fr;}
+}
+
 /* before on the left, after on the right, one line underneath saying what
    moved and why. Held small: this is evidence, not a hero image. */
 .ba{display:grid;gap:var(--space-6);margin:var(--space-5) 0 var(--space-6);}
