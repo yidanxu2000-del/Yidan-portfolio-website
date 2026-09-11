@@ -44,32 +44,22 @@
 <section class="prose-section section--light">
   <div class="prose reveal">
 
-    <!-- HERO MEDIA SLOT.
-         The brief specifies `urify-in-use` here: the 45.8MB GIF of the tablet
-         working in a real toilet, converted to a looping WebP or an MP4 with
-         autoplay/muted/loop/playsinline under 1.5MB, plus a poster frame.
-         That file was NOT in the asset zip Yidan sent, so the product
-         photograph stands in until she sends it. Swap in a <video> here and
-         keep the caption below. -->
-    <figure class="figure">
-      <img src="../assets/images/urify/jda-award-product.jpg" alt="The Urify product: a translucent flush-in tablet package with the URIFY wordmark, the colour-changing test tablet, and a used sample" loading="lazy">
-      <figcaption>Urify as entered for the James Dyson Award. The colour is the whole interface.</figcaption>
+    <figure class="figure figure--hero-media">
+      <picture>
+        <source srcset="../assets/images/urify/urify-in-use.webp" type="image/webp" media="(prefers-reduced-motion: no-preference)">
+        <img src="../assets/images/urify/urify-in-use.jpg" alt="The Urify tablet clipped under the rim of a toilet. It goes in pale blue, and by the end of the clip the water running past it has turned it green" loading="lazy">
+      </picture>
+      <figcaption>The tablet in a working toilet. The colour is the whole interface.</figcaption>
     </figure>
 
     <h2>Why I started this</h2>
     <p>My father was diagnosed with chronic kidney disease at the middle stage. The doctors told him he had probably been ill for years already.</p>
     <p>Nobody had missed anything. The disease gives you nothing to notice. That is when I started asking why a condition this common goes undiagnosed this often, and the answer turned out to be a design problem.</p>
 
-    <!-- FATHER PHOTOGRAPH SLOT - DELIBERATELY EMPTY, AND THE FILE IS NOT IN
-         THIS REPOSITORY.
-         The brief places a photograph of Yidan's father here, beside a
-         sentence about his diagnosis. This repository is public, so any file
-         committed to it is fetchable by URL whether or not a page displays
-         it. Until Yidan confirms her father is happy for it to be public, the
-         photograph is not committed at all and the paragraph publishes on its
-         own, which is the brief's own fallback.
-         To enable it: add urify-father.jpg to assets/images/urify/ and put a
-         figure.figure--small here with that image and the caption "My father". -->
+    <figure class="figure figure--small">
+      <img src="../assets/images/urify/urify-father.jpg" alt="Yidan standing with her parents on a London street, as a Polaroid" loading="lazy">
+      <figcaption>My father. He agreed to this being here.</figcaption>
+    </figure>
 
     <h2>What I did on it</h2>
     <p>I founded Urify on my own and I am the designer on it. I ran the research, met the nephrologists, learned the chemistry and made the tablet myself, then built a team of engineers and medical collaborators around it and kept the direction.</p>

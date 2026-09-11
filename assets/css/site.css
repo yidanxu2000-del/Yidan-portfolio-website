@@ -2126,6 +2126,15 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 
 /* the two looping screen captures. Held near their native width so they stay
    sharp, and swapped for a still frame when the reader asks for less motion. */
+/* the Urify hero clip is 426px of hand-held footage, so it is held near its
+   own size rather than blown across the column */
+.figure--hero-media{max-width:560px;margin-left:auto;margin-right:auto;}
+.figure--hero-media picture{display:block;}
+.figure--hero-media img{
+  width:100%;display:block;border-radius:var(--radius-md);
+  border:1px solid var(--border-hairline);
+}
+
 .figure--anim{margin-left:auto;margin-right:auto;}
 /* the capture keeps its own width; the caption is free to run wider, so the
    box is sized on the picture rather than on the figure. */
