@@ -2143,6 +2143,39 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   color:var(--text-primary);font-weight:var(--fw-semibold);
 }
 
+/* before on the left, after on the right, one line underneath saying what
+   moved and why. Held small: this is evidence, not a hero image. */
+.ba{display:grid;gap:var(--space-6);margin:var(--space-5) 0 var(--space-6);}
+.ba__pair{
+  margin:0;padding-top:var(--space-5);
+  border-top:1px solid var(--border-hairline);
+}
+.ba__imgs{
+  display:grid;grid-template-columns:1fr auto 1fr;
+  gap:var(--space-4);align-items:center;
+}
+.ba__img{
+  width:100%;max-height:170px;object-fit:cover;object-position:top;
+  display:block;border-radius:var(--radius-sm);
+  border:1px solid var(--border-hairline);
+}
+.ba__arrow{
+  font-size:18px;line-height:1;color:var(--accent);
+  font-weight:var(--fw-semibold);
+}
+.prose .ba__pair figcaption{
+  margin-top:var(--space-4);text-align:left;
+  font-size:var(--text-body-sm);line-height:1.55;color:var(--text-secondary);
+}
+.prose .ba__pair figcaption b{color:var(--text-primary);font-weight:var(--fw-semibold);}
+/* the cream swatch is close to the page ground, so the bar takes an edge */
+.colour-bar--sm{height:56px;margin:0;border:1px solid var(--border-hairline);}
+@media(max-width:600px){
+  .ba__imgs{grid-template-columns:1fr;gap:var(--space-3);}
+  .ba__arrow{transform:rotate(90deg);justify-self:center;}
+  .ba__img{max-height:220px;}
+}
+
 /* a design decision, the reason for it, and the screen that proves it */
 .decision-rows{display:grid;gap:var(--space-7);margin:var(--space-5) 0 var(--space-5);}
 .decision-row{
