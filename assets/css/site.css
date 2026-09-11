@@ -2155,6 +2155,32 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   color:var(--text-primary);font-weight:var(--fw-semibold);
 }
 
+/* which rung of the ladder the section is about, so a reader never loses
+   their place in the three-step story */
+.rungmark{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3);
+  list-style:none;padding:0;margin:0 0 var(--space-3);
+}
+.prose .rungmark__item{
+  margin:0;padding:var(--space-3) 0 0;
+  border-top:2px solid var(--border-hairline);
+  font-size:var(--text-body-sm);line-height:1.4;color:var(--text-tertiary);
+}
+.rungmark__n{
+  display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;margin-bottom:4px;color:var(--text-tertiary);
+}
+.prose .rungmark__item.is-on{
+  border-top-color:var(--accent);color:var(--text-primary);
+  font-weight:var(--fw-medium);
+}
+.rungmark__item.is-on .rungmark__n{color:var(--accent);font-weight:var(--fw-semibold);}
+@media(max-width:600px){
+  .rungmark{grid-template-columns:1fr;gap:0;}
+  .prose .rungmark__item{padding:var(--space-2) 0;border-top-width:1px;}
+  .prose .rungmark__item.is-on{border-top-width:2px;}
+}
+
 /* a tall screenshot, kept to a window you scroll instead of a column of
    page height. The frame is focusable so a keyboard can reach the scroll. */
 .longshot{
