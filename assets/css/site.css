@@ -2197,6 +2197,66 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   .prose .rungmark__item.is-on{border-top-width:2px;}
 }
 
+/* the argument as a spine, so the reasoning is a diagram and the prose is
+   one click away rather than five paragraphs deep */
+.logic{list-style:none;padding:0;margin:var(--space-6) 0 var(--space-7);}
+.prose .logic__step{
+  position:relative;margin:0;padding:var(--space-4) 0 var(--space-5) var(--space-7);
+  border-left:2px solid var(--border-hairline);
+}
+.prose .logic__step:last-child{border-left-color:var(--accent);}
+.logic__n{
+  position:absolute;left:0;top:var(--space-4);transform:translateX(-50%);
+  width:26px;height:26px;border-radius:50%;
+  background:var(--surface-primary);border:2px solid var(--border-hairline);
+  font-family:var(--font-mono);font-size:10px;font-weight:var(--fw-semibold);
+  color:var(--text-tertiary);display:flex;align-items:center;justify-content:center;
+}
+.logic__step--end .logic__n{border-color:var(--accent);color:var(--accent);}
+.prose .logic__step > b{
+  display:block;font-family:var(--font-display);font-size:var(--text-body-lg);
+  font-weight:var(--fw-semibold);letter-spacing:var(--ls-snug);
+  color:var(--text-primary);margin-bottom:6px;
+}
+.logic__why{
+  display:block;font-size:var(--text-body-sm);line-height:1.55;color:var(--text-secondary);
+}
+.logic__branch{
+  list-style:none;padding:0;
+  margin:var(--space-4) 0 0;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);
+}
+.prose .logic__branch li{
+  margin:0;padding-top:var(--space-3);border-top:1px solid var(--border-hairline);
+  font-size:var(--text-body-sm);line-height:1.5;color:var(--text-secondary);
+}
+.prose .logic__branch li b{
+  display:block;color:var(--text-primary);font-weight:var(--fw-semibold);margin-bottom:4px;
+}
+@media(max-width:640px){
+  .logic__branch{grid-template-columns:1fr;gap:var(--space-3);}
+  .prose .logic__step{padding-left:var(--space-6);}
+}
+
+/* six sides of the job, named on the shape and evidenced underneath it */
+.hexfig{margin:var(--space-6) auto var(--space-5);max-width:420px;}
+.hex{width:100%;height:auto;display:block;}
+.hexlist{
+  list-style:none;padding:0;margin:0 0 var(--space-7);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5);
+}
+.prose .hexlist li{
+  margin:0;padding-top:var(--space-3);border-top:1px solid var(--border-hairline);
+  font-size:var(--text-body-sm);line-height:1.5;color:var(--text-secondary);
+}
+.prose .hexlist li b{
+  display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);font-weight:var(--fw-semibold);
+  margin-bottom:6px;
+}
+@media(max-width:760px){.hexlist{grid-template-columns:1fr 1fr;}}
+@media(max-width:460px){.hexlist{grid-template-columns:1fr;gap:var(--space-4);}}
+
 /* a tall screenshot, kept to a window you scroll instead of a column of
    page height. The frame is focusable so a keyboard can reach the scroll. */
 .longshot{

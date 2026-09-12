@@ -62,62 +62,136 @@
     </figure>
 
     <h2>What I did on it</h2>
-    <p>I founded Urify on my own and I am the designer on it. I ran the research, met the nephrologists, learned the chemistry and made the tablet myself, then built a team of engineers and medical collaborators around it and kept the direction.</p>
+    <p>I founded Urify on my own and incubated it through Imperial College London&rsquo;s We Innovate programme. Six sides to the job, and I held all of them.</p>
+
+    <figure class="hexfig">
+      <svg class="hex" viewBox="0 0 520 470" role="img" aria-label="A hexagon with a capability named at each of its six points: research, chemistry, product strategy, design, engineering, and taking it out">
+        <polygon points="260,28 480,150 480,320 260,442 40,320 40,150"
+                 fill="var(--accent-tint)" stroke="var(--accent)" stroke-width="1.5" opacity=".55"/>
+        <polygon points="260,120 400,198 400,272 260,350 120,272 120,198"
+                 fill="none" stroke="var(--accent)" stroke-width="1" opacity=".35"/>
+        <g fill="var(--accent)">
+          <circle cx="260" cy="28" r="4"/><circle cx="480" cy="150" r="4"/><circle cx="480" cy="320" r="4"/>
+          <circle cx="260" cy="442" r="4"/><circle cx="40" cy="320" r="4"/><circle cx="40" cy="150" r="4"/>
+        </g>
+        <g font-family="ui-monospace, monospace" font-size="15" font-weight="600" fill="#3d3a36" letter-spacing="1">
+          <text x="260" y="16"  text-anchor="middle">RESEARCH</text>
+          <text x="486" y="140" text-anchor="end">CHEMISTRY</text>
+          <text x="486" y="342" text-anchor="end">STRATEGY</text>
+          <text x="260" y="462" text-anchor="middle">DESIGN</text>
+          <text x="34"  y="342" text-anchor="start">ENGINEERING</text>
+          <text x="34"  y="140" text-anchor="start">GOING OUT</text>
+        </g>
+        <text x="260" y="230" text-anchor="middle" font-family="var(--font-display)" font-size="22" font-weight="600" fill="#3d3a36">Urify</text>
+        <text x="260" y="256" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#8a837b">FOUNDER AND DESIGNER</text>
+      </svg>
+    </figure>
+
+    <ul class="hexlist" role="list">
+      <li><b>Research</b>Eight in-depth interviews, the clinical literature, and the YouScreen trial data that decided the product&rsquo;s shape.</li>
+      <li><b>Chemistry</b>I trained as a designer, so I learned the reaction and made the tablet myself, over and over, until the colour read.</li>
+      <li><b>Strategy</b>I wrote the specification, ordered what got built, and made the business case that secured non-dilutive funding.</li>
+      <li><b>Design</b>The tablet, the colour reference scale, the result wording, the site, and the education session I ran.</li>
+      <li><b>Engineering</b>I wrote the camera prototype myself, so I could test the reading in a real bathroom.</li>
+      <li><b>Going out</b>Nephrologists, the NHS North West London ICHP team, a TEDx stage, and the London GAA clubs.</li>
+    </ul>
 
     <h2>The person is never in the room</h2>
     <p>This is the part that decided the product&rsquo;s shape. I worked it out before I made anything.</p>
 
-    <h3>The disease hides, so the person never goes</h3>
-    <p>Chronic kidney disease is quiet for years. A person can lose a lot of kidney function and feel completely fine. No pain, no warning, nothing to point at.</p>
-    <p>That matters more than it sounds. People go to a doctor because something feels wrong. If nothing feels wrong, they do not go. The disease is easy enough to detect. The hard part is <em>catching</em> it, because the person is never in the room.</p>
+    <ol class="logic" role="list">
+      <li class="logic__step">
+        <span class="logic__n">01</span>
+        <b>The disease is silent for years</b>
+        <span class="logic__why">A person can lose a lot of kidney function and feel completely fine.</span>
+      </li>
+      <li class="logic__step">
+        <span class="logic__n">02</span>
+        <b>So they never go and get checked</b>
+        <span class="logic__why">People see a doctor because something feels wrong. Nothing feels wrong.</span>
+      </li>
+      <li class="logic__step logic__step--branch">
+        <span class="logic__n">03</span>
+        <b>And every answer that exists asks them to do something new</b>
+        <ul class="logic__branch" role="list">
+          <li><b>Smart toilets</b><span>You have to buy one, and only people already watching their health do.</span></li>
+          <li><b>Test strips</b><span>You have to suspect something first. If you did, you would have gone.</span></li>
+          <li><b>Hospital screening</b><span>You have to book it, travel to it and give up a morning.</span></li>
+        </ul>
+      </li>
+      <li class="logic__step">
+        <span class="logic__n">04</span>
+        <b>Taking the cost and the travel away is not enough either</b>
+        <span class="logic__why">A free kit posted to the door, to women already flagged as overdue, came back 12.9% of the time.</span>
+      </li>
+      <li class="logic__step logic__step--end">
+        <span class="logic__n">05</span>
+        <b>So any friction at all is too much</b>
+        <span class="logic__why">The test cannot ask for four steps, or one. It has to hide inside a habit people already have.</span>
+      </li>
+    </ol>
 
-        <div class="chain">
-          <div class="chain__step"><span class="chain__n">01</span><p>The disease is silent for years.</p></div>
-          <div class="chain__arrow" aria-hidden="true">→</div>
-          <div class="chain__step"><span class="chain__n">02</span><p>The person has no symptoms.</p></div>
-          <div class="chain__arrow" aria-hidden="true">→</div>
-          <div class="chain__step"><span class="chain__n">03</span><p>So they never go and get checked.</p></div>
-          <div class="chain__arrow" aria-hidden="true">→</div>
-          <div class="chain__step chain__step--end"><span class="chain__n">04</span><p>The screening never happens at all.</p></div>
-        </div>
+    <div class="prose-stat-callout">
+      <div class="prose-stat-callout__value">12.9%</div>
+      <div class="prose-stat-callout__label">of the kits sent by direct mail came back. Around seven in eight women left them unused, even though they were already flagged as overdue for screening.<span class="prose-stat-callout__src">NHS YouScreen trial, London, HPV self-sampling posted to under-screened women</span></div>
+    </div>
 
-    <h3>So the existing answers all miss</h3>
-    <p>I went through what already exists. Each one works, and each one still fails, for the same reason. They all ask the person to do something new.</p>
-
-        <div class="fails">
-          <div class="fail">
-            <span class="fail__name">Smart toilets</span>
-            <p>You have to buy one, and they are expensive. The people who buy them are already the people who watch their health. The person I need has not thought about their kidneys once.</p>
-          </div>
-          <div class="fail">
-            <span class="fail__name">Test strips</span>
-            <p>You have to buy them, remember them, and use them. Before any of that, you have to suspect something is wrong. If you had a reason to suspect it, you would already have gone to a doctor.</p>
-          </div>
-          <div class="fail">
-            <span class="fail__name">Hospital screening</span>
-            <p>You have to book it, travel to it, and give up a morning. People do that when they feel ill. This disease does not make you feel ill.</p>
-          </div>
-        </div>
-
-    <h3>Even a free test posted to your door does not get used</h3>
-    <p>I wanted to know how small the friction has to be before people stop, so I looked at the strongest case I could find. The NHS YouScreen trial in London posted free cervical screening kits to women who had not come in for their smear test. The kit is free. It arrives at the house. You take the sample yourself.</p>
-
-        <div class="prose-stat-callout">
-          <div class="prose-stat-callout__value">12.9%</div>
-          <div class="prose-stat-callout__label">of the kits sent by direct mail came back. Around seven in eight women left them unused, even though they were already flagged as overdue for screening.<span class="prose-stat-callout__src">NHS YouScreen trial, London, HPV self-sampling posted to under-screened women</span></div>
-        </div>
-
-    <p>That number changed how I thought about the problem. Cost and access had already been removed here. What was left was the act itself: open it, do it, package it, post it. Four small steps, and around seven in eight people stopped.</p>
-    <p>So I stopped treating friction as something to reduce. <strong>Any friction at all is too much.</strong> The test has to ask for none.</p>
+    <p><strong>So the product asks the person for nothing.</strong> They buy a toilet cleaner because they want a clean toilet, and the screening happens inside a week that stays exactly the same.</p>
 
     <details class="prose-more">
-      <summary class="prose-more__summary">The same trial makes the point twice <span class="prose-more__arrow" aria-hidden="true">&#8595;</span></summary>
-      <p>When a nurse handed the kit to a woman in person, at an appointment she was already at, uptake was far higher than when it arrived in the post. Nothing about the test changed. Only the moment it reached her did.</p>
-    </details>
+      <summary class="prose-more__summary">The same argument, written out <span class="prose-more__arrow" aria-hidden="true">&#8595;</span></summary>
 
-    <h3>So the test has to hide inside a habit people already have</h3>
-    <p>Almost everyone already buys something to clean the toilet. They buy it without a thought, use it without a thought, and replace it when it runs out. Nobody has to be persuaded.</p>
-    <p><strong>So the product asks the person for nothing.</strong> They buy a toilet cleaner because they want a clean toilet, and the screening happens inside a week that stays exactly the same.</p>
+      <p>This is the part that decided the product&rsquo;s shape. I worked it out before I made anything.</p>
+
+      <h3>The disease hides, so the person never goes</h3>
+      <p>Chronic kidney disease is quiet for years. A person can lose a lot of kidney function and feel completely fine. No pain, no warning, nothing to point at.</p>
+      <p>That matters more than it sounds. People go to a doctor because something feels wrong. If nothing feels wrong, they do not go. The disease is easy enough to detect. The hard part is <em>catching</em> it, because the person is never in the room.</p>
+
+          <div class="chain">
+            <div class="chain__step"><span class="chain__n">01</span><p>The disease is silent for years.</p></div>
+            <div class="chain__arrow" aria-hidden="true">→</div>
+            <div class="chain__step"><span class="chain__n">02</span><p>The person has no symptoms.</p></div>
+            <div class="chain__arrow" aria-hidden="true">→</div>
+            <div class="chain__step"><span class="chain__n">03</span><p>So they never go and get checked.</p></div>
+            <div class="chain__arrow" aria-hidden="true">→</div>
+            <div class="chain__step chain__step--end"><span class="chain__n">04</span><p>The screening never happens at all.</p></div>
+          </div>
+
+      <h3>So the existing answers all miss</h3>
+      <p>I went through what already exists. Each one works, and each one still fails, for the same reason. They all ask the person to do something new.</p>
+
+          <div class="fails">
+            <div class="fail">
+              <span class="fail__name">Smart toilets</span>
+              <p>You have to buy one, and they are expensive. The people who buy them are already the people who watch their health. The person I need has not thought about their kidneys once.</p>
+            </div>
+            <div class="fail">
+              <span class="fail__name">Test strips</span>
+              <p>You have to buy them, remember them, and use them. Before any of that, you have to suspect something is wrong. If you had a reason to suspect it, you would already have gone to a doctor.</p>
+            </div>
+            <div class="fail">
+              <span class="fail__name">Hospital screening</span>
+              <p>You have to book it, travel to it, and give up a morning. People do that when they feel ill. This disease does not make you feel ill.</p>
+            </div>
+          </div>
+
+      <h3>Even a free test posted to your door does not get used</h3>
+      <p>I wanted to know how small the friction has to be before people stop, so I looked at the strongest case I could find. The NHS YouScreen trial in London posted free cervical screening kits to women who had not come in for their smear test. The kit is free. It arrives at the house. You take the sample yourself.</p>
+
+          <div class="prose-stat-callout">
+            <div class="prose-stat-callout__value">12.9%</div>
+            <div class="prose-stat-callout__label">of the kits sent by direct mail came back. Around seven in eight women left them unused, even though they were already flagged as overdue for screening.<span class="prose-stat-callout__src">NHS YouScreen trial, London, HPV self-sampling posted to under-screened women</span></div>
+          </div>
+
+      <p>That number changed how I thought about the problem. Cost and access had already been removed here. What was left was the act itself: open it, do it, package it, post it. Four small steps, and around seven in eight people stopped.</p>
+      <p>So I stopped treating friction as something to reduce. <strong>Any friction at all is too much.</strong> The test has to ask for none.</p>
+        <p>When a nurse handed the kit to a woman in person, at an appointment she was already at, uptake was far higher than when it arrived in the post. Nothing about the test changed. Only the moment it reached her did.</p>
+    
+
+      <h3>So the test has to hide inside a habit people already have</h3>
+      <p>Almost everyone already buys something to clean the toilet. They buy it without a thought, use it without a thought, and replace it when it runs out. Nobody has to be persuaded.</p>
+      <p><strong>So the product asks the person for nothing.</strong> They buy a toilet cleaner because they want a clean toilet, and the screening happens inside a week that stays exactly the same.</p>
+    </details>
 
     <h2>Four design problems</h2>
     <p>Deciding the shape was the easy half. These are the four things that had to be solved before the shape meant anything.</p>
