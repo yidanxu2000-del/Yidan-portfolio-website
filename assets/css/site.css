@@ -2664,3 +2664,21 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 /* the note explains the swatches above it, so it needs air rather than the
    negative lead-in .figure-note takes when it sits under a figure */
 .prose--adhd .ds + .figure-note{margin-top:var(--space-4);}
+
+/* A screen recording that waits to be asked. This page's rule is that
+   nothing moves unless a person moves it, so the still carries a button
+   and the animation only loads on click. */
+.playshot{
+  display:block;width:100%;padding:0;border:0;background:none;cursor:pointer;
+  position:relative;border-radius:var(--radius-md);overflow:hidden;
+}
+.playshot img{display:block;width:100%;border-radius:var(--radius-md);}
+.playshot__label{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  display:flex;align-items:center;gap:10px;
+  background:var(--gray-7);color:#fff;
+  font-family:var(--font-text);font-size:16px;font-weight:var(--fw-semibold);
+  padding:12px 20px;border-radius:999px;
+}
+.playshot:focus-visible{outline:3px solid var(--gray-7);outline-offset:3px;}
+.playshot.is-playing .playshot__label{display:none;}

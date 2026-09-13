@@ -104,7 +104,9 @@
     <h2 class="adhd-marker">What I did</h2>
 
     <h3>01 &middot; Gamify it, so people finish</h3>
-    <p>Each question arrives on its own, answered by dragging a slider, with a face that reacts as you move it. The eighteen-question ASRS sits underneath unchanged, so it stays clinically valid.</p>
+    <p>Each question arrives on its own, answered by dragging a slider, with a face that reacts as you move it.</p>
+    <p>Underneath is the ASRS&rsquo;s own screener, Part A: six questions out of the eighteen, scored the way a clinic scores them.</p>
+    <p>Four or more and it tells you to go and get assessed. Shorter, and still clinically valid.</p>
 
     <div class="ba ba--tall">
       <figure class="ba__pair">
@@ -113,7 +115,7 @@
           <span class="ba__arrow" aria-hidden="true">&rarr;</span>
           <img class="ba__img" src="../assets/images/innovate-adhd/quiz-flow-poster.jpg" alt="The rebuilt assessment: one question on the screen, a progress bar, a yellow face, a slider, and five answer labels" loading="lazy">
         </div>
-        <figcaption><b>The same eighteen questions.</b> All at once, then one at a time.</figcaption>
+        <figcaption><b>Eighteen at once, then six one at a time.</b> Part A is the block the clinic actually scores.</figcaption>
       </figure>
     </div>
 
@@ -129,6 +131,11 @@
     <figure class="figure">
       <img src="../assets/images/innovate-adhd/mood-scale.jpg" alt="Close-up of the reacting face at five slider positions, from a raised-brow smile on the left through to a small frown on the right" loading="lazy">
       <figcaption>The face at each slider position.</figcaption>
+    </figure>
+
+    <figure class="figure">
+      <img src="../assets/images/innovate-adhd/result-screen.jpg" alt="The result screen: the same face, the score out of six, one sentence on what it means, and two buttons, Chat with Expert and Redo, with the full scoring explained underneath" loading="lazy">
+      <figcaption>What six questions get you. A score, one sentence, one next step.</figcaption>
     </figure>
 
     <h3>02 &middot; New rules for the whole site</h3>
@@ -162,8 +169,8 @@
     <h3>The same count, on my page</h3>
 
     <figure class="figure">
-      <img src="../assets/images/innovate-adhd/homepage-hero-poster.jpg" alt="The Innovate ADHD homepage as it loads: five navigation items, one headline, two lines of text and one button" loading="lazy">
-      <figcaption>The page I built.</figcaption>
+      <img src="../assets/images/innovate-adhd/homepage-hero-poster.jpg" alt="The Innovate ADHD homepage as I left it: five navigation items, one headline, two lines of text and one button" loading="lazy">
+      <figcaption>The homepage, as I left it.</figcaption>
     </figure>
 
     <table class="cmp-table">
@@ -179,9 +186,13 @@
     <p>Every row is countable. None of it is taste.</p>
 
     <figure class="figure">
-      <img src="../assets/images/innovate-adhd/result-screen.jpg" alt="The redesigned result screen: the score stated plainly at the top, a short explanation of what it does and does not mean, and two buttons, Chat with expert and Redo" loading="lazy">
-      <figcaption>The result screen. The score, and one next step.</figcaption>
+      <button class="playshot" type="button" data-anim="../assets/images/innovate-adhd/site-now.webp">
+        <img src="../assets/images/innovate-adhd/site-now.jpg" alt="The Innovate ADHD site today: the homepage, the clinical director, the services, a symptoms section, then the assessment, then the contact form" loading="lazy">
+        <span class="playshot__label"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>Play the scroll-through</span>
+      </button>
+      <figcaption>The whole site, top to bottom.</figcaption>
     </figure>
+    <p class="figure-note">The site today, after I left. The team has moved the assessment much further down the page since, and some of the detail went with it.</p>
 
     <h2 class="adhd-marker">The result</h2>
     <p>Four people with ADHD used it, and I sat with them.</p>
@@ -364,6 +375,19 @@ document.getElementById('year').textContent = new Date().getFullYear();
     if (i < 28) s.className = 'is-on';
     grid.appendChild(s);
   }
+})();
+
+/* The scroll-through loads its animation only when somebody asks for it. */
+(function () {
+  document.querySelectorAll('.playshot').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (b.classList.contains('is-playing')) return;
+      b.querySelector('img').src = b.dataset.anim;
+      b.classList.add('is-playing');
+      b.setAttribute('aria-pressed', 'true');
+    });
+    b.setAttribute('aria-pressed', 'false');
+  });
 })();
 
 /* One live question. No score, no scoring logic, nothing stored. */
