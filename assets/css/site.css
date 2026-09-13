@@ -1,6 +1,6 @@
 /* Yidan Xu — portfolio site styles, built on the design system tokens in tokens.css */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Onest:wght@400;600&display=swap');
 
 /* The page ground. Every section paints its own background over this, so it
    only shows through where nothing else does: overscroll bounce, and any gap
@@ -2611,3 +2611,51 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   .prose--adhd .cmp figure{grid-row:auto;grid-template-rows:none;}
   .cmp-table{font-size:17px;}
 }
+
+
+/* The Innovate ADHD design system, drawn in the page rather than
+   photographed: the type scale set in its own face at its own sizes,
+   and the palette as live swatches with what each one measures. */
+.ds{margin:var(--space-5) 0 var(--space-4);}
+.ds__scale{
+  display:grid;grid-template-columns:max-content 1fr;
+  gap:var(--space-4) var(--space-5);align-items:baseline;
+  padding:var(--space-6) var(--space-5);
+  background:#FCF9F0;border:1px solid var(--border-hairline);border-radius:var(--radius-md);
+}
+.ds__spec{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;
+  color:#6E6B77;white-space:nowrap;
+}
+.prose--adhd .ds__t{
+  margin:0;font-family:'Onest',var(--font-display);
+  color:#3E3C47;line-height:1.12;overflow-wrap:anywhere;
+}
+/* faithful to the system: links are the highlight colour. The note under
+   the swatches carries what that measures. */
+.prose--adhd .ds__t--link{color:#F9AF28;text-decoration:underline;}
+
+.ds__swatches{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:auto auto auto;gap:var(--space-3);margin-top:var(--space-5);}
+.prose--adhd .ds__sw{margin:0;display:grid;grid-row:span 3;grid-template-rows:subgrid;align-content:start;}
+.ds__sw i{
+  display:block;height:84px;border-radius:var(--radius-sm);
+  border:1px solid var(--border-hairline);
+}
+.ds__sw b{
+  display:block;margin-top:var(--space-3);
+  font-family:var(--font-mono);font-size:12px;font-weight:var(--fw-semibold);color:var(--gray-7);
+}
+.ds__sw span{display:block;font-size:14px;line-height:1.4;color:var(--gray-6);}
+
+@media(max-width:760px){
+  .ds__scale{grid-template-columns:1fr;gap:var(--space-2) 0;padding:var(--space-5) var(--space-4);}
+  .ds__spec{margin-top:var(--space-4);}
+  .ds__swatches{grid-template-columns:repeat(2,1fr);grid-template-rows:none;}
+  .prose--adhd .ds__sw{grid-row:auto;grid-template-rows:none;}
+}
+
+/* Three clinic pages, so the pattern reads as a pattern. */
+.prose--adhd .cmp + p{margin-top:0;}
+/* the note explains the swatches above it, so it needs air rather than the
+   negative lead-in .figure-note takes when it sits under a figure */
+.prose--adhd .ds + .figure-note{margin-top:var(--space-4);}
