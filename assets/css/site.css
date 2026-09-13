@@ -2574,3 +2574,40 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 @media(prefers-reduced-motion:reduce){
   .adhd-rail__fill{transition:none;}
 }
+
+/* The clinic comparison. Two captures side by side, then the counts. */
+.cmp{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:var(--space-4);margin:var(--space-5) 0 var(--space-6);}
+/* the two captures are not quite the same height, so subgrid keeps the
+   captions on one line with each other */
+.prose--adhd .cmp figure{margin:0;display:grid;grid-row:span 2;grid-template-rows:subgrid;align-content:start;}
+.cmp img{
+  width:100%;display:block;border-radius:var(--radius-sm);
+  border:1px solid var(--border-hairline);background:var(--gray-1);
+}
+.prose--adhd .cmp figcaption{
+  margin-top:var(--space-3);text-align:left;font-size:16px;color:var(--gray-6);
+}
+.cmp-table{
+  width:100%;border-collapse:collapse;margin:0 0 var(--space-3);
+  font-size:19px;color:var(--gray-7);
+}
+.cmp-table th,.cmp-table td{
+  padding:var(--space-3) var(--space-2);text-align:right;
+  border-bottom:1px solid var(--border-hairline);
+}
+.cmp-table th:first-child,.cmp-table td:first-child{text-align:left;font-weight:var(--fw-regular);}
+.cmp-table thead th{
+  font-family:var(--font-mono);font-size:14px;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--gray-6);border-bottom:2px solid var(--gray-7);
+}
+.cmp-table td b{font-weight:var(--fw-semibold);color:var(--accent);}
+
+/* A generic head-and-shoulders mark on the quote cards. Nobody's photograph. */
+.qcard{display:flex;gap:var(--space-4);align-items:flex-start;}
+.qcard .testimonial__avatar{width:40px;height:40px;flex:0 0 40px;}
+
+@media(max-width:600px){
+  .cmp{grid-template-columns:1fr;grid-template-rows:none;}
+  .prose--adhd .cmp figure{grid-row:auto;grid-template-rows:none;}
+  .cmp-table{font-size:17px;}
+}
