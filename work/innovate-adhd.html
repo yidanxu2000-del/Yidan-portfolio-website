@@ -4,13 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Innovate ADHD — Yidan Xu</title>
-<meta name="description" content="A 0–1 digital platform improving access to ADHD assessment and support in the UK.">
+<meta name="description" content="An ADHD assessment that people with ADHD can finish. Product manager, only designer, and the person doing the marketing. Built from nothing, live in two weeks.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="../assets/css/tokens.css">
 <link rel="stylesheet" href="../assets/css/site.css">
-<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
+
+<!-- The rail. The product shows people how little is left, so the page does too. -->
+<div class="adhd-rail" aria-hidden="true"><div class="adhd-rail__fill" id="adhdRail"></div></div>
 
 <nav class="navbar navbar--dark">
   <div class="navbar__inner">
@@ -21,245 +23,239 @@
       <a href="../how-i-work/">How I work</a>
       <a href="../index.html#contact">Contact</a>
     </div>
-    <button class="navbar__toggle" aria-label="Menu">☰</button>
+    <button class="navbar__toggle" aria-label="Menu">&#9776;</button>
   </div>
   <div class="navbar__mobile">
     <a href="../index.html#work">Work</a>
     <a href="../about.html">About</a>
-      <a href="../how-i-work/">How I work</a>
+    <a href="../how-i-work/">How I work</a>
     <a href="../index.html#contact">Contact</a>
   </div>
 </nav>
 
-<header class="case-hero case-hero--photo case-hero--video" style="background-image:url(&#39;../assets/images/innovate-adhd/homepage-hero-poster.jpg&#39;)">
-  <video class="case-hero__video" autoplay muted loop playsinline preload="metadata" poster="../assets/images/innovate-adhd/homepage-hero-poster.jpg" aria-hidden="true" tabindex="-1">
-    <source src="../assets/images/innovate-adhd/homepage-hero.webm" type="video/webm">
-    <source src="../assets/images/innovate-adhd/homepage-hero.mp4" type="video/mp4">
-  </video>
-  <div class="case-hero__inner reveal">
-    <a class="back-link" href="../index.html#work">← All work</a>
-    <div class="case-hero__meta">2025 · Product · 0–1 · AI · UI/UX</div>
+<!-- Plain, high contrast, no picture behind the type. Nothing on this
+     page moves unless a person moves it. -->
+<header class="case-hero">
+  <div class="case-hero__inner">
+    <a class="back-link" href="../index.html#work">&larr; All work</a>
+    <div class="case-hero__meta">2025 &middot; Health &middot; 0&ndash;1</div>
     <h1 class="case-hero__title">Innovate ADHD</h1>
-    <p class="case-hero__subtitle">Remote ADHD assessment and treatment access, designed and built from 0–1. Professional support closer than you think.</p>
-    <div class="case-hero__tags tag-row" style="justify-content:flex-start">
-      <span class="tag tag--dark">Product</span>
-      <span class="tag tag--dark">0–1</span>
-      <span class="tag tag--dark">AI</span>
-    </div>
+    <p class="case-hero__subtitle">An ADHD assessment that people with ADHD can finish.</p>
+    <p class="case-hero__subtitle">Product manager, only designer, and the person doing the marketing. Built from nothing, live in two weeks.</p>
   </div>
 </header>
 
 <section class="prose-section section--light">
-  <div class="prose reveal">
-    <figure class="figure">
-      <img src="../assets/images/innovate-adhd/consult.jpg" alt="A clinician takes notes during a consultation with a patient" loading="lazy">
-      <figcaption>ADHD assessment and support has traditionally meant a slow route through clinical consultations</figcaption>
-    </figure>
+  <div class="prose prose--adhd">
 
-    <div class="tldr">
-      <div><div class="tldr__k">Problem</div><p>ADHD assessments demand the exact attention the condition takes away. People started the form and did not finish, so they never reached care.</p></div>
-      <div><div class="tldr__k">What I did</div><p>Product manager, the only designer, and the person doing the marketing. Set the strategy, rebuilt the 18-question clinical form as one question per screen, kept it clinically valid, and shipped it in two weeks.</p></div>
-      <div><div class="tldr__k">Result</div><p>82%+ engagement on the page whose whole job is a task this audience abandons. 1.3K+ page views with no marketing spend, in two weeks from concept to live.</p></div>
+    <div class="adhd-note">
+      <p>This page runs on the product&rsquo;s rules. One idea at a time, large type, high contrast, and a bar along the top showing how much is left. If it reads easily, that is the case study.</p>
     </div>
 
-    <div class="tldr">
-      <div><div class="tldr__k">As product manager</div><p>I put the assessment first. It is the step where people give up, and it is the reason so many people with ADHD go undiagnosed, or wait years to be. So I turned the research into a strategy for reaching that person through a gamified product, built on the leanest assessment model on the market, so someone can finish the assessment inside the interaction and get advice straight away.</p></div>
-      <div><div class="tldr__k">As designer</div><p>The strategy said the form is the barrier, so the design had to remove it. One question per screen, answered with a slider and a face that reacts, instead of five lines of text. Then I rebuilt the design system around ADHD cognition: higher contrast, larger type, one clear action per screen, and decorative movement stripped out.</p></div>
-      <div><div class="tldr__k">On marketing</div><p>I worked on positioning and early growth too, so the product had people arriving at it and not only a URL. I wrote how it was described and where it went out, and it reached 1.3K+ page views organically, with nothing spent on ads.</p></div>
-    </div>
-
-    <h2>Project overview</h2>
-    <p>I built the Innovate ADHD platform from nothing. It helps people in the UK get an ADHD assessment and find support. The job was to take a complicated healthcare journey and make it something a person with ADHD can actually get through, from first hearing about it to booking care.</p>
-    <p>I was the product manager. There was no separate designer and no separate PM, and no marketing person either. I did all three, and worked with the clinical team and the developers to get it live.</p>
-
-    <h2>What I did as the product manager</h2>
-    <ul>
-      <li><strong>Roadmap and delivery.</strong> I set what we were building and in what order, then ran it to a live product in two weeks. I kept the plan in one place, so the clinical team and the developers were working off the same thing.</li>
-      <li><strong>Research into requirements.</strong> I read the literature, spoke to people with ADHD, and turned what came back into a spec the developers could build against. The core finding, that the form itself is the barrier, became the brief. I chose the leanest assessment model on the market as the base, so there was less to get through before someone reached an answer.</li>
-      <li><strong>Deciding what got built first.</strong> The assessment came before everything else. It is the step where people drop out, so nothing further down the funnel mattered until it worked. Booking, content pages and the wider design system came after.</li>
-      <li><strong>Working across teams.</strong> Clinicians had to sign off that the assessment stayed valid. Developers had to ship it. I sat between the two and made the trade-offs explicit rather than quiet.</li>
-      <li><strong>Numbers after launch.</strong> I picked the metrics before we shipped, then tracked them and said which ones actually meant something. More on that below.</li>
-      <li><strong>Getting it out.</strong> I worked on positioning and early growth too, so the product had people arriving at it, and not only a URL.</li>
-    </ul>
-    <p>This project explores how design can better support people with ADHD in managing focus and daily tasks, where most existing tools tend to be too complex or not aligned with how attention actually works in real life.</p>
-    <p>I led the product design from 0 to 1, including user research, behavioural insight, interaction design and UI, while also working closely with engineers on implementation, including AI-driven prototyping (vibe coding) and refining how the product translated into a working system. I was responsible for defining the product direction and ensuring the visual and interaction design could be effectively shipped and scaled.</p>
-    <p>Alongside product work, I also contributed to marketing and early growth, helping shape how the product was positioned and communicated. Before I left the project, it had already reached and maintained an active user base.</p>
-    <p>The final outcome is a simple, behaviourally informed product that reduces friction, supports task initiation, and helps users stay more consistently engaged in their daily activities.</p>
-
-    <h2>1 · The situation: a form almost nobody with ADHD finished</h2>
-    <p>People with ADHD often struggle to complete traditional assessments due to attention challenges, cognitive overload and long, text-heavy questionnaires. This leads to:</p>
-    <ul>
-      <li>High drop-off rates during screening</li>
-      <li>Incomplete or inaccurate self-assessments</li>
-      <li>Delayed access to diagnosis and care</li>
-    </ul>
-    <p>The key challenge was: <em>how might we redesign essential clinical questionnaires so users can actually complete them?</em></p>
-
-    <figure class="figure figure--narrow">
-      <img src="../assets/images/innovate-adhd/adhd-insight-note.jpg" alt="Research note: ADHD quizzes and assessment forms are intentionally or inherently difficult to finish for individuals with ADHD because they demand the exact executive functions that are impaired by the disorder. The process often highlights the very struggles it is meant to evaluate, leading to burnout, distraction, and frustration." loading="lazy">
-      <figcaption>The core insight from research: the assessment format itself was the barrier</figcaption>
-    </figure>
-
-    <figure class="figure figure--narrow">
-      <img src="../assets/images/innovate-adhd/before-form.jpg" alt="A standard Adult ADHD Self-Report Scale (ASRS-v1.1) symptom checklist — an 18-question paper form" loading="lazy">
-      <figcaption>Original assessments with low ADHD complete rate: a dense, 18-question clinical checklist</figcaption>
-    </figure>
-
-    <h2>2 · My solution: gamification</h2>
-    <p>The old assessment was long, repetitive and hard to finish. People dropped out partway. The ones who did finish were often rushing by the end, so the answers were less reliable too.</p>
-    <p>So I broke it into small pieces. One question per screen, answered by dragging a slider instead of reading five text options. A face reacts as you move it. A progress bar shows how little is left. It feels closer to checking in with yourself than sitting an exam. The 18-question ASRS form is still all there underneath, so the clinical side holds.</p>
-    <p>Completion and conversion both went up, and the assessment itself never changed.</p>
+    <h2 class="adhd-marker">The problem</h2>
+    <p>An ADHD assessment asks for the exact attention that ADHD takes away.</p>
+    <p>Eighteen questions, five lines of text each. People started it, stopped partway, and never reached care.</p>
 
     <figure class="figure">
-      <video autoplay muted loop playsinline preload="metadata" poster="../assets/images/innovate-adhd/quiz-flow-poster.jpg" aria-label="Screen recording of the live gamified Adult ADHD Self-Report Scale: one question at a time, answered with a slider and a mood face, with a six-step progress bar along the top">
+      <img src="../assets/images/innovate-adhd/before-form.jpg" alt="The Adult ADHD Self-Report Scale (ASRS-v1.1) symptom checklist: eighteen numbered questions in a dense table, each with five tick boxes headed Never, Rarely, Sometimes, Often and Very Often" loading="lazy">
+      <figcaption>The form people were asked to finish.</figcaption>
+    </figure>
+
+    <h2 class="adhd-marker">What I did</h2>
+
+    <h3>01 &middot; I turned the questionnaire into something people finish</h3>
+    <p>Each question arrives on its own, answered by dragging a slider, with a face that reacts as you move it. The eighteen-question ASRS sits underneath unchanged, so it stays clinically valid.</p>
+
+    <div class="ba ba--tall">
+      <figure class="ba__pair">
+        <div class="ba__imgs">
+          <img class="ba__img" src="../assets/images/innovate-adhd/before-form.jpg" alt="The original eighteen-question paper checklist, all of it on one page" loading="lazy">
+          <span class="ba__arrow" aria-hidden="true">&rarr;</span>
+          <img class="ba__img" src="../assets/images/innovate-adhd/quiz-flow-poster.jpg" alt="The rebuilt assessment: one question on the screen, a progress bar, a yellow face, a slider, and five answer labels" loading="lazy">
+        </div>
+        <figcaption><b>The same eighteen questions.</b> All at once, then one at a time.</figcaption>
+      </figure>
+    </div>
+
+    <figure class="figure">
+      <video controls preload="none" poster="../assets/images/innovate-adhd/quiz-flow-poster.jpg" aria-label="Screen recording of the live assessment: one question at a time, answered with a slider and a face that reacts, with a six-step progress bar along the top">
         <source src="../assets/images/innovate-adhd/quiz-flow.webm" type="video/webm">
         <source src="../assets/images/innovate-adhd/quiz-flow.mp4" type="video/mp4">
-        <img src="../assets/images/innovate-adhd/quiz-flow-poster.jpg" alt="The gamified ADHD self-report scale, one question at a time" loading="lazy">
+        <img src="../assets/images/innovate-adhd/quiz-flow-poster.jpg" alt="The rebuilt assessment, one question at a time" loading="lazy">
       </video>
-      <figcaption>The whole assessment, start to finish. One question per screen, answered by dragging a slider rather than reading five text options, with a face that reacts as you move it and a progress bar that shows how little is left. The 18-question ASRS form is still all there underneath.</figcaption>
-    </figure>
-
-    <figure class="figure figure--narrow">
-      <img src="../assets/images/innovate-adhd/mood-scale.jpg" alt="Five simple emoji-style faces ranging from happy to distressed, used as a lightweight mood-check UI element" loading="lazy">
-      <figcaption>Bite-sized, low-pressure interactions replaced multi-page text questions</figcaption>
-    </figure>
-
-    <h3>AI in the workflow: a tool chain, not a gimmick</h3>
-    <p>The two-week concept-to-live timeline only worked because AI sat inside a deliberate pipeline, not as one-off novelty: prototype fast, build with AI in the loop, use AI again to check the work before real users ever saw it, then stay hands-on in the code myself.</p>
-
-    <div class="flow-diagram" role="list">
-      <div class="flow-diagram__step" role="listitem">
-        <div class="flow-diagram__step-num">01</div>
-        <div class="flow-diagram__step-title">Figma prototypes</div>
-        <div class="flow-diagram__step-desc">Fast, low-fidelity concepts shared early so developers were building the right thing from day one.</div>
-      </div>
-      <div class="flow-diagram__arrow" aria-hidden="true"></div>
-      <div class="flow-diagram__step" role="listitem">
-        <div class="flow-diagram__step-num">02</div>
-        <div class="flow-diagram__step-title">AI-driven build</div>
-        <div class="flow-diagram__step-desc">Vibe coding alongside the prototypes, working closely with developers to translate ideas into functional features fast.</div>
-      </div>
-      <div class="flow-diagram__arrow" aria-hidden="true"></div>
-      <div class="flow-diagram__step" role="listitem">
-        <div class="flow-diagram__step-num">03</div>
-        <div class="flow-diagram__step-title">AI-enabled validation</div>
-        <div class="flow-diagram__step-desc">A second layer of validation, testing usability and interaction clarity before it ever reached real users.</div>
-      </div>
-      <div class="flow-diagram__arrow" aria-hidden="true"></div>
-      <div class="flow-diagram__step" role="listitem">
-        <div class="flow-diagram__step-num">04</div>
-        <div class="flow-diagram__step-title">Claude-assisted implementation</div>
-        <div class="flow-diagram__step-desc">Used to directly refine and modify developer-written code, staying hands-on beyond design.</div>
-      </div>
-    </div>
-
-    <p><strong>AI-driven build &amp; delivery</strong>: I led an AI-driven workflow, using vibe coding alongside Figma prototypes to work closely with developers, rapidly translating ideas into functional features. This allowed us to iterate quickly and move from concept to a live product within just two weeks.</p>
-    <p><strong>AI-enabled validation</strong>: I then introduced AI as a second layer of validation, using it to test usability, interaction clarity, and overall user experience. This helped ensure the product was genuinely intuitive to use, and not merely functional, before it reached real users.</p>
-    <p><strong>AI-assisted implementation</strong>: I used Claude to directly refine and modify developer-written code, enabling me to stay hands-on beyond design and ensure the final implementation precisely matched the intended user experience.</p>
-
-    <div class="figure-grid figure-grid--3" style="max-width:var(--container-narrow)">
-      <figure class="figure" style="margin-bottom:0">
-        <img src="../assets/images/innovate-adhd/ai-tools-1.jpg" alt="Lovable, Figma and Figma Make logos" loading="lazy">
-      </figure>
-      <figure class="figure" style="margin-bottom:0">
-        <img src="../assets/images/innovate-adhd/ai-tools-3-claude.jpg" alt="Claude logo" loading="lazy">
-      </figure>
-      <figure class="figure" style="margin-bottom:0">
-        <img src="../assets/images/innovate-adhd/ai-tools-2.jpg" alt="ChatGPT and Gemini logos" loading="lazy">
-      </figure>
-    </div>
-
-    <h2>3 · Updated the design system: designing for ADHD cognition</h2>
-    <p><strong>The problem I found:</strong> the site had been designed the way most sites are designed, for a neurotypical reader. Restrained contrast, small type, dense paragraphs, subtle links: the visual language that usually reads as tasteful. For this audience it's the opposite of accessible. A design that asks you to hunt for the next step is asking for exactly the executive function ADHD makes expensive, which is the same trap the original assessment fell into.</p>
-    <p>So I rebuilt the design system around what this audience actually needs, not what looks understated:</p>
-    <ul>
-      <li><strong>Bolder, higher-contrast colour</strong> instead of muted neutrals, so the eye lands where it should without effort</li>
-      <li><strong>Unmistakable visual guidance</strong>: one clear next action per screen, progress made visible, and the path through the flow never left to inference</li>
-      <li><strong>Larger type and more generous spacing</strong>, trading information density for readability</li>
-      <li><strong>Fewer distractions</strong>: unnecessary animation and decorative movement stripped out, so nothing competes with the task</li>
-    </ul>
-    <p><strong>Attention-focused design for ADHD users</strong>: I designed the platform specifically around ADHD user needs, creating a more focus-friendly and cognitively accessible interface. This included larger, more readable typography, a clear and guided structure, reduced distractions such as unnecessary animations, and a strong visual hierarchy to help users stay on track. Compared with conventional UI patterns, these choices intentionally prioritise clarity and attention over density and aesthetics.</p>
-    <p>These design decisions were grounded in accessibility and cognitive principles, aiming to reduce cognitive load and better support sustained attention. The overall experience was also validated through accessibility checks, including contrast and readability standards, ensuring it aligns with established guidelines while being genuinely usable for this user group.</p>
-
-    <figure class="figure">
-      <img src="../assets/images/innovate-adhd/brand-type.jpg" alt="Innovate ADHD type scale and colour palette — cream, light grey, tan, orange and dark navy swatches" loading="lazy">
-      <figcaption>Type scale and colour system, tuned for readability over density</figcaption>
+      <figcaption>The whole assessment, start to finish.</figcaption>
     </figure>
 
     <figure class="figure">
-      <img src="../assets/images/innovate-adhd/result-screen.jpg" alt="Innovate ADHD app screen showing an adult ADHD test result, a low-likelihood score, and 'Chat with expert' / 'Redo' actions" loading="lazy">
-      <figcaption>The redesigned result screen: the score stated plainly, what it does and doesn't mean spelled out underneath, and one obvious next step, where the old screen gave a page of options</figcaption>
+      <img src="../assets/images/innovate-adhd/mood-scale.jpg" alt="Close-up of the reacting face at five slider positions, from a raised-brow smile on the left through to a small frown on the right" loading="lazy">
+      <figcaption>The face at each slider position.</figcaption>
     </figure>
 
-    <h2>4 · Results: completion, conversion, engagement</h2>
-    <div class="stat-row reveal" style="margin:var(--space-6) 0 var(--space-7)">
-      <div class="stat"><div class="stat__value">1.3K+</div><div class="stat__label">Page views shortly after launch, no marketing spend</div></div>
-      <div class="stat"><div class="stat__value">82%+</div><div class="stat__label">Engagement rate</div></div>
-      <div class="stat"><div class="stat__value">2 wks</div><div class="stat__label">Concept to live product</div></div>
+    <h3>02 &middot; I set the rules the whole site had to follow</h3>
+    <p>The site had been designed the way most sites are, for a neurotypical reader. Restrained contrast, small type, dense paragraphs, subtle links.</p>
+    <p>So I wrote new rules. A bold highlight colour, so the eye lands where it should. Larger type, more space. One clear action on a screen. Animation only where it tells you something.</p>
+
+    <figure class="figure">
+      <img src="../assets/images/innovate-adhd/brand-type.jpg" alt="The Innovate ADHD type scale and colour system: cream, light grey, tan, orange and dark navy swatches with the heading and body sizes set against them" loading="lazy">
+      <figcaption>The type scale and colour the site was rebuilt on.</figcaption>
+    </figure>
+
+    <figure class="figure">
+      <img src="../assets/images/innovate-adhd/result-screen.jpg" alt="The redesigned result screen: the score stated plainly at the top, a short explanation of what it does and does not mean, and two buttons, Chat with expert and Redo" loading="lazy">
+      <figcaption>The result screen. The score, what it means, one next step.</figcaption>
+    </figure>
+
+    <h2 class="adhd-marker">The result</h2>
+    <p>Four people with ADHD used it, and I sat with them.</p>
+
+    <div class="qcards">
+      <blockquote class="qcard"><p>&ldquo;It felt easier. Other sites have so much text that I have no idea where to look.&rdquo;</p></blockquote>
+      <blockquote class="qcard"><p>&ldquo;The interaction is actually interesting. The old ones are so dull. I finished it, and I got my result quickly.&rdquo;</p></blockquote>
+      <blockquote class="qcard"><p>&ldquo;This would work for the full twenty-four-question version. I think far fewer people would give up halfway.&rdquo;</p></blockquote>
+      <blockquote class="qcard"><p>&ldquo;Cute site. I like it.&rdquo;</p></blockquote>
     </div>
-
-    <h3>Which numbers I chose to watch, and why</h3>
-    <p>I picked these before we launched, so nobody could pick a flattering one afterwards. The funnel here has three steps, and each one needed its own measure.</p>
-    <ul>
-      <li><strong>Do people arrive?</strong> Page views and search position. This tells you the positioning found someone. It says nothing about whether the product works.</li>
-      <li><strong>Do they start, and do they finish?</strong> Engagement rate on the assessment page. This is the one that matters. The whole product rests on a task this audience is known to abandon, so completion is the real test.</li>
-      <li><strong>Do they come back, or go further?</strong> Conversion into booking. Weakest of the three at this stage, because the run was short.</li>
-    </ul>
-    <p>Saying which measure answers which question is most of the work. A page-view number on its own would have made this project look better than it was.</p>
-
-    <h3>The number that mattered most</h3>
-    <p>The whole project rested on one question: would people with ADHD actually reach the end of an ADHD assessment? Page views tell you the marketing worked. Completion tells you the design worked. That's why the engagement rate is the figure I watch: <strong>82%+ of visitors interacted rather than bounced</strong>, on a page whose entire job is a task the audience is known to abandon.</p>
-    <p>The rest of the numbers are early-stage, and I'd rather say so than dress them up. 1.3K+ page views, with no marketing spend, tell me the positioning found people. A 32.3% click-through rate at an average search position of 3.7 says the ones who found it were the right ones, not incidental traffic. What none of it proves yet is clinical outcome, which needs a longer run and a controlled comparison against the original form.</p>
 
     <div class="testimonial">
       <div class="testimonial__avatar" aria-hidden="true"></div>
       <div>
-        <p class="testimonial__quote">"The logic is really clear, and the thing that made me happy is that I actually finished the basic ADHD test. I like it. It's genuinely fun."</p>
+        <p class="testimonial__quote">&ldquo;The logic is really clear, and the thing that made me happy is that I actually finished the basic ADHD test. I like it. It&rsquo;s genuinely fun.&rdquo;</p>
         <div class="testimonial__cite">A teammate who has ADHD, testing the live assessment. Anonymised at their request.</div>
       </div>
     </div>
 
-    <p>That one is worth more to me than the analytics. It came from someone on our own team who has ADHD, testing the flow as a user, and it names both things the redesign was aiming at: the structure was legible, and finishing felt good. Enjoyment counts as a hard metric here. For this audience it <em>is</em> the completion mechanism.</p>
+    <p>Five people, and all five reached the end. Each described the same thing: easy to move through, and they knew quickly whether they needed help. That is the whole job.</p>
+
+    <h3>What people used</h3>
+
+    <div class="dotfig">
+      <div class="dots100" role="img" aria-label="A hundred squares. Twenty-eight are filled in orange and seventy-two are pale, showing that twenty-eight in every hundred clicks landed on the slider."></div>
+      <div class="dotfig__side">
+        <span class="dotfig__n">28%</span>
+        <p>of all clicks on the page landed on the assessment slider.</p>
+      </div>
+    </div>
+
+    <p>It was the most-used thing on the page, and that page is the one the product depends on.</p>
+    <p class="figure-note">Microsoft Clarity, on the live site after launch.</p>
+
+    <figure class="figure">
+      <img src="../assets/images/innovate-adhd/search-console.jpg" alt="Google Search Console performance panel: 194 total clicks, 601 total impressions, 32.3 per cent average click-through rate and 3.7 average position" loading="lazy">
+      <figcaption>194 clicks, 601 impressions, 32.3% click-through, 3.7 average position. Google Search Console, three months after launch. No advertising.</figcaption>
+    </figure>
 
     <div class="figure-grid">
       <figure class="figure">
-        <video autoplay muted loop playsinline preload="metadata" poster="../assets/images/innovate-adhd/homepage-hero-poster.jpg" aria-label="Screen recording of the live Innovate ADHD homepage">
-          <source src="../assets/images/innovate-adhd/homepage-hero.webm" type="video/webm">
-          <source src="../assets/images/innovate-adhd/homepage-hero.mp4" type="video/mp4">
-          <img src="../assets/images/innovate-adhd/homepage-hero-poster.jpg" alt="The live Innovate ADHD homepage" loading="lazy">
-        </video>
-        <figcaption>The live homepage, running the updated design system</figcaption>
+        <img src="../assets/images/innovate-adhd/homepage-hero-poster.jpg" alt="The live Innovate ADHD homepage, running the rebuilt design system" loading="lazy">
+        <figcaption>The live homepage, on the new rules.</figcaption>
       </figure>
       <figure class="figure">
-        <video autoplay muted loop playsinline preload="metadata" poster="../assets/images/innovate-adhd/team-scroll-poster.jpg" aria-label="Screen recording of the live Meet Our Team page, scrolling through clinician profiles">
-          <source src="../assets/images/innovate-adhd/team-scroll.webm" type="video/webm">
-          <source src="../assets/images/innovate-adhd/team-scroll.mp4" type="video/mp4">
-          <img src="../assets/images/innovate-adhd/team-scroll-poster.jpg" alt="The live Meet Our Team page" loading="lazy">
-        </video>
-        <figcaption>Named clinicians with real credentials, bookable in the same flow: the trust step between finishing a test and asking for help</figcaption>
+        <img src="../assets/images/innovate-adhd/team-scroll-poster.jpg" alt="The live Meet Our Team page, showing named clinicians with their credentials" loading="lazy">
+        <figcaption>Named clinicians, bookable in the same flow.</figcaption>
       </figure>
     </div>
 
-    <div class="figure-grid">
-      <figure class="figure">
-        <img src="../assets/images/innovate-adhd/analytics.jpg" alt="Analytics panel showing 149 clicks (up 67%) and 452 impressions (up 63%)" loading="lazy">
-        <figcaption>Early traction: clicks and impressions in the first weeks after launch</figcaption>
-      </figure>
-      <figure class="figure">
-        <img src="../assets/images/innovate-adhd/search-console.jpg" alt="Google Search Console performance panel showing 194 total clicks and 601 total impressions over three months, a 32.3% average CTR and 3.7 average position" loading="lazy">
-        <figcaption>Continued growth over the following months</figcaption>
-      </figure>
-    </div>
+    <p>What none of this proves yet is clinical outcome. That needs a longer run against the original form.</p>
 
-    <h3>What I'd do next</h3>
-    <p>Before I left, the product had an active user base and better completion and conversion than the original flow. The obvious next step is the one I didn't get to: instrument the assessment itself, question by question, so drop-off can be traced to a specific screen rather than inferred from a page-level number, and run the gamified version against the original form with real users on both sides. That turns "engagement improved" into a defensible claim about clinical completion.</p>
+    <h3>One question from it, working</h3>
+
+    <div class="tryq">
+      <div class="tryq__steps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="tryq__q" id="tryqQ">&ldquo;How often do you have problems remembering appointments or obligations?&rdquo;</p>
+
+      <svg class="tryq__face" viewBox="0 0 100 100" role="img" aria-labelledby="tryqFaceT">
+        <title id="tryqFaceT">A face that reacts as the slider moves</title>
+        <circle id="tryqHead" cx="50" cy="50" r="32" fill="#F0A03C"></circle>
+        <g stroke="#33312E" stroke-width="3.4" stroke-linecap="round" fill="none">
+          <path id="tryqBrowL" d="M36 37.5 L46 32.5"></path>
+          <path id="tryqBrowR" d="M56 32.5 L66 37.5"></path>
+          <path d="M48 44 q6 4 0 9" stroke-width="3.2"></path>
+          <path id="tryqMouth" d="M39 60 Q50 70 61 60"></path>
+        </g>
+      </svg>
+
+      <label class="visually-hidden" for="tryqSlider">How often, from never to very often</label>
+      <input class="tryq__slider" id="tryqSlider" type="range" min="0" max="4" step="1" value="0"
+             aria-describedby="tryqQ" aria-valuetext="Never">
+
+      <div class="tryq__opts" id="tryqOpts" aria-hidden="true">
+        <span class="is-on">Never</span><span>Rarely</span><span>Sometimes</span><span>Often</span><span>Very Often</span>
+      </div>
+    </div>
+    <p class="figure-note">Eighteen of these, one at a time. Nothing here is scored or stored.</p>
+
+    <h2 class="adhd-marker">How I think about this</h2>
+    <p>I design for ADHD.</p>
+    <p>Executive function is the expensive part.</p>
+    <p>Anything that asks a person to hold a plan in their head, hunt for the next step, or push through a wall of text charges them where they have the least to spend.</p>
+    <p>The usual answer is to ask somebody to concentrate harder. I build the thing so that concentrating is not what it costs.</p>
+    <p>Putting the next step where somebody finds it without going looking. Letting a person finish in eighteen small pieces.</p>
+    <p>This page was built the same way, which is the only argument for it I trust.</p>
+
+    <details class="prose-more">
+      <summary class="prose-more__summary">How I worked with AI on this <span class="prose-more__arrow" aria-hidden="true">&#8595;</span></summary>
+      <p>Two weeks from concept to live only worked because AI sat inside a deliberate chain.</p>
+
+      <div class="flow-diagram" role="list">
+        <div class="flow-diagram__step" role="listitem">
+          <div class="flow-diagram__step-num">01</div>
+          <div class="flow-diagram__step-title">Figma prototypes</div>
+          <div class="flow-diagram__step-desc">Fast, low-fidelity concepts shared early, so developers were building the right thing from day one.</div>
+        </div>
+        <div class="flow-diagram__arrow" aria-hidden="true"></div>
+        <div class="flow-diagram__step" role="listitem">
+          <div class="flow-diagram__step-num">02</div>
+          <div class="flow-diagram__step-title">AI-driven build</div>
+          <div class="flow-diagram__step-desc">Vibe coding alongside the prototypes, turning ideas into working features fast.</div>
+        </div>
+        <div class="flow-diagram__arrow" aria-hidden="true"></div>
+        <div class="flow-diagram__step" role="listitem">
+          <div class="flow-diagram__step-num">03</div>
+          <div class="flow-diagram__step-title">AI-enabled validation</div>
+          <div class="flow-diagram__step-desc">A second pass on usability and interaction clarity, before it reached real users.</div>
+        </div>
+        <div class="flow-diagram__arrow" aria-hidden="true"></div>
+        <div class="flow-diagram__step" role="listitem">
+          <div class="flow-diagram__step-num">04</div>
+          <div class="flow-diagram__step-title">Claude-assisted implementation</div>
+          <div class="flow-diagram__step-desc">Refining and modifying developer-written code myself, so the build matched the intended experience.</div>
+        </div>
+      </div>
+
+      <div class="figure-grid figure-grid--3" style="max-width:var(--container-narrow)">
+        <figure class="figure" style="margin-bottom:0"><img src="../assets/images/innovate-adhd/ai-tools-1.jpg" alt="Lovable, Figma and Figma Make logos" loading="lazy"></figure>
+        <figure class="figure" style="margin-bottom:0"><img src="../assets/images/innovate-adhd/ai-tools-3-claude.jpg" alt="Claude logo" loading="lazy"></figure>
+        <figure class="figure" style="margin-bottom:0"><img src="../assets/images/innovate-adhd/ai-tools-2.jpg" alt="ChatGPT and Gemini logos" loading="lazy"></figure>
+      </div>
+    </details>
+
+    <details class="prose-more">
+      <summary class="prose-more__summary">Everything else I was doing on this project <span class="prose-more__arrow" aria-hidden="true">&#8595;</span></summary>
+      <ul>
+        <li><strong>Roadmap and delivery.</strong> I set what we were building and in what order, then ran it to a live product in two weeks, with the plan in one place so the clinical team and the developers worked off the same thing.</li>
+        <li><strong>Research into requirements.</strong> I read the literature, spoke to people with ADHD, and turned what came back into a spec the developers could build against. I chose the leanest assessment model on the market as the base.</li>
+        <li><strong>Deciding what got built first.</strong> The assessment came before everything else. Booking, content pages and the wider design system came after.</li>
+        <li><strong>Working across teams.</strong> Clinicians had to sign off that the assessment stayed valid. Developers had to ship it. I sat between the two and made the trade-offs explicit.</li>
+        <li><strong>Numbers after launch.</strong> I picked what to measure before we shipped, then said which of it meant something afterwards.</li>
+        <li><strong>Positioning and early growth.</strong> I wrote how the product was described and where it went out, so it had people arriving at it and not only a URL.</li>
+      </ul>
+      <figure class="figure figure--narrow">
+        <img src="../assets/images/innovate-adhd/adhd-insight-note.jpg" alt="A research note: ADHD assessment forms demand the exact executive functions that the condition impairs, so the process highlights the very struggles it is meant to evaluate, leading to burnout, distraction and frustration" loading="lazy">
+        <figcaption>The research note the whole brief came out of.</figcaption>
+      </figure>
+    </details>
+
+    <details class="prose-more">
+      <summary class="prose-more__summary">What I would do next <span class="prose-more__arrow" aria-hidden="true">&#8595;</span></summary>
+      <p>Instrument the assessment question by question, so a drop-off traces to a specific screen, which a page-level number can only hint at. Then run the rebuilt version against the original form with real users on both sides. That turns a completion story into a defensible claim about clinical completion.</p>
+    </details>
+
   </div>
 </section>
 
 <section class="section section--light section--tight">
-  <div class="section__inner reveal case-nav">
-    <a class="btn btn--secondary" href="nft.html">← NFT</a>
-    <a class="btn btn--secondary" href="huawei.html">Huawei →</a>
+  <div class="section__inner case-nav">
+    <a class="btn btn--secondary" href="nft.html">&larr; NFT</a>
+    <a class="btn btn--secondary" href="huawei.html">Huawei &rarr;</a>
   </div>
 </section>
 
@@ -268,13 +264,71 @@
     <div class="footer__name">Yidan Xu</div>
     <div class="footer__links">
       <a href="mailto:yidanxu2000@outlook.com">Email me</a>
-      <a href="https://www.linkedin.com/in/yidan-xu-profile/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+      <a href="https://www.linkedin.com/in/yidan-xu-profile/" target="_blank" rel="noreferrer">LinkedIn &#8599;</a>
     </div>
   </div>
-  <div class="footer__bottom">© <span id="year"></span> Yidan Xu. All rights reserved.</div>
+  <div class="footer__bottom">&copy; <span id="year"></span> Yidan Xu. All rights reserved.</div>
 </footer>
 
 <script src="../assets/js/site.js"></script>
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* The rail. */
+(function () {
+  var fill = document.getElementById('adhdRail');
+  if (!fill) return;
+  function set() {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    fill.style.width = (h > 0 ? Math.min(100, (window.scrollY / h) * 100) : 0) + '%';
+  }
+  addEventListener('scroll', set, { passive: true });
+  addEventListener('resize', set);
+  set();
+})();
+
+/* A hundred dots, twenty-eight of them filled. Built here rather than
+   written out a hundred times in the markup. */
+(function () {
+  var grid = document.querySelector('.dots100');
+  if (!grid) return;
+  for (var i = 0; i < 100; i++) {
+    var s = document.createElement('span');
+    if (i < 28) s.className = 'is-on';
+    grid.appendChild(s);
+  }
+})();
+
+/* One live question. No score, no scoring logic, nothing stored. */
+(function () {
+  var slider = document.getElementById('tryqSlider');
+  if (!slider) return;
+  var head = document.getElementById('tryqHead'),
+      mouth = document.getElementById('tryqMouth'),
+      browL = document.getElementById('tryqBrowL'),
+      browR = document.getElementById('tryqBrowR'),
+      opts = document.getElementById('tryqOpts').children,
+      labels = ['Never', 'Rarely', 'Sometimes', 'Often', 'Very Often'],
+      /* mouth control point: below the corners is a smile, above is a frown */
+      curve = [71, 66, 60, 55, 51],
+      radius = [32, 31, 30, 28.5, 27],
+      /* positive lifts the inner end of each brow, negative drops it */
+      brow = [2.5, 1.5, 0, -2, -3.5];
+
+  function draw() {
+    var v = +slider.value;
+    head.setAttribute('r', radius[v]);
+    mouth.setAttribute('d', 'M39 60 Q50 ' + curve[v] + ' 61 60');
+    browL.setAttribute('d', 'M36 ' + (35 + brow[v]) + ' L46 ' + (35 - brow[v]));
+    browR.setAttribute('d', 'M56 ' + (35 - brow[v]) + ' L66 ' + (35 + brow[v]));
+    slider.setAttribute('aria-valuetext', labels[v]);
+    for (var i = 0; i < opts.length; i++) {
+      opts[i].className = i === v ? 'is-on' : '';
+    }
+  }
+  slider.addEventListener('input', draw);
+  draw();
+})();
+</script>
 </body>
 </html>

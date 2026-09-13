@@ -2422,3 +2422,155 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   color:var(--text-secondary);
 }
 .prose .tally li strong{color:var(--accent);font-weight:var(--fw-semibold);}
+
+/* ===============================================================
+   Innovate ADHD case study.
+
+   The product exists for people who cannot get through long, dense
+   text, so this page is set by the product's own rules: one idea at
+   a time, larger type, high contrast, a progress rail, and nothing
+   decorative in motion. Everything here is the site's own tokens,
+   set at the accessible end of the scale, so the page still reads
+   as part of the site.
+
+   Scoped to .prose--adhd and the two fixed pieces, so none of it
+   leaks into the other case studies.
+   =============================================================== */
+
+/* Label text for screen readers only. */
+.visually-hidden{
+  position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+  overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;
+}
+
+/* The rail. Styled after the assessment's own six-step progress bar:
+   the product shows people how little is left, so the page does too. */
+.adhd-rail{
+  position:fixed;top:0;left:0;right:0;height:4px;
+  background:rgba(29,29,31,.08);z-index:300;pointer-events:none;
+}
+.adhd-rail__fill{
+  height:100%;width:0;background:var(--accent);
+  transform-origin:left center;
+}
+
+/* Body copy one step up from the site default, and off the mid-grey.
+   #1d1d1f on #FAF8F4 measures 15.9:1. */
+.prose--adhd p,
+.prose--adhd li{font-size:23px;line-height:1.62;color:var(--gray-7);}
+.prose--adhd p{margin-bottom:var(--space-5);}
+.prose--adhd .figure,
+.prose--adhd .figure-grid{margin-bottom:var(--space-8);}
+.prose--adhd .figure figcaption,
+.prose--adhd .figure-note{font-size:17px;color:var(--gray-6);}
+.prose--adhd h2{margin-top:var(--space-8);}
+.prose--adhd h3{font-size:clamp(22px,2.6vw,30px);margin-top:var(--space-8);}
+.prose--adhd .prose-more__summary{font-size:20px;color:var(--gray-7);}
+
+/* Unmissable section markers. */
+.adhd-marker{
+  font-family:var(--font-display);
+  font-size:clamp(30px,5.2vw,56px);font-weight:var(--fw-bold);
+  letter-spacing:.06em;text-transform:uppercase;color:var(--gray-7);
+  line-height:1.05;margin:var(--space-9) 0 var(--space-6);
+  padding-top:var(--space-5);border-top:4px solid var(--gray-7);
+}
+.adhd-marker:first-child{margin-top:0;}
+
+/* The note under the hero. */
+.adhd-note{
+  border-left:4px solid var(--accent);
+  padding:var(--space-2) 0 var(--space-2) var(--space-5);
+  margin:0 0 var(--space-8);
+}
+.prose--adhd .adhd-note p{font-size:20px;color:var(--gray-6);margin:0;}
+
+/* A hundred dots. Twenty-eight filled, seventy-two pale, the filled
+   ones together at the top left so the proportion reads without
+   counting. Plain grid, no chrome borrowed from any analytics tool. */
+.dotfig{
+  display:flex;gap:var(--space-6);align-items:center;flex-wrap:wrap;
+  margin:var(--space-6) 0 var(--space-5);
+}
+.dots100{
+  display:grid;grid-template-columns:repeat(10,14px);gap:6px;
+  flex:0 0 auto;margin:0;
+}
+.dots100 span{display:block;width:14px;height:14px;border-radius:4px;background:#DCD6CC;}
+.dots100 span.is-on{background:var(--accent);}
+.dotfig__side{flex:1 1 220px;min-width:200px;}
+.dotfig__n{
+  display:block;font-family:var(--font-display);
+  font-size:clamp(48px,7vw,76px);font-weight:var(--fw-bold);
+  color:var(--accent);line-height:1;letter-spacing:var(--ls-tight);
+}
+.prose--adhd .dotfig__n + p{margin-top:var(--space-3);font-size:20px;}
+
+/* What the four testers said. */
+.qcards{
+  display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);
+  margin:var(--space-5) 0 var(--space-6);
+}
+.prose--adhd .qcard{
+  margin:0;background:#fff;border:1px solid var(--border-hairline);
+  border-left:3px solid var(--accent);
+  border-radius:var(--radius-md);padding:var(--space-5);
+}
+.prose--adhd .qcard p{font-size:20px;line-height:1.55;margin:0;}
+
+/* One live question, the product itself. The only other moving
+   thing on the page, and it moves because a person moved it. */
+.tryq{
+  background:#FBF7F1;border:1px solid var(--border-hairline);
+  border-radius:var(--radius-lg);
+  padding:var(--space-7) var(--space-5) var(--space-6);
+  text-align:center;margin:var(--space-5) 0 var(--space-4);
+}
+.tryq__steps{display:flex;gap:8px;justify-content:center;margin-bottom:var(--space-6);}
+.tryq__steps i{display:block;width:52px;height:4px;border-radius:2px;background:#E4E0DA;}
+.tryq__steps i:first-child{background:var(--accent);}
+.prose--adhd .tryq__q{
+  font-family:var(--font-display);font-size:clamp(19px,2.4vw,24px);
+  font-weight:var(--fw-semibold);color:var(--gray-7);line-height:1.4;
+  max-width:24em;margin:0 auto var(--space-5);
+}
+.tryq__face{display:block;width:132px;height:132px;margin:0 auto var(--space-5);}
+.tryq__slider{
+  -webkit-appearance:none;appearance:none;
+  width:min(440px,100%);height:22px;border-radius:11px;
+  background:#E8E4DE;outline:none;margin:0;
+}
+.tryq__slider::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:46px;height:22px;border-radius:11px;border:0;
+  background:var(--accent);cursor:pointer;
+}
+.tryq__slider::-moz-range-thumb{
+  width:46px;height:22px;border-radius:11px;border:0;
+  background:var(--accent);cursor:pointer;
+}
+.tryq__slider:focus-visible{box-shadow:0 0 0 3px var(--surface-primary),0 0 0 6px var(--gray-7);}
+.tryq__opts{
+  display:flex;gap:8px;justify-content:center;flex-wrap:wrap;
+  margin:var(--space-5) auto 0;
+}
+.tryq__opts span{
+  font-size:15px;color:var(--gray-6);background:#F1EFEB;
+  border-radius:10px;padding:10px 14px;
+}
+.tryq__opts span.is-on{background:var(--accent);color:#fff;font-weight:var(--fw-semibold);}
+
+/* Before and after, for two documents rather than two screenshots. */
+.ba--tall .ba__img{max-height:400px;object-fit:contain;background:var(--gray-1);}
+
+@media(max-width:760px){
+  .qcards{grid-template-columns:1fr;}
+  .prose--adhd p,.prose--adhd li{font-size:20px;}
+  .dots100{grid-template-columns:repeat(10,1fr);width:100%;}
+  .dots100 span{width:100%;height:auto;aspect-ratio:1;}
+  .dotfig{gap:var(--space-5);}
+  .tryq__steps i{width:36px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .adhd-rail__fill{transition:none;}
+}

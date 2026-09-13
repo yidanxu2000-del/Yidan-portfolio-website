@@ -479,7 +479,7 @@
 
   // ---- numbers count up when they first scroll into view ----------------
   // Values are written by hand in the markup and come in a lot of shapes
-  // ("5", "1.3K+", "82%+", "2 wks", "2x"), so animate whatever leading
+  // ("5", "1.3K+", "32.3%", "2 wks", "2x"), so animate whatever leading
   // number is there and leave any prefix/suffix untouched.
   (function(){
     var nodes = document.querySelectorAll('.stat__value, .prose-stat-callout__value');
