@@ -2558,7 +2558,10 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   font-size:15px;color:var(--gray-6);background:#F1EFEB;
   border-radius:10px;padding:10px 14px;
 }
-.tryq__opts span.is-on{background:var(--accent);color:#fff;font-weight:var(--fw-semibold);}
+/* white on the accent fill measures 3.4:1, under the bar for 15px text.
+   The dark text colour on the same fill measures 4.9:1, so the chip keeps
+   the brand orange and changes the ink instead. */
+.tryq__opts span.is-on{background:var(--accent);color:var(--gray-7);font-weight:var(--fw-semibold);}
 
 /* Before and after, for two documents rather than two screenshots. */
 .ba--tall .ba__img{max-height:400px;object-fit:contain;background:var(--gray-1);}
@@ -2600,7 +2603,7 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   font-family:var(--font-mono);font-size:14px;letter-spacing:.04em;
   text-transform:uppercase;color:var(--gray-6);border-bottom:2px solid var(--gray-7);
 }
-.cmp-table td b{font-weight:var(--fw-semibold);color:var(--accent);}
+.cmp-table td b{font-weight:var(--fw-bold);color:var(--accent);}
 
 /* A generic head-and-shoulders mark on the quote cards. Nobody's photograph. */
 .qcard{display:flex;gap:var(--space-4);align-items:flex-start;}
@@ -2631,9 +2634,11 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   margin:0;font-family:'Onest',var(--font-display);
   color:#3E3C47;line-height:1.12;overflow-wrap:anywhere;
 }
-/* faithful to the system: links are the highlight colour. The note under
-   the swatches carries what that measures. */
-.prose--adhd .ds__t--link{color:#F9AF28;text-decoration:underline;}
+/* The highlight measures 1.8:1 as text, under the 4.5:1 WCAG AA asks of
+   body copy, so link text takes a darker tone of the same hue and
+   saturation (38.8 deg, 0.95) with the lightness dropped from 0.57 to
+   0.29. That clears 4.5:1 on every ground in the palette. */
+.prose--adhd .ds__t--link{color:#8E5D04;text-decoration:underline;}
 
 .ds__swatches{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:auto auto auto;gap:var(--space-3);margin-top:var(--space-5);}
 .prose--adhd .ds__sw{margin:0;display:grid;grid-row:span 3;grid-template-rows:subgrid;align-content:start;}
