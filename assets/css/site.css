@@ -2661,3 +2661,89 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   object-fit:cover;display:block;
 }
 img.testimonial__avatar{object-fit:cover;}
+
+/* ===============================================================
+   Xiaomi Auto case study.
+
+   Two kinds of missing picture, handled differently. A .slot is a
+   marked gap waiting for an image Yidan will supply. A .withheld is
+   a sentence explaining why something stays inside Xiaomi. Nothing
+   on this page is a blurred screenshot: a blur implies there is a
+   real picture underneath being hidden, which is the wrong claim for
+   work that has yet to launch.
+   =============================================================== */
+
+.slot{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:6px;text-align:center;
+  border:2px dashed rgba(29,29,31,.22);border-radius:var(--radius-md);
+  background:var(--gray-1);color:var(--text-tertiary);
+  padding:var(--space-5);aspect-ratio:16/9;
+}
+.slot--tall{aspect-ratio:4/3;}
+.slot--wide{aspect-ratio:21/9;}
+.slot__k{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--text-tertiary);
+}
+.prose .slot__d{margin:0;font-size:var(--text-body-sm);color:var(--text-secondary);max-width:32ch;}
+
+.withheld{
+  margin:var(--space-5) 0 var(--space-6);
+  padding:var(--space-2) 0 var(--space-2) var(--space-5);
+  border-left:2px solid var(--accent);
+}
+.prose .withheld p{
+  margin:0;font-size:var(--text-body-sm);line-height:1.6;color:var(--text-secondary);
+}
+
+/* The rules are the most valuable thing on the page, so they get the
+   weight of a heading rather than the weight of a list item. */
+.rules{
+  list-style:none;margin:var(--space-6) 0 var(--space-7);padding:0;
+  counter-reset:rule;
+}
+.prose .rules li{
+  counter-increment:rule;position:relative;
+  margin:0;padding:var(--space-5) 0 var(--space-5) 62px;
+  border-top:1px solid var(--border-hairline);
+  font-family:var(--font-display);
+  font-size:clamp(19px,2.3vw,25px);font-weight:var(--fw-medium);
+  line-height:1.35;color:var(--text-primary);
+}
+.prose .rules li:last-child{border-bottom:1px solid var(--border-hairline);}
+.prose .rules li::before{
+  content:counter(rule);position:absolute;left:0;top:calc(var(--space-5) + 2px);
+  font-family:var(--font-mono);font-size:15px;font-weight:var(--fw-semibold);
+  color:var(--accent);
+}
+
+.scope-list{list-style:none;margin:var(--space-5) 0 var(--space-6);padding:0;}
+.prose .scope-list li{
+  margin:0;padding:10px 0;border-bottom:1px solid var(--border-hairline);
+  font-size:var(--text-body);color:var(--text-secondary);
+}
+.prose .scope-list li:first-child{border-top:1px solid var(--border-hairline);}
+
+.modes{width:100%;border-collapse:collapse;margin:var(--space-5) 0 var(--space-6);font-size:var(--text-body);}
+.modes th,.modes td{padding:var(--space-3) var(--space-2);text-align:left;border-bottom:1px solid var(--border-hairline);vertical-align:top;}
+.modes thead th{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--text-tertiary);border-bottom:2px solid var(--text-primary);
+}
+.modes tbody th{font-weight:var(--fw-regular);color:var(--text-secondary);width:34%;}
+.modes td{color:var(--text-primary);}
+
+.diagram{margin:var(--space-5) 0 var(--space-4);}
+.diagram svg{width:100%;height:auto;display:block;}
+/* the caption sits inside the figure, so it needs its own spacing rather
+   than the negative lead-in .figure-note takes under an image */
+.prose .diagram figcaption{margin-top:var(--space-3);text-align:left;}
+
+@media(max-width:600px){
+  .slot{aspect-ratio:4/3;padding:var(--space-4);}
+  .slot--wide{aspect-ratio:16/9;}
+  .prose .rules li{padding-left:44px;}
+  .modes{font-size:var(--text-body-sm);}
+  .modes tbody th{width:40%;}
+}
