@@ -68,6 +68,9 @@
       <li>Voice and camera permission design for Europe</li>
       <li>A new System design for the European rental scenario</li>
       <li>Eight full-scenario alarm designs for when the car is moving</li>
+      <li>The rear screen massage interaction</li>
+      <li>Customising the dock along the bottom of the centre screen</li>
+      <li>Rest mode and camping mode</li>
     </ul>
 
     <p>The cockpit won five iF Design Awards in 2025, including one for the <a href="https://ifdesign.com/en/winner-ranking/project/xiaomi-ev-alive-system/707607" target="_blank" rel="noreferrer">Cockpit Alive System &#8599;</a>. I joined as an HMI designer on that system.</p>
@@ -79,8 +82,8 @@
 
     <h2>Alive Bar</h2>
     <p>Touchscreen against physical buttons is an old argument in cars. Alive Bar answers it by making them the same control.</p>
-    <p>Xiaomi ships a physical key strip that magnets and screws onto the frame under the 16.1-inch centre screen. Aircon and media sit one press away, and the menu stays closed. The strip and the bar on screen hold one state between them, so reaching for either one gets you to the same place.</p>
-    <p>I worked on the design and then turned it into the component set the other designers build from.</p>
+    <p>Xiaomi ships a physical key strip that magnets and screws onto the frame under the 16.1-inch centre screen. The things a hand reaches for without thinking sit one press away: temperature, volume, fan, brightness. The menu stays closed.</p>
+    <p>The strip and the bar on screen hold one state between them, so reaching for either one gets you to the same place. I wrote the interaction principles for that, designed it, and turned it into the component set the other designers build from.</p>
 
     <figure class="figure figure--narrow">
       <img src="../assets/images/xiaomi-auto/alive-bar-before.jpg" alt="The centre screen before the Alive Bar work: the aircon and seat controls open as a full panel over the car view, with the temperature, fan, seat heating and air quality controls spread across it" loading="lazy">
@@ -115,8 +118,12 @@
           <path d="M454 64 l8 4 -8 4z"/><path d="M454 148 l8 4 -8 4z"/>
         </g>
       </svg>
-      <figcaption class="figure-note">Two ways in, one state. Reaching for either gets you to the same place.</figcaption>
+      <figcaption class="figure-note">Two ways in, one state.</figcaption>
     </figure>
+
+    <div class="withheld">
+      <p>The interactive version waits on Xiaomi to release it.</p>
+    </div>
 
     <h2>Three keyboards, one rule set</h2>
     <p>Three companies made three keyboards. Each popped up at its own height, covered its own amount of the screen, and took the layout apart in its own way. The person in the car only feels that typing is inconsistent.</p>
@@ -223,7 +230,7 @@
 
     <h2>The rental case</h2>
     <p>In China a car is usually yours. In Europe it is often yours for three days.</p>
-    <p>A product built on &ldquo;this is your space&rdquo; has to answer what happens when the space belongs to somebody else next week. We started from the fleet component the domestic system already had, adapted it, and built three modes out of it: guest, account, and owner.</p>
+    <p>A product built on &ldquo;this is your space&rdquo; has to answer what happens when the space belongs to somebody else next week. We started from the fleet component the domestic system already had adapted it, and built three modes out of it: guest, account, and owner.</p>
 
     <figure class="diagram">
       <svg viewBox="0 0 640 140" role="img" aria-label="One car across time. Owner, then a guest for three days, then the owner again. At each handover the guest's data clears and the owner's settings persist">
@@ -267,6 +274,9 @@
     <h2>What came back, and what I took from it</h2>
     <p>Writing rules for a market with different defaults forces you to find the assumptions you never knew you had made. Some of those were worth fixing at home as well.</p>
     <p>The permission point is the clearest one. It went back into the domestic System UI, on a market whose regulator never asked for it, because once you have seen a person told when the microphone is live, the version that leaves them guessing is harder to defend.</p>
+
+    <p>Cars run against the grain of everything else. Every other product I have designed wants more of your attention. This one wants as little as possible, because time on the screen is time away from the road.</p>
+    <p>That pushes all of it towards the intuitive. The control your hand finds without your eyes. The state you read in one glance. It is also why the home is the right model to build against: you do not read a room, you already know where things are.</p>
 
     <p>Most of this job was making things I did not control agree with each other. Three keyboard vendors. A physical strip and a screen. Two markets with different ideas about who owns the data.</p>
     <p>The design work sat in the rules. The screens were the proof that the rules held.</p>
