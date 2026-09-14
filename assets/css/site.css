@@ -2507,72 +2507,30 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 .prose--adhd .dotfig__n + p{margin-top:var(--space-3);font-size:20px;}
 
 /* What the four testers said. */
+/* Columns rather than a grid: the quotes are very different lengths, and a
+   grid row stretches the short ones into empty boxes beside the long one. */
 .qcards{
-  display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);
+  column-count:2;column-gap:var(--space-4);
   margin:var(--space-5) 0 var(--space-6);
 }
 .prose--adhd .qcard{
-  margin:0;background:#fff;border:1px solid var(--border-hairline);
+  break-inside:avoid;margin:0 0 var(--space-4);
+  background:#fff;border:1px solid var(--border-hairline);
   border-left:3px solid var(--accent);
   border-radius:var(--radius-md);padding:var(--space-5);
 }
 .prose--adhd .qcard p{font-size:20px;line-height:1.55;margin:0;}
 
-/* One live question, the product itself. The only other moving
-   thing on the page, and it moves because a person moved it. */
-.tryq{
-  background:#FBF7F1;border:1px solid var(--border-hairline);
-  border-radius:var(--radius-lg);
-  padding:var(--space-7) var(--space-5) var(--space-6);
-  text-align:center;margin:var(--space-5) 0 var(--space-4);
-}
-.tryq__steps{display:flex;gap:8px;justify-content:center;margin-bottom:var(--space-6);}
-.tryq__steps i{display:block;width:52px;height:4px;border-radius:2px;background:#E4E0DA;}
-.tryq__steps i:first-child{background:var(--accent);}
-.prose--adhd .tryq__q{
-  font-family:var(--font-display);font-size:clamp(19px,2.4vw,24px);
-  font-weight:var(--fw-semibold);color:var(--gray-7);line-height:1.4;
-  max-width:24em;margin:0 auto var(--space-5);
-}
-.tryq__face{display:block;width:132px;height:132px;margin:0 auto var(--space-5);}
-.tryq__slider{
-  -webkit-appearance:none;appearance:none;
-  width:min(440px,100%);height:22px;border-radius:11px;
-  background:#E8E4DE;outline:none;margin:0;
-}
-.tryq__slider::-webkit-slider-thumb{
-  -webkit-appearance:none;appearance:none;
-  width:46px;height:22px;border-radius:11px;border:0;
-  background:var(--accent);cursor:pointer;
-}
-.tryq__slider::-moz-range-thumb{
-  width:46px;height:22px;border-radius:11px;border:0;
-  background:var(--accent);cursor:pointer;
-}
-.tryq__slider:focus-visible{box-shadow:0 0 0 3px var(--surface-primary),0 0 0 6px var(--gray-7);}
-.tryq__opts{
-  display:flex;gap:8px;justify-content:center;flex-wrap:wrap;
-  margin:var(--space-5) auto 0;
-}
-.tryq__opts span{
-  font-size:15px;color:var(--gray-6);background:#F1EFEB;
-  border-radius:10px;padding:10px 14px;
-}
-/* white on the accent fill measures 3.4:1, under the bar for 15px text.
-   The dark text colour on the same fill measures 4.9:1, so the chip keeps
-   the brand orange and changes the ink instead. */
-.tryq__opts span.is-on{background:var(--accent);color:var(--gray-7);font-weight:var(--fw-semibold);}
 
 /* Before and after, for two documents rather than two screenshots. */
 .ba--tall .ba__img{max-height:400px;object-fit:contain;background:var(--gray-1);}
 
 @media(max-width:760px){
-  .qcards{grid-template-columns:1fr;}
+  .qcards{column-count:1;}
   .prose--adhd p,.prose--adhd li{font-size:20px;}
   .dots100{grid-template-columns:repeat(10,1fr);width:100%;}
   .dots100 span{width:100%;height:auto;aspect-ratio:1;}
   .dotfig{gap:var(--space-5);}
-  .tryq__steps i{width:36px;}
 }
 @media(prefers-reduced-motion:reduce){
   .adhd-rail__fill{transition:none;}
@@ -2665,20 +2623,41 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
    negative lead-in .figure-note takes when it sits under a figure */
 .prose--adhd .ds + .figure-note{margin-top:var(--space-4);}
 
-/* A screen recording that waits to be asked. This page's rule is that
-   nothing moves unless a person moves it, so the still carries a button
-   and the animation only loads on click. */
-.playshot{
-  display:block;width:100%;padding:0;border:0;background:none;cursor:pointer;
-  position:relative;border-radius:var(--radius-md);overflow:hidden;
+
+/* The way into the live product. It sits right after the thing it is
+   offering, rather than waiting for the end of the page. */
+.gocta{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:var(--space-4) var(--space-6);
+  margin:var(--space-6) 0 var(--space-3);
+  padding:var(--space-6);
+  border-radius:var(--radius-lg);
+  background:var(--accent-tint);border:1px solid rgba(226,102,31,.22);
 }
-.playshot img{display:block;width:100%;border-radius:var(--radius-md);}
-.playshot__label{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  display:flex;align-items:center;gap:10px;
-  background:var(--gray-7);color:#fff;
-  font-family:var(--font-text);font-size:16px;font-weight:var(--fw-semibold);
-  padding:12px 20px;border-radius:999px;
+.prose--adhd .gocta__title{
+  margin:0;font-family:var(--font-display);
+  font-size:clamp(22px,2.6vw,28px);font-weight:var(--fw-semibold);
+  letter-spacing:var(--ls-snug);color:var(--gray-7);
 }
-.playshot:focus-visible{outline:3px solid var(--gray-7);outline-offset:3px;}
-.playshot.is-playing .playshot__label{display:none;}
+.prose--adhd .gocta__sub{margin:var(--space-2) 0 0;font-size:18px;color:var(--gray-6);}
+.gocta > div{flex:1 1 260px;}
+/* the note explains the card above it, so it takes air rather than the
+   negative lead-in .figure-note uses under a figure */
+.prose--adhd .gocta + .figure-note{margin-top:var(--space-4);}
+/* white on the site accent measures 3.4:1, under the bar for 17px text.
+   This one button takes a darker tone of the same hue so the label clears
+   4.5:1. The rest of the site's primary buttons are unchanged. */
+.gocta .btn--primary{background:#C15619;border-color:#C15619;flex:0 0 auto;}
+.gocta .btn--primary:hover{background:#A8490F;border-color:#A8490F;}
+@media(max-width:600px){
+  .gocta{padding:var(--space-5);}
+  .gocta .btn{width:100%;text-align:center;}
+}
+
+/* The five people who tested it. Faces blurred beyond recovery before
+   they ever reached the repository, and no name appears anywhere. */
+.qcard__av{
+  width:40px;height:40px;flex:0 0 40px;border-radius:50%;
+  object-fit:cover;display:block;
+}
+img.testimonial__avatar{object-fit:cover;}
