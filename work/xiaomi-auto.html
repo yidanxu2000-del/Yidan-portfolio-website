@@ -52,7 +52,7 @@
       <p>Nothing on this page is internal Xiaomi material. The photographs are Xiaomi&rsquo;s own published images of the car. Everything else is a diagram I drew to show how I worked.</p>
     </div>
 
-    <h2><span class="sec-n">01</span>What the car is trying to be</h2>
+    <h2 id="s01"><span class="sec-n">01</span>What the car is trying to be</h2>
     <p>Xiaomi builds the car closer to an extension of the home than to transport. That claim is easy to make and hard to keep, and it gets decided in the moments when nobody is driving.</p>
     <p>A nap mode on the centre screen. A rear screen that runs the seat massage. A keyboard that floats above the screen and leaves what is underneath it alone. Each one is a moment where the car stops being a vehicle, and the interface has to behave like a room.</p>
 
@@ -61,20 +61,58 @@
       <figcaption>The rear screen running the seat massage. The massage and comfort controls on it were mine. Nobody is driving in this moment.</figcaption>
     </figure>
 
-    <h2><span class="sec-n">02</span>What System UI is, and what I owned</h2>
+    <h2 id="s02"><span class="sec-n">02</span>What System UI is, and what I owned</h2>
     <p>Five screens in the cabin. I owned the centre screen and part of the rear screens.</p>
     <p>System UI is the layer underneath all of it. It decides how something appears, where it sits, what it covers, and what happens to everything else while it is there. When it works, eight modules and three third-party keyboards read as one place.</p>
 
+    <p>Nine pieces of it were mine. Four of them have a section on this page and the &sect; number jumps straight to it. The other five I have not written up yet.</p>
+
     <ul class="scope-list">
-      <li>Alive Bar design, and turning it into components</li>
-      <li>Keyboard input, domestic and overseas</li>
-      <li>The Google account binding flow for the overseas build</li>
-      <li>Voice and camera permission design for Europe</li>
-      <li>A new System design for the European rental scenario</li>
-      <li>Eight full-scenario alarm designs for when the car is moving</li>
-      <li>The rear screen massage interaction</li>
-      <li>Customising the dock along the bottom of the centre screen</li>
-      <li>Rest mode and camping mode</li>
+      <li class="is-written">
+        <span class="scope-list__n">01</span>
+        <span class="scope-list__t">Alive Bar design, and turning it into components</span>
+        <a class="scope-list__go" href="#s03" aria-label="Jump to section 03, Alive Bar">&sect;03</a>
+      </li>
+      <li class="is-written">
+        <span class="scope-list__n">02</span>
+        <span class="scope-list__t">Keyboard input, domestic and overseas</span>
+        <a class="scope-list__go" href="#s04" aria-label="Jump to section 04, Three keyboards, one rule set">&sect;04</a>
+      </li>
+      <li>
+        <span class="scope-list__n">03</span>
+        <span class="scope-list__t">The Google account binding flow for the overseas build</span>
+        <span class="scope-list__todo">Writing it up</span>
+      </li>
+      <li class="is-written">
+        <span class="scope-list__n">04</span>
+        <span class="scope-list__t">Voice and camera permission design for Europe</span>
+        <a class="scope-list__go" href="#s05" aria-label="Jump to section 05, A crowded top bar, and European privacy">&sect;05</a>
+      </li>
+      <li class="is-written">
+        <span class="scope-list__n">05</span>
+        <span class="scope-list__t">A new System design for the European rental scenario</span>
+        <a class="scope-list__go" href="#s06" aria-label="Jump to section 06, The rental case">&sect;06</a>
+      </li>
+      <li>
+        <span class="scope-list__n">06</span>
+        <span class="scope-list__t">Eight full-scenario alarm designs for when the car is moving</span>
+        <span class="scope-list__todo">Writing it up</span>
+      </li>
+      <li>
+        <span class="scope-list__n">07</span>
+        <span class="scope-list__t">The rear screen massage interaction</span>
+        <span class="scope-list__todo">Writing it up</span>
+      </li>
+      <li>
+        <span class="scope-list__n">08</span>
+        <span class="scope-list__t">Customising the dock along the bottom of the centre screen</span>
+        <span class="scope-list__todo">Writing it up</span>
+      </li>
+      <li>
+        <span class="scope-list__n">09</span>
+        <span class="scope-list__t">Rest mode and camping mode</span>
+        <span class="scope-list__todo">Writing it up</span>
+      </li>
     </ul>
 
     <p>The cockpit won five iF Design Awards in 2025, including one for the <a href="https://ifdesign.com/en/winner-ranking/project/xiaomi-ev-alive-system/707607" target="_blank" rel="noreferrer">Cockpit Alive System &#8599;</a>. I joined as an HMI designer on that system.</p>
@@ -84,7 +122,7 @@
       <figcaption>Five screens. The centre one and part of the rear ones were mine.</figcaption>
     </figure>
 
-    <h2><span class="sec-n">03</span>Alive Bar</h2>
+    <h2 id="s03"><span class="sec-n">03</span>Alive Bar</h2>
     <p>Touchscreen against physical buttons is an old argument in cars. Alive Bar answers it by making them the same control.</p>
     <p>Xiaomi ships a physical key strip that magnets and screws onto the frame under the 16.1-inch centre screen. The things a hand reaches for without thinking sit one press away: temperature, volume, fan, brightness. The menu stays closed.</p>
     <p>The strip and the bar on screen hold one state between them, so reaching for either one gets you to the same place. I wrote the interaction principles for that, designed it, and turned it into the component set the other designers build from.</p>
@@ -129,7 +167,7 @@
       <p>The interactive version waits on Xiaomi to release it.</p>
     </div>
 
-    <h2><span class="sec-n">04</span>Three keyboards, one rule set</h2>
+    <h2 id="s04"><span class="sec-n">04</span>Three keyboards, one rule set</h2>
     <p>This was the first thing I owned on the car.</p>
     <p>Xiaomi&rsquo;s rule is that the driving information stays visible while somebody is typing. So the keyboard floats at system level, and the cards underneath it keep working.</p>
     <p>Three companies make the keyboards I had to serve: the partner already in the car, a new one for the Chinese build, and Google for the English one. Each popped up at its own height, covered its own amount of the screen, and took the layout apart in its own way. They also disagree with each other on when AI triggers, how word suggestions arrive, and what the network prompts do. The person in the car only feels that typing is inconsistent.</p>
@@ -252,7 +290,7 @@
       <p>The component library the keyboards were built against stays inside Xiaomi.</p>
     </div>
 
-    <h2><span class="sec-n">05</span>A crowded top bar, and European privacy</h2>
+    <h2 id="s05"><span class="sec-n">05</span>A crowded top bar, and European privacy</h2>
     <p>Europe assumes the data is yours until you say otherwise, and that turns into interface.</p>
     <p>Every time the camera, the microphone or the location is called, the person has to be told three times: as it starts, as it ends, and once it has fully stopped. That rule is European. The Chinese system runs on different defaults.</p>
     <p>The place that has to hold all that is the top bar, which was already full and already built.</p>
@@ -287,7 +325,7 @@
       <p>The permission dialogs themselves stay inside Xiaomi.</p>
     </div>
 
-    <h2><span class="sec-n">06</span>The rental case</h2>
+    <h2 id="s06"><span class="sec-n">06</span>The rental case</h2>
     <p>In China a car is usually yours. In Europe it is often yours for three days.</p>
     <p>A product built on &ldquo;this is your space&rdquo; has to answer what happens when the space belongs to somebody else next week. We started from the fleet component the domestic system already had adapted it, and built three modes out of it: guest, account, and owner.</p>
 
@@ -330,7 +368,7 @@
       <p>The rental modes have yet to launch, so the screens stay inside Xiaomi.</p>
     </div>
 
-    <h2><span class="sec-n">07</span>What came back, and what I took from it</h2>
+    <h2 id="s07"><span class="sec-n">07</span>What came back, and what I took from it</h2>
     <p>Writing rules for a market with different defaults forces you to find the assumptions you never knew you had made. Some of those were worth fixing at home as well.</p>
     <p>The permission point is the clearest one. It went back into the domestic System UI, on a market whose regulator never asked for it, because once you have seen a person told when the microphone is live, the version that leaves them guessing is harder to defend.</p>
 

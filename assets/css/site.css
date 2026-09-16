@@ -2684,7 +2684,7 @@ img.testimonial__avatar{object-fit:cover;}
 .slot--wide{aspect-ratio:21/9;}
 .slot__k{
   font-family:var(--font-mono);font-size:12px;letter-spacing:.09em;
-  text-transform:uppercase;color:var(--text-tertiary);
+  text-transform:uppercase;color:var(--text-secondary);
 }
 .prose .slot__d{margin:0;font-size:var(--text-body-sm);color:var(--text-secondary);max-width:32ch;}
 
@@ -2720,10 +2720,34 @@ img.testimonial__avatar{object-fit:cover;}
 
 .scope-list{list-style:none;margin:var(--space-5) 0 var(--space-6);padding:0;}
 .prose .scope-list li{
-  margin:0;padding:10px 0;border-bottom:1px solid var(--border-hairline);
+  margin:0;padding:12px 0;border-bottom:1px solid var(--border-hairline);
   font-size:var(--text-body);color:var(--text-secondary);
+  display:grid;grid-template-columns:2.4em 1fr auto;align-items:baseline;
+  column-gap:var(--space-3);row-gap:4px;
 }
 .prose .scope-list li:first-child{border-top:1px solid var(--border-hairline);}
+.scope-list__n{
+  font-family:var(--font-mono);font-size:13px;font-weight:var(--fw-semibold);
+  letter-spacing:.08em;color:var(--text-secondary);
+}
+.scope-list li.is-written .scope-list__n{color:var(--accent-ink);}
+.scope-list li.is-written .scope-list__t{color:var(--text-primary);}
+/* the jump to the section that covers this line */
+.prose .scope-list__go{
+  font-family:var(--font-mono);font-size:13px;font-weight:var(--fw-semibold);
+  letter-spacing:.06em;white-space:nowrap;
+  color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px;
+}
+.prose .scope-list__go:hover{color:var(--text-primary);}
+/* and the admission that this line has no section yet */
+.scope-list__todo{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;
+  text-transform:uppercase;white-space:nowrap;color:var(--text-secondary);
+}
+@media (max-width:520px){
+  .prose .scope-list li{grid-template-columns:2.4em 1fr;}
+  .prose .scope-list__go,.scope-list__todo{grid-column:2;}
+}
 
 .modes{width:100%;border-collapse:collapse;margin:var(--space-5) 0 var(--space-6);font-size:var(--text-body);}
 .modes th,.modes td{padding:var(--space-3) var(--space-2);text-align:left;border-bottom:1px solid var(--border-hairline);vertical-align:top;}
@@ -2765,5 +2789,7 @@ img.testimonial__avatar{object-fit:cover;}
 .sec-n{
   display:block;margin-bottom:var(--space-2);
   font-family:var(--font-mono);font-size:13px;font-weight:var(--fw-semibold);
-  letter-spacing:.12em;color:var(--accent);
+  letter-spacing:.12em;color:var(--accent-ink);
 }
+/* the scope list jumps to these, and the navbar is fixed over the top */
+.prose h2[id]{scroll-margin-top:96px;}

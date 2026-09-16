@@ -13,6 +13,9 @@
   --black:#000000;
   --accent:#E2661F;
   --accent-hover:#C4551A;
+  /* the accent darkened to clear 4.5:1 on the page background, for small
+     text set in it (section numbers, mono labels) */
+  --accent-ink:#B24E17;
   --accent-tint:#FBEEE4;
   --surface-primary:#FAF8F4;
   --surface-secondary:var(--gray-1);
