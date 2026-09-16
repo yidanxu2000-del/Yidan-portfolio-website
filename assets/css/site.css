@@ -850,6 +850,47 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 /* a three-up reads as a numbered sequence, so the captions line up left
    under each step instead of centring like a standalone caption */
 .prose .figure-grid--3 figcaption{text-align:left;}
+
+/* ---------- Steps: pictures in a row with the path drawn between them ----- */
+/* stacked by default; the row layout and everything that pins items to a cell
+   lives in the wide query, so narrow screens never have to override it */
+.steps{margin:var(--space-5) 0 var(--space-6);}
+.prose .steps figure{margin:0 0 var(--space-2);}
+.prose .steps figcaption{margin-top:var(--space-3);text-align:left;}
+.steps picture{display:block;}
+.steps img{width:100%;height:auto;display:block;border-radius:var(--radius-sm);}
+.steps__a{
+  font-family:var(--font-mono);font-size:20px;line-height:1;color:var(--accent-ink);
+  display:block;text-align:center;padding:var(--space-2) 0 var(--space-4);
+  transform:rotate(90deg);
+}
+
+@media (min-width:721px){
+  /* two rows, pictures then captions; each figure spans both on a subgrid so a
+     long caption never pushes its neighbour's picture out of line, and the
+     arrows sit centred on the picture row instead of floating beside the text */
+  .steps{display:grid;grid-template-rows:auto auto;gap:0 var(--space-3);align-items:start;}
+  .steps--2{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);}
+  .steps--3{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);}
+  .prose .steps figure{margin:0;display:grid;grid-row:1 / span 2;grid-template-rows:subgrid;align-content:start;}
+  /* every child gets its own column: auto-placement cannot be trusted once
+     some items span two rows and others sit in one */
+  .steps > *:nth-child(1){grid-column:1;}
+  .steps > *:nth-child(2){grid-column:2;}
+  .steps > *:nth-child(3){grid-column:3;}
+  .steps > *:nth-child(4){grid-column:4;}
+  .steps > *:nth-child(5){grid-column:5;}
+  .steps__a{grid-row:1;align-self:center;justify-self:center;padding:0;transform:none;}
+}
+
+/* the connector from a picture down to the steps that reach it */
+.flow-down{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  margin:calc(var(--space-6) * -1) 0 var(--space-5);
+  font-family:var(--font-mono);font-size:13px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--text-secondary);
+}
+.flow-down::after{content:"\2193";font-size:20px;color:var(--accent-ink);}
 .figure-grid .figure{margin-bottom:0;}
 @media (max-width:720px){
   .figure-grid{grid-template-columns:1fr;}
