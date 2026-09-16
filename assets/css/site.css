@@ -847,6 +847,12 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
   max-width:var(--container-max);margin:0 auto var(--space-9);align-items:start;
 }
 .figure-grid--3{grid-template-columns:1fr 1fr 1fr;}
+/* when the two pictures are different shapes, a subgrid keeps their captions
+   starting on the same line instead of one floating up beside the other */
+@media (min-width:721px){
+  .figure-grid--align{grid-template-rows:auto auto;}
+  .prose .figure-grid--align .figure{display:grid;grid-row:span 2;grid-template-rows:subgrid;align-content:start;}
+}
 /* a three-up reads as a numbered sequence, so the captions line up left
    under each step instead of centring like a standalone caption */
 .prose .figure-grid--3 figcaption{text-align:left;}
