@@ -168,6 +168,29 @@
     <p>The physical keys were a large project across hardware, software and design. My part was System UI, the layer all three entrances land on. I designed part of it, hunted the edge cases, wrote the detail specs and sorted out the logic of what happens during an interaction, turned the result into components so System UI could be extended with them, and took part of the handoff to the developers.</p>
     <p>We watched how people reached for these controls and rebuilt the shortcut interaction on the centre screen around that, then shipped a new set of design components out of it.</p>
 
+    <p>Most of that work does not photograph. These are the pieces of it:</p>
+
+    <ul class="wl">
+      <li>
+        <span class="wl__k">Width and height</span>
+        <p>What the bar takes up, at rest and while a hand is on it. Every value had to hold for somebody reaching without looking, on a screen that is mostly busy doing something else.</p>
+      </li>
+      <li>
+        <span class="wl__k">When it changes colour</span>
+        <p>A control that answers a physical key has to say it answered. I wrote the logic for which state changes colour, to what, and for how long, so the answer registers without becoming a second thing to read.</p>
+      </li>
+      <li>
+        <span class="wl__k">Light and dark</span>
+        <p>A car crosses between them several times on one drive, and the bar has to stay readable through all of it. I ran the readability checks for both modes.</p>
+      </li>
+      <li>
+        <span class="wl__k">Components and the standard</span>
+        <p>All of it became components and a written standard, so the other designers extend the bar instead of redrawing it.</p>
+      </li>
+    </ul>
+
+    <p>The whole pass, from the first version to what launched, ran over a long stretch.</p>
+
     <figure class="diagram">
       <svg viewBox="0 0 640 260" role="img" aria-label="Three ways in: the physical strip, the bar on screen, and the voice assistant. All three point at one shared state, which drives aircon and media">
         <g font-family="ui-monospace, monospace" font-size="13" fill="#1d1d1f">
@@ -202,7 +225,7 @@
     <p>One job, both ways round. Sync ties the driver&rsquo;s temperature to the passenger&rsquo;s, and before the strip existed it was three taps on the screen, with the panel covering the thing you were looking at the whole time.</p>
 
     <figure class="figure figure--narrow">
-      <img src="../assets/images/xiaomi-auto/alive-bar-before.jpg" alt="The centre screen before the Alive Bar work: the aircon and seat controls open as a full panel over the car view, with the temperature, fan, seat heating and air quality controls spread across it" loading="lazy">
+      <img src="../assets/images/xiaomi-auto/alive-bar-before.jpg" alt="The centre screen with the climate panel open across its lower half, over the drive view: seat heating, fan speed, AUTO, A slash C, sync and air quality spread along it" loading="lazy">
       <figcaption>The panel you have to be inside to change anything. It sits on top of the drive view.</figcaption>
     </figure>
 
@@ -280,11 +303,15 @@
     </div>
 
     <div class="withheld">
-      <p>The interactive version waits on Xiaomi to release it.</p>
+      <p>The values themselves, and the standard they are written into, stay inside Xiaomi. The interactive version waits on Xiaomi to release it.</p>
     </div>
 
     <h2 id="s04"><span class="sec-n">04</span>Three keyboards, one rule set</h2>
     <p>This was the first thing I owned on the car.</p>
+
+    <div class="withheld">
+      <p>Nothing in this section is the finished design. It is how I thought the problem through and how I checked the answers, drawn afterwards. The real work ran on a schedule of regular meetings with the Chinese vendors and with the Google team, which is where each decision was agreed. What shipped goes up once Xiaomi releases it.</p>
+    </div>
     <p>Xiaomi&rsquo;s rule is that the driving information stays visible while somebody is typing. So the keyboard floats at system level, and the cards underneath it keep working.</p>
     <p>Three companies make the keyboards I had to serve: the partner already in the car, a new one for the Chinese build, and Google for the English one. Each popped up at its own height, covered its own amount of the screen, and took the layout apart in its own way. They also disagree with each other on when AI triggers, how word suggestions arrive, and what the network prompts do. That is what reaches the layout: it made the same interface hard to fit the Chinese and the overseas car at the same time, because whichever keyboard comes up, it and the driving information along the bottom can never end up covering each other.</p>
 
@@ -403,7 +430,7 @@
     </figure>
 
     <div class="withheld">
-      <p>The component library the keyboards were built against stays inside Xiaomi.</p>
+      <p>The component library the keyboards were built against stays inside Xiaomi, and so does the finished design.</p>
     </div>
 
     <h2 id="s05"><span class="sec-n">05</span>A crowded top bar, and European privacy</h2>
@@ -521,8 +548,8 @@
 
 <section class="section section--light section--tight">
   <div class="section__inner reveal case-nav">
-    <a class="btn btn--secondary" href="innovate-adhd.html">&larr; Innovate ADHD</a>
-    <a class="btn btn--secondary" href="huawei.html">Huawei &rarr;</a>
+    <a class="btn btn--secondary" href="../index.html#work">&larr; All work</a>
+    <a class="btn btn--secondary" href="1soul.html">1Soul &rarr;</a>
   </div>
 </section>
 
