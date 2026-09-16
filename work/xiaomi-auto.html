@@ -55,11 +55,20 @@
     <h2 id="s01"><span class="sec-n">01</span>What the car is trying to be</h2>
     <p>Xiaomi builds the car closer to an extension of the home than to transport. That claim is easy to make and hard to keep, and it gets decided in the moments when nobody is driving.</p>
     <p>A nap mode on the centre screen. A rear screen that runs the seat massage. A keyboard that floats above the screen and leaves what is underneath it alone. Each one is a moment where the car stops being a vehicle, and the interface has to behave like a room.</p>
+    <p>Here are the two closest to that idea. They are also the two screens my work covered, out of the five in the car.</p>
 
-    <figure class="figure figure--narrow">
-      <img src="../assets/images/xiaomi-auto/rear-massage.jpg" alt="The rear screen behind the front seats, showing the seat massage control: temperature on the left, intensity on the right, a seat diagram in the middle, and a row of function icons underneath" loading="lazy">
-      <figcaption>The rear screen running the seat massage. The massage and comfort controls on it were mine. Nobody is driving in this moment.</figcaption>
-    </figure>
+    <div class="figure-grid figure-grid--align">
+      <figure class="figure">
+        <img src="../assets/images/xiaomi-auto/rear-massage.jpg" alt="The rear screen behind the front seats, showing the seat massage control: temperature on the left, intensity on the right, a seat diagram in the middle, and a row of function icons underneath" loading="lazy">
+        <figcaption><b>Rear screen.</b> The seat massage. The massage and comfort controls on it were mine.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="../assets/images/xiaomi-auto/nap-mode.jpg" alt="The centre screen in nap mode, parked facing the sea: the screen has gone dark to a clock reading 12:53 with fifty-one minutes left, and three ticked lines confirming the doors are locked, the aircon is set to the temperature from last time, and the roof is dimming" loading="lazy">
+        <figcaption><b>Centre screen.</b> Nap mode, which I reworked. The screen goes down to a clock and tells you what the car did for you: doors locked, aircon set to the temperature from last time, roof dimming.</figcaption>
+      </figure>
+    </div>
+
+    <p>Nobody is driving in either of them.</p>
 
     <h2 id="s02"><span class="sec-n">02</span>What System UI is, and what I owned</h2>
     <p>Five screens in the cabin. I owned the centre screen and part of the rear screens.</p>
@@ -143,6 +152,7 @@
     </div>
 
     <p>So the answer was to keep both. Xiaomi ships a physical key strip that magnets and screws onto the frame under the 16.1-inch centre screen. The things a hand reaches for without thinking sit one press away: temperature, volume, fan, brightness. The menu stays closed.</p>
+    <p>It is an option, not standard fitting. That is the point of it: the people who want it are the ones who came from a petrol car and still reach for a key, and the people who do not want it never have to look at it.</p>
 
     <figure class="figure">
       <img src="../assets/images/xiaomi-auto/alive-bar-strip.jpg" alt="The centre screen in the cabin, with the physical key strip on the frame directly underneath it marked in red: ten keys either side of a round play control" loading="lazy">
@@ -154,40 +164,44 @@
       <figcaption>The strip and the bar, one above the other. Press TEMP and the number moves in the bar; touch the number and the key lights up. They hold one state between them, so reaching for either one gets you to the same place.</figcaption>
     </figure>
 
+    <p>The strip is not the only way in. The voice assistant reaches the same bar, and so does touching the bar itself. Three inputs, one state behind them; each one is only an input.</p>
+
     <h3>What I did on it</h3>
-    <p>The physical keys were a large project across hardware, software and design. My part was System UI, the layer both entrances land on. I designed part of it, hunted the edge cases, wrote the detail specs and sorted out the logic of what happens during an interaction, turned the result into components so System UI could be extended with them, and took part of the handoff to the developers.</p>
+    <p>The physical keys were a large project across hardware, software and design. My part was System UI, the layer all three entrances land on. I designed part of it, hunted the edge cases, wrote the detail specs and sorted out the logic of what happens during an interaction, turned the result into components so System UI could be extended with them, and took part of the handoff to the developers.</p>
     <p>We watched how people reached for these controls and rebuilt the shortcut interaction on the centre screen around that, then shipped a new set of design components out of it.</p>
 
-
-
     <figure class="diagram">
-      <svg viewBox="0 0 640 220" role="img" aria-label="Two input sources, the physical strip and the on-screen bar, both pointing at one shared state, which drives aircon and media">
+      <svg viewBox="0 0 640 260" role="img" aria-label="Three ways in: the physical strip, the bar on screen, and the voice assistant. All three point at one shared state, which drives aircon and media">
         <g font-family="ui-monospace, monospace" font-size="13" fill="#1d1d1f">
-          <rect x="8" y="18" width="180" height="58" rx="10" fill="var(--gray-1)" stroke="var(--border-hairline)"/>
-          <text x="98" y="52" text-anchor="middle">PHYSICAL STRIP</text>
-          <rect x="8" y="144" width="180" height="58" rx="10" fill="var(--gray-1)" stroke="var(--border-hairline)"/>
-          <text x="98" y="178" text-anchor="middle">BAR ON SCREEN</text>
-          <rect x="248" y="72" width="150" height="76" rx="12" fill="var(--accent-tint)" stroke="var(--accent)"/>
-          <text x="323" y="116" text-anchor="middle" fill="#8E5D04">ONE STATE</text>
-          <rect x="458" y="42" width="174" height="52" rx="10" fill="none" stroke="var(--border-hairline)"/>
-          <text x="545" y="73" text-anchor="middle">AIRCON</text>
-          <rect x="458" y="126" width="174" height="52" rx="10" fill="none" stroke="var(--border-hairline)"/>
-          <text x="545" y="157" text-anchor="middle">MEDIA</text>
+          <rect x="8" y="14" width="180" height="54" rx="10" fill="var(--gray-1)" stroke="var(--border-hairline)"/>
+          <text x="98" y="46" text-anchor="middle">PHYSICAL STRIP</text>
+          <rect x="8" y="103" width="180" height="54" rx="10" fill="var(--gray-1)" stroke="var(--border-hairline)"/>
+          <text x="98" y="135" text-anchor="middle">BAR ON SCREEN</text>
+          <rect x="8" y="192" width="180" height="54" rx="10" fill="var(--gray-1)" stroke="var(--border-hairline)"/>
+          <text x="98" y="224" text-anchor="middle">VOICE</text>
+          <rect x="248" y="92" width="150" height="76" rx="12" fill="var(--accent-tint)" stroke="var(--accent)"/>
+          <text x="323" y="136" text-anchor="middle" fill="#8E5D04">ONE STATE</text>
+          <rect x="458" y="62" width="174" height="52" rx="10" fill="none" stroke="var(--border-hairline)"/>
+          <text x="545" y="93" text-anchor="middle">AIRCON</text>
+          <rect x="458" y="146" width="174" height="52" rx="10" fill="none" stroke="var(--border-hairline)"/>
+          <text x="545" y="177" text-anchor="middle">MEDIA</text>
         </g>
         <g stroke="var(--accent)" stroke-width="1.6" fill="none">
-          <path d="M188 47 H218 V104 H244"/><path d="M188 173 H218 V116 H244"/>
-          <path d="M398 104 H428 V68 H454"/><path d="M398 116 H428 V152 H454"/>
+          <path d="M188 41 H218 V118 H244"/>
+          <path d="M188 130 H244"/>
+          <path d="M188 219 H218 V142 H244"/>
+          <path d="M398 124 H428 V88 H454"/><path d="M398 136 H428 V172 H454"/>
         </g>
         <g fill="var(--accent)">
-          <path d="M244 100 l8 4 -8 4z"/><path d="M244 112 l8 4 -8 4z"/>
-          <path d="M454 64 l8 4 -8 4z"/><path d="M454 148 l8 4 -8 4z"/>
+          <path d="M244 114 l8 4 -8 4z"/><path d="M244 126 l8 4 -8 4z"/><path d="M244 138 l8 4 -8 4z"/>
+          <path d="M454 84 l8 4 -8 4z"/><path d="M454 168 l8 4 -8 4z"/>
         </g>
       </svg>
-      <figcaption class="figure-note">Two ways in, one state.</figcaption>
+      <figcaption class="figure-note">Three ways in, one state.</figcaption>
     </figure>
 
-    <h3>Three taps, then one press</h3>
-    <p>Setting the aircon to auto, before the strip existed. Everything happens on the screen, and the panel covers the thing you were looking at.</p>
+    <h3>Turning on climate sync</h3>
+    <p>One job, both ways round. Sync ties the driver&rsquo;s temperature to the passenger&rsquo;s, and before the strip existed it was three taps on the screen, with the panel covering the thing you were looking at the whole time.</p>
 
     <figure class="figure figure--narrow">
       <img src="../assets/images/xiaomi-auto/alive-bar-before.jpg" alt="The centre screen before the Alive Bar work: the aircon and seat controls open as a full panel over the car view, with the temperature, fan, seat heating and air quality controls spread across it" loading="lazy">
@@ -204,16 +218,16 @@
       <div class="steps__a" aria-hidden="true">&rarr;</div>
       <figure>
         <img src="../assets/images/xiaomi-auto/taps-02.jpg" alt="The climate panel now covers the lower half of the centre screen, with seat heating, fan speed, AUTO, A slash C and air quality controls laid across it" loading="lazy">
-        <figcaption><b>2.</b> The panel opens over what you were looking at. Find AUTO.</figcaption>
+        <figcaption><b>2.</b> The panel opens over what you were looking at. Find sync.</figcaption>
       </figure>
       <div class="steps__a" aria-hidden="true">&rarr;</div>
       <figure>
-        <img src="../assets/images/xiaomi-auto/taps-03.jpg" alt="The same climate panel with the AUTO control now filled in blue to show it is on" loading="lazy">
-        <figcaption><b>3.</b> Tap it. Then close the panel to get your screen back.</figcaption>
+        <img src="../assets/images/xiaomi-auto/taps-03.jpg" alt="The same climate panel with the sync control now carrying a red dot to show the two temperature zones are tied together" loading="lazy">
+        <figcaption><b>3.</b> Tap it. Sync is on. Then close the panel to get your screen back.</figcaption>
       </figure>
     </div>
 
-    <p>With the strip on the frame, the same change is one press, and the screen never opens anything:</p>
+    <p>With the strip on the frame, the same job is one press of the SYNC key, and the screen never opens anything:</p>
 
     <div class="steps steps--2">
       <figure>
@@ -226,7 +240,7 @@
           <source srcset="../assets/images/xiaomi-auto/press.webp" type="image/webp" media="(prefers-reduced-motion: no-preference)">
           <img src="../assets/images/xiaomi-auto/press.jpg" alt="A finger pressing along the physical key strip at night. On the screen above, the bar answers each press: the temperature reads 23.0, and a message confirms that the temperature zones have been synced" loading="lazy">
         </picture>
-        <figcaption><b>The bar answers.</b> No panel, no depth. What the screen says back, how fast, and what it does to whatever was already there is the part that had to be designed.</figcaption>
+        <figcaption><b>The bar answers.</b> The zones tie together and the screen says so, with no panel and no depth. What the screen says back, how fast, and what it does to whatever was already there is the part that had to be designed.</figcaption>
       </figure>
     </div>
 
