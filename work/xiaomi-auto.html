@@ -49,7 +49,7 @@
     </figure>
 
     <div class="withheld">
-      <p>Nothing on this page is internal Xiaomi material. The photographs are Xiaomi&rsquo;s own published images of the car. Everything else is a diagram I drew to show how I worked.</p>
+      <p>Nothing on this page is internal Xiaomi material. The pictures are of three kinds: Xiaomi&rsquo;s own published images of the car, frames from publicly posted video of the car as it ships, and diagrams I drew myself to show how I worked. One photograph of a petrol car interior is a manufacturer&rsquo;s press image, used to show what the controls looked like before. Where a screen is still missing I have said so, and I will replace it with my own capture from the car.</p>
     </div>
 
     <h2 id="s01"><span class="sec-n">01</span>What the car is trying to be</h2>
@@ -123,19 +123,37 @@
     </figure>
 
     <h2 id="s03"><span class="sec-n">03</span>Alive Bar</h2>
-    <p>Touchscreen against physical buttons is an old argument in cars. Alive Bar answers it by making them the same control.</p>
-    <p>Xiaomi ships a physical key strip that magnets and screws onto the frame under the 16.1-inch centre screen. The things a hand reaches for without thinking sit one press away: temperature, volume, fan, brightness. The menu stays closed.</p>
-    <p>The strip and the bar on screen hold one state between them, so reaching for either one gets you to the same place. I wrote the interaction principles for that, designed it, and turned it into the component set the other designers build from.</p>
+    <p>Touchscreen against physical buttons is an old argument in cars. On this car it stopped being an argument and turned into a group of people.</p>
+    <p>A lot of the buyers were leaving a petrol car for the first time, and the hand habits came with them. Driving, they wanted one press to finish the thing: colder, louder, demist. That group also skews older, and it is the same group least willing to talk to a voice assistant. The key is the shorter path anyway. Look down, tap, wait for a panel, find the control, tap it, close the panel &mdash; against one press without looking.</p>
 
-    <figure class="figure figure--narrow">
-      <img src="../assets/images/xiaomi-auto/alive-bar-before.jpg" alt="The centre screen before the Alive Bar work: the aircon and seat controls open as a full panel over the car view, with the temperature, fan, seat heating and air quality controls spread across it" loading="lazy">
-      <figcaption>Before. Aircon and seat controls opened as a panel you had to go down into.</figcaption>
-    </figure>
+    <div class="figure-grid">
+      <figure class="figure">
+        <img src="../assets/images/xiaomi-auto/dash-traditional.jpg" alt="The interior of a petrol saloon: a screen high on the dashboard, and below it two rows of physical buttons and dials for climate and media, plus a rotary controller by the gear selector" loading="lazy">
+        <figcaption>The car they came from. Two rows of keys and a dial, all of it reachable without looking.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="../assets/images/xiaomi-auto/dash-xiaomi.jpg" alt="The SU7 interior: a wide landscape centre screen on the dashboard, a slim driver's display behind the wheel, and almost no physical controls" loading="lazy">
+        <figcaption>The car they moved to. Nearly all of it went into glass.</figcaption>
+      </figure>
+    </div>
+
+    <p>So the answer was to keep both. Xiaomi ships a physical key strip that magnets and screws onto the frame under the 16.1-inch centre screen. The things a hand reaches for without thinking sit one press away: temperature, volume, fan, brightness. The menu stays closed.</p>
 
     <figure class="figure">
       <img src="../assets/images/xiaomi-auto/alive-bar-strip.jpg" alt="The centre screen in the cabin, with the physical key strip on the frame directly underneath it marked in red: ten keys either side of a round play control" loading="lazy">
       <figcaption>The physical strip, marked in red. It sits on the frame directly under the screen.</figcaption>
     </figure>
+
+    <figure class="figure">
+      <img src="../assets/images/xiaomi-auto/keys-and-bar.jpg" alt="Close up of the physical key strip on the frame under the centre screen, with keys marked TEMP, A slash C, SYNC and demist and a knurled knob, and directly above them the bar on screen showing 23.0 degrees and the music controls" loading="lazy">
+      <figcaption>The strip and the bar, one above the other. Press TEMP and the number moves in the bar; touch the number and the key lights up. They hold one state between them, so reaching for either one gets you to the same place.</figcaption>
+    </figure>
+
+    <h3>What I did on it</h3>
+    <p>The physical keys were a large project across hardware, software and design. My part was System UI, the layer both entrances land on. I designed part of it, hunted the edge cases, wrote the detail specs and sorted out the logic of what happens during an interaction, turned the result into components so System UI could be extended with them, and took part of the handoff to the developers.</p>
+    <p>We watched how people reached for these controls and rebuilt the shortcut interaction on the centre screen around that, then shipped a new set of design components out of it.</p>
+
+
 
     <figure class="diagram">
       <svg viewBox="0 0 640 220" role="img" aria-label="Two input sources, the physical strip and the on-screen bar, both pointing at one shared state, which drives aircon and media">
@@ -162,6 +180,59 @@
       </svg>
       <figcaption class="figure-note">Two ways in, one state.</figcaption>
     </figure>
+
+    <h3>Three taps, then one press</h3>
+    <p>Setting the aircon to auto, before the strip existed. Every step happens on the screen, and the panel covers the thing you were looking at.</p>
+
+    <figure class="figure figure--narrow">
+      <img src="../assets/images/xiaomi-auto/alive-bar-before.jpg" alt="The centre screen before the Alive Bar work: the aircon and seat controls open as a full panel over the car view, with the temperature, fan, seat heating and air quality controls spread across it" loading="lazy">
+      <figcaption>Before. Aircon and seat controls opened as a panel you had to go down into.</figcaption>
+    </figure>
+
+    <div class="figure-grid figure-grid--3">
+      <figure class="figure">
+        <img src="../assets/images/xiaomi-auto/taps-01.jpg" alt="The centre screen on its home layout: the car, the map and music side by side, with the temperature 22.0 sitting small in the dock along the bottom" loading="lazy">
+        <figcaption><b>1.</b> Find the temperature in the dock. Tap it.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="../assets/images/xiaomi-auto/taps-02.jpg" alt="The climate panel now covers the lower half of the centre screen, with seat heating, fan speed, AUTO, A slash C and air quality controls laid across it" loading="lazy">
+        <figcaption><b>2.</b> A panel opens over what you were looking at. Find AUTO.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="../assets/images/xiaomi-auto/taps-03.jpg" alt="The same climate panel with the AUTO control now filled in blue to show it is on" loading="lazy">
+        <figcaption><b>3.</b> Tap it. Then close the panel to get your screen back.</figcaption>
+      </figure>
+    </div>
+
+    <p>And with the strip on the frame:</p>
+
+    <figure class="figure">
+      <img src="../assets/images/xiaomi-auto/press-01.jpg" alt="The centre screen still on its home layout, untouched, while a hand reaches down to press a key on the physical strip below the screen" loading="lazy">
+      <figcaption><b>One press.</b> The hand goes down without the eyes following it, and the screen stays on what it was showing.</figcaption>
+    </figure>
+
+    <figure class="figure">
+      <picture>
+        <source srcset="../assets/images/xiaomi-auto/press.webp" type="image/webp" media="(prefers-reduced-motion: no-preference)">
+        <img src="../assets/images/xiaomi-auto/press.jpg" alt="A finger pressing along the physical key strip at night. On the screen above, the climate bar answers each press: the temperature reads 23.0, and a message confirms that the temperature zones have been synced" loading="lazy">
+      </picture>
+      <figcaption>The same strip at night, with the bar answering each press. This is the part that had to be designed: what the screen says back, how fast, and what it does to whatever was already there.</figcaption>
+    </figure>
+
+    <div class="figure-grid">
+      <figure class="figure" style="margin-bottom:0">
+        <div class="slot slot--tall" data-slot="alive-bar-scenarios">
+          <span class="slot__k">Every scenario, in order</span>
+          <p class="slot__d">The full set of Alive Bar states and what each one covers. I am working out the right format for it.</p>
+        </div>
+      </figure>
+      <figure class="figure" style="margin-bottom:0">
+        <div class="slot slot--tall" data-slot="alive-bar-components">
+          <span class="slot__k">The component set</span>
+          <p class="slot__d">What the strip and the bar were turned into for the other designers to build from.</p>
+        </div>
+      </figure>
+    </div>
 
     <div class="withheld">
       <p>The interactive version waits on Xiaomi to release it.</p>
@@ -272,8 +343,8 @@
       </figure>
       <figure>
         <div class="slot" data-slot="kb-shipped">
-          <span class="slot__k">Coming from the car</span>
-          <p class="slot__d">I will screenshot this in the Xiaomi car as soon as it ships, so it shows the real thing running.</p>
+          <span class="slot__k">The shipped keyboard</span>
+          <p class="slot__d">A screenshot from the car, once the system update lands.</p>
         </div>
         <figcaption><b>After.</b> From the car itself.</figcaption>
       </figure>
@@ -281,8 +352,8 @@
 
     <figure class="figure">
       <div class="slot slot--wide" data-slot="kb-in-use">
-        <span class="slot__k">Coming from the car</span>
-        <p class="slot__d">I will screenshot this in the Xiaomi car as soon as it ships, so it shows the real thing running.</p>
+        <span class="slot__k">The keyboard in use</span>
+        <p class="slot__d">The same thing with the car moving, wide enough to show what it covers and what it leaves alone.</p>
       </div>
     </figure>
 
@@ -295,6 +366,7 @@
     <p>Every time the camera, the microphone or the location is called, the person has to be told three times: as it starts, as it ends, and once it has fully stopped. That rule is European. The Chinese system runs on different defaults.</p>
     <p>The place that has to hold all that is the top bar, which was already full and already built.</p>
     <p>I worked with the Google UX and Android Auto teams on the answer. It is a permission point: one dot, at the end of the bar, that says something is live.</p>
+    <p>Android Auto was part of the same conversation. A European car is expected to hand its screen over to a phone, so the cabin had to be designed knowing that Android Auto would be running in it, and that the permission point had to keep meaning the same thing while it was.</p>
 
     <figure class="figure">
       <img src="../assets/images/xiaomi-auto/top-bar-before.jpg" alt="The top bar before the change: driver, gear, range, headlights on the left, and on the right the temperature, messages, camera, link and wifi icons and the clock, with no spare room" loading="lazy">
@@ -327,7 +399,7 @@
 
     <h2 id="s06"><span class="sec-n">06</span>The rental case</h2>
     <p>In China a car is usually yours. In Europe it is often yours for three days.</p>
-    <p>A product built on &ldquo;this is your space&rdquo; has to answer what happens when the space belongs to somebody else next week. We started from the fleet component the domestic system already had adapted it, and built three modes out of it: guest, account, and owner.</p>
+    <p>A product built on &ldquo;this is your space&rdquo; has to answer what happens when the space belongs to somebody else next week. We started from the fleet component the domestic system already had, adapted it, and built three modes out of it: guest, account, and owner.</p>
 
     <figure class="diagram">
       <svg viewBox="0 0 640 140" role="img" aria-label="One car across time. Owner, then a guest for three days, then the owner again. At each handover the guest's data clears and the owner's settings persist">
@@ -404,8 +476,8 @@
 
 <section class="section section--light section--tight">
   <div class="section__inner reveal case-nav">
-    <a class="btn btn--secondary" href="urify.html">&larr; Urify</a>
-    <a class="btn btn--secondary" href="nft.html">NFT &rarr;</a>
+    <a class="btn btn--secondary" href="innovate-adhd.html">&larr; Innovate ADHD</a>
+    <a class="btn btn--secondary" href="huawei.html">Huawei &rarr;</a>
   </div>
 </section>
 
