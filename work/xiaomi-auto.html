@@ -126,7 +126,9 @@
     </div>
 
     <h2>Three keyboards, one rule set</h2>
-    <p>Three companies made three keyboards. Each popped up at its own height, covered its own amount of the screen, and took the layout apart in its own way. The person in the car only feels that typing is inconsistent.</p>
+    <p>This was the first thing I owned on the car.</p>
+    <p>Xiaomi&rsquo;s rule is that the driving information stays visible while somebody is typing. So the keyboard floats at system level, and the cards underneath it keep working.</p>
+    <p>Three companies make the keyboards I had to serve: the partner already in the car, a new one for the Chinese build, and Google for the English one. Each popped up at its own height, covered its own amount of the screen, and took the layout apart in its own way. They also disagree with each other on when AI triggers, how word suggestions arrive, and what the network prompts do. The person in the car only feels that typing is inconsistent.</p>
 
     <figure class="figure">
       <img src="../assets/images/xiaomi-auto/keyboards-three.jpg" alt="Three screens side by side, each with a different vendor's keyboard open. Each one rises to a different height and covers a different amount of what is underneath. The content is desensitised." loading="lazy">
@@ -153,6 +155,48 @@
       <figcaption class="figure-note">Three vendors, three heights, three amounts of screen taken away. The dashed line is where one of them lands.</figcaption>
     </figure>
 
+    <div class="withheld">
+      <p>From here to the end of this section, the pictures are reconstructions I drew afterwards to show the thinking. They are neither the finished design nor internal material. The shipped screens will come from the car itself.</p>
+    </div>
+
+    <figure class="figure">
+      <img src="../assets/images/xiaomi-auto/kb-before.jpg" alt="A car screen with driving, navigation and music cards across the top, and a small keyboard in the lower left corner covering part of the driving card" loading="lazy">
+      <figcaption>Where I started. It sits near the left hand, which is the right instinct and the wrong result: at that size you mis-tap, there is little to reach for, and nothing precise is possible while the car is moving.</figcaption>
+    </figure>
+
+    <p>Two problems, then. What proportion fits the screen the car now ships, and what to do about the functions no version is going to drop.</p>
+
+    <h3>01 &middot; The proportion</h3>
+    <p>The screen had grown through the car&rsquo;s own iterations, so the old ratio had stopped being the right one. I gave Figma Make the screen dimensions, the state of all three keyboards, and how large an area a driver&rsquo;s gaze actually covers, and had it work the layout against those constraints. Then I moved things by hand inside it until one glance was enough to find a key.</p>
+
+    <figure class="figure">
+      <img src="../assets/images/xiaomi-auto/kb-figma-make.jpg" alt="The Figma Make editor: the car screen with the keyboard on the left, and the inspector on the right showing a key grid set to three by four at 126 by 129" loading="lazy">
+      <figcaption>Adjusting the key grid inside Figma Make, against the size the screen actually is.</figcaption>
+    </figure>
+
+    <figure class="figure">
+      <picture>
+        <source srcset="../assets/images/xiaomi-auto/kb-test.webp" type="image/webp" media="(prefers-reduced-motion: no-preference)">
+        <img src="../assets/images/xiaomi-auto/kb-test.jpg" alt="The prototype running: text is typed into the field while the driving, navigation and music cards above the keyboard stay legible throughout" loading="lazy">
+      </picture>
+      <figcaption>The clickability test. Everything above the keyboard stays readable the whole time somebody is typing.</figcaption>
+    </figure>
+
+    <h3>02 &middot; The functions that stay</h3>
+    <p>AI suggestions, word association, the network prompts. No version was going to drop them, so one rule had to hold all three vendors at once.</p>
+
+    <figure class="figure figure--outline">
+      <img src="../assets/images/xiaomi-auto/kb-options.jpg" alt="Four wireframe options for the keyboard block side by side, each carrying the extra functions in a different arrangement above the keys" loading="lazy">
+      <figcaption>Four ways to carry them. I took the one on the left.</figcaption>
+    </figure>
+
+    <p>It shows the AI most clearly, it blocks the least sightline, and it mis-taps the least. The extra functions live in a floating box that appears when something triggers it, and the keyboard underneath stays where it is.</p>
+
+    <figure class="figure">
+      <img src="../assets/images/xiaomi-auto/kb-after.jpg" alt="The same car screen with the rebuilt keyboard: a full-width floating block with a function row along the top, letters in the middle and a separate number pad on the right, with the driving cards still visible above it" loading="lazy">
+      <figcaption>Where it landed.</figcaption>
+    </figure>
+
     <ol class="rules">
       <li>One popup height, whatever the vendor ships.</li>
       <li>The keyboard floats. It leaves the layout underneath it alone.</li>
@@ -162,13 +206,6 @@
 
     <p>Rule four is where this project turned into the next one.</p>
     <p>Once the rules held, the permutations were work for a machine. I gave the constraints to Figma Make and it produced the state matrix across landscape and portrait, and I went back through and corrected it. That let me check usability against every state, and keep the result looking current, in the time it would have taken to draw a handful by hand.</p>
-
-    <figure class="figure">
-      <div class="slot slot--wide" data-slot="keyboard-matrix">
-        <span class="slot__k">Diagram to be added</span>
-        <p class="slot__d">The state matrix as a grid. Landscape and portrait down one axis, the states across the other.</p>
-      </div>
-    </figure>
 
     <figure class="diagram">
       <svg viewBox="0 0 640 150" role="img" aria-label="A vertical line. On the left, the decisions Yidan made. On the right, what the machine produced from them">

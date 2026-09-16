@@ -2747,3 +2747,10 @@ img.testimonial__avatar{object-fit:cover;}
   .modes{font-size:var(--text-body-sm);}
   .modes tbody th{width:40%;}
 }
+
+/* A pale wireframe on a white ground needs an edge to sit against the
+   cream page, or it reads as a gap rather than a diagram. */
+.figure--outline img{
+  border:1px solid var(--border-hairline);
+  background:#fff;border-radius:var(--radius-sm);
+}
