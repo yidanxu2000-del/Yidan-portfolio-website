@@ -2754,3 +2754,7 @@ img.testimonial__avatar{object-fit:cover;}
   border:1px solid var(--border-hairline);
   background:#fff;border-radius:var(--radius-sm);
 }
+
+/* A slot standing in for the other half of a before-and-after takes the
+   ratio of the picture beside it, so the two captions line up. */
+.cmp .slot{aspect-ratio:736/475;padding:var(--space-4);}
