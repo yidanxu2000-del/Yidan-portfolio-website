@@ -2758,3 +2758,12 @@ img.testimonial__avatar{object-fit:cover;}
 /* A slot standing in for the other half of a before-and-after takes the
    ratio of the picture beside it, so the two captions line up. */
 .cmp .slot{aspect-ratio:736/475;padding:var(--space-4);}
+
+/* A running number above each section heading. The page is long and the
+   headings are all prose, so without it a reader loses track of whether
+   they are still inside the same topic. */
+.sec-n{
+  display:block;margin-bottom:var(--space-2);
+  font-family:var(--font-mono);font-size:13px;font-weight:var(--fw-semibold);
+  letter-spacing:.12em;color:var(--accent);
+}
