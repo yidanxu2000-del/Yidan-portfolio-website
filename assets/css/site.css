@@ -155,6 +155,30 @@ body{background:var(--surface-primary);}
 .section__inner--left .section__body{margin-left:0;margin-right:0;}
 .section__content{margin-top:var(--space-7);}
 
+/* a section can carry a second block that reads as a sibling of the first:
+   same type, its own heading, with room between them */
+.section__body + .section__title{
+  margin-top:var(--space-8);
+  max-width:var(--container-narrow);margin-left:auto;margin-right:auto;
+}
+.section__body + .section__body{margin-top:var(--space-4);}
+
+/* a short numbered list inside a centred section. the numbers carry the
+   meaning here, so they stay visible, and the list reads left-aligned */
+.numbered{
+  max-width:var(--container-narrow);
+  margin:var(--space-6) auto;padding:0 0 0 var(--space-6);
+  text-align:left;list-style:decimal outside;
+  font-size:var(--text-body-lg);line-height:var(--lh-body);color:var(--text-primary);
+}
+.numbered li{margin:0 0 var(--space-4);padding-left:var(--space-2);}
+.numbered li:last-child{margin-bottom:0;}
+.numbered li::marker{color:var(--accent-ink);font-weight:var(--fw-semibold);font-variant-numeric:tabular-nums;}
+.section--dark .numbered,.section--alt-dark .numbered{color:var(--text-on-dark);}
+@media (max-width:600px){
+  .numbered{padding-left:var(--space-5);}
+}
+
 /* distinctive pull-quote treatment for a single stand-out line within an
    otherwise plain section — used sparingly, not a general blockquote style */
 .timeline-manifesto{
