@@ -56,10 +56,8 @@
     <p>I was in the User Centre Design team, which sits above all five. My job was to find where they had drifted and write the rule that brings them back. I took tabs.</p>
 
     <figure class="figure">
-      <div class="slot slot--wide" data-slot="five-apps">
-        <span class="slot__k">The five apps, side by side</span>
-        <p class="slot__d">Home screens from the public App Store versions, same frame and same scale.</p>
-      </div>
+      <img src="../assets/images/huawei/five-apps.jpg" alt="Five Huawei B2B app screens side by side: a smart meter detail page, a solar plant list in English, an order list, a product discovery page and a cloud product page. Each one handles its tabs differently." loading="lazy">
+      <figcaption>Five apps, five teams. Every one of them has tabs on this screen, and no two of them draw them the same way.</figcaption>
     </figure>
 
     <h2 id="s02"><span class="sec-n">02</span>The same component, five ways</h2>
@@ -67,10 +65,8 @@
     <p>One used a capsule. One used a slider. One used an underline. Two used more than one style in the same app, on different screens.</p>
 
     <figure class="figure">
-      <div class="slot slot--wide" data-slot="tabs-five-ways">
-        <span class="slot__k">One row each, five answers</span>
-        <p class="slot__d">Each app cropped to its tab row alone, same height, same treatment.</p>
-      </div>
+      <img src="../assets/images/huawei/tabs-five-ways.jpg" alt="Every tab row from the five apps, lifted out of its screen and lined up in five columns: a slider, boxed counters, underlines, capsules, and a row where a picture is the tab" loading="lazy">
+      <figcaption>The same component, cut out of all five apps. A slider, boxed counters, underlines, capsules, and a row where the picture is the tab. The fourth column is one screen, and it carries four rows of tabs on its own.</figcaption>
     </figure>
     <p>None of this was wrong on its own. Each team had made a reasonable choice for its own product. The problem only appears when a person uses two of these apps in the same afternoon, which is exactly what Huawei&rsquo;s B2B customers do.</p>
 
@@ -110,20 +106,13 @@
       </li>
       <li>
         <strong>What happens when tabs stack?</strong>
-        Some screens had two layers of tabs. Some had three. There was no rule for which layer takes which style, so every screen solved it locally.
+        Some screens had two layers of tabs. One had four, which is the fourth column in the picture above. There was no rule for which layer takes which style, so every screen solved it locally.
       </li>
       <li>
         <strong>Where are tabs allowed to live?</strong>
         Tabs appeared in the title area, under the title area, and inside cards. Sometimes the title area held a title and tabs at once, sometimes only tabs.
       </li>
     </ol>
-
-    <figure class="figure">
-      <div class="slot slot--wide" data-slot="tab-stacking">
-        <span class="slot__k">Two layers, and three</span>
-        <p class="slot__d">Screens from the live apps where tabs stack, cropped to the tab region with enough around it to read.</p>
-      </div>
-    </figure>
 
     <h2 id="s04"><span class="sec-n">04</span>Looking outward</h2>
     <p>Before writing anything I read how the two systems these apps sit on top of handle it. HarmonyOS 5.0 and iOS 18.</p>
@@ -361,31 +350,70 @@
     <p>Offline this problem was solved a long time ago. You hand someone a business card. Front is the person. Back is the company.</p>
     <p>With the UX team I designed that as a component. The front of the card is the individual, their name, their role and how to reach them. The back is the company they belong to, which is the part that actually carries the trust.</p>
 
-    <div class="figure-grid figure-grid--align">
-      <figure class="figure">
-        <div class="slot slot--tall" data-slot="card-front">
-          <span class="slot__k">The front, the person</span>
-          <p class="slot__d">Name, role and how to reach them. Reconstructed with AI, and labelled as a reconstruction on the image itself.</p>
-        </div>
-        <figcaption>Front. The individual.</figcaption>
-      </figure>
-      <figure class="figure">
-        <div class="slot slot--tall" data-slot="card-back">
-          <span class="slot__k">The back, the company</span>
-          <p class="slot__d">The organisation behind the person. Reconstructed with AI, and labelled as a reconstruction on the image itself.</p>
-        </div>
-        <figcaption>Back. The company, which is the part that carries the trust.</figcaption>
-      </figure>
+    <p>So it turns over. The card below is a live component on this page. Click it, or focus it and press space.</p>
+
+    <div class="flipcard">
+      <button class="flipcard__btn" type="button" aria-pressed="false" aria-label="Turn the card over">
+        <span class="flipcard__inner">
+          <span class="flipcard__face flipcard__face--front" data-slot="card-front">
+            <span class="flipcard__k">Front &middot; the person</span>
+            <p>Name, role and how to reach them. A reconstruction goes here, labelled as one on the image.</p>
+          </span>
+          <span class="flipcard__face flipcard__face--back" data-slot="card-back">
+            <span class="flipcard__k">Back &middot; the company</span>
+            <p>The organisation behind the person, which is the part that carries the trust.</p>
+          </span>
+        </span>
+      </button>
+      <span class="flipcard__hint" aria-hidden="true">Click to turn over</span>
     </div>
 
     <div class="withheld">
-      <p>Both card faces will be reconstructions I generate for this page, labelled as such on the image. The designs that shipped stay inside Huawei.</p>
+      <p>Both faces will be reconstructions I generate for this page, labelled as such on the image itself. The designs that shipped stay inside Huawei.</p>
     </div>
 
-    <h2 id="s08"><span class="sec-n">08</span>What it came to</h2>
+    <h2 id="s08"><span class="sec-n">08</span>Reading the numbers</h2>
+    <p>Alongside the tabs I worked on one of the web platforms, where the question was which features were in the wrong place. The user research team had the behaviour data, so every suggestion I made started from a signal and a reading of it.</p>
+
+    <div class="prose-table-wrap">
+      <table class="prose-table">
+        <thead><tr><th>What the numbers said</th><th>What it usually meant</th></tr></thead>
+        <tbody>
+          <tr><td>The same function sat on several pages, and the clicks were spread thin across them.</td><td>The entry path needed reorganising. The feature was fine.</td></tr>
+          <tr><td>Plenty of taps, almost no time on the page.</td><td>An accidental tap, or a label promising the wrong thing. Interviews told us which.</td></tr>
+          <tr><td>Few taps, and a long stay once people arrived.</td><td>Worth finding and hard to find, so the fix was placement.</td></tr>
+          <tr><td>People leaving halfway through a task.</td><td>The screen never told them they had finished.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="s09"><span class="sec-n">09</span>What it came to</h2>
     <p>I handed the specification to five product teams. Each one builds on its own schedule, so the change arrives at a different speed in each app, and that is how a design system in a large company actually lands.</p>
     <p>What I took from it: a rule only works if it tells you what to do, and saying what is correct is a weaker thing to write. Every line in the specification names a job, a count and a place. A team reading it at eleven at night with a release tomorrow can follow it without asking anyone.</p>
     <p>This was my first time writing a component specification. It changed what I think a design system is for.</p>
+
+    <h2 id="s10"><span class="sec-n">10</span>After the internship</h2>
+    <p>Two things happened once I left. Neither was asked for, and that is why I keep them here.</p>
+
+    <h3>My manager wrote about me publicly</h3>
+    <p>The head of user research on my team posted about me on her own social media, to her own network. Her name and picture are covered here, and I have cut the part about hiring for the next intake. What is left is what she said about the work.</p>
+    <p>The photographs in her post come from two places. The top row is my TEDx talk. The bottom row is me sharing work inside Huawei, to the team and to the wider department. I am glad she kept both, and I hope to keep going in this industry for a long time.</p>
+
+    <figure class="figure">
+      <img src="../assets/images/huawei/manager-post.jpg" alt="A social media post from the head of user research at Huawei, with her name and profile picture redacted. The Chinese text praises Yidan Xu's TEDx talk and her performance during the internship, above six photographs of her presenting on stage and to teams" loading="lazy">
+      <figcaption>Posted by the head of user research on our team. Name and profile picture removed.</figcaption>
+    </figure>
+
+    <blockquote>Our team&rsquo;s 2024 intern, Yidan Xu, just spoke at TEDx in July about design giving power back to everyday life. She was lovely and sharp the whole way through. Her work during the internship was outstanding too. A girl who is both beautiful and clever is a sight worth seeing, wherever she goes.</blockquote>
+    <p class="figure-note">Translated from the Chinese.</p>
+
+    <figure class="figure">
+      <img src="../assets/images/huawei/sharing-session.jpg" alt="Yidan Xu presenting to colleagues in a Huawei meeting room, standing beside a large projected slide whose content is pixelated, with three people watching from the front row" loading="lazy">
+      <figcaption>One of the sharing sessions inside Huawei.</figcaption>
+    </figure>
+
+    <h3>A colleague marked my report A+</h3>
+    <p>A second colleague came to find me after I had gone. He told me he had read my final report and graded it A+. He did not have to tell me. That is the part I remember.</p>
 
   </div>
 </section>
@@ -442,6 +470,12 @@
     select(tabs.filter(function(t){ return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0]);
     window.addEventListener('resize', function(){
       select(tabs.filter(function(t){ return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0]);
+    });
+  });
+
+  document.querySelectorAll('.flipcard__btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      btn.setAttribute('aria-pressed', btn.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
     });
   });
 })();
