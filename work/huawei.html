@@ -366,23 +366,23 @@
     <p>So it turns over. The card below is a live component on this page. Click it, or focus it and press space.</p>
 
     <div class="flipcard">
-      <button class="flipcard__btn" type="button" aria-pressed="false" aria-label="Turn the card over">
+      <button class="flipcard__btn" type="button" aria-pressed="false" aria-label="Turn the card over to see the person">
         <span class="flipcard__inner">
-          <span class="flipcard__face flipcard__face--front" data-slot="card-front">
-            <span class="flipcard__k">Front &middot; the person</span>
-            <p>Name, role and how to reach them. A reconstruction goes here, labelled as one on the image.</p>
+          <span class="flipcard__face flipcard__face--front">
+            <img src="../assets/images/huawei/card-logo.jpg" alt="The face of the card: a warm gradient with the company mark in the middle" loading="lazy">
+            <span class="flipcard__turn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></span>
           </span>
-          <span class="flipcard__face flipcard__face--back" data-slot="card-back">
-            <span class="flipcard__k">Back &middot; the company</span>
-            <p>The organisation behind the person, which is the part that carries the trust.</p>
+          <span class="flipcard__face flipcard__face--back">
+            <img src="../assets/images/huawei/card-person.jpg" alt="The back of the card: a portrait of the person on the left, their name set large beside it, with their role and contact line underneath" loading="lazy">
+            <span class="flipcard__turn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></span>
           </span>
         </span>
       </button>
-      <span class="flipcard__hint" aria-hidden="true">Click to turn over</span>
+      <span class="flipcard__hint" data-front="Turn it over for the person" data-back="Turn it back">Turn it over for the person</span>
     </div>
 
     <div class="withheld">
-      <p>Both faces will be reconstructions I generate for this page, labelled as such on the image itself. The designs that shipped stay inside Huawei.</p>
+      <p>This card is a low-fidelity mockup I made afterwards, for this page. It is not a deliverable from my time at Huawei, and the designs that shipped stay inside the company.</p>
     </div>
 
     <h2 id="s08"><span class="sec-n">08</span>Reading the numbers</h2>
@@ -486,10 +486,31 @@
     });
   });
 
-  document.querySelectorAll('.flipcard__btn').forEach(function(btn){
+  document.querySelectorAll('.flipcard').forEach(function(card){
+    var btn  = card.querySelector('.flipcard__btn');
+    var hint = card.querySelector('.flipcard__hint');
     btn.addEventListener('click', function(){
-      btn.setAttribute('aria-pressed', btn.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+      var on = btn.getAttribute('aria-pressed') !== 'true';
+      btn.setAttribute('aria-pressed', on);
+      btn.setAttribute('aria-label', on ? 'Turn the card back to the company side' : 'Turn the card over to see the person');
+      if (hint) hint.textContent = on ? hint.dataset.back : hint.dataset.front;
+      btn.classList.remove('is-nudging');
     });
+    // one nudge the first time it comes into view, so the card says it moves
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        io.disconnect();
+        setTimeout(function(){
+          if (btn.getAttribute('aria-pressed') === 'true') return;
+          btn.classList.add('is-nudging');
+          setTimeout(function(){ btn.classList.remove('is-nudging'); }, 1600);
+        }, 450);
+      });
+    }, {threshold: .55});
+    io.observe(card);
   });
 })();
 </script>
