@@ -3015,3 +3015,17 @@ img.testimonial__avatar{object-fit:cover;}
 @media (prefers-reduced-motion: reduce){
   .flipcard__inner{transition:none;}
 }
+
+
+/* ---------- Roles: a name and one line of what they answer for ----------- */
+.roles{list-style:none;margin:var(--space-5) 0 var(--space-6);padding:0;
+  display:grid;grid-template-columns:minmax(0,1fr);gap:0;}
+@media (min-width:721px){ .roles{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--space-6);} }
+.prose .roles li{
+  margin:0;padding:var(--space-4) 0;border-bottom:1px solid var(--border-hairline);
+}
+.roles__n{
+  display:block;margin-bottom:4px;font-weight:var(--fw-semibold);color:var(--text-primary);
+  font-size:var(--text-body);
+}
+.prose .roles p{margin:0;font-size:var(--text-body-sm);color:var(--text-secondary);}
