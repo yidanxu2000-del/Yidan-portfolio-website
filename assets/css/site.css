@@ -174,6 +174,10 @@ body{background:var(--surface-primary);}
 .numbered li{margin:0 0 var(--space-4);padding-left:var(--space-2);}
 .numbered li:last-child{margin-bottom:0;}
 .numbered li::marker{color:var(--accent-ink);font-weight:var(--fw-semibold);font-variant-numeric:tabular-nums;}
+/* a numbered item that leads with its own question, then answers it */
+.numbered--lead li{color:var(--text-secondary);}
+.numbered--lead li strong{display:block;margin-bottom:6px;color:var(--text-primary);font-weight:var(--fw-semibold);}
+.prose .numbered{margin-left:0;margin-right:0;}
 .section--dark .numbered,.section--alt-dark .numbered{color:var(--text-on-dark);}
 @media (max-width:600px){
   .numbered{padding-left:var(--space-5);}
@@ -2881,3 +2885,152 @@ img.testimonial__avatar{object-fit:cover;}
 }
 /* the scope list jumps to these, and the navbar is fixed over the top */
 .prose h2[id]{scroll-margin-top:96px;}
+
+
+/* ---------- Tab specification (Huawei case) ------------------------------ */
+/* the components are live rather than photographed, so the page shows the
+   thing the specification describes */
+.tabspec{
+  margin:var(--space-6) 0 var(--space-7);
+  padding-bottom:var(--space-6);
+  border-bottom:1px solid var(--border-hairline);
+}
+.tabspec:last-of-type{border-bottom:0;}
+.tabspec__head{margin-bottom:var(--space-4);}
+.prose .tabspec__head h3{margin:0;}
+.tabspec__head h3 span{
+  font-family:var(--font-mono);font-size:13px;font-weight:var(--fw-regular);
+  letter-spacing:.04em;color:var(--text-secondary);margin-left:var(--space-3);
+}
+.tabspec__grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-5);align-items:start;}
+@media (min-width:721px){
+  .tabspec__grid{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:var(--space-6);}
+}
+.tabspec__demo{
+  background:var(--gray-1);border:1px solid var(--border-hairline);
+  border-radius:var(--radius-md);padding:var(--space-5);
+}
+.prose .tabspec__rule dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px var(--space-4);}
+.prose .tabspec__rule dt{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text-secondary);padding-top:3px;white-space:nowrap;
+}
+.prose .tabspec__rule dd{margin:0;font-size:var(--text-body-sm);color:var(--text-primary);}
+
+/* the tab rows themselves */
+.tabs{display:flex;align-items:center;gap:var(--space-4);position:relative;}
+.tabs button{
+  appearance:none;background:none;border:0;cursor:pointer;
+  font:inherit;font-size:var(--text-body-sm);color:var(--text-secondary);
+  padding:8px 0;white-space:nowrap;
+}
+.tabs button[aria-selected="true"]{color:var(--text-primary);font-weight:var(--fw-semibold);}
+.tabs button:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px;border-radius:4px;}
+
+/* primary and card: an underline that slides */
+.tabs--primary,.tabs--card{border-bottom:1px solid var(--border-hairline);}
+.tabs__indicator{
+  position:absolute;left:0;bottom:-1px;height:2px;background:var(--accent-ink);
+  transition:transform var(--duration-base) var(--ease-out),width var(--duration-base) var(--ease-out);
+}
+.tabs--card{gap:var(--space-3);}
+.tabs--card button{font-size:15px;padding:6px 0;}
+
+/* sub: capsules, and ten of them have to scroll on a phone */
+.tabs--sub{gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
+.tabs--sub::-webkit-scrollbar{display:none;}
+.tabs--sub button{
+  padding:6px 14px;border-radius:999px;background:var(--surface-primary);
+  border:1px solid var(--border-hairline);
+}
+.tabs--sub button[aria-selected="true"]{background:var(--accent-ink);border-color:var(--accent-ink);color:#fff;}
+
+/* segmented: one track, a sliding thumb */
+.tabs--seg{
+  display:inline-flex;gap:0;padding:3px;border-radius:999px;
+  background:var(--surface-primary);border:1px solid var(--border-hairline);
+}
+.tabs--seg button{padding:6px 18px;border-radius:999px;position:relative;z-index:1;}
+.tabs--seg .tabs__indicator{
+  height:auto;top:3px;bottom:3px;background:var(--gray-1);
+  border:1px solid var(--border-hairline);border-radius:999px;z-index:0;
+}
+.tabs--seg button[aria-selected="true"]{color:var(--text-primary);}
+
+/* special: the picture carries the meaning */
+.tabs--special{gap:var(--space-4);overflow-x:auto;scrollbar-width:none;}
+.tabs--special::-webkit-scrollbar{display:none;}
+.tabs--special button{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;padding:4px 0;}
+.tabs__thumb{
+  width:52px;height:52px;border-radius:var(--radius-sm);
+  background:var(--surface-primary);border:1px solid var(--border-hairline);
+  display:grid;place-items:center;font-size:20px;
+}
+.tabs--special button[aria-selected="true"] .tabs__thumb{border-color:var(--accent-ink);box-shadow:0 0 0 1px var(--accent-ink);}
+
+/* the panel a tab swaps in */
+.prose .tabs__panels{margin-top:var(--space-4);}
+.prose .tabs__panels [role="tabpanel"]{
+  margin:0;padding:var(--space-4);border-radius:var(--radius-sm);
+  background:var(--surface-primary);border:1px dashed var(--border-hairline);
+  font-family:var(--font-mono);font-size:13px;color:var(--text-secondary);
+}
+/* a three-layer stack, each layer visibly a different treatment */
+.tabstack > * + *{margin-top:var(--space-4);}
+
+
+/* ---------- Identity card: the flip is the idea ------------------------- */
+/* face up is the company, the person is on the back, and turning it over is
+   the gesture the component is named after */
+.flipcard{max-width:440px;margin:var(--space-6) auto var(--space-4);perspective:1400px;}
+.flipcard__btn{
+  display:block;width:100%;appearance:none;background:none;border:0;padding:0;
+  cursor:pointer;font:inherit;text-align:left;border-radius:var(--radius-md);
+}
+.flipcard__btn:focus-visible{outline:2px solid var(--accent-ink);outline-offset:6px;}
+.flipcard__inner{
+  display:block;position:relative;aspect-ratio:1.66/1;
+  transform-style:preserve-3d;
+  transition:transform .65s cubic-bezier(.2,.7,.2,1);
+}
+/* the card leans towards you on hover, so it reads as a thing you can pick up */
+.flipcard__btn:hover .flipcard__inner,
+.flipcard__btn:focus-visible .flipcard__inner{transform:rotateY(-14deg) rotateX(4deg);}
+.flipcard__btn[aria-pressed="true"] .flipcard__inner{transform:rotateY(180deg);}
+.flipcard__btn[aria-pressed="true"]:hover .flipcard__inner,
+.flipcard__btn[aria-pressed="true"]:focus-visible .flipcard__inner{transform:rotateY(194deg) rotateX(4deg);}
+/* one nudge when it first comes into view, to say it moves */
+.flipcard__btn.is-nudging .flipcard__inner{animation:flipnudge 1.5s var(--ease-out);}
+@keyframes flipnudge{
+  0%,100%{transform:rotateY(0deg);}
+  35%{transform:rotateY(-20deg);}
+  65%{transform:rotateY(6deg);}
+}
+.flipcard__face{
+  position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border-radius:var(--radius-md);overflow:hidden;
+  background:var(--gray-1);border:1px solid var(--border-hairline);
+  box-shadow:0 10px 30px rgba(29,29,31,.10);
+}
+.flipcard__face--back{transform:rotateY(180deg);}
+.flipcard__face img{width:100%;height:100%;object-fit:cover;display:block;}
+/* the corner badge is the affordance: a card with a turn symbol on it */
+.flipcard__turn{
+  position:absolute;right:10px;bottom:10px;width:30px;height:30px;border-radius:50%;
+  display:grid;place-items:center;
+  background:rgba(255,255,255,.88);border:1px solid rgba(29,29,31,.10);
+  box-shadow:0 2px 8px rgba(29,29,31,.14);
+}
+.flipcard__turn svg{width:16px;height:16px;display:block;}
+.flipcard__hint{
+  display:block;text-align:center;margin-top:var(--space-4);
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;color:var(--text-secondary);
+}
+@media (prefers-reduced-motion: reduce){
+  .flipcard__inner{transition:none;}
+  .flipcard__btn.is-nudging .flipcard__inner{animation:none;}
+  .flipcard__btn:hover .flipcard__inner,
+  .flipcard__btn:focus-visible .flipcard__inner{transform:none;}
+  .flipcard__btn[aria-pressed="true"]:hover .flipcard__inner,
+  .flipcard__btn[aria-pressed="true"]:focus-visible .flipcard__inner{transform:rotateY(180deg);}
+}

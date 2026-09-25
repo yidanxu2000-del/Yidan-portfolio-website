@@ -33,190 +33,379 @@
 
 <header class="case-hero case-hero--photo" style="background-image:url(&#39;../assets/images/huawei/workshop.jpg&#39;)">
   <div class="case-hero__inner reveal">
-    <a class="back-link" href="../index.html#work">← All work</a>
-    <div class="case-hero__meta">2024 · Huawei User Center Design · Platform Designer</div>
+    <a class="back-link" href="../index.html#work">&larr; All work</a>
+    <div class="case-hero__meta">User Centre Design, platform department &middot; Jul&ndash;Sep 2024</div>
     <h1 class="case-hero__title">Huawei</h1>
-    <p class="case-hero__subtitle">A unified design language for five B2B apps, and the first time AI entered the design process.</p>
+    <p class="case-hero__subtitle">Five apps, one tab. I owned the tab component and search.</p>
     <div class="case-hero__tags tag-row" style="justify-content:flex-start">
-      <span class="tag tag--dark">UI/UX</span>
-      <span class="tag tag--dark">Data-Driven</span>
-      <span class="tag tag--dark">Cross-Team</span>
+      <span class="tag tag--dark">Design system</span>
+      <span class="tag tag--dark">Components</span>
+      <span class="tag tag--dark">Cross-team</span>
     </div>
   </div>
 </header>
 
 <section class="prose-section section--light">
   <div class="prose reveal">
-    <div class="tldr">
-      <div><div class="tldr__k">Problem</div><p>Five B2B apps, each drifting off in its own direction. On most of them a person is reduced to a name and a job title, so the trust people have offline never reaches the screen.</p></div>
-      <div><div class="tldr__k">What I did</div><p>Design intern in Huawei's user experience team, on three projects: user identity, structural optimisation, and cross-app consistency. Workshops and interviews first, then the design.</p></div>
-      <div><div class="tldr__k">Result</div><p>One design language across all five apps, and an identity card system covering four occupations, presented to the product team.</p></div>
-    </div>
 
-    <div class="confidential">🔒 Some product designs and data specifications shown here have been generalised or omitted for confidentiality. If you'd like to chat and learn more, please <a href="mailto:yidanxu2000@outlook.com">email me</a>.</div>
+    <div class="confidential">&#128274; The original specification, and every design deliverable from this project, stay inside Huawei. The app screenshots on this page are of the public App Store versions, which I downloaded myself. Everything else here I built for this page.</div>
 
-    <h2>A unified design language for 5 B2B apps</h2>
-    <p>I worked as a design intern inside Huawei's user experience team, in the B2B department. We ran three projects together: user identity, structural optimisation, and cross-app consistency.</p>
+    <h2 id="s01"><span class="sec-n">01</span>Five apps, five design teams</h2>
+    <p>Huawei&rsquo;s B2B apps are built by different subsidiaries. &#20159;&#20225;&#39134; (eplussoho) by one team, &#22372;&#28789; (eKit) by another, then Huawei Cloud, Digital Power and Smart PV. Each team has its own designers, its own release schedule and its own reasons for the choices it makes.</p>
+    <p>Put the five apps side by side and they look like five companies. Each one has a design system behind it, and each system follows its own set of principles.</p>
+    <p>I was in the User Centre Design team, which sits above all five. Together we found where the five had drifted, wrote the rules that bring them back, and built the design system and the library those rules live in. Inside that, I owned the rules and the design build for a set of sub-components. Tabs and search were mine.</p>
 
     <figure class="figure">
-      <img src="../assets/images/huawei/workshop.jpg" alt="Yidan Xu presenting to a product workshop in Huawei's design studio, with colleagues seated and taking notes" loading="lazy">
-      <figcaption>Presenting to the Huawei UCD (User Centered Design) team</figcaption>
+      <img src="../assets/images/huawei/five-apps.jpg" alt="Five Huawei B2B app screens side by side: a smart meter detail page, a solar plant list in English, an order list, a product discovery page and a cloud product page. Each one handles its tabs differently." loading="lazy">
+      <figcaption>Five apps, five teams. Every one of them has tabs on this screen, and no two of them draw them the same way.</figcaption>
     </figure>
-  </div>
-</section>
 
-<section class="section section--tint section--tight">
-  <div class="section__content stat-row reveal">
-    <div class="stat"><div class="stat__value">5</div><div class="stat__label">B2B apps in scope</div></div>
-    <div class="stat"><div class="stat__value">4</div><div class="stat__label">Professional roles studied</div></div>
-    <div class="stat"><div class="stat__value">3</div><div class="stat__label">Tasks delivered</div></div>
-    <div class="stat"><div class="stat__value">2×</div><div class="stat__label">Data + interview methodology</div></div>
-  </div>
-</section>
-
-<section class="prose-section section--light">
-  <div class="prose reveal">
-    <h2>Task 01 · Start from the big question</h2>
-    <p>In B2B, identity is everything. Yet on most platforms, users are reduced to a name and a job title. How do you bring offline trust online without overcomplicating the product?</p>
+    <h2 id="s02"><span class="sec-n">02</span>The same component, five ways</h2>
+    <p>A tab is the smallest decision in an app. You tap it, something below changes. Every one of the five apps had them, and every one had drawn them differently.</p>
+    <p>One used a capsule. One used a slider. One used an underline. Two used more than one style in the same app, on different screens.</p>
 
     <figure class="figure">
-      <img src="../assets/images/huawei/card-handshake.jpg" alt="Left: a line illustration of two gloved hands exchanging a business card. Right: a wireframe of a phone screen showing a profile photo placeholder, a name field marked 'XXX', a 'PM' role tag, and two content blocks below" loading="lazy">
-      <figcaption>Offline, a handshake and a card convey who you are instantly. Online, that same trust has to be designed back in.</figcaption>
+      <img src="../assets/images/huawei/tabs-five-ways.jpg" alt="Every tab row from the five apps, lifted out of its screen and lined up in five columns: a slider, boxed counters, underlines, capsules, and a row where a picture is the tab" loading="lazy">
+      <figcaption>The same component, cut out of all five apps. A slider, boxed counters, underlines, capsules, and a row where the picture is the tab. The fourth column is one screen, and it carries four rows of tabs on its own.</figcaption>
     </figure>
+    <p>None of this was wrong on its own. Each team had made a reasonable choice for its own product. The problem only appears when a person uses two of these apps in the same afternoon, which is exactly what Huawei&rsquo;s B2B customers do.</p>
 
-    <div class="feature-cards feature-cards--two">
-      <div class="feature-card">
-        <div class="feature-card__title">🧑‍💼 Offline</div>
-        <div class="feature-card__body">Professional attire · Business cards. Natural ways to signal who you are and establish trust at first glance. Identity is conveyed before anyone speaks.</div>
+    <p>The three styles, drawn clean and put next to each other. These are live components on this page.</p>
+
+    <div class="tabspec">
+      <div class="tabspec__grid" style="grid-template-columns:minmax(0,1fr)">
+        <div class="tabspec__demo tabstack">
+      <div class="tabs tabs--sub" role="tablist" aria-label="Capsule style">
+        <button role="tab" aria-selected="true" id="a0">&#33014;&#22218;&#22411; Capsule</button>
+        <button role="tab" aria-selected="false" id="a1" tabindex="-1">Tab 2</button>
+        <button role="tab" aria-selected="false" id="a2" tabindex="-1">Tab 3</button>
       </div>
-      <div class="feature-card">
-        <div class="feature-card__title">🥷 Online</div>
-        <div class="feature-card__body">A name · A small job title. No way to show expertise, authority or warmth, so interactions feel impersonal and less credible than meeting in person.</div>
+      <div class="tabs tabs--seg" role="tablist" aria-label="Slider style">
+        <button role="tab" aria-selected="true" id="b0">&#28369;&#22359;&#22411; Slider</button>
+        <button role="tab" aria-selected="false" id="b1" tabindex="-1">Tab 2</button>
+        <button role="tab" aria-selected="false" id="b2" tabindex="-1">Tab 3</button>
+        <span class="tabs__indicator" aria-hidden="true"></span>
       </div>
-    </div>
-
-    <h3>The problem: the B2B service space is structurally complex</h3>
-    <p>An app often serves multiple professional roles simultaneously, whose needs vary greatly. Some roles spend most of the day facing clients; others work across departments and regions. The user experience team and I analysed user types and typical interaction scenarios together. Two findings came out of it:</p>
-    <ul>
-      <li>Users hold different roles within the system, and how much trust matters to their work, and how they build it, changes completely with that role</li>
-      <li>They use the platform in different scenarios, so the information worth showing changes with the scenario too</li>
-    </ul>
-
-    <h3>The goal: bring the connection between people back to B2B</h3>
-    <p>Most B2B platforms are straightforward and restrained, prioritising efficiency over expression. A good online experience should preserve, rather than strip away, the trust and emotional connection people have offline, bringing that sense of connection back without adding complexity.</p>
-
-    <div class="feature-cards feature-cards--two">
-      <div class="feature-card">
-        <div class="feature-card__title">Bring offline-level trust online</div>
-        <div class="feature-card__body">Use AI to generate visual materials, so the credible visual language of each profession can be read at a glance instead of being buried in metadata.</div>
+      <div class="tabs tabs--primary" role="tablist" aria-label="Underline style">
+        <button role="tab" aria-selected="true" id="d0">&#19979;&#21010;&#32447; Underline</button>
+        <button role="tab" aria-selected="false" id="d1" tabindex="-1">Tab 2</button>
+        <button role="tab" aria-selected="false" id="d2" tabindex="-1">Tab 3</button>
+        <span class="tabs__indicator" aria-hidden="true"></span>
       </div>
-      <div class="feature-card">
-        <div class="feature-card__title">Break the limits of a paper business card</div>
-        <div class="feature-card__body">Users switch between two modes, company-oriented or personal-oriented, to suit whichever scenario they're in.</div>
+        </div>
       </div>
     </div>
 
-    <h3>Methodology</h3>
-    <p><strong>First-hand research</strong>: through workshops and user interviews, I identified key identity-verification scenarios: first meeting, internal collaboration, client meetings. <strong>Secondary research</strong>: how "trust" is visually established across professional contexts, and the tension between genuine ability and social stereotype that shaped our subsequent design choices.</p>
-    <h3>Delivery</h3>
-    <p>Presented to the product team across four occupations and two card types compatible with all five apps, helping users build a stronger first impression and faster trust online.</p>
+    <h2 id="s03"><span class="sec-n">03</span>Three questions nobody had answered</h2>
+    <p>When I looked at why the drift happened, it came down to three questions that the design system had never answered.</p>
 
-    <figure class="figure figure--narrow">
-      <img src="../assets/images/huawei/personas.jpg" alt="Four line-icon personas representing the professional roles studied: a construction worker, an engineer with glasses, a businessman, and a businesswoman" loading="lazy">
-      <figcaption>The four professional roles the identity system was designed around</figcaption>
-    </figure>
+    <ol class="numbered numbered--lead">
+      <li>
+        <strong>Which style means what?</strong>
+        Capsule, slider and underline were all in use, and none of them carried a fixed meaning. A person could not learn the pattern because there was no pattern.
+      </li>
+      <li>
+        <strong>What happens when tabs stack?</strong>
+        Some screens had two layers of tabs. One had four, which is the fourth column in the picture above. There was no rule for which layer takes which style, so every screen solved it locally.
+      </li>
+      <li>
+        <strong>Where are tabs allowed to live?</strong>
+        Tabs appeared in the title area, under the title area, and inside cards. Sometimes the title area held a title and tabs at once, sometimes only tabs.
+      </li>
+    </ol>
 
-    <div class="feature-cards">
-      <div class="feature-card"><div class="feature-card__title">4</div><div class="feature-card__body">Identity cards</div></div>
-      <div class="feature-card"><div class="feature-card__title">2</div><div class="feature-card__body">Qualification levels</div></div>
-      <div class="feature-card"><div class="feature-card__title">2</div><div class="feature-card__body">Card formats</div></div>
-      <div class="feature-card"><div class="feature-card__title">🪪 New ID card</div><div class="feature-card__body">A redesigned identity card for the core role-based system</div></div>
-      <div class="feature-card"><div class="feature-card__title">👤 AI avatar system</div><div class="feature-card__body">AI-generated visual language for each professional identity</div></div>
-      <div class="feature-card"><div class="feature-card__title">🎬 Scene coverage</div><div class="feature-card__body">Company-oriented and personal-oriented modes for different moments</div></div>
+    <h2 id="s04"><span class="sec-n">04</span>Looking outward</h2>
+    <p>Before writing anything I read how the two systems these apps sit on top of handle it. HarmonyOS 5.0 and iOS 18.</p>
+    <p>The finding that decided the specification: HarmonyOS 5.0 no longer recommends putting tabs in the title area. The title area is for saying where you are. Tabs are for moving. Once those two jobs are separated, most of question three answers itself.</p>
+    <p>iOS 18 gave me the second half. It treats the segmented control as a different component from a tab bar, with a different job and a different size limit. That gave me a name for the thing the five apps kept confusing.</p>
+
+    <h2 id="s05"><span class="sec-n">05</span>Three strategies</h2>
+
+    <h3>Converge the styles</h3>
+    <p>Three visual treatments for one component means a person has to learn three things. I reduced it to one style per job, so the treatment tells you what the tab does.</p>
+
+    <h3>Give each type a scope</h3>
+    <p>Each tab type got a defined range: what level of the page it controls, how many items it can hold, and where it is allowed to appear. Scope is what stops a component drifting back.</p>
+
+    <h3>Write the stacking rules</h3>
+    <p>Two-layer and three-layer combinations got explicit rules for which type sits at which level, so a team building a deep screen has an answer already.</p>
+
+    <h2 id="s06"><span class="sec-n">06</span>The specification</h2>
+    <p>The specification defines six types. Each one below is live on this page, rebuilt in HTML and CSS.</p>
+
+    <div class="tabspec">
+      <div class="tabspec__head"><h3>&#20027;&#39029;&#31614; <span>Primary Tab</span></h3></div>
+      <div class="tabspec__grid">
+        <div class="tabspec__demo">
+      <div class="tabs tabs--primary" role="tablist" aria-label="Primary tab example">
+        <button role="tab" aria-selected="true" id="p0" aria-controls="p0p">Overview</button>
+        <button role="tab" aria-selected="false" id="p1" aria-controls="p1p" tabindex="-1">Orders</button>
+        <button role="tab" aria-selected="false" id="p2" aria-controls="p2p" tabindex="-1">Devices</button>
+        <button role="tab" aria-selected="false" id="p3" aria-controls="p3p" tabindex="-1">Reports</button>
+        <span class="tabs__indicator" aria-hidden="true"></span>
+      </div>
+      <div class="tabs__panels">
+        <div role="tabpanel" id="p0p" aria-labelledby="p0">Content A</div>
+        <div role="tabpanel" id="p1p" aria-labelledby="p1" hidden>Content B</div>
+        <div role="tabpanel" id="p2p" aria-labelledby="p2" hidden>Content C</div>
+        <div role="tabpanel" id="p3p" aria-labelledby="p3" hidden>Content D</div>
+      </div>
+        </div>
+        <div class="tabspec__rule">
+          <dl>
+        <dt>Controls</dt><dd>The whole page</dd>
+        <dt>Count</dt><dd>3 to 7</dd>
+        <dt>Treatment</dt><dd>Underline indicator</dd>
+        <dt>Stands alone</dt><dd>Yes, one per screen</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="tabspec">
+      <div class="tabspec__head"><h3>&#23376;&#39029;&#31614; <span>Sub Tab</span></h3></div>
+      <div class="tabspec__grid">
+        <div class="tabspec__demo">
+      <div class="tabs tabs--sub" role="tablist" aria-label="Sub tab example">
+        <button role="tab" aria-selected="true" id="u0" aria-controls="u0p">All</button>
+        <button role="tab" aria-selected="false" id="u1" aria-controls="u1p" tabindex="-1">Switches</button>
+        <button role="tab" aria-selected="false" id="u2" aria-controls="u2p" tabindex="-1">Routers</button>
+        <button role="tab" aria-selected="false" id="u3" aria-controls="u3p" tabindex="-1">WLAN</button>
+        <button role="tab" aria-selected="false" id="u4" aria-controls="u4p" tabindex="-1">Storage</button>
+        <button role="tab" aria-selected="false" id="u5" aria-controls="u5p" tabindex="-1">Access</button>
+      </div>
+      <div class="tabs__panels">
+        <div role="tabpanel" id="u0p" aria-labelledby="u0">Content A</div>
+        <div role="tabpanel" id="u1p" aria-labelledby="u1" hidden>Content B</div>
+        <div role="tabpanel" id="u2p" aria-labelledby="u2" hidden>Content C</div>
+        <div role="tabpanel" id="u3p" aria-labelledby="u3" hidden>Content D</div>
+        <div role="tabpanel" id="u4p" aria-labelledby="u4" hidden>Content E</div>
+        <div role="tabpanel" id="u5p" aria-labelledby="u5" hidden>Content F</div>
+      </div>
+        </div>
+        <div class="tabspec__rule">
+          <dl>
+        <dt>Controls</dt><dd>Content inside the current page</dd>
+        <dt>Count</dt><dd>3 to 10</dd>
+        <dt>Treatment</dt><dd>Capsule</dd>
+        <dt>Stands alone</dt><dd>No, only under a primary tab</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="tabspec">
+      <div class="tabspec__head"><h3>&#39029;&#31614;&#20998;&#27573;&#25353;&#38062; <span>Segmented Button</span></h3></div>
+      <div class="tabspec__grid">
+        <div class="tabspec__demo">
+      <div class="tabs tabs--seg" role="tablist" aria-label="Segmented button example">
+        <button role="tab" aria-selected="true" id="g0" aria-controls="g0p">Day</button>
+        <button role="tab" aria-selected="false" id="g1" aria-controls="g1p" tabindex="-1">Month</button>
+        <button role="tab" aria-selected="false" id="g2" aria-controls="g2p" tabindex="-1">Year</button>
+        <span class="tabs__indicator" aria-hidden="true"></span>
+      </div>
+      <div class="tabs__panels">
+        <div role="tabpanel" id="g0p" aria-labelledby="g0">Content A</div>
+        <div role="tabpanel" id="g1p" aria-labelledby="g1" hidden>Content B</div>
+        <div role="tabpanel" id="g2p" aria-labelledby="g2" hidden>Content C</div>
+      </div>
+        </div>
+        <div class="tabspec__rule">
+          <dl>
+        <dt>Controls</dt><dd>The view of the same content</dd>
+        <dt>Count</dt><dd>2 to 4</dd>
+        <dt>Treatment</dt><dd>Slider</dd>
+        <dt>Stands alone</dt><dd>Yes</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="tabspec">
+      <div class="tabspec__head"><h3>&#21345;&#29255;&#20869;&#39029;&#31614; <span>Card Tab</span></h3></div>
+      <div class="tabspec__grid">
+        <div class="tabspec__demo">
+      <div class="tabs tabs--card" role="tablist" aria-label="Card tab example">
+        <button role="tab" aria-selected="true" id="c0" aria-controls="c0p">Performance</button>
+        <button role="tab" aria-selected="false" id="c1" aria-controls="c1p" tabindex="-1">Incentives</button>
+        <button role="tab" aria-selected="false" id="c2" aria-controls="c2p" tabindex="-1">Policy</button>
+        <span class="tabs__indicator" aria-hidden="true"></span>
+      </div>
+      <div class="tabs__panels">
+        <div role="tabpanel" id="c0p" aria-labelledby="c0">Content A</div>
+        <div role="tabpanel" id="c1p" aria-labelledby="c1" hidden>Content B</div>
+        <div role="tabpanel" id="c2p" aria-labelledby="c2" hidden>Content C</div>
+      </div>
+        </div>
+        <div class="tabspec__rule">
+          <dl>
+        <dt>Controls</dt><dd>Content inside one card</dd>
+        <dt>Count</dt><dd>2 to 4</dd>
+        <dt>Treatment</dt><dd>Underline, card scale</dd>
+        <dt>Stands alone</dt><dd>Yes, inside its card</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="tabspec">
+      <div class="tabspec__head"><h3>&#29305;&#27530;&#39029;&#31614; <span>Special Tab</span></h3></div>
+      <div class="tabspec__grid">
+        <div class="tabspec__demo">
+      <div class="tabs tabs--special" role="tablist" aria-label="Special tab example">
+        <button role="tab" aria-selected="true" id="x0" aria-controls="x0p"><span class="tabs__thumb" aria-hidden="true">&#127970;</span>Enterprise</button>
+        <button role="tab" aria-selected="false" id="x1" aria-controls="x1p" tabindex="-1"><span class="tabs__thumb" aria-hidden="true">&#127968;</span>Real estate</button>
+        <button role="tab" aria-selected="false" id="x2" aria-controls="x2p" tabindex="-1"><span class="tabs__thumb" aria-hidden="true">&#127891;</span>Education</button>
+        <button role="tab" aria-selected="false" id="x3" aria-controls="x3p" tabindex="-1"><span class="tabs__thumb" aria-hidden="true">&#128176;</span>Finance</button>
+      </div>
+      <div class="tabs__panels">
+        <div role="tabpanel" id="x0p" aria-labelledby="x0">Content A</div>
+        <div role="tabpanel" id="x1p" aria-labelledby="x1" hidden>Content B</div>
+        <div role="tabpanel" id="x2p" aria-labelledby="x2" hidden>Content C</div>
+        <div role="tabpanel" id="x3p" aria-labelledby="x3" hidden>Content D</div>
+      </div>
+        </div>
+        <div class="tabspec__rule">
+          <dl>
+        <dt>Controls</dt><dd>Category entry points</dd>
+        <dt>Count</dt><dd>3 to 7</dd>
+        <dt>Treatment</dt><dd>Image-led</dd>
+        <dt>Stands alone</dt><dd>Yes</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="tabspec">
+      <div class="tabspec__head"><h3>&#19977;&#23618;&#39029;&#31614;&#32452;&#21512; <span>Three-Layer Combination</span></h3></div>
+      <div class="tabspec__grid">
+        <div class="tabspec__demo">
+      <div class="tabstack">
+      <div class="tabs tabs--primary" role="tablist" aria-label="Three layer, primary tab">
+        <button role="tab" aria-selected="true" id="t0" aria-controls="t0p">Products</button>
+        <button role="tab" aria-selected="false" id="t1" aria-controls="t1p" tabindex="-1">Solutions</button>
+        <button role="tab" aria-selected="false" id="t2" aria-controls="t2p" tabindex="-1">Cases</button>
+        <span class="tabs__indicator" aria-hidden="true"></span>
+      </div>
+      <div class="tabs tabs--sub" role="tablist" aria-label="Three layer, sub tab">
+        <button role="tab" aria-selected="true" id="s0">Switches</button>
+        <button role="tab" aria-selected="false" id="s1" tabindex="-1">Routers</button>
+        <button role="tab" aria-selected="false" id="s2" tabindex="-1">WLAN</button>
+      </div>
+      <div class="tabs tabs--seg" role="tablist" aria-label="Three layer, segmented button">
+        <button role="tab" aria-selected="true" id="v0">List</button>
+        <button role="tab" aria-selected="false" id="v1" tabindex="-1">Grid</button>
+        <span class="tabs__indicator" aria-hidden="true"></span>
+      </div>
+      </div>
+      <div class="tabs__panels">
+        <div role="tabpanel" id="t0p" aria-labelledby="t0">Content A</div>
+        <div role="tabpanel" id="t1p" aria-labelledby="t1" hidden>Content B</div>
+        <div role="tabpanel" id="t2p" aria-labelledby="t2" hidden>Content C</div>
+      </div>
+        </div>
+        <div class="tabspec__rule">
+          <dl>
+        <dt>Controls</dt><dd>Primary, then sub, then segmented</dd>
+        <dt>Count</dt><dd>Three layers is the limit</dd>
+        <dt>Treatment</dt><dd>A different treatment per layer</dd>
+        <dt>Stands alone</dt><dd>Combination only</dd>
+          </dl>
+        </div>
+      </div>
     </div>
 
-    <p><strong>What I learned:</strong> in B2B design, "feeling" is not optional; it determines whether a tool is tolerated or trusted. Most B2B platforms underestimate this.</p>
-
-    <h2>Task 02 · Structural optimisation of B2B web platforms</h2>
-    <p>In the second phase, I moved to a large-scale enterprise-level web system serving users with multiple roles. This phase focused on structural design: simplifying information hierarchy and improving efficiency based on real behavioural data and user interviews.</p>
-    <h3>Methodology</h3>
-    <p><strong>Behavioural data</strong>: click-through rate, dwell time, bounce rate. <strong>User interviews</strong>: what's convenient, what's confusing, what do users expect.</p>
-    <h3>The framework: four behavioural patterns</h3>
-    <p>An evidence-based classification that replaced intuition with a data signal and a behavioural hypothesis for every design suggestion. Each pattern maps straight to an optimisation strategy, not a guess.</p>
 
     <div class="prose-table-wrap">
       <table class="prose-table">
         <thead>
-          <tr><th>Pattern</th><th>Data signal</th><th>Behavioural hypothesis</th><th>Optimisation strategy</th></tr>
+          <tr><th>Type</th><th>Controls</th><th>Count</th><th>Treatment</th><th>Stands alone</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td>Dispersed entrances</td>
-            <td>The same function appears on multiple pages, and clicks on it are scattered.</td>
-            <td>The user's goal is unclear, or different pages share irrelevant entry points.</td>
-            <td>Reorganise the entry path to reduce redundancy.</td>
+            <td>&#20027;&#39029;&#31614; Primary Tab</td>
+            <td>The whole page</td><td>3 to 7</td><td>Underline indicator</td><td>Yes, one per screen</td>
           </tr>
           <tr>
-            <td>High click-through rate + short dwell time</td>
-            <td>Users exit immediately after entering the function.</td>
-            <td>Accidental touch, or a misleading function name.</td>
-            <td>Verify through interviews and adjust labels or layout.</td>
+            <td>&#23376;&#39029;&#31614; Sub Tab</td>
+            <td>Content inside the current page</td><td>3 to 10</td><td>Capsule</td><td>No, only under a primary tab</td>
           </tr>
           <tr>
-            <td>Low click-through rate + long dwell time</td>
-            <td>The feature is hard to find, but once found, is used extensively.</td>
-            <td>An important function is visually underestimated.</td>
-            <td>Enhance visual hierarchy and entry-point placement.</td>
+            <td>&#39029;&#31614;&#20998;&#27573;&#25353;&#38062; Segmented Button</td>
+            <td>The view of the same content</td><td>2 to 4</td><td>Slider</td><td>Yes</td>
           </tr>
           <tr>
-            <td>High bounce-rate pages</td>
-            <td>The task was interrupted midway.</td>
-            <td>A lack of clear task-completion feedback loses the user's confidence.</td>
-            <td>Strengthen completion feedback and guidance for the next step.</td>
+            <td>&#21345;&#29255;&#20869;&#39029;&#31614; Card Tab</td>
+            <td>Content inside one card</td><td>2 to 4</td><td>Underline, card scale</td><td>Yes, inside its card</td>
+          </tr>
+          <tr>
+            <td>&#29305;&#27530;&#39029;&#31614; Special Tab</td>
+            <td>Category entry points</td><td>3 to 7</td><td>Image-led</td><td>Yes</td>
+          </tr>
+          <tr>
+            <td>&#19977;&#23618;&#39029;&#31614;&#32452;&#21512; Three-Layer Combination</td>
+            <td>Primary, then sub, then segmented</td><td>Three layers is the limit</td><td>A different treatment per layer</td><td>Combination only</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <h3>Applications: three examples</h3>
-    <p>What the framework looks like in use. Each read below starts from a data signal, not a preference, and lands on a different kind of fix.</p>
+    <h2 id="s07"><span class="sec-n">07</span>The identity card system</h2>
+    <p>The other problem in these apps was people. A B2B platform is full of roles, and each one is a different kind of expertise standing behind the same screen. Online, everyone looked the same, and a person was being asked to trust an account with a name on it.</p>
 
-    <div class="feature-cards">
-      <div class="feature-card">
-        <div class="feature-card__title">Clear signal</div>
-        <div class="feature-card__body">Low click-through, low dwell time and high bounce, consistently. The feature is a candidate for repositioning, or even deletion.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-card__title">Mixing signal</div>
-        <div class="feature-card__body">High clicks, short dwell. Usually accidental taps, or quick recognition that "this isn't what I want." Interviews told us which; often the fix was just clearer labelling and placement.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-card__title">Buried value</div>
-        <div class="feature-card__body">Low click-through but long dwell. The feature is valuable and hard to find, so the fix is visibility and location, not the feature itself.</div>
-      </div>
+    <figure class="figure">
+      <img src="../assets/images/huawei/roles.jpg" alt="Five portraits side by side: a supplier in a warehouse, an installer in a hard hat on a solar array, a channel partner presenting, a field engineer with a tablet on site, and a salesperson mid-sentence" loading="lazy">
+      <figcaption>The five roles the card system was designed around. Generated with AI for this page. Their names are set below in the page itself, so they stay selectable and readable at any size.</figcaption>
+    </figure>
+
+    <ul class="roles">
+      <li><span class="roles__n">Supplier</span><p>Provides the components, and the supply chain behind them.</p></li>
+      <li><span class="roles__n">Installer</span><p>Puts it on the roof, and answers for the safety of the work.</p></li>
+      <li><span class="roles__n">Channel partner</span><p>Opens the market, and carries the business relationship.</p></li>
+      <li><span class="roles__n">Field engineer</span><p>On site when it stops working, and responsible for it running.</p></li>
+      <li><span class="roles__n">Sales</span><p>Reads what the customer needs, and shapes the offer to it.</p></li>
+    </ul>
+    <p>Offline this problem was solved a long time ago. You hand someone a business card. Front is the person. Back is the company.</p>
+    <p>With the UX team I designed that as a component. The front of the card is the individual, their name, their role and how to reach them. The back is the company they belong to, which is the part that actually carries the trust.</p>
+
+    <p>So it turns over. The card below is a live component on this page. Click it, or focus it and press space.</p>
+
+    <div class="flipcard">
+      <button class="flipcard__btn" type="button" aria-pressed="false" aria-label="Turn the card over to see the person">
+        <span class="flipcard__inner">
+          <span class="flipcard__face flipcard__face--front">
+            <img src="../assets/images/huawei/card-logo.jpg" alt="The face of the card: a warm gradient with the company mark in the middle" loading="lazy">
+            <span class="flipcard__turn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></span>
+          </span>
+          <span class="flipcard__face flipcard__face--back">
+            <img src="../assets/images/huawei/card-person.jpg" alt="The back of the card: a portrait of the person on the left, their name set large beside it, with their role and contact line underneath" loading="lazy">
+            <span class="flipcard__turn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></span>
+          </span>
+        </span>
+      </button>
+      <span class="flipcard__hint" data-front="Turn it over for the person" data-back="Turn it back">Turn it over for the person</span>
     </div>
 
-    <h2>Task 03 · Cross-application consistency</h2>
-    <p>Alongside the previous two projects, I maintained design consistency across all five B2B applications: analysing each app's business structure, identifying inconsistencies in shared components, and aligning the design team on a unified standard. This work is quiet, without dramatic before/after comparisons, but it's the foundation that makes everything else feel coherent.</p>
-
-    <h2>3 things I took from Huawei</h2>
-
-    <div class="feature-cards">
-      <div class="feature-card">
-        <div class="feature-card__title">🎭 The difference is the role</div>
-        <div class="feature-card__body">Most B2C designers stumble in B2B because they keep using a personal-preference frame. B2B users aren't "me," they're "me in a certain role." Before the role is defined, every UI decision is guesswork.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-card__title">🤖 AI is a possibility generator</div>
-        <div class="feature-card__body">B2B design has long been criticised for being cold and uniform. AI let me explore dozens of career-identity directions in an hour, work that used to take a week. It doesn't replace design judgment; it drops the cost of exploring to near zero.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-card__title">📊 Data and intuition, cross-checked</div>
-        <div class="feature-card__body">High click-through plus short dwell time does not equal satisfaction. Behavioural data tells you what happened, interviews tell you why. Both are indispensable, and that's the lesson from this internship that stuck hardest.</div>
-      </div>
+    <div class="withheld">
+      <p>I drew this card after I left Huawei, as a low-fidelity mockup for this page. The designs that shipped stay inside the company.</p>
     </div>
 
-    <h2>After the internship</h2>
+    <h2 id="s08"><span class="sec-n">08</span>Reading the numbers</h2>
+    <p>Alongside the tabs I worked on one of the web platforms, where the question was which features were in the wrong place. The user research team had the behaviour data, so every suggestion I made started from a signal and a reading of it.</p>
+
+    <div class="prose-table-wrap">
+      <table class="prose-table">
+        <thead><tr><th>What the numbers said</th><th>What it usually meant</th></tr></thead>
+        <tbody>
+          <tr><td>The same function sat on several pages, and the clicks were spread thin across them.</td><td>The entry path needed reorganising. The feature was fine.</td></tr>
+          <tr><td>Plenty of taps, almost no time on the page.</td><td>An accidental tap, or a label promising the wrong thing. Interviews told us which.</td></tr>
+          <tr><td>Few taps, and a long stay once people arrived.</td><td>Worth finding and hard to find, so the fix was placement.</td></tr>
+          <tr><td>People leaving halfway through a task.</td><td>The screen never told them they had finished.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="s09"><span class="sec-n">09</span>What it came to</h2>
+    <p>I handed the specification to five product teams. Each one builds on its own schedule, so the change arrives at a different speed in each app, and that is how a design system in a large company actually lands.</p>
+    <p>What I took from it: a rule only works if it tells you what to do, and saying what is correct is a weaker thing to write. Every line in the specification names a job, a count and a place. A team reading it at eleven at night with a release tomorrow can follow it without asking anyone.</p>
+    <p>This was my first time writing a component specification. It changed what I think a design system is for.</p>
+
+    <h2 id="s10"><span class="sec-n">10</span>After the internship</h2>
     <p>Two things happened once I left. Neither was asked for, and that is why I keep them here.</p>
 
     <h3>My manager wrote about me publicly</h3>
@@ -228,7 +417,7 @@
       <figcaption>Posted by the head of user research on our team. Name and profile picture removed.</figcaption>
     </figure>
 
-    <blockquote>Our team's 2024 intern, Yidan Xu, just spoke at TEDx in July about design giving power back to everyday life. She was lovely and sharp the whole way through. Her work during the internship was outstanding too. A girl who is both beautiful and clever is a sight worth seeing, wherever she goes.</blockquote>
+    <blockquote>Our team&rsquo;s 2024 intern, Yidan Xu, just spoke at TEDx in July about design giving power back to everyday life. She was lovely and sharp the whole way through. Her work during the internship was outstanding too. A girl who is both beautiful and clever is a sight worth seeing, wherever she goes.</blockquote>
     <p class="figure-note">Translated from the Chinese.</p>
 
     <figure class="figure">
@@ -238,6 +427,7 @@
 
     <h3>A colleague marked my report A+</h3>
     <p>A second colleague came to find me after I had gone. He told me he had read my final report and graded it A+. He did not have to tell me. That is the part I remember.</p>
+
   </div>
 </section>
 
@@ -261,5 +451,69 @@
 
 <script src="../assets/js/site.js"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+(function(){
+  document.querySelectorAll('[role="tablist"]').forEach(function(list){
+    var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+    var ind  = list.querySelector('.tabs__indicator');
+    function select(tab){
+      tabs.forEach(function(t){
+        var on = t === tab;
+        t.setAttribute('aria-selected', on);
+        t.tabIndex = on ? 0 : -1;
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel) panel.hidden = !on;
+      });
+      if (ind){ ind.style.width = tab.offsetWidth + 'px'; ind.style.transform = 'translateX(' + tab.offsetLeft + 'px)'; }
+    }
+    list.addEventListener('click', function(e){
+      var tab = e.target.closest('[role="tab"]');
+      if (tab) select(tab);
+    });
+    list.addEventListener('keydown', function(e){
+      var i = tabs.indexOf(document.activeElement);
+      if (i < 0) return;
+      var n = null;
+      if (e.key === 'ArrowRight') n = tabs[(i + 1) % tabs.length];
+      if (e.key === 'ArrowLeft')  n = tabs[(i - 1 + tabs.length) % tabs.length];
+      if (e.key === 'Home') n = tabs[0];
+      if (e.key === 'End')  n = tabs[tabs.length - 1];
+      if (n){ n.focus(); select(n); e.preventDefault(); }
+    });
+    select(tabs.filter(function(t){ return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0]);
+    window.addEventListener('resize', function(){
+      select(tabs.filter(function(t){ return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0]);
+    });
+  });
+
+  document.querySelectorAll('.flipcard').forEach(function(card){
+    var btn  = card.querySelector('.flipcard__btn');
+    var hint = card.querySelector('.flipcard__hint');
+    btn.addEventListener('click', function(){
+      var on = btn.getAttribute('aria-pressed') !== 'true';
+      btn.setAttribute('aria-pressed', on);
+      btn.setAttribute('aria-label', on ? 'Turn the card back to the company side' : 'Turn the card over to see the person');
+      if (hint) hint.textContent = on ? hint.dataset.back : hint.dataset.front;
+      btn.classList.remove('is-nudging');
+    });
+    // one nudge the first time it comes into view, so the card says it moves
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        io.disconnect();
+        setTimeout(function(){
+          if (btn.getAttribute('aria-pressed') === 'true') return;
+          btn.classList.add('is-nudging');
+          setTimeout(function(){ btn.classList.remove('is-nudging'); }, 1600);
+        }, 450);
+      });
+    }, {threshold: .55});
+    io.observe(card);
+  });
+})();
+</script>
+
 </body>
 </html>
