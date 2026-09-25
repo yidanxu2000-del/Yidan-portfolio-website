@@ -60,6 +60,32 @@
     <p>One used a capsule. One used a slider. One used an underline. Two used more than one style in the same app, on different screens.</p>
     <p>None of this was wrong on its own. Each team had made a reasonable choice for its own product. The problem only appears when a person uses two of these apps in the same afternoon, which is exactly what Huawei&rsquo;s B2B customers do.</p>
 
+    <p>The three styles, drawn clean and put next to each other. These are live components on this page.</p>
+
+    <div class="tabspec">
+      <div class="tabspec__grid" style="grid-template-columns:minmax(0,1fr)">
+        <div class="tabspec__demo tabstack">
+      <div class="tabs tabs--sub" role="tablist" aria-label="Capsule style">
+        <button role="tab" aria-selected="true" id="a0">&#33014;&#22218;&#22411; Capsule</button>
+        <button role="tab" aria-selected="false" id="a1" tabindex="-1">Tab 2</button>
+        <button role="tab" aria-selected="false" id="a2" tabindex="-1">Tab 3</button>
+      </div>
+      <div class="tabs tabs--seg" role="tablist" aria-label="Slider style">
+        <button role="tab" aria-selected="true" id="b0">&#28369;&#22359;&#22411; Slider</button>
+        <button role="tab" aria-selected="false" id="b1" tabindex="-1">Tab 2</button>
+        <button role="tab" aria-selected="false" id="b2" tabindex="-1">Tab 3</button>
+        <span class="tabs__indicator" aria-hidden="true"></span>
+      </div>
+      <div class="tabs tabs--primary" role="tablist" aria-label="Underline style">
+        <button role="tab" aria-selected="true" id="d0">&#19979;&#21010;&#32447; Underline</button>
+        <button role="tab" aria-selected="false" id="d1" tabindex="-1">Tab 2</button>
+        <button role="tab" aria-selected="false" id="d2" tabindex="-1">Tab 3</button>
+        <span class="tabs__indicator" aria-hidden="true"></span>
+      </div>
+        </div>
+      </div>
+    </div>
+
     <h2 id="s03"><span class="sec-n">03</span>Three questions nobody had answered</h2>
     <p>When I looked at why the drift happened, it came down to three questions that the design system had never answered.</p>
 
@@ -96,6 +122,184 @@
 
     <h2 id="s06"><span class="sec-n">06</span>The specification</h2>
     <p>The specification defines six types. Each one below is live on this page, rebuilt in HTML and CSS.</p>
+
+    <div class="tabspec">
+      <div class="tabspec__head"><h3>&#20027;&#39029;&#31614; <span>Primary Tab</span></h3></div>
+      <div class="tabspec__grid">
+        <div class="tabspec__demo">
+      <div class="tabs tabs--primary" role="tablist" aria-label="Primary tab example">
+        <button role="tab" aria-selected="true" id="p0" aria-controls="p0p">Overview</button>
+        <button role="tab" aria-selected="false" id="p1" aria-controls="p1p" tabindex="-1">Orders</button>
+        <button role="tab" aria-selected="false" id="p2" aria-controls="p2p" tabindex="-1">Devices</button>
+        <button role="tab" aria-selected="false" id="p3" aria-controls="p3p" tabindex="-1">Reports</button>
+        <span class="tabs__indicator" aria-hidden="true"></span>
+      </div>
+      <div class="tabs__panels">
+        <div role="tabpanel" id="p0p" aria-labelledby="p0">Content A</div>
+        <div role="tabpanel" id="p1p" aria-labelledby="p1" hidden>Content B</div>
+        <div role="tabpanel" id="p2p" aria-labelledby="p2" hidden>Content C</div>
+        <div role="tabpanel" id="p3p" aria-labelledby="p3" hidden>Content D</div>
+      </div>
+        </div>
+        <div class="tabspec__rule">
+          <dl>
+        <dt>Controls</dt><dd>The whole page</dd>
+        <dt>Count</dt><dd>3 to 7</dd>
+        <dt>Treatment</dt><dd>Underline indicator</dd>
+        <dt>Stands alone</dt><dd>Yes, one per screen</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="tabspec">
+      <div class="tabspec__head"><h3>&#23376;&#39029;&#31614; <span>Sub Tab</span></h3></div>
+      <div class="tabspec__grid">
+        <div class="tabspec__demo">
+      <div class="tabs tabs--sub" role="tablist" aria-label="Sub tab example">
+        <button role="tab" aria-selected="true" id="u0" aria-controls="u0p">All</button>
+        <button role="tab" aria-selected="false" id="u1" aria-controls="u1p" tabindex="-1">Switches</button>
+        <button role="tab" aria-selected="false" id="u2" aria-controls="u2p" tabindex="-1">Routers</button>
+        <button role="tab" aria-selected="false" id="u3" aria-controls="u3p" tabindex="-1">WLAN</button>
+        <button role="tab" aria-selected="false" id="u4" aria-controls="u4p" tabindex="-1">Storage</button>
+        <button role="tab" aria-selected="false" id="u5" aria-controls="u5p" tabindex="-1">Access</button>
+      </div>
+      <div class="tabs__panels">
+        <div role="tabpanel" id="u0p" aria-labelledby="u0">Content A</div>
+        <div role="tabpanel" id="u1p" aria-labelledby="u1" hidden>Content B</div>
+        <div role="tabpanel" id="u2p" aria-labelledby="u2" hidden>Content C</div>
+        <div role="tabpanel" id="u3p" aria-labelledby="u3" hidden>Content D</div>
+        <div role="tabpanel" id="u4p" aria-labelledby="u4" hidden>Content E</div>
+        <div role="tabpanel" id="u5p" aria-labelledby="u5" hidden>Content F</div>
+      </div>
+        </div>
+        <div class="tabspec__rule">
+          <dl>
+        <dt>Controls</dt><dd>Content inside the current page</dd>
+        <dt>Count</dt><dd>3 to 10</dd>
+        <dt>Treatment</dt><dd>Capsule</dd>
+        <dt>Stands alone</dt><dd>No, only under a primary tab</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="tabspec">
+      <div class="tabspec__head"><h3>&#39029;&#31614;&#20998;&#27573;&#25353;&#38062; <span>Segmented Button</span></h3></div>
+      <div class="tabspec__grid">
+        <div class="tabspec__demo">
+      <div class="tabs tabs--seg" role="tablist" aria-label="Segmented button example">
+        <button role="tab" aria-selected="true" id="g0" aria-controls="g0p">Day</button>
+        <button role="tab" aria-selected="false" id="g1" aria-controls="g1p" tabindex="-1">Month</button>
+        <button role="tab" aria-selected="false" id="g2" aria-controls="g2p" tabindex="-1">Year</button>
+        <span class="tabs__indicator" aria-hidden="true"></span>
+      </div>
+      <div class="tabs__panels">
+        <div role="tabpanel" id="g0p" aria-labelledby="g0">Content A</div>
+        <div role="tabpanel" id="g1p" aria-labelledby="g1" hidden>Content B</div>
+        <div role="tabpanel" id="g2p" aria-labelledby="g2" hidden>Content C</div>
+      </div>
+        </div>
+        <div class="tabspec__rule">
+          <dl>
+        <dt>Controls</dt><dd>The view of the same content</dd>
+        <dt>Count</dt><dd>2 to 4</dd>
+        <dt>Treatment</dt><dd>Slider</dd>
+        <dt>Stands alone</dt><dd>Yes</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="tabspec">
+      <div class="tabspec__head"><h3>&#21345;&#29255;&#20869;&#39029;&#31614; <span>Card Tab</span></h3></div>
+      <div class="tabspec__grid">
+        <div class="tabspec__demo">
+      <div class="tabs tabs--card" role="tablist" aria-label="Card tab example">
+        <button role="tab" aria-selected="true" id="c0" aria-controls="c0p">Performance</button>
+        <button role="tab" aria-selected="false" id="c1" aria-controls="c1p" tabindex="-1">Incentives</button>
+        <button role="tab" aria-selected="false" id="c2" aria-controls="c2p" tabindex="-1">Policy</button>
+        <span class="tabs__indicator" aria-hidden="true"></span>
+      </div>
+      <div class="tabs__panels">
+        <div role="tabpanel" id="c0p" aria-labelledby="c0">Content A</div>
+        <div role="tabpanel" id="c1p" aria-labelledby="c1" hidden>Content B</div>
+        <div role="tabpanel" id="c2p" aria-labelledby="c2" hidden>Content C</div>
+      </div>
+        </div>
+        <div class="tabspec__rule">
+          <dl>
+        <dt>Controls</dt><dd>Content inside one card</dd>
+        <dt>Count</dt><dd>2 to 4</dd>
+        <dt>Treatment</dt><dd>Underline, card scale</dd>
+        <dt>Stands alone</dt><dd>Yes, inside its card</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="tabspec">
+      <div class="tabspec__head"><h3>&#29305;&#27530;&#39029;&#31614; <span>Special Tab</span></h3></div>
+      <div class="tabspec__grid">
+        <div class="tabspec__demo">
+      <div class="tabs tabs--special" role="tablist" aria-label="Special tab example">
+        <button role="tab" aria-selected="true" id="x0" aria-controls="x0p"><span class="tabs__thumb" aria-hidden="true">&#127970;</span>Enterprise</button>
+        <button role="tab" aria-selected="false" id="x1" aria-controls="x1p" tabindex="-1"><span class="tabs__thumb" aria-hidden="true">&#127968;</span>Real estate</button>
+        <button role="tab" aria-selected="false" id="x2" aria-controls="x2p" tabindex="-1"><span class="tabs__thumb" aria-hidden="true">&#127891;</span>Education</button>
+        <button role="tab" aria-selected="false" id="x3" aria-controls="x3p" tabindex="-1"><span class="tabs__thumb" aria-hidden="true">&#128176;</span>Finance</button>
+      </div>
+      <div class="tabs__panels">
+        <div role="tabpanel" id="x0p" aria-labelledby="x0">Content A</div>
+        <div role="tabpanel" id="x1p" aria-labelledby="x1" hidden>Content B</div>
+        <div role="tabpanel" id="x2p" aria-labelledby="x2" hidden>Content C</div>
+        <div role="tabpanel" id="x3p" aria-labelledby="x3" hidden>Content D</div>
+      </div>
+        </div>
+        <div class="tabspec__rule">
+          <dl>
+        <dt>Controls</dt><dd>Category entry points</dd>
+        <dt>Count</dt><dd>3 to 7</dd>
+        <dt>Treatment</dt><dd>Image-led</dd>
+        <dt>Stands alone</dt><dd>Yes</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="tabspec">
+      <div class="tabspec__head"><h3>&#19977;&#23618;&#39029;&#31614;&#32452;&#21512; <span>Three-Layer Combination</span></h3></div>
+      <div class="tabspec__grid">
+        <div class="tabspec__demo">
+      <div class="tabstack">
+      <div class="tabs tabs--primary" role="tablist" aria-label="Three layer, primary tab">
+        <button role="tab" aria-selected="true" id="t0" aria-controls="t0p">Products</button>
+        <button role="tab" aria-selected="false" id="t1" aria-controls="t1p" tabindex="-1">Solutions</button>
+        <button role="tab" aria-selected="false" id="t2" aria-controls="t2p" tabindex="-1">Cases</button>
+        <span class="tabs__indicator" aria-hidden="true"></span>
+      </div>
+      <div class="tabs tabs--sub" role="tablist" aria-label="Three layer, sub tab">
+        <button role="tab" aria-selected="true" id="s0">Switches</button>
+        <button role="tab" aria-selected="false" id="s1" tabindex="-1">Routers</button>
+        <button role="tab" aria-selected="false" id="s2" tabindex="-1">WLAN</button>
+      </div>
+      <div class="tabs tabs--seg" role="tablist" aria-label="Three layer, segmented button">
+        <button role="tab" aria-selected="true" id="v0">List</button>
+        <button role="tab" aria-selected="false" id="v1" tabindex="-1">Grid</button>
+        <span class="tabs__indicator" aria-hidden="true"></span>
+      </div>
+      </div>
+      <div class="tabs__panels">
+        <div role="tabpanel" id="t0p" aria-labelledby="t0">Content A</div>
+        <div role="tabpanel" id="t1p" aria-labelledby="t1" hidden>Content B</div>
+        <div role="tabpanel" id="t2p" aria-labelledby="t2" hidden>Content C</div>
+      </div>
+        </div>
+        <div class="tabspec__rule">
+          <dl>
+        <dt>Controls</dt><dd>Primary, then sub, then segmented</dd>
+        <dt>Count</dt><dd>Three layers is the limit</dd>
+        <dt>Treatment</dt><dd>A different treatment per layer</dd>
+        <dt>Stands alone</dt><dd>Combination only</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
 
     <div class="prose-table-wrap">
       <table class="prose-table">
@@ -164,5 +368,42 @@
 
 <script src="../assets/js/site.js"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+(function(){
+  document.querySelectorAll('[role="tablist"]').forEach(function(list){
+    var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+    var ind  = list.querySelector('.tabs__indicator');
+    function select(tab){
+      tabs.forEach(function(t){
+        var on = t === tab;
+        t.setAttribute('aria-selected', on);
+        t.tabIndex = on ? 0 : -1;
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel) panel.hidden = !on;
+      });
+      if (ind){ ind.style.width = tab.offsetWidth + 'px'; ind.style.transform = 'translateX(' + tab.offsetLeft + 'px)'; }
+    }
+    list.addEventListener('click', function(e){
+      var tab = e.target.closest('[role="tab"]');
+      if (tab) select(tab);
+    });
+    list.addEventListener('keydown', function(e){
+      var i = tabs.indexOf(document.activeElement);
+      if (i < 0) return;
+      var n = null;
+      if (e.key === 'ArrowRight') n = tabs[(i + 1) % tabs.length];
+      if (e.key === 'ArrowLeft')  n = tabs[(i - 1 + tabs.length) % tabs.length];
+      if (e.key === 'Home') n = tabs[0];
+      if (e.key === 'End')  n = tabs[tabs.length - 1];
+      if (n){ n.focus(); select(n); e.preventDefault(); }
+    });
+    select(tabs.filter(function(t){ return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0]);
+    window.addEventListener('resize', function(){
+      select(tabs.filter(function(t){ return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0]);
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
