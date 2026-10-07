@@ -3141,3 +3141,42 @@ img.testimonial__avatar{object-fit:cover;}
 .figure-grid--cap .figure{display:flex;flex-direction:column;justify-content:flex-end;height:100%;}
 .shot-tall{max-height:420px;width:auto;margin:0 auto;display:block;}
 .ba--tall.ba--big .ba__img{max-height:560px;background:transparent;}
+
+/* a label above a change, so each one announces itself */
+.prose .kicker{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent-ink);
+  margin:var(--space-8) 0 var(--space-2);
+}
+
+/* the three rebuilds as a progress strip: where this version sits */
+.ladder{
+  list-style:none;padding:0;margin:var(--space-5) 0 var(--space-7);
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-5);
+}
+.ladder__step{
+  margin:0;padding-top:var(--space-3);
+  border-top:2px solid var(--border-hairline);
+}
+.ladder__step.is-done{border-top-color:var(--gray-4);}
+.ladder__step.is-now{border-top-color:var(--accent);}
+.ladder__k{
+  display:block;margin-bottom:var(--space-3);
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-tertiary);
+}
+.ladder__step.is-now .ladder__k{color:var(--accent-ink);}
+.ladder__shot{
+  width:100%;display:block;border-radius:var(--radius-sm);
+  border:1px solid var(--border-hairline);
+}
+.ladder__cap{
+  display:block;margin-top:var(--space-3);
+  font-size:var(--text-body-sm);line-height:var(--lh-body);color:var(--text-secondary);
+}
+.ladder__step.is-now .ladder__cap{color:var(--accent-ink);font-weight:var(--fw-semibold);}
+.ladder__step:not(.is-done){opacity:.45;}
+.ladder__step:not(.is-done) .ladder__shot{filter:grayscale(1);}
+@media (max-width:620px){
+  .ladder{grid-template-columns:1fr;gap:var(--space-4);}
+}
