@@ -583,6 +583,13 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 .prose ul,.prose ol{font-size:var(--text-body-lg);line-height:var(--lh-body);color:var(--text-secondary);margin:0 0 var(--space-5);padding-left:1.2em;}
 .prose li{margin-bottom:var(--space-2);}
 .prose strong{color:var(--text-primary);font-weight:var(--fw-semibold);}
+/* the page's load-bearing claims all look the same, wherever they land */
+.prose p > strong{color:var(--accent-ink);}
+.prose > h4{
+  font-family:var(--font-display);font-size:var(--text-body-lg);font-weight:var(--fw-semibold);
+  letter-spacing:var(--ls-snug);color:var(--text-primary);
+  margin:var(--space-7) 0 var(--space-3);
+}
 .prose a{text-decoration:underline;}
 .prose a.btn{text-decoration:none;}
 .prose blockquote{
@@ -3086,3 +3093,51 @@ img.testimonial__avatar{object-fit:cover;}
   margin:calc(var(--space-4) * -1) 0 var(--space-6);
   font-size:var(--text-body);color:var(--text-secondary);
 }
+
+
+/* 1soul: the thesis line in the hero, carried in the accent */
+.case-hero__thesis .thesis-key{color:var(--accent-ink);font-weight:var(--fw-semibold);}
+
+/* a numbered source: where a finding came from, with its evidence under it */
+.srcblock{
+  margin:var(--space-6) 0;padding-left:var(--space-5);
+  border-left:2px solid rgba(226,102,31,.28);
+}
+.srcblock__k{
+  display:block;margin-bottom:var(--space-4);
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent-ink);
+}
+.srcblock > .figure{margin-bottom:var(--space-6);}
+
+/* two things that land on one thing */
+.two-up{
+  display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5);
+  margin:var(--space-6) 0 var(--space-5);
+}
+.two-up__card{
+  padding:var(--space-5);border:1px solid var(--border-hairline);
+  border-radius:var(--radius-md);background:var(--surface-inverse);
+}
+.two-up__k{
+  display:block;margin-bottom:var(--space-3);
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-tertiary);
+}
+.prose .two-up__card p{margin:0;font-size:var(--text-body);}
+.flow-down--tight{margin-top:0;}
+.converge-out{
+  padding:var(--space-5);border-radius:var(--radius-md);
+  background:var(--accent-tint);
+}
+.prose .converge-out p{margin:0;color:var(--text-primary);}
+@media (max-width:620px){
+  .two-up{grid-template-columns:1fr;gap:var(--space-4);}
+  .srcblock{padding-left:var(--space-4);}
+}
+
+/* two pictures of very different shapes, each sitting under its own caption */
+.figure-grid--cap{align-items:end;}
+.figure-grid--cap .figure{display:flex;flex-direction:column;justify-content:flex-end;height:100%;}
+.shot-tall{max-height:420px;width:auto;margin:0 auto;display:block;}
+.ba--tall.ba--big .ba__img{max-height:560px;background:transparent;}
