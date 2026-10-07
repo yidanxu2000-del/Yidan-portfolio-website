@@ -53,7 +53,6 @@
 
     <div class="thesis">
       <p>The product is a ladder with three rungs. Understand somebody. Find them a good match. Bring the two of them together in real life.</p>
-      <p>I have worked on it twice. Both times the job was the same. Work out which rung had broken, and rebuild that one.</p>
     </div>
 
     <div class="stat-row">
@@ -62,7 +61,7 @@
       <div class="stat-cell"><span class="stat-cell__n">3&times;</span><span class="stat-cell__l">users over the same period.</span></div>
     </div>
 
-    <p class="prose-lede">The short version. The first time, the top rung was broken: women were signing up and staying away from the events. I rebuilt the site and the mechanic around one audience, and female sign-ups went up 25%. The second time the first rung turned out to be too soft to stand on, so the CEO and I went back down to build it properly. The product now asks you for a real conversation and writes you back.</p>
+    <p class="prose-lede">The short version. The first time, women did not trust this AI agent, so they did not sign up. I rebuilt the site and the mechanic, and female sign-ups went up 25%. The second time, the AI did not understand people well enough to carry what sat on top of it, so the CEO and I went back down to build that part properly, moved the product&rsquo;s centre of gravity, and upgraded the site on what the first rebuild had taught us.</p>
 
     <div class="team">
       <div class="team__who" role="list">
@@ -105,7 +104,6 @@
 
 
     <h2>Round one: you can stop it</h2>
-    <p class="round-sub">The top rung was broken.</p>
 
     <ul class="rungmark" role="list">
       <li class="rungmark__item"><span class="rungmark__n">Rung 1</span>Understand somebody</li>
@@ -114,7 +112,7 @@
     </ul>
     <p class="figure-note">Round one is about the handover from rung two to rung three. People were being matched, and then staying home.</p>
 
-    <p>At the early events the split ran nine men to every woman. The sign-ups existed and the room stayed empty, and the site was the reason. Research called it a heavy magic book. It promised that an AI would date on your behalf, which is the one claim a woman deciding whether to walk into a room of strangers will not take on trust.</p>
+    <p>Barely any women signed up, because women did not trust the site. The split at the early events ran nine men to every woman. Research called it a heavy magic book. It promised that an AI would date on your behalf, which is the one claim a woman deciding whether to walk into a room of strangers will not take on trust.</p>
     <figure class="figure figure--narrow">
       <img src="../assets/images/1soul/before-hero.jpg" alt="The original 1Soul homepage. A dark wine-red hero with the headline 'Your agent is already dating on your behalf'" loading="lazy">
       <figcaption>What I inherited. The brand designer and the team had built this with AI before I arrived. The first line on it sends you straight to Black Mirror.</figcaption>
@@ -479,8 +477,6 @@
       <figcaption>onesoul after the first rebuild, top to bottom. Scroll inside the frame. I designed it and built the front end.</figcaption>
     </figure>
 
-    <h3>What came of round one</h3>
-
     <p>What she gets is a way out at every point. She can walk away, or take the thought back, and the AI has exposed nothing of hers to anybody. That feeling of being able to stop it is what makes the thing worth opening at all.</p>
     <p><strong>It worked. Female sign-ups went up 25%, users more than tripled, and at one event the women outnumbered the men for the first time.</strong> The room stopped being nine to one. It runs at roughly sixty to forty now.</p>
 
@@ -488,6 +484,8 @@
       <img src="../assets/images/1soul/event-photo.jpg" alt="A group of students standing on the steps of a London university building holding matcha drinks, faces masked" loading="lazy">
       <figcaption>A matcha party in London.</figcaption>
     </figure>
+
+    <p>So round one was about the half of trust you can act on. Give somebody a way to stop it, and the resistance to the AI drops.</p>
 
     <p>I ran the growth work alongside it.</p>
 
@@ -791,6 +789,27 @@
     
     </details>
 
+    <p>So round two was about the half of trust you can see. You can see real people who used it, and you can see how the AI understood you.</p>
+
+    <h2>Keeping track</h2>
+    <p>We kept watching after the new version went up, and plenty of it was not good. A lot of people were leaving halfway down the page. I went and found where halfway was, and cut what was sitting there.</p>
+
+    <figure class="figure figure--narrow">
+      <div class="slot slot--wide" data-slot="halfway-result">
+        <span class="slot__k">What the cut changed</span>
+        <p class="slot__d">The numbers from after I cut the middle of the page. To add.</p>
+      </div>
+    </figure>
+
+    <p>We moved from Clarity to PostHog for it.</p>
+
+    <figure class="figure figure--narrow">
+      <div class="slot slot--wide" data-slot="posthog-why">
+        <span class="slot__k">Why PostHog</span>
+        <p class="slot__d">What PostHog does that Clarity could not. To add.</p>
+      </div>
+    </figure>
+
     <h2>The same rule, both times</h2>
     <p>Across both versions one rule held. The AI works in the background, the person stays in the foreground, and the AI is built to stay controllable.</p>
     <p>Round one told people the AI was safe to let near them: they decide, and everything it does follows from what they did. Round two let them see how it works, and what it understood them by.</p>
@@ -835,14 +854,15 @@
 
 
     <p>The first rung is where I am now, building the part that has to hold before any of the rest works.</p>
-    <p>We track it on PostHog now, and we keep changing the page against what it shows.</p>
-
-    <h3>If I did it again</h3>
-    <p>I would track the data more closely from the start. We spent effort on things the numbers would have told us to leave alone.</p>
     <h2>How I work</h2>
     <p>The closer the work sits to a person, the more of it I do by hand.</p>
     <p>I talk to engineering and the CEO more than anyone. With engineering it goes like this. I start from the AI-drawn version and put the human part back into it, then prototype it and give it to people inside the team and outside it to see whether it reads. Once the design is settled I write it up as a Figma file, walk them through it on a call, and they build the shape of the site from that.</p>
     <p>We are in the same GitHub team, so when I spot something small I take the code out of Figma dev mode, fix it in Claude Code, and merge to main. That publishes the site.</p>
+
+    <p>In a small team where everybody owns a narrow slice, this is where I am worth the most. The design does not stop in Figma. I stay with it to the live site.</p>
+
+    <h3>What I am doing next</h3>
+    <p>Tracking the data more closely from the start. For a while we were changing things on instinct, and that wasted effort the numbers would have saved.</p>
 
     <p class="prose-closing-line">The AI moved fast on everything downstream of a decision. It never <em>made</em> the decision.</p>
     <div class="try-cta">
