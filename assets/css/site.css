@@ -2227,7 +2227,8 @@ a,button,summary,label,[role="button"],.star-link:not(.star-link--disabled),
 }
 
 /* an unfolded screens block gets a quiet lead-in instead of a summary row */
-.prose h4.screens-lede{
+.prose h4.screens-lede,
+.prose p.screens-lede{
   font-family:var(--font-display);font-size:var(--text-body-lg);
   font-weight:var(--fw-semibold);letter-spacing:var(--ls-snug);
   color:var(--text-primary);margin:var(--space-7) 0 var(--space-4);
@@ -3033,4 +3034,55 @@ img.testimonial__avatar{object-fit:cover;}
   .flipcard__btn:focus-visible .flipcard__inner{transform:none;}
   .flipcard__btn[aria-pressed="true"]:hover .flipcard__inner,
   .flipcard__btn[aria-pressed="true"]:focus-visible .flipcard__inner{transform:rotateY(180deg);}
+}
+
+
+/* ---------- 1Soul: thesis, team, round subtitles ------------------------ */
+/* the claim the whole case argues, sitting under the title */
+.case-hero__thesis{
+  max-width:34ch;margin:var(--space-5) 0 var(--space-5);
+  font-family:var(--font-display);
+  font-size:clamp(21px,2.3vw,30px);line-height:1.35;letter-spacing:-.015em;
+  color:var(--text-primary);
+}
+
+/* who was on the team, and which part of it was mine */
+.team{max-width:var(--container-narrow);margin:var(--space-7) auto var(--space-8);}
+.team__who{display:flex;flex-wrap:wrap;gap:var(--space-3);margin:0 0 var(--space-5);}
+.team__chip{
+  display:inline-flex;align-items:center;
+  padding:10px var(--space-4);border-radius:999px;
+  background:var(--gray-1);border:1px solid var(--border-hairline);
+  font-size:var(--text-body-sm);color:var(--text-secondary);
+}
+/* mine is the one that matters here, so it carries the accent and sits taller */
+.team__chip--me{
+  flex-direction:column;align-items:flex-start;gap:2px;
+  padding:var(--space-3) var(--space-5);border-radius:var(--radius-md);
+  background:var(--accent-tint);border-color:var(--accent);
+  color:var(--accent-ink);
+}
+.team__chip--me b{font-size:var(--text-body);color:var(--text-primary);font-weight:var(--fw-semibold);}
+.prose .team__owns{list-style:none;margin:0 0 var(--space-5);padding:0;}
+.prose .team__owns li{
+  margin:0;padding:8px 0 8px var(--space-5);position:relative;
+  font-size:var(--text-body-sm);color:var(--text-secondary);
+  border-bottom:1px solid var(--border-hairline);
+}
+.prose .team__owns li::before{
+  content:"";position:absolute;left:0;top:16px;
+  width:7px;height:7px;border-radius:50%;background:var(--accent);
+}
+.prose .team__time{
+  margin:0;font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-secondary);
+}
+@media (max-width:600px){
+  .team__chip--me{width:100%;}
+}
+
+/* the old round wording, kept as the line under the new heading */
+.prose .round-sub{
+  margin:calc(var(--space-4) * -1) 0 var(--space-6);
+  font-size:var(--text-body);color:var(--text-secondary);
 }
