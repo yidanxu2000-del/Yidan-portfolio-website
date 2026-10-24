@@ -1,0 +1,562 @@
+<title>BizFinTrack Prototype</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap">
+<style>
+/* Layout: fixed left nav + one working column; the answer sits on top, detail underneath. 8pt grid. */
+:root{
+  --canvas:#F4F5F7; --card:#FFFFFF; --subtle:#F8F9FA;
+  --ink:#15181C; --ink-2:#5E6670; --ink-3:#8B929B; --inverse:#FFFFFF;
+  --line:#E2E5E9; --line-2:#C9CED5;
+  --brand:#2747D9; --brand-hover:#1F39B0; --brand-subtle:#EEF1FD;
+  --pos:#12715B; --pos-bg:#E6F3EE; --warn:#8F5300; --warn-bg:#FCF1DE; --risk:#B3261E; --risk-bg:#FCEBEA;
+  --note:#FFE58A; --note-ink:#3D3000;
+  --scrim:rgba(21,24,28,.36); --shadow:0 12px 40px rgba(21,24,28,.14);
+  --font:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --canvas:#0F1114; --card:#171A1E; --subtle:#1C2025; --ink:#EDEFF2; --ink-2:#A3AAB3; --ink-3:#7B838D; --inverse:#FFFFFF;
+  --line:#2A2F36; --line-2:#3A4049; --brand:#7D93FF; --brand-hover:#9AABFF; --brand-subtle:#1E2547;
+  --pos:#5CC9A4; --pos-bg:#123228; --warn:#F2B661; --warn-bg:#3A2A10; --risk:#FF8A80; --risk-bg:#3C1714;
+  --note:#5C4B00; --note-ink:#FFF2BF; --scrim:rgba(0,0,0,.55); --shadow:0 12px 40px rgba(0,0,0,.5); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --canvas:#0F1114; --card:#171A1E; --subtle:#1C2025; --ink:#EDEFF2; --ink-2:#A3AAB3; --ink-3:#7B838D; --inverse:#FFFFFF;
+  --line:#2A2F36; --line-2:#3A4049; --brand:#7D93FF; --brand-hover:#9AABFF; --brand-subtle:#1E2547;
+  --pos:#5CC9A4; --pos-bg:#123228; --warn:#F2B661; --warn-bg:#3A2A10; --risk:#FF8A80; --risk-bg:#3C1714;
+  --note:#5C4B00; --note-ink:#FFF2BF; --scrim:rgba(0,0,0,.55); --shadow:0 12px 40px rgba(0,0,0,.5); color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--canvas);color:var(--ink);font:400 14px/20px var(--font);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:6px}
+h1,h2,h3,p{margin:0}
+h1{font-size:28px;line-height:36px;font-weight:600;letter-spacing:-.01em;text-wrap:balance}
+h2{font-size:20px;line-height:28px;font-weight:600;letter-spacing:-.005em}
+h3{font-size:16px;line-height:24px;font-weight:600}
+.muted{color:var(--ink-2)} .small{font-size:12px;line-height:16px;font-weight:500}
+.num-xl{font-size:56px;line-height:64px;font-weight:600;letter-spacing:-.02em}
+.num-l{font-size:28px;line-height:36px;font-weight:500;letter-spacing:-.01em}
+
+/* prototype bar */
+.proto{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--ink);color:var(--canvas);display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;
+  padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:31;background:var(--ink)}
+.proto b{font-weight:600}
+.proto .grp{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.proto .lbl{opacity:.7;font-size:12px}
+.chipbtn{border:1px solid color-mix(in srgb,var(--canvas) 30%,transparent);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--canvas)}
+.chipbtn[aria-pressed="true"]{background:var(--canvas);color:var(--ink);border-color:var(--canvas)}
+
+/* app shell */
+.app{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:calc(100% - 40px)}
+.side{background:var(--card);border-right:1px solid var(--line);padding:24px 16px;display:flex;flex-direction:column;gap:24px;position:sticky;top:40px;height:calc(100vh - 40px)}
+.logo{display:flex;gap:10px;align-items:center;padding-left:8px;font-weight:600;font-size:16px}
+.mark{width:24px;height:24px;border-radius:7px;background:var(--ink);position:relative;flex:none}
+.mark::before,.mark::after{content:"";position:absolute;width:4px;border-radius:1px;background:var(--card);bottom:6px}
+.mark::before{left:6px;height:8px}.mark::after{left:14px;height:12px}
+.biz{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:8px;text-align:left;width:100%}
+.biz div{flex:1;min-width:0}.biz b{display:block;font-weight:500}
+.nav{display:flex;flex-direction:column;gap:4px}
+.nav button{display:flex;gap:12px;align-items:center;height:40px;padding:0 12px;border-radius:10px;color:var(--ink-2);text-align:left;width:100%}
+.nav button:hover{background:var(--subtle)}
+.nav button[aria-current="page"]{background:var(--canvas);color:var(--ink);font-weight:500}
+.me{margin-top:auto;display:flex;gap:10px;align-items:center;padding-left:8px}
+.av{width:32px;height:32px;border-radius:50%;background:var(--brand-subtle);color:var(--brand);display:grid;place-items:center;font-weight:600;font-size:12px;flex:none}
+.main{padding:24px 40px 64px;display:flex;flex-direction:column;gap:24px;min-width:0}
+.topbar{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.topbar .t{flex:1;min-width:200px}
+.iconbtn{width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:var(--card);display:grid;place-items:center;color:var(--ink-2)}
+svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.fresh{display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:500;color:var(--ink-2)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--pos);flex:none}
+.fresh.stale{color:var(--warn)} .fresh.stale .dot{background:var(--warn)}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.row{display:flex;gap:24px;align-items:stretch;flex-wrap:wrap}
+.row>*{min-width:0}
+.grow{flex:1 1 0}
+.between{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:2px 10px 2px 8px;font-size:12px;line-height:16px;font-weight:500;white-space:nowrap}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.pill.pos{color:var(--pos);background:var(--pos-bg)} .pill.warn{color:var(--warn);background:var(--warn-bg)} .pill.risk{color:var(--risk);background:var(--risk-bg)}
+.pill.neu{color:var(--ink-2);background:var(--canvas)} .pill.brand{color:var(--brand);background:var(--brand-subtle)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:10px;font-weight:500;white-space:nowrap}
+.btn.s{height:32px;padding:0 12px}
+.btn.primary{background:var(--brand);color:var(--inverse)} .btn.primary:hover{background:var(--brand-hover)}
+.btn.secondary{background:var(--card);border:1px solid var(--line-2)} .btn.secondary:hover{background:var(--subtle)}
+.btn.ghost{color:var(--brand);padding:0 4px}
+.link{color:var(--brand);font-weight:500;display:inline-flex;gap:6px;align-items:center}
+.banner{display:flex;gap:12px;align-items:flex-start;border-radius:12px;padding:12px 16px}
+.banner.warn{background:var(--warn-bg);color:var(--warn)} .banner.risk{background:var(--risk-bg);color:var(--risk)} .banner.info{background:var(--brand-subtle);color:var(--brand)}
+.banner p{color:var(--ink)} .banner .grow{min-width:0}
+
+/* home */
+.hero{display:grid;grid-template-columns:minmax(240px,320px) minmax(0,1fr);gap:40px;padding:32px}
+.hero .ans{display:flex;flex-direction:column;gap:12px}
+.chart svg{width:100%;height:auto;display:block;overflow:visible;min-width:560px}
+.chart .sc{overflow-x:auto;min-width:0}
+.legend{display:flex;gap:16px;flex-wrap:wrap}
+.legend span{display:inline-flex;gap:6px;align-items:center;font-size:12px;color:var(--ink-2)}
+.legend i{width:16px;height:0;border-top:2px solid var(--ink)} .legend i.buf{border-top:2px dashed var(--warn)}
+.list>div{display:flex;gap:16px;align-items:center;padding:16px 0;border-top:1px solid var(--line);flex-wrap:wrap}
+.list>div .grow{min-width:220px}
+.kv{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.track{height:8px;border-radius:4px;background:var(--canvas);position:relative}
+.track>i{position:absolute;inset:0 auto 0 0;border-radius:4px;background:var(--pos)}
+.track>i.warn{background:var(--warn)}
+.track>b{position:absolute;top:-3px;width:2px;height:14px;background:var(--ink)}
+.goals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.goal{display:flex;flex-direction:column;gap:10px}
+
+/* drawer + modal */
+.scrim{position:fixed;inset:0;background:var(--scrim);z-index:40;display:flex;justify-content:flex-end}
+.scrim.center{justify-content:center;align-items:center;padding:24px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px))}
+.drawer{background:var(--card);width:min(480px,100%);height:100%;overflow:auto;padding:24px;padding-top:calc(24px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;gap:20px;box-shadow:var(--shadow)}
+.modal{background:var(--card);width:min(560px,100%);max-height:100%;overflow:auto;border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:20px;box-shadow:var(--shadow)}
+.calc{display:flex;flex-direction:column}
+.calc .ln{display:grid;grid-template-columns:20px minmax(0,1fr) auto;gap:8px;padding:12px 0;border-top:1px solid var(--line);align-items:start}
+.calc .ln .op{color:var(--ink-3);font-weight:500}
+.calc .ln.total{border-top:2px solid var(--ink)}
+.calc .ln.total b,.calc .ln.answer b{font-weight:600}
+.calc .ln.answer{background:var(--brand-subtle);border-radius:10px;padding:12px;border-top:0;margin-top:8px}
+.steps{display:flex;gap:6px}.steps i{height:4px;flex:1;border-radius:2px;background:var(--line)}.steps i.on{background:var(--brand)}
+.opt{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-align:left;width:100%}
+.opt:hover{border-color:var(--line-2)} .opt[aria-pressed="true"]{border-color:var(--brand);box-shadow:inset 0 0 0 1px var(--brand)}
+.opt .grow{min-width:0}
+.bankgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.bl{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;font-weight:600;font-size:12px;color:#fff;flex:none}
+.field{display:flex;flex-direction:column;gap:6px}
+.field input{height:40px;border:1px solid var(--line-2);border-radius:10px;padding:0 12px;font:inherit;color:var(--ink);background:var(--card);font-variant-numeric:tabular-nums}
+.field input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 1px var(--brand)}
+.toggle{width:40px;height:24px;border-radius:999px;background:var(--line-2);position:relative;flex:none}
+.toggle::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .15s ease-out}
+.toggle[aria-checked="true"]{background:var(--brand)} .toggle[aria-checked="true"]::after{transform:translateX(16px)}
+.bankpage{border:1px dashed var(--line-2);border-radius:16px;padding:24px;background:var(--subtle);display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.progress{height:6px;border-radius:3px;background:var(--line);overflow:hidden}.progress i{display:block;height:100%;background:var(--brand);width:68%}
+
+/* reports */
+.seg{display:inline-flex;gap:4px;padding:4px;background:var(--canvas);border-radius:10px}
+.seg button{padding:6px 14px;border-radius:8px;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--card);color:var(--ink);font-weight:500;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.changes>div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:14px 0;border-top:1px solid var(--line)}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:560px}
+th,td{text-align:right;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left;padding-left:0}
+th{font-size:12px;font-weight:500;color:var(--ink-2)}
+tr.sum td{font-weight:600;border-bottom:1px solid var(--line-2)}
+tr.grand td{font-weight:600;border-top:2px solid var(--ink);border-bottom:0}
+td .cm{display:inline-flex;align-items:center;gap:4px;color:var(--brand);font-size:12px;font-weight:500;margin-left:8px}
+tr.hl td{background:var(--brand-subtle)}
+.thread{border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px;background:var(--subtle)}
+.msg{display:flex;gap:10px}.msg .av{width:28px;height:28px}
+.pos-t{color:var(--pos)} .risk-t{color:var(--risk)} .warn-t{color:var(--warn)}
+
+/* notes */
+.n{display:none;width:22px;height:22px;border-radius:50%;background:var(--note);color:var(--note-ink);font-size:12px;font-weight:600;place-items:center;flex:none;box-shadow:0 0 0 2px var(--card)}
+body.notes .n{display:inline-grid}
+.notes-panel{display:none}
+body.notes .notes-panel{display:flex}
+.notes-panel{flex-direction:column;gap:12px;background:var(--note);color:var(--note-ink);border-radius:16px;padding:20px}
+.notes-panel ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px}
+.notes-panel li::marker{font-weight:600}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--canvas);padding:10px 16px;border-radius:10px;z-index:60;font-weight:500;max-width:calc(100% - 32px)}
+
+@media (max-width:1100px){.hero{grid-template-columns:minmax(0,1fr)}.goals{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:860px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;padding:12px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px));gap:12px;border-right:0;border-bottom:1px solid var(--line)}
+  .side .biz,.side .me{display:none}
+  .nav{flex-direction:row;overflow-x:auto;width:100%}
+  .nav button{width:auto;flex:none}
+  .main{padding:20px max(16px,env(safe-area-inset-right,0px)) 48px max(16px,env(safe-area-inset-left,0px))}
+  .hero{padding:20px}
+  .num-xl{font-size:44px;line-height:52px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="proto" role="region" aria-label="Prototype controls">
+  <b>Prototype</b>
+  <div class="grp"><span class="lbl">Signed in as</span>
+    <button class="chipbtn" data-role="owner" aria-pressed="true">Maya, owner</button>
+    <button class="chipbtn" data-role="accountant" aria-pressed="false">Tom, accountant</button></div>
+  <div class="grp"><span class="lbl">Scenario</span>
+    <button class="chipbtn" data-scn="normal" aria-pressed="true">Normal</button>
+    <button class="chipbtn" data-scn="lost" aria-pressed="false">HSBC connection lost</button>
+    <button class="chipbtn" data-scn="bankdown" aria-pressed="false">Bank unavailable</button></div>
+  <div class="grp"><button class="chipbtn" id="notesBtn" aria-pressed="false">Show design notes</button></div>
+</div>
+
+<div class="app">
+  <aside class="side">
+    <div class="logo"><span class="mark" aria-hidden="true"></span>BizFinTrack</div>
+    <button class="biz"><div><b>Northlight Studio Ltd</b><span class="small muted">Business account</span></div><svg class="i" viewBox="0 0 24 24"><path d="m6 9.5 6 6 6-6"/></svg></button>
+    <nav class="nav" id="nav" aria-label="Main"></nav>
+    <div class="me" id="me"></div>
+  </aside>
+  <main class="main" id="main"></main>
+</div>
+<div id="layer"></div>
+
+<script>
+const I={
+ home:'<path d="M3.5 10.2 12 3.5l8.5 6.7V20a.5.5 0 0 1-.5.5h-5.2v-6.2H9.2v6.2H4a.5.5 0 0 1-.5-.5z"/>',
+ reports:'<path d="M14 3.5H6.5a1 1 0 0 0-1 1v15a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V8z"/><path d="M14 3.5V8h4.5M9 13h6M9 16.5h4"/>',
+ goals:'<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".8"/>',
+ accounts:'<path d="M3.5 20.5h17M5.5 20.5v-9M18.5 20.5v-9M10 20.5v-9M14 20.5v-9M3 9.5 12 4l9 5.5z"/>',
+ settings:'<circle cx="12" cy="12" r="3"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"/>',
+ search:'<circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/>',
+ bell:'<path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5h4"/>',
+ info:'<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8v.2"/>',
+ close:'<path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/>', plus:'<path d="M12 5v14M5 12h14"/>',
+ download:'<path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M4.5 20h15"/>', message:'<path d="M20 11.5a7.5 7.5 0 0 1-10.9 6.7L4 19.5l1.4-4.6A7.5 7.5 0 1 1 20 11.5z"/>',
+ lock:'<rect x="5" y="10.5" width="14" height="10" rx="1.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/>',
+ check:'<path d="m5 12.5 4.5 4.5L19 7.5"/>', alert:'<path d="M12 4 2.8 19.5h18.4z"/><path d="M12 10v4.5M12 17v.2"/>',
+ card:'<rect x="3" y="5.5" width="18" height="13" rx="1.5"/><path d="M3 10h18M6.5 15h4"/>', eye:'<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/>',
+ refresh:'<path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3L19.5 9"/><path d="M19.5 4v5h-5"/>', send:'<path d="M20.5 3.5 10 14M20.5 3.5l-6.5 17-4-6.5-6.5-4z"/>',
+ arrow:'<path d="m9.5 6 6 6-6 6"/>', back:'<path d="m14.5 6-6 6 6 6"/>'
+};
+const ic=(n,s)=>`<svg class="i" viewBox="0 0 24 24" ${s?`style="width:${s}px;height:${s}px"`:''} aria-hidden="true">${I[n]}</svg>`;
+const N=k=>`<span class="n" aria-hidden="true">${k}</span>`;
+const gbp=v=>(v<0?'−':'')+'£'+Math.abs(v).toLocaleString('en-GB');
+
+const S={view:'home',role:'owner',scn:'normal',rv:'owner',drawer:null,modal:null,step:0,bank:null,goalType:'limit',cardLimit:true,comment:false,sent:{},notes:false};
+try{const saved=localStorage.getItem('bft-notes'); if(saved==='1')S.notes=true;}catch(e){}
+
+/* ---------- data ---------- */
+const FORECAST=[{d:0,v:24300,lab:'Today'},{d:5,v:17100,lab:'Payroll',amt:-7200,date:'28 Oct'},{d:9,v:15000,lab:'Rent',amt:-2100,date:'1 Nov'},{d:11,v:19520,lab:'Acme pays',amt:4520,date:'3 Nov'},{d:15,v:13420,lab:'VAT',amt:-6100,date:'7 Nov'},{d:18,v:20220,lab:'Brightside pays',amt:6800,date:'10 Nov'},{d:28,v:19740,lab:'Subscriptions',amt:-480,date:'20 Nov'},{d:30,v:19740}];
+
+/* ---------- shell ---------- */
+function shell(){
+  const items=[['home','Home'],['reports','Reports'],['goals','Goals'],['accounts','Accounts'],['settings','Settings']];
+  document.getElementById('nav').innerHTML=items.map(([k,l])=>`<button data-go="${k}" ${S.view===k?'aria-current="page"':''}>${ic(k)}${l}</button>`).join('');
+  document.getElementById('me').innerHTML=S.role==='owner'?`<span class="av">MC</span><div><b style="font-weight:500">Maya Chen</b><div class="small muted">Owner</div></div>`:`<span class="av">TP</span><div><b style="font-weight:500">Tom Price</b><div class="small muted">Accountant, view only</div></div>`;
+  document.querySelectorAll('[data-role]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.role===S.role));
+  document.querySelectorAll('[data-scn]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.scn===S.scn));
+  const nb=document.getElementById('notesBtn'); nb.setAttribute('aria-pressed',S.notes); nb.textContent=S.notes?'Hide design notes':'Show design notes';
+  document.body.classList.toggle('notes',S.notes);
+}
+const lost=()=>S.scn==='lost';
+function topbar(title,sub){
+  const f=lost()?`<span class="fresh stale"><span class="dot"></span>HSBC last synced 3 days ago</span>`:`<span class="fresh"><span class="dot"></span>All accounts synced 4 min ago</span>`;
+  return `<div class="topbar"><div class="t"><h1>${title}</h1>${sub?`<p class="muted">${sub}</p>`:''}</div>${f}<button class="iconbtn" aria-label="Search">${ic('search')}</button><button class="iconbtn" aria-label="Notifications">${ic('bell')}</button></div>`;
+}
+function notes(list){return `<aside class="notes-panel" aria-label="Design notes"><h3>Design notes</h3><ol>${list.map(x=>`<li>${x}</li>`).join('')}</ol></aside>`;}
+
+/* ---------- HOME ---------- */
+function forecastSVG(){
+  const W=720,H=220,P=28; const X=d=>8+d*(W-16)/30, Y=v=>H-(v/28000)*H;
+  let path=`M${X(0)},${Y(FORECAST[0].v)}`; for(let i=1;i<FORECAST.length;i++){path+=` L${X(FORECAST[i].d)},${Y(FORECAST[i-1].v)} L${X(FORECAST[i].d)},${Y(FORECAST[i].v)}`;}
+  const grid=[0,10000,20000].map(g=>`<line x1="0" x2="${W}" y1="${Y(g)}" y2="${Y(g)}" stroke="var(--line)"/><text x="${W+8}" y="${Y(g)+4}" font-size="12" fill="var(--ink-3)">£${g/1000}k</text>`).join('');
+  const ticks=FORECAST.filter(e=>e.amt).map(e=>`<line x1="${X(e.d)}" x2="${X(e.d)}" y1="${H+2}" y2="${H+8}" stroke="var(--line-2)"/><text x="${X(e.d)}" y="${H+22}" font-size="11" fill="var(--ink-2)" text-anchor="middle">${e.lab}</text>`).join('');
+  const lp=FORECAST[4];
+  const dash=lost()?'stroke-dasharray="6 5"':'';
+  return `<svg viewBox="0 0 ${W+40} ${H+P+4}" role="img" aria-label="Balance forecast for the next 30 days. Starts at £24,300 today, lowest point £13,420 on 7 November after the VAT payment, ending around £19,740.">
+   <rect x="0" y="${Y(5000)}" width="${W}" height="${H-Y(5000)}" fill="var(--warn-bg)"/>
+   ${grid}
+   <line x1="0" x2="${W}" y1="${Y(5000)}" y2="${Y(5000)}" stroke="var(--warn)" stroke-width="1.5" stroke-dasharray="5 4"/>
+   <text x="8" y="${Y(5000)+16}" font-size="12" font-weight="500" fill="var(--warn)">Your buffer £5,000</text>
+   <path d="${path}" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round" ${dash}/>
+   <circle cx="${X(0)}" cy="${Y(24300)}" r="5" fill="var(--ink)"/>
+   <text x="${X(0)+10}" y="${Y(24300)-10}" font-size="12" fill="var(--ink-2)">Today £24,300</text>
+   <circle cx="${X(lp.d)}" cy="${Y(lp.v)}" r="7" fill="var(--card)" stroke="var(--brand)" stroke-width="3"/>
+   <g transform="translate(${X(lp.d)-74},${Y(lp.v)+16})"><rect width="148" height="40" rx="8" fill="var(--ink)"/><text x="10" y="17" font-size="12" font-weight="500" fill="var(--canvas)">Lowest point £13,420</text><text x="10" y="32" font-size="12" fill="var(--canvas)" opacity=".75">7 Nov, after VAT</text></g>
+   ${ticks}
+  </svg>`;
+}
+function home(){
+  const hsbcItem=lost()
+   ?['risk','Connection lost','We can’t see HSBC right now','£5,400 in your forecast is from 20 Oct. Reconnect to bring it up to date.','Reconnect','reconnect']
+   :['warn','In 9 days','HSBC access needs reconfirming','One tap keeps your forecast updating. No bank login needed.','Reconfirm','reconfirm'];
+  const items=[
+   ['risk','12 days late','Acme Ltd owes you £4,520','They usually pay 9 days late, so the forecast expects this on 3 Nov.','Send reminder','remind'],
+   hsbcItem,
+   ['neu','To review','12 transactions need a category','Your Q3 profit could be off by about £1,200.','Review','review']];
+  return `${topbar('Good evening, Maya','Thursday 23 October')}
+  ${lost()?`<div class="banner risk">${ic('alert')}<div class="grow"><p><b>Your safe-to-spend may be out of date.</b> HSBC hasn’t synced since 20 Oct, so we’re using its last known balance.</p></div><button class="btn s secondary" data-act="reconnect">Reconnect</button></div>`:''}
+  <section class="card hero" aria-labelledby="sts">
+    <div class="ans">
+      <p class="muted" style="font-weight:500" id="sts">Safe to spend until 22 Nov ${N(1)}</p>
+      <div class="num-xl">£8,420</div>
+      <p class="muted" style="font-size:16px;line-height:24px">After payroll, rent and your VAT bill, your lowest balance will be £13,420 on 7 Nov. That still leaves your £5,000 buffer. ${N(2)}</p>
+      <button class="link" data-act="calc" style="padding-top:8px">${ic('info',18)}How is this calculated? ${N(3)}</button>
+    </div>
+    <div class="chart" style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <div class="between" style="flex-wrap:wrap"><b style="font-weight:500">Next 30 days</b><div class="legend"><span><i></i>Balance forecast</span><span><i class="buf"></i>Your buffer</span></div></div>
+      <div class="sc">${forecastSVG()}</div>
+    </div>
+  </section>
+  <div class="row">
+    <section class="card grow" style="flex-basis:520px;gap:0">
+      <div class="between" style="padding-bottom:8px"><h2>Needs your attention ${N(4)}</h2><span class="muted">${items.length} items</span></div>
+      <div class="list">${items.map(([t,pl,a,b,cta,act])=>`<div><div class="grow"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><b style="font-weight:500">${a}</b><span class="pill ${t}">${pl}</span></div><p class="muted">${b}</p></div>${S.sent[act]?`<span class="pill pos">${S.sent[act]}</span>`:`<button class="btn s secondary" data-act="${act}">${cta}</button>`}</div>`).join('')}</div>
+    </section>
+    <section class="card" style="flex:0 1 360px">
+      <h2>October so far</h2>
+      ${[['Money in','£19,980','+8% on September','pos-t'],['Money out','£15,480','Payroll not paid yet','muted'],['Left over','£4,500','Before payroll and VAT','muted']].map(([l,v,n,c])=>`<div class="kv"><div><div class="muted">${l}</div><div class="small ${c}">${n}</div></div><div class="num-l">${v}</div></div>`).join('')}
+    </section>
+  </div>
+  <section class="card">
+    <div class="between"><h2>Goals ${N(5)}</h2><button class="link" data-go="goals">See all goals</button></div>
+    <div class="goals">
+      ${[['Q4 revenue','£16,650','of £75,000',22,25,'warn','Behind £2,100','Kestrel paused a £5,000 project until November'],['Software spend','£540','of £800 this month',68,74,'pos','On track','Limit applied to 3 team cards'],['VAT set aside','£5,350','of £6,100 due 7 Nov',88,0,'pos','On track','Acme’s payment tops it up on 3 Nov']].map(([t,a,b,p,pace,tone,pl,why])=>`
+      <div class="goal"><div class="between"><b style="font-weight:500">${t}</b><span class="pill ${tone}">${pl}</span></div>
+      <div style="display:flex;gap:6px;align-items:baseline;flex-wrap:wrap"><span class="num-l">${a}</span><span class="muted">${b}</span></div>
+      <div class="track" role="img" aria-label="${p}% done${pace?`, expected ${pace}% by today`:''}"><i class="${tone==='warn'?'warn':''}" style="width:${p}%"></i>${pace?`<b style="left:${pace}%"></b>`:''}</div>
+      <p class="small muted">${why}</p></div>`).join('')}
+    </div>
+  </section>
+  ${notes(['<b>Answer first.</b> The first thing Maya sees is an amount in pounds she can act on. The health score I sketched first gave her a grade, and she couldn’t act on a grade.',
+   '<b>The lowest point, not today’s balance.</b> In my first version, safe-to-spend was today’s balance minus bills. Payroll and VAT go out before invoices come in, so it overstated what was safe. Now it uses the lowest point in the next 30 days.',
+   '<b>Every number can be traced.</b> The maths opens in a side panel, so she keeps her place on Home and can check each line.',
+   '<b>Ordered by money at risk.</b> Each item has one action, so nothing on Home is a dead end.',
+   '<b>Pace, not percent.</b> The black tick shows where she should be by today. 22% means nothing without “day 23 of 92”.',
+   '<b>Freshness sits next to the number.</b> Try the “HSBC connection lost” scenario above: the forecast turns dashed and says what is out of date.'])}`;
+}
+function calcDrawer(){
+  const rows=[
+   ['','Today, across all accounts','Revolut Main £13,550, Revolut Tax £5,350, HSBC £5,400'+(lost()?' (from 20 Oct)':''),24300],
+   ['−','Payroll, 28 Oct','4 people, from last month’s run',-7200],
+   ['−','Rent, 1 Nov','Standing order',-2100],
+   ['+','Acme Ltd invoice, expected 3 Nov','Due 25 Oct. Acme pays 9 days late on average',4520],
+   ['−','VAT for Jul–Sep, 7 Nov','From your VAT return draft',-6100]];
+  return `<div class="scrim" data-close><div class="drawer" role="dialog" aria-modal="true" aria-labelledby="dt">
+   <div class="between"><h2 id="dt">How £8,420 is calculated</h2><button class="iconbtn" data-close aria-label="Close">${ic('close')}</button></div>
+   <p class="muted">We follow your balance day by day for the next 30 days and find the lowest point. Safe to spend is that lowest point minus the buffer you chose.</p>
+   <div class="calc">
+    ${rows.map(([o,a,b,v])=>`<div class="ln"><span class="op">${o}</span><div><div style="font-weight:500">${a}</div><div class="small muted">${b}</div></div><b style="font-weight:500">${gbp(Math.abs(v))}</b></div>`).join('')}
+    <div class="ln total"><span></span><div><b>Lowest point, 7 Nov</b></div><b>£13,420</b></div>
+    <div class="ln"><span class="op">−</span><div><div style="font-weight:500">Your buffer</div><div class="small muted">Set in Goals. You can change it.</div></div><b style="font-weight:500">£5,000</b></div>
+    <div class="ln answer"><span></span><div><b>Safe to spend until 22 Nov</b></div><b>£8,420</b></div>
+   </div>
+   <div class="card" style="padding:16px;gap:8px;background:var(--subtle)"><b style="font-weight:500">Not counted yet</b>
+    <p class="muted">Brightside £6,800, due 10 Nov. It arrives after your lowest point, so it doesn’t change today’s answer.</p>
+    <p class="muted">Kite &amp; Co £2,400, 41 days overdue. Too uncertain to count. <button class="link" data-act="remind2">Chase it</button></p></div>
+   <p class="small muted">Wrong? <button class="link" data-act="fix">Tell us which line</button> and we’ll ask your accountant to check it.</p>
+  </div></div>`;
+}
+
+/* ---------- REPORTS ---------- */
+function bridgeSVG(){
+  const steps=[['Profit',15380,'total'],['Invoices not paid yet',-9320],['VAT collected from clients',7080],['VAT paid for Apr–Jun',-5860],['Loan repayments',-1500],['Money you took out',-3000],['Cash change',2780,'total']];
+  const W=720,H=240,top=20,max=18000,bw=72,gap=(W-steps.length*bw)/(steps.length-1);
+  const Y=v=>top+(1-v/max)*(H-top);
+  let run=0; let out='';
+  steps.forEach(([l,v,t],i)=>{const x=i*(bw+gap); let y0,y1,col;
+    if(t){y0=Y(v);y1=Y(0);col='var(--ink)';run=v;} else {const a=run,b=run+v; y0=Y(Math.max(a,b)); y1=Y(Math.min(a,b)); col=v<0?'var(--risk)':'var(--pos)'; run=b;}
+    out+=`<rect x="${x}" y="${y0}" width="${bw}" height="${Math.max(2,y1-y0)}" rx="4" fill="${col}" ${t?'':'opacity=".85"'}/>`;
+    out+=`<text x="${x+bw/2}" y="${y0-6}" font-size="12" font-weight="500" text-anchor="middle" fill="var(--ink)">${t?gbp(v):(v<0?'−':'+')+'£'+Math.abs(v).toLocaleString('en-GB')}</text>`;
+    const words=l.split(' '); const l1=words.slice(0,2).join(' '), l2=words.slice(2).join(' ');
+    out+=`<text x="${x+bw/2}" y="${H+18}" font-size="11" text-anchor="middle" fill="var(--ink-2)">${l1}</text>${l2?`<text x="${x+bw/2}" y="${H+32}" font-size="11" text-anchor="middle" fill="var(--ink-2)">${l2}</text>`:''}`;
+    if(i<steps.length-1){out+=`<line x1="${x+bw}" x2="${x+bw+gap}" y1="${Y(run)}" y2="${Y(run)}" stroke="var(--line-2)" stroke-dasharray="3 3"/>`;}
+  });
+  return `<svg style="max-width:820px" viewBox="0 -4 ${W} ${H+44}" role="img" aria-label="Profit to cash bridge for Q3: profit £15,380, minus unpaid invoices £9,320, plus VAT collected £7,080, minus VAT paid £5,860, minus loan repayments £1,500, minus owner drawings £3,000, equals cash change of £2,780."><line x1="0" x2="${W}" y1="${Y(0)}" y2="${Y(0)}" stroke="var(--line-2)"/>${out}</svg>`;
+}
+const PL=[['Income',null,null,'head'],['Client projects',61500,68400],['Retainers',9000,7800],['Total income',70500,76200,'sum'],['Cost of sales',null,null,'head'],['Freelancers',12400,13100],['Gross profit',58100,63100,'sum'],['Operating expenses',null,null,'head'],['Salaries and payroll',28800,28800],['Rent',6300,6300],['Software and subscriptions',3240,2100,'cmt'],['Equipment',1450,2600],['Travel',780,640],['Marketing',1130,1620],['Accountancy',900,900],['Bank fees',120,130],['Total operating expenses',42720,44340,'sum'],['Net profit',15380,18760,'grand']];
+function reports(){
+  const acc=S.rv==='accountant';
+  return `${topbar('Profit and loss','Q3 2026, July to September')}
+  <div class="between" style="flex-wrap:wrap">
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><div class="seg" role="group" aria-label="View">
+      <button data-rv="owner" aria-pressed="${!acc}">Owner view</button><button data-rv="accountant" aria-pressed="${acc}">Accountant view</button></div>${N(1)}
+      <span class="muted small">Same numbers. ${S.role==='accountant'?'Accountant view is your default.':'Your accountant sees the other view by default.'}</span></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn secondary" data-act="export">${ic('download',18)}Export</button><button class="btn primary" data-act="share">${ic('send',18)}Share with accountant</button></div>
+  </div>
+  ${S.sent.review?'':`<div class="banner warn">${ic('alert')}<div class="grow"><p><b>12 transactions don’t have a category yet.</b> This report could be off by about £1,200. ${N(4)}</p></div><button class="btn s secondary" data-act="review">Categorise now</button></div>`}
+  ${acc?accountantView():ownerView()}
+  ${notes(['<b>One report, two views.</b> Maya and Tom look at the same numbers. Only the default view changes with their role, so there is one source of truth.',
+   '<b>Sentences before tables.</b> The owner view leads with what happened and why, and links each reason to its transactions.',
+   '<b>Profit ≠ cash, in one picture.</b> The bridge answers the question owners told Xero about: “I made a profit, so where is the money?”',
+   '<b>Warn before trust.</b> Missing categories are flagged above the numbers, with the likely size of the error.',
+   '<b>Comment on the line.</b> Questions to the accountant happen next to the number, not in a separate email thread.'])}`;
+}
+function ownerView(){
+  return `<section class="card"><p class="muted" style="font-weight:500">Net profit, Q3</p>
+   <div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap"><span class="num-xl">£15,380</span><span class="pill warn">18% less than Q2</span></div>
+   <p style="font-size:16px;line-height:24px;max-width:64ch">You made less profit than in spring, mainly because two client projects worth £6,000 slipped into October. Software costs went up by £1,140. ${N(2)}</p>
+   <div class="changes">
+    ${[['Client projects down £6,900','Northwind and Mosaic (£6,000) were invoiced in October instead of September.','−£6,900','risk-t'],['Software up £1,140','Three annual Figma seats paid in August.','−£1,140','risk-t'],['Equipment down £1,150','No new laptops this quarter.','+£1,150','pos-t']].map(([a,b,v,c])=>`<div><b style="font-weight:500">${a}</b><b class="${c}" style="font-weight:500">${v}</b><p class="muted">${b} <button class="link">See transactions</button></p></div>`).join('')}
+   </div></section>
+  <section class="card"><div class="between" style="flex-wrap:wrap"><div><h2>Why profit isn’t cash ${N(3)}</h2><p class="muted">You made £15,380 profit, but your bank balance only grew by £2,780.</p></div></div>
+   <div class="chart"><div class="sc">${bridgeSVG()}</div></div>
+   <p class="muted">The biggest gap: <b style="color:var(--ink);font-weight:500">£9,320 of invoices</b> were counted as income but haven’t been paid. <button class="link" data-go="home">See who owes you</button></p>
+  </section>`;
+}
+function accountantView(){
+  const rows=PL.map(([l,a,b,t])=>{ if(t==='head') return `<tr><td colspan="4" style="padding-top:18px;color:var(--ink-2);font-size:12px;font-weight:500">${l}</td></tr>`;
+    const ch=a-b; const isCost=['Freelancers','Salaries and payroll','Rent','Software and subscriptions','Equipment','Travel','Marketing','Accountancy','Bank fees','Total operating expenses'].includes(l);
+    const good=isCost?ch<=0:ch>=0;
+    return `<tr class="${t==='sum'?'sum':''}${t==='grand'?' grand':''}${t==='cmt'&&S.comment?' hl':''}"><td>${l}${t==='cmt'?`<button class="cm" data-act="comment">${ic('message',14)}2 comments</button>`:''}</td><td>${a.toLocaleString('en-GB')}</td><td class="muted">${b.toLocaleString('en-GB')}</td><td class="${ch===0?'muted':good?'pos-t':'risk-t'}">${ch>0?'+':ch<0?'−':''}${Math.abs(ch).toLocaleString('en-GB')}</td></tr>`;}).join('');
+  return `<section class="card"><div class="between" style="flex-wrap:wrap"><h2>Profit and loss, GBP ${N(5)}</h2><span class="small muted">Accrual basis. Unreconciled: 12 lines</span></div>
+   <div class="tbl-wrap"><table><thead><tr><th>Account</th><th>Q3 2026</th><th>Q2 2026</th><th>Change</th></tr></thead><tbody>${rows}</tbody></table></div>
+   ${S.comment?`<div class="thread" aria-label="Comments on Software and subscriptions"><b style="font-weight:500">Software and subscriptions, Q3</b>
+    <div class="msg"><span class="av">MC</span><div><b style="font-weight:500">Maya</b> <span class="small muted">2 Oct</span><p>Is this jump the new Figma seats?</p></div></div>
+    <div class="msg"><span class="av">TP</span><div><b style="font-weight:500">Tom</b> <span class="small muted">3 Oct</span><p>Yes, three annual seats paid in August. I’ll spread them over 12 months, so Q3 drops to about £2,350.</p></div></div>
+    <div class="field"><label for="reply" class="small muted">Reply</label><input id="reply" placeholder="Write a reply"></div></div>`:''}
+  </section>`;
+}
+
+/* ---------- GOALS ---------- */
+function paceSVG(){
+  const W=720,H=200,max=80000,days=92; const X=d=>d*W/days, Y=v=>H-(v/max)*H;
+  const actual=[[0,0],[3,0],[6,4200],[10,4200],[13,9800],[17,9800],[20,13500],[23,16650]];
+  let a='M'+actual.map(([d,v])=>`${X(d)},${Y(v)}`).join(' L');
+  const months=[[0,'Oct'],[31,'Nov'],[61,'Dec']].map(([d,l])=>`<text x="${X(d)+4}" y="${H+18}" font-size="11" fill="var(--ink-2)">${l}</text><line x1="${X(d)}" x2="${X(d)}" y1="${H}" y2="${H+6}" stroke="var(--line-2)"/>`).join('');
+  return `<svg style="max-width:860px" viewBox="0 -8 ${W+60} ${H+30}" role="img" aria-label="Q4 revenue: £16,650 invoiced by 23 October against an expected £18,750 on the straight-line pace to £75,000.">
+   ${[0,25000,50000,75000].map(g=>`<line x1="0" x2="${W}" y1="${Y(g)}" y2="${Y(g)}" stroke="var(--line)"/><text x="${W+8}" y="${Y(g)+4}" font-size="12" fill="var(--ink-3)">£${g/1000}k</text>`).join('')}
+   <line x1="0" y1="${Y(0)}" x2="${W}" y2="${Y(75000)}" stroke="var(--ink-3)" stroke-width="1.5" stroke-dasharray="5 4"/>
+   <path d="${a}" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+   <circle cx="${X(23)}" cy="${Y(16650)}" r="5" fill="var(--warn)"/><circle cx="${X(23)}" cy="${Y(18750)}" r="4" fill="var(--card)" stroke="var(--ink-3)" stroke-width="1.5"/>
+   <text x="${X(23)+10}" y="${Y(16650)+16}" font-size="12" font-weight="500" fill="var(--warn)">£16,650 today</text>
+   <text x="${X(23)-8}" y="${Y(18750)-12}" font-size="12" fill="var(--ink-2)" text-anchor="end">Expected £18,750</text>
+   ${months}</svg>`;
+}
+function goals(){
+  return `${topbar('Goals','Targets, spending limits and money set aside')}
+  <div class="between"><span class="muted">3 active goals</span><button class="btn primary" data-act="newgoal">${ic('plus',18)}New goal</button></div>
+  <section class="card">
+    <div class="between" style="flex-wrap:wrap"><div><p class="muted" style="font-weight:500">Q4 revenue target</p><div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap"><span class="num-xl">£16,650</span><span class="muted" style="font-size:16px">of £75,000</span></div></div><span class="pill warn">Behind by £2,100 ${N(1)}</span></div>
+    <p style="font-size:16px;line-height:24px;max-width:64ch">You’re 23 days into the quarter. To be on pace you’d have invoiced £18,750 by now. Kestrel paused a £5,000 project until November, which explains most of the gap.</p>
+    <div class="chart"><div class="sc">${paceSVG()}</div></div>
+    <div class="banner info">${ic('send')}<div class="grow"><p><b>Close the gap this week.</b> You have 2 draft invoices worth £3,150 that haven’t been sent. ${N(2)}</p></div>${S.sent.drafts?`<span class="pill pos">${S.sent.drafts}</span>`:`<button class="btn s primary" data-act="drafts">Send both</button>`}</div>
+  </section>
+  <div class="row">
+   <section class="card grow" style="flex-basis:360px"><div class="between"><h2>Software spend</h2><span class="pill pos">On track</span></div>
+    <div style="display:flex;gap:6px;align-items:baseline"><span class="num-l">£540</span><span class="muted">of £800 this month</span></div>
+    <div class="track"><i style="width:68%"></i><b style="left:74%"></b></div>
+    <div class="between" style="border-top:1px solid var(--line);padding-top:16px"><div><b style="font-weight:500">Limit on team cards ${N(3)}</b><p class="small muted">Cards decline software payments over the limit</p></div><span class="pill brand">3 cards</span></div></section>
+   <section class="card grow" style="flex-basis:360px"><div class="between"><h2>VAT set aside</h2><span class="pill pos">On track</span></div>
+    <div style="display:flex;gap:6px;align-items:baseline"><span class="num-l">£5,350</span><span class="muted">of £6,100 due 7 Nov</span></div>
+    <div class="track"><i style="width:88%"></i></div>
+    <div style="border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:4px"><b style="font-weight:500">16.7% of every payment moves to Tax ${N(4)}</b><p class="small muted">That’s the VAT inside a payment that includes 20% VAT (20 ÷ 120). Acme’s £4,520 adds £753 on 3 Nov.</p></div></section>
+  </div>
+  ${notes(['<b>Behind, by how much, and why.</b> The goal says the gap in pounds and the reason in a sentence, not just a percentage.',
+   '<b>Every goal ends in an action.</b> Here the fastest way to close the gap is sending invoices that already exist.',
+   '<b>Goals that act.</b> An expense limit can become a real card limit, because the money already lives in the business account. Xero can only report on a budget.',
+   '<b>Show the maths.</b> Monzo’s Tax Pots ask owners to guess a percentage. Here it’s calculated and explained.'])}`;
+}
+function goalModal(){
+  const st=S.step;
+  const types=[['limit','Expense limit','Cap a category each month','card'],['revenue','Revenue target','Track invoicing against a pace','goals'],['tax','Tax set-aside','Move part of every payment to Tax','lock']];
+  let body='';
+  if(st===0) body=`<div style="display:flex;flex-direction:column;gap:8px">${types.map(([k,a,b,i])=>`<button class="opt" data-gt="${k}" aria-pressed="${S.goalType===k}">${ic(i)}<div class="grow"><b style="font-weight:500">${a}</b><div class="small muted">${b}</div></div></button>`).join('')}</div>`;
+  if(st===1) body=`<div class="field"><label class="small muted" for="cat">Category</label><input id="cat" value="Travel"></div>
+    <div class="field"><label class="small muted" for="amt">Monthly limit</label><input id="amt" value="£300"></div>
+    <div class="banner info">${ic('info')}<div class="grow"><p>You spent <b>£260 a month</b> on travel over the last 3 months. £300 leaves a little room.</p></div></div>`;
+  if(st===2) body=`<div class="opt" style="cursor:default"><div class="grow"><b style="font-weight:500">Apply as a card limit</b><div class="small muted">Team cards decline travel payments once £300 is spent this month</div></div><button class="toggle" role="switch" aria-checked="${S.cardLimit}" aria-label="Apply as a card limit" data-act="togglelimit"></button></div>
+    <div class="opt" style="cursor:default"><div class="grow"><b style="font-weight:500">Tell me at 80%</b><div class="small muted">A notification when £240 is spent</div></div><button class="toggle" role="switch" aria-checked="true" aria-label="Notify at 80%"></button></div>
+    <p class="small muted">${S.cardLimit?'Applies to 3 cards: Maya, Jon, Priya. Card holders see the limit in their app.':'Nothing will be blocked. You’ll only be notified.'}</p>`;
+  const titles=['What kind of goal?','Set the limit','What should happen?'];
+  return `<div class="scrim center" data-close><div class="modal" role="dialog" aria-modal="true" aria-labelledby="gm">
+   <div class="steps" aria-hidden="true">${[0,1,2].map(i=>`<i class="${i<=st?'on':''}"></i>`).join('')}</div>
+   <div class="between"><h2 id="gm">${titles[st]}</h2><button class="iconbtn" data-close aria-label="Close">${ic('close')}</button></div>
+   ${body}
+   <div class="between">${st>0?`<button class="btn ghost" data-act="gback">Back</button>`:'<span></span>'}<button class="btn primary" data-act="${st<2?'gnext':'gdone'}">${st<2?'Continue':'Create goal'}</button></div>
+  </div></div>`;
+}
+
+/* ---------- ACCOUNTS + CONNECT ---------- */
+function accounts(){
+  const hs=lost()?`<span class="fresh stale" style="color:var(--risk)"><span class="dot" style="background:var(--risk)"></span>Connection lost 20 Oct</span>`:`<span class="fresh"><span class="dot"></span>Synced 4 min ago</span>`;
+  return `${topbar('Accounts','Where your numbers come from')}
+  <section class="card" style="gap:0">
+   <div class="between" style="padding-bottom:12px;flex-wrap:wrap"><h2>Your accounts</h2><button class="btn secondary" data-act="connect">${ic('plus',18)}Add another bank</button></div>
+   ${[['R','#15181C','Revolut Business, Main','£13,550','Live',''],['R','#15181C','Revolut Business, Tax','£5,350','Live',''],['H','#C8102E','HSBC Business Current ••4417','£5,400','hsbc','Open Banking, read only']].map(([l,c,n,v,s,sub])=>`
+    <div style="display:flex;gap:16px;align-items:center;padding:16px 0;border-top:1px solid var(--line);flex-wrap:wrap">
+     <span class="bl" style="background:${c}">${l}</span><div class="grow" style="min-width:200px"><b style="font-weight:500">${n}</b><div style="display:flex;gap:12px;flex-wrap:wrap">${s==='hsbc'?hs:`<span class="fresh"><span class="dot"></span>Live</span>`}${sub?`<span class="small muted">${sub}</span>`:''}</div></div>
+     <span class="num-l" style="font-size:20px">${v}</span>
+     ${s==='hsbc'?(lost()?`<button class="btn s primary" data-act="reconnect">Reconnect</button>`:`<button class="btn s secondary" data-act="reconfirm">Manage</button>`):''}
+    </div>`).join('')}
+  </section>
+  ${lost()?'':`<div class="banner warn">${ic('refresh')}<div class="grow"><p><b>HSBC access ends on 1 Nov.</b> UK rules ask us to check every 90 days that you still want to share. Reconfirming takes one tap and no bank login. ${N(3)}</p></div>${S.sent.reconfirm?`<span class="pill pos">${S.sent.reconfirm}</span>`:`<button class="btn s primary" data-act="reconfirm">Reconfirm</button>`}</div>`}
+  ${notes(['<b>Revolut is live, other banks are borrowed.</b> Each account says where it comes from and how fresh it is.',
+   '<b>Read only, said plainly.</b> The consent screen says what we can see and what we can never do, before the user leaves for their bank.',
+   '<b>Ask before it breaks.</b> Since the FCA’s 2022 change, providers reconfirm access every 90 days instead of sending users back to the bank. So it’s one tap here.',
+   '<b>No dead ends.</b> Try “Bank unavailable” and then cancel at the bank. Every failure says what happened and offers a way forward.'])}`;
+}
+const BANKS=[['Barclays','B','#00AEEF'],['Lloyds','L','#006A4D'],['NatWest','N','#5A287D'],['Santander','S','#EC0000'],['Starling','S','#6935D3'],['Monzo','M','#FF4F40'],['HSBC','H','#C8102E','Connected']];
+function connectModal(){
+  const st=S.step; const b=S.bank||BANKS[0]; let body='',title='',foot='';
+  if(st===0){title='Which bank?'; body=`<div class="field"><label class="small muted" for="bs">Search banks</label><input id="bs" placeholder="Bank name"></div><div class="bankgrid">${BANKS.map((x,i)=>`<button class="opt" data-bank="${i}" ${x[3]?'disabled style="opacity:.55;cursor:default"':''} aria-pressed="${S.bank===x}"><span class="bl" style="background:${x[2]}">${x[1]}</span><div class="grow"><b style="font-weight:500">${x[0]}</b>${x[3]?`<div class="small muted">${x[3]}</div>`:''}</div></button>`).join('')}</div>`;
+    foot=`<span></span><button class="btn primary" data-act="cnext" ${S.bank?'':'disabled style="opacity:.5"'}>Continue</button>`;}
+  if(st===1){title=`Share ${b[0]} with BizFinTrack`; body=`<div class="calc">
+     <div class="ln"><span>${ic('eye',18)}</span><div><b style="font-weight:500">What we can see</b><div class="small muted">Balances, transactions from the last 12 months, account names</div></div><span></span></div>
+     <div class="ln"><span>${ic('lock',18)}</span><div><b style="font-weight:500">What we can never do</b><div class="small muted">Move money, make payments or change anything in your ${b[0]} account</div></div><span></span></div>
+     <div class="ln"><span>${ic('refresh',18)}</span><div><b style="font-weight:500">For 90 days</b><div class="small muted">We’ll ask you to reconfirm before it ends. You can stop sharing any time in Accounts.</div></div><span></span></div></div>
+     <p class="small muted">BizFinTrack uses an FCA-authorised Open Banking provider to read your data. Next, ${b[0]} will ask you to log in.</p>`;
+    foot=`<button class="btn ghost" data-act="cback">Back</button><button class="btn primary" data-act="cnext">Continue to ${b[0]}</button>`;}
+  if(st===2){title=`You’re now in ${b[0]}`; body= S.scn==='bankdown'
+     ?`<div class="banner risk">${ic('alert')}<div class="grow"><p><b>${b[0]} isn’t responding right now.</b> This is usually fixed within an hour. Nothing was shared.</p></div></div>`
+     :`<div class="bankpage"><span class="bl" style="background:${b[2]}">${b[1]}</span><b style="font-weight:500">${b[0]} secure login</b><p class="small muted">This screen belongs to the bank, not to us. We only show where the user is in the journey.</p><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" data-act="cnext">Approve in ${b[0]} app</button><button class="btn secondary" data-act="ccancel">Cancel</button></div></div>`;
+    foot= S.scn==='bankdown'?`<button class="btn ghost" data-close>Connect later</button><button class="btn primary" data-act="cretry">Try again</button>`:`<span class="small muted">Waiting for ${b[0]}…</span><span></span>`;}
+  if(st===3){title='Which accounts should we include?'; body=`${[['Business Current ••2290','£3,820',true],['Business Savings ••7731','£12,000',true],['Personal Current ••1184','Hidden',false]].map(([n,v,on])=>`<div class="opt" style="cursor:default"><div class="grow"><b style="font-weight:500">${n}</b><div class="small muted">${on?v:'Personal accounts are off by default'}</div></div><button class="toggle" role="switch" aria-checked="${on}" aria-label="Include ${n}"></button></div>`).join('')}`;
+    foot=`<span></span><button class="btn primary" data-act="cnext">Import 2 accounts</button>`;}
+  if(st===4){title='Importing your transactions'; body=`<div class="progress" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"><i></i></div><p class="muted">1,240 of about 1,800 transactions. This usually takes under a minute.</p><p class="small muted">You can close this. We’ll update Home when it’s done.</p>`;
+    foot=`<button class="btn ghost" data-close>Close</button><button class="btn primary" data-act="cnext">Finish</button>`;}
+  if(st===5){title=`${b[0]} is connected`; body=`<div class="banner info">${ic('check')}<div class="grow"><p><b>£15,820 added to your forecast.</b> Your safe-to-spend went up to £24,240.</p></div></div><p class="muted">23 transactions need a category. We’ll suggest them on Home.</p>`;
+    foot=`<span></span><button class="btn primary" data-close>Back to Accounts</button>`;}
+  if(st===9){title='Nothing was shared'; body=`<p class="muted">You cancelled at ${b[0]}, so we didn’t receive any data. Your forecast still uses your Revolut and HSBC accounts.</p>`;
+    foot=`<button class="btn ghost" data-close>Not now</button><button class="btn primary" data-act="cretry">Try again</button>`;}
+  const prog=Math.min(st,4);
+  return `<div class="scrim center" data-close><div class="modal" role="dialog" aria-modal="true" aria-labelledby="cm">
+   ${st<6?`<div class="steps" aria-hidden="true">${[0,1,2,3,4].map(i=>`<i class="${i<=prog?'on':''}"></i>`).join('')}</div>`:''}
+   <div class="between"><h2 id="cm">${title}</h2><button class="iconbtn" data-close aria-label="Close">${ic('close')}</button></div>${body}<div class="between">${foot}</div></div></div>`;
+}
+function shareModal(){
+  return `<div class="scrim center" data-close><div class="modal" role="dialog" aria-modal="true" aria-labelledby="sm">
+   <div class="between"><h2 id="sm">Share Q3 with your accountant</h2><button class="iconbtn" data-close aria-label="Close">${ic('close')}</button></div>
+   <div class="opt" style="cursor:default"><span class="av">TP</span><div class="grow"><b style="font-weight:500">Tom Price</b><div class="small muted">Accountant, view only. Already has access.</div></div><span class="pill pos">Has access</span></div>
+   <div class="field"><label class="small muted" for="msg">Message</label><input id="msg" value="Hi Tom, Q3 is ready. 12 lines still need categories."></div>
+   <p class="small muted">Tom will open the accountant view with comments. He can’t move money or change your goals.</p>
+   <div class="between"><button class="btn ghost" data-close>Cancel</button><button class="btn primary" data-act="sharedone">Send</button></div></div></div>`;
+}
+function settings(){return `${topbar('Settings','')}<section class="card"><h2>Team and roles</h2>${[['MC','Maya Chen','Owner','Home first'],['TP','Tom Price','Accountant, view only','Reports first, accountant view'],['JW','Jon Wells','Member','Own cards only']].map(([a,n,r,d])=>`<div style="display:flex;gap:12px;align-items:center;border-top:1px solid var(--line);padding-top:16px;flex-wrap:wrap"><span class="av">${a}</span><div class="grow"><b style="font-weight:500">${n}</b><div class="small muted">${r}</div></div><span class="small muted">Lands on: ${d}</span></div>`).join('')}</section>`;}
+
+/* ---------- render + events ---------- */
+function render(){
+  shell();
+  const v={home,reports,goals,accounts,settings}[S.view]();
+  const m=document.getElementById('main'); m.innerHTML=v;
+  const L=document.getElementById('layer');
+  L.innerHTML = S.drawer==='calc'?calcDrawer(): S.modal==='goal'?goalModal(): S.modal==='connect'?connectModal(): S.modal==='share'?shareModal():'';
+  const d=L.querySelector('[role=dialog]'); if(d){const f=d.querySelector('button,input'); f&&f.focus({preventScroll:true});}
+}
+let toastT; function toast(t){let el=document.querySelector('.toast'); if(!el){el=document.createElement('div');el.className='toast';el.setAttribute('role','status');document.body.appendChild(el);} el.textContent=t; clearTimeout(toastT); toastT=setTimeout(()=>el.remove(),2600);}
+const close=()=>{S.drawer=null;S.modal=null;S.step=0;S.bank=null;render();};
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button,[data-close]'); if(!t) return;
+  if(t.matches('.scrim')&&e.target!==t) return;
+  if(t.dataset.close!==undefined){close();return;}
+  if(t.dataset.go){S.view=t.dataset.go;S.drawer=null;S.modal=null;render();window.scrollTo(0,0);return;}
+  if(t.dataset.role){S.role=t.dataset.role; if(S.role==='accountant'){S.view='reports';S.rv='accountant';}else{S.view='home';S.rv='owner';} render(); toast(S.role==='accountant'?'Tom lands on Reports, accountant view':'Maya lands on Home'); return;}
+  if(t.dataset.scn){S.scn=t.dataset.scn; render(); if(S.scn==='bankdown')toast('Open Accounts and add another bank to see this'); return;}
+  if(t.id==='notesBtn'){S.notes=!S.notes; try{localStorage.setItem('bft-notes',S.notes?'1':'0')}catch(err){} render(); return;}
+  if(t.dataset.rv){S.rv=t.dataset.rv;render();return;}
+  if(t.dataset.gt){S.goalType=t.dataset.gt;render();return;}
+  if(t.dataset.bank){S.bank=BANKS[+t.dataset.bank];render();return;}
+  const a=t.dataset.act; if(!a) return;
+  const A={
+    calc:()=>{S.drawer='calc';},
+    remind:()=>{S.sent.remind='Reminder sent';toast('Reminder sent to Acme Ltd');},
+    remind2:()=>{toast('Reminder sent to Kite & Co');},
+    fix:()=>{toast('Pick a line and we’ll flag it for Tom');},
+    reconfirm:()=>{S.sent.reconfirm='Reconfirmed until 30 Jan';toast('HSBC access reconfirmed for 90 days');},
+    reconnect:()=>{S.view='accounts';S.modal='connect';S.step=1;S.bank=['HSBC','H','#C8102E'];},
+    review:()=>{S.sent.review='Categorised';toast('12 transactions categorised from suggestions');},
+    export:()=>{toast('PDF and CSV exported (prototype)');},
+    share:()=>{S.modal='share';}, sharedone:()=>{S.modal=null;toast('Shared with Tom');},
+    comment:()=>{S.comment=!S.comment;},
+    newgoal:()=>{S.modal='goal';S.step=0;}, gnext:()=>{S.step++;}, gback:()=>{S.step--;},
+    gdone:()=>{S.modal=null;S.step=0;toast(S.cardLimit?'Travel limit created and applied to 3 cards':'Travel limit created');},
+    togglelimit:()=>{S.cardLimit=!S.cardLimit;},
+    drafts:()=>{S.sent.drafts='2 invoices sent';toast('2 invoices sent, £3,150');},
+    connect:()=>{S.modal='connect';S.step=0;S.bank=null;},
+    cnext:()=>{S.step++;}, cback:()=>{S.step--;}, ccancel:()=>{S.step=9;}, cretry:()=>{S.step=S.scn==='bankdown'?2:1; if(S.scn==='bankdown')toast('Still not responding. Switch the scenario to Normal to continue');}
+  };
+  if(A[a]){A[a]();render();}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&(S.drawer||S.modal))close();});
+render();
+</script>
