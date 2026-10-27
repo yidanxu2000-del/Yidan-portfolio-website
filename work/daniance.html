@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daniance — Yidan Xu</title>
+<meta name="description" content="A five-day concept: a finance dashboard for small business owners where an AI answers money questions on the owner&rsquo;s own forecast, designed so the answer can be trusted.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<nav class="navbar navbar--dark">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__logo">Yidan Xu</a>
+    <div class="navbar__links">
+      <a href="../index.html#work">Work</a>
+      <a href="../about.html">About</a>
+      <a href="../how-i-work/">How I work</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+    <button class="navbar__toggle" aria-label="Menu">☰</button>
+  </div>
+  <div class="navbar__mobile">
+    <a href="../index.html#work">Work</a>
+    <a href="../about.html">About</a>
+      <a href="../how-i-work/">How I work</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="case-hero__inner reveal">
+    <a class="back-link" href="../index.html#work">&larr; All work</a>
+    <div class="case-hero__meta">2026 &middot; Concept &middot; AI &middot; Fintech &middot; 5 days</div>
+    <h1 class="case-hero__title">Daniance</h1>
+    <p class="case-hero__thesis">Fintech earned people&rsquo;s trust by letting them see what happened, see why, follow it backwards, and stop it. <b class="thesis-key">I wanted to see if an AI that answers money questions could earn trust the same way.</b></p>
+    <p class="case-hero__subtitle">A finance dashboard for small business owners, where an AI answers &ldquo;Can I afford to hire someone?&rdquo; on the owner&rsquo;s own forecast.</p>
+    <div class="case-hero__tags tag-row" style="justify-content:flex-start">
+      <span class="tag tag--dark">AI</span>
+      <span class="tag tag--dark">Fintech</span>
+      <span class="tag tag--dark">Web app</span>
+      <span class="tag tag--dark">Concept</span>
+    </div>
+  </div>
+</header>
+
+<section class="prose-section section--light">
+  <div class="prose reveal">
+    <figure class="figure">
+      <img src="../assets/images/daniance/cover.jpg" alt="The Daniance home screen on a laptop: a blue Safe to spend card showing £8,420, an Ask Daniance card answering whether the owner can hire in January, a 30-day cash forecast, and a goals list" loading="lazy">
+    </figure>
+
+    <div class="tldr">
+      <div><div class="tldr__k">The question</div><p>Small business owners make money decisions before the numbers are clear. I picked the one that keeps them up at night: can I afford to hire someone?</p></div>
+      <div><div class="tldr__k">What I made</div><p>A web app in Figma with Home, Reports, Goals and a bank connection, and one AI that changes size depending on the page. Research came from published surveys and accountants&rsquo; forums.</p></div>
+      <div><div class="tldr__k">Where it stands</div><p>A five-day practice in AI and fintech. Nobody has used it yet, so the last section is what I&rsquo;d test first.</p></div>
+    </div>
+
+    <h2>Background</h2>
+    <p>On my homepage I wrote that trust in AI gets earned the way fintech earned it. I wanted to try that idea on money itself. Daniance is smaller than my other case studies, so I&rsquo;ve kept this page short, and the <a href="https://www.figma.com/proto/ApMA8mErmmFKq9yjmNBMcy/Yidan-Xu?node-id=11-2&amp;viewport=168%2C318%2C0.07&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;page-id=0%3A1" target="_blank" rel="noreferrer">full case study lives in Figma &#8599;</a>.</p>
+
+    <h2>The user and the problem</h2>
+    <p>Maya runs a four-person design studio. Her bank says &pound;24,300. Payroll, rent and a VAT bill go out before two clients pay, and she wants to hire a junior designer in January. A balance can&rsquo;t answer that, and neither can a profit figure.</p>
+    <p>She isn&rsquo;t unusual. Half of small business owners struggle to read their own numbers (Xero, 2024), and 56% make decisions on incomplete information every month (Digits, 2021).</p>
+
+    <h2>Designing the summary</h2>
+    <p>I drew the summary three times before adding any AI. A health score raised the question &ldquo;72 out of what?&rdquo;. Balance minus bills was honest about today and blind to next week. The version I kept finds the lowest point in the next 30 days and keeps a &pound;5,000 buffer, so &ldquo;safe to spend&rdquo; has already counted payroll and VAT.</p>
+    <figure class="figure">
+      <img src="../assets/images/daniance/home-drafts.jpg" alt="Three drafts of the Home summary: a health score of 72 out of 100, safe to spend from today at £16,280, and safe to spend from the lowest point at £8,420 with a small 30-day forecast" loading="lazy">
+      <figcaption>Health score, safe to spend from today, and the one I kept: safe to spend from the lowest point in the next 30 days.</figcaption>
+    </figure>
+
+    <h2>Designing the AI for trust</h2>
+    <p>I held the assistant to the same four rules I use for anything that acts on someone&rsquo;s behalf.</p>
+
+    <h3>1. Showing what it did</h3>
+    <p>Maya taps a suggested question. The card opens across the row, keeps the same height so the rest of the dashboard stays on screen, and lists what it&rsquo;s checking while it draws the answer.</p>
+    <figure class="figure">
+      <img src="../assets/images/daniance/ask-flow.jpg" alt="Three screens joined by arrows: Home with a suggested question highlighted, the Ask card opening across the row while it checks accounts, and the finished answer drawn on the forecast" loading="lazy">
+      <figcaption>Home, thinking, answer. The arrows start from the button Maya presses.</figcaption>
+    </figure>
+
+    <h3>2. Showing why</h3>
+    <p>The answer sits on her own forecast: a one-line verdict, the risk (on 7 February she&rsquo;d dip &pound;460 under her buffer), three numbers, and the sources underneath. If a bank hasn&rsquo;t synced, the answer is marked as a draft.</p>
+    <figure class="figure">
+      <img src="../assets/images/daniance/answer.jpg" alt="The Ask Daniance card open across the dashboard, answering that hiring from January works but dips £460 under the £5,000 buffer on 7 February, with a bar chart of the balance with and without the hire" loading="lazy">
+      <figcaption>The answer, drawn in the same style as the cash forecast below it.</figcaption>
+    </figure>
+
+    <h3>3. Making each answer traceable</h3>
+    <p>Saving the answer turns it into a hiring plan that Tom, her accountant, can review. His note on the Employment Allowance brings the cost down to about &pound;2,390 a month, and the plan shows where that came from.</p>
+    <figure class="figure">
+      <img src="../assets/images/daniance/accountant.jpg" alt="The hiring plan open for review: salary, employer National Insurance and pension lines, a note from the accountant about the Employment Allowance, and Good idea and Edit assumptions buttons" loading="lazy">
+      <figcaption>A real person is one click away from every answer.</figcaption>
+    </figure>
+
+    <h3>4. Making access easy to stop</h3>
+    <p>Bringing in another bank is modelled on the UK Open Banking customer experience guidelines: consent in Daniance, then Face ID and the choice of accounts inside the bank&rsquo;s own app. Access is read only for 90 days, she can stop it any time, and if she cancels, nothing is shared.</p>
+    <figure class="figure">
+      <img src="../assets/images/daniance/bank-flow.jpg" alt="A flow map of connecting Barclays: Accounts, choose the bank, consent, hand-off to the bank app with a QR code, two phone screens in the bank app, the connected confirmation, the updated accounts list, and a dashed path to the cancelled state" loading="lazy">
+      <figcaption>The bank screens are my illustration, not Barclays&rsquo; real app.</figcaption>
+    </figure>
+
+    <h2>Placing the AI in the layout</h2>
+    <p>I tried the assistant in three places. A chat panel was clear but took a third of the screen. An answer inside Home pushed the forecast below the fold. I kept a narrow card that opens across its row when asked.</p>
+    <figure class="figure">
+      <img src="../assets/images/daniance/ai-wireframes.jpg" alt="Three wireframes: a full-height chat panel on the right, an ask bar across Home, and a narrow card beside the forecast" loading="lazy">
+      <figcaption>Chat panel, inline answer, and the narrow card I kept.</figcaption>
+    </figure>
+    <p>Then each page got its own size. Owners come to Home for the whole picture, so there the AI opens up and explains. In Reports it stays a card beside the detail, and in Goals it only suggests.</p>
+
+    <h2>Report design</h2>
+    <p>Tom reads Reports too, so the page keeps the profit and loss table he already knows. Accountants read a change as favourable or adverse whatever its sign, so I coloured each change by what it means for the business: costs going down show green. Each KPI card carries a small trend for the last four quarters.</p>
+    <div class="figure-grid">
+      <figure class="figure">
+        <img src="../assets/images/daniance/report.jpg" alt="The Reports page: four KPI cards with small trend lines, an AI card explaining where the profit went, and a profit and loss table with changes coloured by whether they help the business" loading="lazy">
+        <figcaption>Kept: the table, with change coloured by better or worse.</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="../assets/images/daniance/report-rejected.jpg" alt="A rejected version of Reports with a large monthly income and costs chart above the table, pushing the table down the page" loading="lazy">
+        <figcaption>Dropped: a monthly chart that pushed the table off the screen.</figcaption>
+      </figure>
+    </div>
+
+    <h2>Next steps</h2>
+    <p>The next step is real owners. I&rsquo;d run one task per flow with UK small business owners and measure two things: the time from opening Home to a confident answer, and how much they trust the reply on a 1 to 5 scale.</p>
+
+    <div class="btn-row">
+      <a class="btn btn--secondary" href="https://www.figma.com/proto/ApMA8mErmmFKq9yjmNBMcy/Yidan-Xu?node-id=11-2&amp;viewport=168%2C318%2C0.07&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;page-id=0%3A1" target="_blank" rel="noreferrer">Full case study in Figma &#8599;</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--light section--tight">
+  <div class="section__inner reveal case-nav">
+    <a class="btn btn--secondary" href="../index.html#work">&larr; All work</a>
+    <a class="btn btn--secondary" href="innovate-adhd.html">Innovate ADHD &rarr;</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__top">
+    <div class="footer__name">Yidan Xu</div>
+    <div class="footer__links">
+      <a href="mailto:yidanxu2000@outlook.com">Email me</a>
+      <a href="https://www.linkedin.com/in/yidan-xu-profile/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div class="footer__bottom">© <span id="year"></span> Yidan Xu. All rights reserved.</div>
+</footer>
+
+<script src="../assets/js/site.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
