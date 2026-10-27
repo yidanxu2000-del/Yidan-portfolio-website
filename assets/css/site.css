@@ -2988,9 +2988,9 @@ img.testimonial__avatar{object-fit:cover;}
 
 
 /* ---------- Identity card: the flip is the idea ------------------------- */
-/* face up is the company, the person is on the back, and turning it over is
-   the gesture the component is named after */
-.flipcard{max-width:440px;margin:var(--space-6) auto var(--space-4);perspective:1400px;}
+/* face up is the person, the company that stands behind them is on the
+   back, and turning it over is the gesture the component is named after */
+.flipcard{max-width:520px;margin:var(--space-6) auto var(--space-4);perspective:1600px;}
 .flipcard__btn{
   display:block;width:100%;appearance:none;background:none;border:0;padding:0;
   cursor:pointer;font:inherit;text-align:left;border-radius:var(--radius-md);
@@ -3022,6 +3022,88 @@ img.testimonial__avatar{object-fit:cover;}
 }
 .flipcard__face--back{transform:rotateY(180deg);}
 .flipcard__face img{width:100%;height:100%;object-fit:cover;display:block;}
+/* ---------- The business card itself, set in type rather than pictured -- */
+/* everything is sized in container units, so the card keeps its proportions
+   from a phone to a desktop column */
+.flipcard__btn{container-type:inline-size;}
+.bcard{
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:6.2cqw 6.6cqw 5.6cqw;box-sizing:border-box;
+  font-family:var(--font-text);text-align:left;
+}
+.bcard > span:not(.flipcard__turn){display:flex;}
+/* a faint guilloche, the line work printed on cheques and certificates */
+.bcard::before{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:
+    repeating-radial-gradient(circle at 112% -20%, currentColor 0 .6px, transparent .6px 7px),
+    repeating-radial-gradient(circle at -12% 120%, currentColor 0 .6px, transparent .6px 9px);
+  opacity:.06;
+}
+/* a soft sheen that crosses the card as it leans towards you */
+.bcard::after{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(115deg, transparent 30%, rgba(255,255,255,.55) 48%, transparent 66%);
+  background-size:250% 100%;background-position:120% 0;
+  transition:background-position .9s cubic-bezier(.2,.7,.2,1);mix-blend-mode:soft-light;
+}
+.flipcard__btn:hover .bcard::after,
+.flipcard__btn:focus-visible .bcard::after{background-position:-20% 0;}
+.bcard--person{
+  color:#1d1d1f;
+  background:linear-gradient(150deg,#FFFDF8 0%,#F6F1E7 100%);
+  border:1px solid rgba(29,29,31,.08);
+  box-shadow:0 1px 0 rgba(255,255,255,.9) inset, 0 18px 40px -12px rgba(29,29,31,.22), 0 2px 6px rgba(29,29,31,.06);
+}
+.bcard--company{
+  color:#F3EFE6;
+  background:radial-gradient(120% 140% at 0% 0%, #2A2D35 0%, #15171C 55%, #0E0F12 100%);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 1px 0 rgba(255,255,255,.08) inset, 0 18px 40px -12px rgba(14,15,18,.45);
+}
+.bcard__top{align-items:center;justify-content:space-between;gap:2cqw;}
+.bcard__org{align-items:center;gap:1.6cqw;font-size:clamp(10px,2.7cqw,13px);font-weight:600;letter-spacing:.01em;}
+.bcard__mark{display:inline-flex;width:4.2cqw;min-width:14px;max-width:20px;color:#B08A4A;}
+.bcard__mark svg{width:100%;height:auto;display:block;}
+.bcard__verified{
+  align-items:center;gap:.9cqw;padding:.7cqw 1.8cqw .7cqw 1.3cqw;border-radius:99px;
+  font-size:clamp(9px,2.2cqw,11px);font-weight:600;color:#1F6B4F;
+  background:rgba(31,107,79,.08);border:1px solid rgba(31,107,79,.18);
+}
+.bcard__verified svg{width:clamp(10px,2.4cqw,12px);height:auto;}
+.bcard__who{align-items:center;gap:3.6cqw;}
+.flipcard__face .bcard__photo{
+  width:15cqw;height:15cqw;min-width:48px;min-height:48px;border-radius:24%;object-fit:cover;
+  box-shadow:0 0 0 1px rgba(29,29,31,.08), 0 6px 14px -6px rgba(29,29,31,.35);
+}
+.bcard__id{display:flex;flex-direction:column;gap:.8cqw;}
+.bcard__name{font-family:var(--font-display);font-size:clamp(20px,6.4cqw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.05;}
+.bcard__role{font-size:clamp(11px,2.8cqw,14px);color:rgba(29,29,31,.62);}
+.bcard__stats{gap:0;border-top:1px solid rgba(29,29,31,.10);padding-top:2.6cqw;}
+.bcard__stat{display:flex;flex-direction:column;gap:.4cqw;flex:1;}
+.bcard__stat + .bcard__stat{padding-left:3cqw;border-left:1px solid rgba(29,29,31,.08);}
+.bcard__num{font-family:var(--font-display);font-size:clamp(14px,4.2cqw,21px);font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums;}
+.bcard__lab{font-size:clamp(9px,2.2cqw,11px);color:rgba(29,29,31,.55);}
+.bcard__foot{font-family:var(--font-mono);font-size:clamp(9px,2.2cqw,11px);letter-spacing:.02em;opacity:.6;padding-right:9cqw;}
+.bcard__seal{
+  display:grid;place-items:center;width:7.4cqw;height:7.4cqw;min-width:26px;min-height:26px;border-radius:50%;color:#15171C;
+  background:conic-gradient(from 210deg,#E9D8A6,#C9A866,#F4E7C3,#B99653,#E9D8A6);
+  box-shadow:0 0 0 1px rgba(255,255,255,.18), 0 4px 10px rgba(0,0,0,.35);
+}
+.bcard__seal svg{width:55%;height:auto;}
+.bcard__claim{font-family:var(--font-display);font-size:clamp(15px,4.6cqw,23px);font-weight:600;letter-spacing:-.01em;line-height:1.2;max-width:80%;}
+.bcard__facts{display:grid!important;grid-template-columns:1fr 1fr;gap:2cqw 4cqw;border-top:1px solid rgba(255,255,255,.12);padding-top:2.6cqw;}
+.bcard__fact{display:flex;flex-direction:column;gap:.3cqw;}
+.bcard__k{font-size:clamp(9px,2.1cqw,11px);letter-spacing:.04em;text-transform:uppercase;color:rgba(243,239,230,.5);}
+.bcard__v{font-size:clamp(11px,2.8cqw,14px);font-weight:500;}
+.bcard--company .bcard__mark{color:#D9C08A;}
+.bcard--company .flipcard__turn{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.16);color:#F3EFE6;box-shadow:none;}
+.bcard--person .flipcard__turn{color:#1d1d1f;}
+/* small screens get a taller card, so the type can stay readable */
+@media (max-width:480px){
+  .flipcard__inner{aspect-ratio:1.32/1;}
+}
+
 /* the corner badge is the affordance: a card with a turn symbol on it */
 .flipcard__turn{
   position:absolute;right:10px;bottom:10px;width:30px;height:30px;border-radius:50%;

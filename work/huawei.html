@@ -366,23 +366,50 @@
     <p>So it turns over. The card below is a live component on this page. Click it, or focus it and press space.</p>
 
     <div class="flipcard">
-      <button class="flipcard__btn" type="button" aria-pressed="false" aria-label="Turn the card over to see the person">
+      <button class="flipcard__btn" type="button" aria-pressed="false" aria-label="Turn the card over to see the company">
         <span class="flipcard__inner">
-          <span class="flipcard__face flipcard__face--front">
-            <img src="../assets/images/huawei/card-logo.jpg" alt="The face of the card: a warm gradient with the company mark in the middle" loading="lazy">
-            <span class="flipcard__turn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></span>
+          <span class="flipcard__face flipcard__face--front bcard bcard--person">
+            <span class="bcard__top">
+              <span class="bcard__org"><span class="bcard__mark" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4.5v15M4.5 12h15M6.7 6.7l10.6 10.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Brightfield Energy</span>
+              <span class="bcard__verified"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.2l2.9 2.9 6.1-6.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Identity verified</span>
+            </span>
+            <span class="bcard__who">
+              <img class="bcard__photo" src="../assets/images/huawei/card-portrait.jpg" alt="" loading="lazy">
+              <span class="bcard__id">
+                <span class="bcard__name">Leon Lee</span>
+                <span class="bcard__role">Field Engineer &middot; Solar and storage</span>
+              </span>
+            </span>
+            <span class="bcard__stats">
+              <span class="bcard__stat"><span class="bcard__num">6 yrs</span><span class="bcard__lab">on the platform</span></span>
+              <span class="bcard__stat"><span class="bcard__num">312</span><span class="bcard__lab">sites signed off</span></span>
+              <span class="bcard__stat"><span class="bcard__num">4.9</span><span class="bcard__lab">from 128 ratings</span></span>
+            </span>
+            <span class="bcard__foot">leon.lee@brightfield.energy</span>
+            <span class="flipcard__turn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></span>
           </span>
-          <span class="flipcard__face flipcard__face--back">
-            <img src="../assets/images/huawei/card-person.jpg" alt="The back of the card: a portrait of the person on the left, their name set large beside it, with their role and contact line underneath" loading="lazy">
-            <span class="flipcard__turn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></span>
+          <span class="flipcard__face flipcard__face--back bcard bcard--company">
+            <span class="bcard__top">
+              <span class="bcard__org"><span class="bcard__mark" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4.5v15M4.5 12h15M6.7 6.7l10.6 10.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Brightfield Energy Services Ltd</span>
+              <span class="bcard__seal" aria-hidden="true"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.2l2.9 2.9 6.1-6.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </span>
+            <span class="bcard__claim">Verified business on the partner platform</span>
+            <span class="bcard__facts">
+              <span class="bcard__fact"><span class="bcard__k">Partner since</span><span class="bcard__v">2019</span></span>
+              <span class="bcard__fact"><span class="bcard__k">Company no.</span><span class="bcard__v">09876543</span></span>
+              <span class="bcard__fact"><span class="bcard__k">Certified</span><span class="bcard__v">MCS &middot; ISO 9001</span></span>
+              <span class="bcard__fact"><span class="bcard__k">Engineers</span><span class="bcard__v">24 on the platform</span></span>
+            </span>
+            <span class="bcard__foot">Checked 12 Oct 2026 &middot; ID 7F3K-29QD</span>
+            <span class="flipcard__turn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></span>
           </span>
         </span>
       </button>
-      <span class="flipcard__hint" data-front="Turn it over for the person" data-back="Turn it back">Turn it over for the person</span>
+      <span class="flipcard__hint" data-front="Turn it over for the company" data-back="Turn it back to the person">Turn it over for the company</span>
     </div>
 
     <div class="withheld">
-      <p>I drew this card after I left Huawei, as a low-fidelity mockup for this page. The designs that shipped stay inside the company.</p>
+      <p>I rebuilt this card for this page after I left Huawei, as a live component. The person and the company on it are made up. The designs that shipped stay inside the company.</p>
     </div>
 
     <h2 id="s08"><span class="sec-n">08</span>Reading the numbers</h2>
@@ -492,7 +519,7 @@
     btn.addEventListener('click', function(){
       var on = btn.getAttribute('aria-pressed') !== 'true';
       btn.setAttribute('aria-pressed', on);
-      btn.setAttribute('aria-label', on ? 'Turn the card back to the company side' : 'Turn the card over to see the person');
+      btn.setAttribute('aria-label', on ? 'Turn the card back to the person' : 'Turn the card over to see the company');
       if (hint) hint.textContent = on ? hint.dataset.back : hint.dataset.front;
       btn.classList.remove('is-nudging');
     });
