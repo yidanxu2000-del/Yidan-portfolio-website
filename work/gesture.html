@@ -50,7 +50,7 @@
   <div class="prose reveal">
     <h2>Project overview</h2>
     <p>A device exploring a new approach to passwords: a smart-lock structure that uses machine learning to recognise gestures. Each small circular ring corresponds to the angle of a finger and is driven by its own servo. When all the gestures are correct, the lock opens.</p>
-    <p>A keypad password is something the user knows, which means anyone standing behind them can know it as well. This one is something the user performs, in the air, at a distance. The distinguishing information is which gesture is made, and how far it is turned, so the password is four gestures each carrying a continuous angle, and all four have to land.</p>
+    <p>This password is something the user performs, in the air, at a distance, which keeps it private from anyone standing behind them. The distinguishing information is which gesture is made, and how far it is turned, so the password is four gestures each carrying a continuous angle, and all four have to land.</p>
 
     <figure class="figure">
       <video autoplay muted loop playsinline poster="../assets/images/gesture/ring-turn-poster.jpg" aria-label="The device on a white surface: a hand turns in the air above it and one of the concentric rings rotates to follow">
@@ -70,7 +70,7 @@
 
     <h2>Design point</h2>
     <p>The design logic is that each gesture corresponds to a circle, and the rotation angle of the gesture controls the actual rotation of that circle. When all four gestures are rotated to their specified angle, the iris structure rotates open and the internal push rod pushes the locked item out.</p>
-    <p>The interface is the mechanism. No screen reports progress, because the ring is the readout: it tracks the user's hand continuously, so the distance still to travel is visible in the object itself and can be corrected in real time.</p>
+    <p>The interface is the mechanism, and the ring is the readout: it tracks the user's hand continuously, so the distance still to travel is visible in the object itself and can be corrected in real time.</p>
 
     <figure class="figure">
       <img src="../assets/images/gesture/gesture-vocabulary.jpg" alt="A strip of five photographs of a hand against a grey background: one finger, two fingers, three fingers, four fingers and an open palm, each with a double-headed arrow showing the rotation the gesture controls" loading="lazy">
@@ -121,7 +121,7 @@
       </div>
     </div>
 
-    <p>Stage three is where the lock gets its resolution. A single classifier would have produced a device with four states. Running classification and regression on the same input stream gives every gesture a continuous value alongside its identity, so the password space is four gestures multiplied by an angle rather than four gestures alone.</p>
+    <p>Stage three is where the lock gets its resolution. Running classification and regression on the same input stream gives every gesture a continuous value alongside its identity, so the password space is four gestures multiplied by an angle.</p>
 
     <figure class="figure">
       <video autoplay muted loop playsinline poster="../assets/images/gesture/hand-tracking-poster.jpg" aria-label="A laptop screen showing the live hand-tracking feed with the recognised hand skeleton drawn over the camera image">
@@ -162,7 +162,7 @@
     </div>
 
     <h3>The wire protocol</h3>
-    <p>Wekinator emits a new prediction many times a second, and the microcontroller has to act on each one without ever getting confused about where a message starts. The format that solves this is deliberately the dumbest one available: a fixed four-byte frame, no delimiters, no handshake, nothing to parse.</p>
+    <p>Wekinator emits a new prediction many times a second, and the microcontroller has to act on each one without ever getting confused about where a message starts. The format that solves this is deliberately simple: a fixed four-byte frame with nothing to parse.</p>
 
     <div class="wire-spec">
       <div class="wire-spec__frame">
@@ -183,8 +183,8 @@
     <h3>Three decisions behind the firmware</h3>
     <ul>
       <li><strong>The door latches, the rings don't.</strong> Predictions arrive continuously, so the open sequence is guarded by a state flag. Without it the mechanism would re-trigger on every frame that still matched the final gesture, and the iris would grind against its own end stop.</li>
-      <li><strong>An angle range, not an exact value.</strong> A model reading a human hand will never return the same number twice, so a ring counts as correct anywhere inside a valid band rather than at a single degree. The band is what makes the lock openable by a person instead of only by a recording.</li>
-      <li><strong>A PCA9685 driver instead of direct pins.</strong> Six servos exceed what an Arduino can drive cleanly on its own timers, and stalling servos pull the board's rail down mid-move. Moving PWM generation and power off the microcontroller is what stopped the rings jittering when more than two moved at once.</li>
+      <li><strong>An angle range for each ring.</strong> A model reading a human hand returns a slightly different number every time, so a ring counts as correct anywhere inside a valid band. The band is what lets a real hand open it.</li>
+      <li><strong>A PCA9685 driver for the servos.</strong> Six servos exceed what an Arduino can drive cleanly on its own timers, and stalling servos pull the board's rail down mid-move. Moving PWM generation and power off the microcontroller is what stopped the rings jittering when more than two moved at once.</li>
     </ul>
 
     <details class="disclosure">

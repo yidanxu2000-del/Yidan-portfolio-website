@@ -49,12 +49,12 @@
     </figure>
 
     <div class="withheld">
-      <p>Nothing on this page is internal Xiaomi material. The pictures are of three kinds: Xiaomi&rsquo;s own published images of the car, frames from publicly posted video of the car as it ships, and diagrams I drew myself to show how I worked. One photograph of a petrol car interior is a manufacturer&rsquo;s press image, used to show what the controls looked like before. Where a screen is still missing I have said so, and I am looking for clear public material to put in its place. One gap cannot be filled yet: the rental work has not reached Europe, so nothing of it is public.</p>
+      <p>These aren&rsquo;t Xiaomi&rsquo;s internal designs. The pictures are Xiaomi&rsquo;s own published images of the car, frames from public video of the car as it ships, and simple diagrams I drew to show how I worked. One photograph of a petrol car interior is a manufacturer&rsquo;s press image, showing what the controls looked like before.</p>
     </div>
 
     <h2 id="s01"><span class="sec-n">01</span>An extension of the home</h2>
-    <p>Xiaomi builds the car closer to that than to transport. The claim is easy to make and hard to keep, and it gets decided in the moments when nobody is driving.</p>
-    <p>A nap mode on the centre screen. A rear screen that runs the seat massage. A keyboard that floats above the screen and leaves what is underneath it alone. Each one is a moment where the car stops being a vehicle, and the interface has to behave like a room.</p>
+    <p>Xiaomi builds the car closer to that than to transport. That idea gets tested in the moments when nobody is driving.</p>
+    <p>Think of a nap mode on the centre screen, a rear screen that runs the seat massage, or a keyboard that floats above the screen and leaves what&rsquo;s underneath alone. In each of these moments the car becomes a place to be, and the interface behaves like a room.</p>
     <p>Here are the two closest to that idea. They are also the two screens my work covered, out of the five in the car.</p>
 
     <div class="figure-grid figure-grid--align">
@@ -72,7 +72,7 @@
     <p>Five screens in the cabin. I owned the centre screen and part of the rear screens.</p>
     <p>System UI is the layer underneath all of it. It decides how something appears, where it sits, what it covers, and what happens to everything else while it is there. When it works, eight modules and three third-party keyboards read as one place.</p>
 
-    <p>Ten pieces of it were mine. Four of them have a section on this page and the &sect; number jumps straight to it. The other six I have not written up yet.</p>
+    <p>Ten pieces of it were mine. Four of them have a section on this page and the &sect; number jumps straight to it. The other six are listed with them.</p>
 
     <ul class="scope-list">
       <li class="is-written">
@@ -135,7 +135,7 @@
     </figure>
 
     <h2 id="s03"><span class="sec-n">03</span>Alive Bar</h2>
-    <p>Touchscreen against physical buttons is an old argument in cars. On this car it stopped being an argument and turned into a group of people.</p>
+    <p>Touchscreen against physical buttons is an old argument in cars. On this car it came down to a group of people.</p>
     <p>A lot of the buyers were leaving a petrol car for the first time, and the hand habits came with them. Driving, they wanted one press to finish the thing: colder, louder, demist. That group also skews older, and it is the same group least willing to talk to a voice assistant. The key is the shorter path anyway. Look down, tap, wait for a panel, find the control, tap it, close the panel &mdash; against one press without looking.</p>
 
     <div class="figure-grid">
@@ -150,7 +150,7 @@
     </div>
 
     <p>So the answer was to keep both. Xiaomi ships a physical key strip that magnets and screws onto the frame under the 16.1-inch centre screen. The things a hand reaches for without thinking sit one press away: temperature, volume, fan, brightness. The menu stays closed.</p>
-    <p>It is an option, not standard fitting. That is the point of it: the people who want it are the ones who came from a petrol car and still reach for a key, and the people who do not want it never have to look at it.</p>
+    <p>It&rsquo;s an optional extra, made for the people who came from a petrol car and still reach for a key. Everyone else keeps a clean frame.</p>
 
     <figure class="figure">
       <img src="../assets/images/xiaomi-auto/alive-bar-strip.jpg" alt="The centre screen in the cabin, with the physical key strip on the frame directly underneath it marked in red: ten keys either side of a round play control" loading="lazy">
@@ -162,13 +162,13 @@
       <figcaption>The strip and the bar, one above the other. Press TEMP and the number moves in the bar; touch the number and the key lights up. They hold one state between them, so reaching for either one gets you to the same place.</figcaption>
     </figure>
 
-    <p>The strip is not the only way in. The voice assistant reaches the same bar, and so does touching the bar itself. Three inputs, one state behind them; each one is only an input.</p>
+    <p>The voice assistant reaches the same bar, and so does touching the bar itself, so all three inputs share one state.</p>
 
     <h3>What I did on it</h3>
     <p>The physical keys were a large project across hardware, software and design. My part was System UI, the layer all three entrances land on. I designed part of it, hunted the edge cases, wrote the detail specs and sorted out the logic of what happens during an interaction, turned the result into components so System UI could be extended with them, and took part of the handoff to the developers.</p>
     <p>We watched how people reached for these controls and rebuilt the shortcut interaction on the centre screen around that, then shipped a new set of design components out of it.</p>
 
-    <p>Most of that work does not photograph. These are the pieces of it:</p>
+    <p>Here are the pieces of that work:</p>
 
     <ul class="wl">
       <li>
@@ -185,7 +185,7 @@
       </li>
       <li>
         <span class="wl__k">Components and the standard</span>
-        <p>All of it became components and a written standard, so the other designers extend the bar instead of redrawing it.</p>
+        <p>All of it became components and a written standard, so the other designers can extend the bar from there.</p>
       </li>
     </ul>
 
@@ -285,13 +285,13 @@
       </figure>
     </div>
 
-    <p>These are two of the cases. I am in the UK now and do not have the car in front of me, so I am collecting the rest slowly and will put them up as they come.</p>
+    <p>These are two of the cases, and more will go up as I collect them.</p>
 
     <div class="figure-grid">
       <figure class="figure" style="margin-bottom:0">
         <div class="slot slot--tall" data-slot="alive-bar-scenarios">
           <span class="slot__k">Every scenario, in order</span>
-          <p class="slot__d">The full set of Alive Bar states and what each one covers. I am working out the right format for it.</p>
+          <p class="slot__d">The full set of Alive Bar states and what each one covers.</p>
         </div>
       </figure>
       <figure class="figure" style="margin-bottom:0">
@@ -303,14 +303,14 @@
     </div>
 
     <div class="withheld">
-      <p>The values themselves, and the standard they are written into, stay inside Xiaomi. The interactive version waits on Xiaomi to release it.</p>
+      <p>The exact values and the standard belong to Xiaomi, and the interactive version will follow once Xiaomi releases it.</p>
     </div>
 
     <h2 id="s04"><span class="sec-n">04</span>Three keyboards, one rule set</h2>
     <p>This was the first thing I owned on the car.</p>
 
     <div class="withheld">
-      <p>Nothing in this section is the finished design. It is how I thought the problem through and how I checked the answers, drawn afterwards. The real work ran on a schedule of regular meetings with the Chinese vendors and with the Google team, which is where each decision was agreed. What shipped goes up once Xiaomi releases it.</p>
+      <p>This section shows how I thought the problem through and checked the answers, drawn afterwards as simple illustrations. The decisions were agreed in regular meetings with the Chinese vendors and the Google team, and what shipped goes up once Xiaomi releases it.</p>
     </div>
     <p>Xiaomi&rsquo;s rule is that the driving information stays visible while somebody is typing. So the keyboard floats at system level, and the cards underneath it keep working.</p>
     <p>Three companies make the keyboards I had to serve: the partner already in the car, a new one for the Chinese build, and Google for the English one. Each popped up at its own height, covered its own amount of the screen, and took the layout apart in its own way. They also disagree with each other on when AI triggers, how word suggestions arrive, and what the network prompts do. That is what reaches the layout: it made the same interface hard to fit the Chinese and the overseas car at the same time, because whichever keyboard comes up, it and the driving information along the bottom can never end up covering each other.</p>
@@ -363,7 +363,7 @@
     </figure>
 
     <h3>02 &middot; The functions that stay</h3>
-    <p>AI suggestions, word association, the network prompts. No version was going to drop them, so one rule had to hold all three vendors at once.</p>
+    <p>AI suggestions, word association, the network prompts. Every version keeps them, so one rule had to hold all three vendors at once.</p>
 
     <figure class="figure figure--outline">
       <img src="../assets/images/xiaomi-auto/kb-options.jpg" alt="Four wireframe options for the keyboard block side by side, each carrying the extra functions in a different arrangement above the keys" loading="lazy">
@@ -403,7 +403,7 @@
           <text x="344" y="120">A first pass to check</text>
         </g>
       </svg>
-      <figcaption class="figure-note">The split. The rules were the design work; the permutations were typing.</figcaption>
+      <figcaption class="figure-note">The split. I wrote the rules, and the machine typed out the permutations.</figcaption>
     </figure>
 
     <h3>Before, and what ships</h3>
@@ -430,7 +430,7 @@
     </figure>
 
     <div class="withheld">
-      <p>The component library the keyboards were built against stays inside Xiaomi, and so does the finished design.</p>
+      <p>The component library behind the keyboards and the finished design belong to Xiaomi.</p>
     </div>
 
     <h2 id="s05"><span class="sec-n">05</span>A crowded top bar, and European privacy</h2>
@@ -509,18 +509,18 @@
     <p>Every surface that carries identity had to work in all three. Each one needed its own adapted component, and those went back into System UI, which now handles more scenarios than it did before.</p>
 
     <div class="withheld">
-      <p>This one has no pictures, and will not have any for a while. The car has not gone on sale in Europe, so the rental modes have not launched and nothing about them is public. Everywhere else on this page I can go and find published material to stand in until I have my own; here there is none to find.</p>
+      <p>Pictures will follow once the car goes on sale in Europe and the rental modes launch.</p>
     </div>
 
     <h2 id="s07"><span class="sec-n">07</span>What came back, and what I took from it</h2>
     <p>Writing rules for a market with different defaults forces you to find the assumptions you never knew you had made. Some of those were worth fixing at home as well.</p>
-    <p>The permission point is the clearest one. It went back into the domestic System UI, on a market whose regulator never asked for it, because once you have seen a person told when the microphone is live, the version that leaves them guessing is harder to defend.</p>
+    <p>The permission point is the clearest one. It went back into the domestic System UI, where the regulator hadn&rsquo;t asked for it, because people deserve to know when the microphone is live wherever they drive.</p>
 
-    <p>Cars run against the grain of everything else. Every other product I have designed wants more of your attention. This one wants as little as possible, because time on the screen is time away from the road.</p>
-    <p>That pushes all of it towards the intuitive. The control your hand finds without your eyes. The state you read in one glance. It is also why the home is the right model to build against: you do not read a room, you already know where things are.</p>
+    <p>A car asks for as little of your attention as possible, because time on the screen is time away from the road.</p>
+    <p>That pushes everything towards the intuitive: a control your hand finds without your eyes, a state you read in one glance. It&rsquo;s also why the home is the right model to build against, since in a room you already know where things are.</p>
 
-    <p>Most of this job was making things I did not control agree with each other. Three keyboard vendors. A physical strip and a screen. Two markets with different ideas about who owns the data.</p>
-    <p>The design work sat in the rules. The screens were the proof that the rules held.</p>
+    <p>Most of this job was getting many parts to work together: three keyboard vendors, a physical strip and a screen, and two markets with different ideas about who owns the data.</p>
+    <p>The design work lived in the rules, and the screens show them holding.</p>
 
     <div class="photo-note">
       <img class="photo-note__img" src="../assets/images/xiaomi-auto/moment.jpg" alt="A Polaroid-style photo of Yidan Xu holding a small Xiaomi keychain during her time on the Xiaomi Auto team" loading="lazy">
