@@ -3071,11 +3071,6 @@ img.testimonial__avatar{object-fit:cover;}
   background:rgba(31,107,79,.08);border:1px solid rgba(31,107,79,.18);
 }
 .bcard__verified svg{width:clamp(10px,2.4cqw,12px);height:auto;}
-.bcard__who{align-items:center;gap:3.6cqw;}
-.flipcard__face .bcard__photo{
-  width:23cqw;height:23cqw;min-width:72px;min-height:72px;border-radius:22%;object-fit:cover;
-  box-shadow:0 0 0 1px rgba(29,29,31,.08), 0 6px 14px -6px rgba(29,29,31,.35);
-}
 .bcard__id{display:flex;flex-direction:column;gap:.8cqw;}
 .bcard__name{font-family:var(--font-display);font-size:clamp(20px,6.4cqw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.05;}
 .bcard__role{font-size:clamp(11px,2.8cqw,14px);color:rgba(29,29,31,.62);}
@@ -3099,6 +3094,29 @@ img.testimonial__avatar{object-fit:cover;}
 .bcard--company .bcard__mark{color:#D9C08A;}
 .bcard--company .flipcard__turn{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.16);color:#F3EFE6;box-shadow:none;}
 .bcard--person .flipcard__turn{color:#1d1d1f;}
+/* the person side: the portrait runs the full height of the card and fades
+   into the paper, so the face is the first thing you read */
+.bcard--person{padding:0;}
+.bcard .bcard__portrait{
+  position:absolute;left:0;top:0;bottom:0;width:42%;height:100%;
+  object-fit:cover;object-position:50% 14%;
+  -webkit-mask-image:linear-gradient(to right,#000 68%,transparent);
+          mask-image:linear-gradient(to right,#000 68%,transparent);
+}
+.bcard--person .bcard__verified{
+  position:absolute;left:4cqw;bottom:4cqw;
+  background:rgba(255,253,248,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  box-shadow:0 4px 12px -4px rgba(29,29,31,.25);
+}
+.bcard__body{
+  position:relative;flex-direction:column;justify-content:space-between;
+  height:100%;margin-left:38%;padding:5.6cqw 6cqw 5.2cqw 4cqw;box-sizing:border-box;
+}
+.bcard__body > span{display:flex;}
+.bcard--person .bcard__org{font-size:clamp(9px,2.3cqw,12px);letter-spacing:.08em;text-transform:uppercase;color:rgba(29,29,31,.7);}
+.bcard--person .bcard__name{font-size:clamp(22px,7.6cqw,38px);}
+.bcard--person .bcard__stat + .bcard__stat{padding-left:2.4cqw;}
+
 /* small screens get a taller card, so the type can stay readable */
 @media (max-width:480px){
   .flipcard__inner{aspect-ratio:1.32/1;}
@@ -3261,4 +3279,93 @@ img.testimonial__avatar{object-fit:cover;}
 .ladder__step:not(.is-done) .ladder__shot{filter:grayscale(1);}
 @media (max-width:620px){
   .ladder{grid-template-columns:1fr;gap:var(--space-4);}
+}
+
+
+/* ---------- The card in the app: your own home, then shared ------------ */
+/* two phones drawn in CSS. Leon's home leads with his card; tapping Share
+   sends it, and Priya receives it in her messages with the company check */
+.appdemo{margin:var(--space-7) auto var(--space-5);}
+.appdemo__stage{
+  position:relative;display:grid;grid-template-columns:260px 110px 260px;align-items:start;
+  width:max-content;max-width:100%;margin:0 auto;
+}
+.phone{
+  width:260px;aspect-ratio:9/19;border-radius:44px;padding:9px;box-sizing:border-box;
+  background:linear-gradient(160deg,#2B2D33,#0F1013);
+  box-shadow:0 0 0 1px rgba(255,255,255,.06) inset, 0 30px 60px -24px rgba(29,29,31,.45), 0 8px 18px -8px rgba(29,29,31,.25);
+}
+.phone--them{grid-column:3;}
+.phone__screen{
+  position:relative;height:100%;border-radius:36px;overflow:hidden;background:#F6F4EF;
+  display:flex;flex-direction:column;font-family:var(--font-text);color:#1d1d1f;
+}
+.phone__status{display:flex;justify-content:space-between;align-items:center;padding:12px 22px 0;font-size:11px;font-weight:600;}
+.phone__island{width:76px;height:22px;border-radius:12px;background:#0F1013;}
+.app__head{padding:14px 16px 10px;}
+.app__hello{display:block;font-size:11px;color:rgba(29,29,31,.55);}
+.app__title{display:block;font-family:var(--font-display);font-size:22px;font-weight:700;letter-spacing:-.02em;}
+.appdemo__card{container-type:inline-size;margin:0 12px;}
+.appdemo__card .bcard{position:relative;aspect-ratio:1.4/1;border-radius:14px;overflow:hidden;}
+.appdemo__card .bcard__lab{display:none;}
+.appdemo__card .bcard__num{white-space:nowrap;font-size:clamp(11px,4.6cqw,15px);}
+.appdemo .appdemo__card .bcard__portrait{max-width:none;}
+.app__actions{display:flex;gap:8px;padding:12px 12px 4px;}
+.app__btn{flex:1;text-align:center;font-size:11px;font-weight:600;padding:9px 0;border-radius:12px;background:#fff;border:1px solid rgba(29,29,31,.08);}
+.app__btn--primary{background:#1d1d1f;color:#fff;border-color:#1d1d1f;}
+.app__label{padding:14px 16px 6px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(29,29,31,.5);}
+.app__job{display:flex;justify-content:space-between;align-items:center;margin:0 12px 6px;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid rgba(29,29,31,.06);font-size:11px;}
+.app__job b{display:block;font-weight:600;font-size:11.5px;}
+.app__job span{color:rgba(29,29,31,.55);}
+.app__chip{font-size:9.5px;font-weight:600;padding:3px 8px;border-radius:99px;background:rgba(31,107,79,.1);color:#1F6B4F;white-space:nowrap;}
+.app__tabs{margin-top:auto;display:flex;justify-content:space-around;padding:10px 8px 18px;border-top:1px solid rgba(29,29,31,.08);background:#fff;font-size:9.5px;color:rgba(29,29,31,.45);}
+.app__tabs .is-on{color:#1d1d1f;font-weight:600;}
+/* the other phone: a message thread */
+.chat__head{display:flex;align-items:center;gap:8px;padding:12px 14px 10px;border-bottom:1px solid rgba(29,29,31,.07);background:#fff;}
+.appdemo .chat__av{width:28px;height:28px;max-width:none;border-radius:50%;object-fit:cover;object-position:50% 12%;}
+.chat__who b{display:block;font-size:12px;}
+.chat__who span{font-size:10px;color:rgba(29,29,31,.55);}
+.chat__body{flex:1;display:flex;flex-direction:column;gap:8px;padding:14px 12px;}
+.chat__bubble{align-self:flex-start;max-width:82%;padding:9px 12px;border-radius:16px 16px 16px 4px;background:#fff;border:1px solid rgba(29,29,31,.06);font-size:11.5px;line-height:1.4;}
+.chat__card{
+  align-self:flex-start;width:86%;border-radius:16px;overflow:hidden;background:#fff;
+  border:1px solid rgba(29,29,31,.08);box-shadow:0 10px 24px -14px rgba(29,29,31,.35);
+}
+.chat__card-top{display:flex;gap:10px;padding:10px;background:linear-gradient(150deg,#FFFDF8,#F3EDE1);}
+.appdemo .chat__card-top img{width:44px;height:56px;max-width:none;flex:none;border-radius:10px;object-fit:cover;object-position:50% 14%;}
+.chat__card-top b{display:block;font-family:var(--font-display);font-size:15px;letter-spacing:-.01em;}
+.chat__card-top span{display:block;font-size:10px;color:rgba(29,29,31,.6);}
+.chat__check{display:flex;align-items:center;gap:6px;padding:8px 10px;font-size:10px;font-weight:600;color:#1F6B4F;border-top:1px solid rgba(29,29,31,.06);}
+.chat__check svg{width:11px;height:11px;}
+.chat__card-actions{display:flex;border-top:1px solid rgba(29,29,31,.06);}
+.chat__card-actions span{flex:1;text-align:center;padding:8px 0;font-size:10.5px;font-weight:600;color:#2C46DB;}
+.chat__card-actions span + span{border-left:1px solid rgba(29,29,31,.06);}
+.chat__composer{margin:0 10px 18px;padding:9px 12px;border-radius:99px;background:#fff;border:1px solid rgba(29,29,31,.08);font-size:10.5px;color:rgba(29,29,31,.4);}
+/* the share: the button presses, a small card flies across, the message lands */
+.appdemo__fly{
+  transform-origin:0 0;position:absolute;z-index:3;left:21px;top:90px;width:218px;aspect-ratio:1.66/1;border-radius:10px;pointer-events:none;
+  background:linear-gradient(150deg,#FFFDF8,#F3EDE1);box-shadow:0 16px 30px -12px rgba(29,29,31,.45);
+  overflow:hidden;opacity:0;
+}
+.appdemo .appdemo__fly img{max-width:none;position:absolute;left:0;top:0;bottom:0;width:42%;height:100%;object-fit:cover;object-position:50% 14%;}
+.appdemo__fly i{position:absolute;left:48%;top:30%;width:40%;height:9%;border-radius:4px;background:#1d1d1f;}
+.appdemo__fly i + i{top:46%;width:30%;height:6%;background:rgba(29,29,31,.35);}
+@media (prefers-reduced-motion: no-preference){
+  .appdemo .app__btn--primary{animation:ad-press 6s infinite;}
+  .appdemo__fly{animation:ad-fly 6s infinite cubic-bezier(.45,.05,.25,1);}
+  .appdemo .chat__card{animation:ad-land 6s infinite;}
+}
+@keyframes ad-press{0%,8%{transform:none;box-shadow:none}12%{transform:scale(.94);box-shadow:0 0 0 6px rgba(44,70,219,.18)}18%,100%{transform:none;box-shadow:none}}
+@keyframes ad-fly{
+  0%,14%{opacity:0;transform:translate(0,0) scale(1) rotate(0)}
+  18%{opacity:1;transform:translate(0,-6px) scale(1) rotate(0)}
+  34%{opacity:1;transform:translate(185px,-14px) scale(.9) rotate(-5deg)}
+  50%{opacity:1;transform:translate(370px,95px) scale(.86) rotate(0)}
+  55%,100%{opacity:0;transform:translate(370px,95px) scale(.86)}
+}
+@keyframes ad-land{0%,50%{opacity:0;transform:translateY(10px) scale(.96)}56%{opacity:1;transform:none}92%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@media (max-width:700px){
+  .appdemo__stage{grid-template-columns:1fr;gap:var(--space-5);justify-items:center;}
+  .phone--them{grid-column:auto;}
+  .appdemo__fly{display:none;}
 }
