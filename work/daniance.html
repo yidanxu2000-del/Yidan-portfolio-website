@@ -43,8 +43,8 @@
 
 <section class="prose-section section--light">
   <div class="prose reveal">
-    <figure class="figure breakout">
-      <img src="../assets/images/daniance/cover.jpg" alt="The Daniance home screen on a laptop: a blue Safe to spend card showing £8,420, an Ask Daniance card answering whether the owner can hire in January, a 30-day cash forecast, and a goals list" loading="lazy">
+    <figure class="dkfig dkfig--bare breakout">
+      <img src="../assets/images/daniance/hero-laptop.png" width="2240" height="1484" alt="Daniance on a laptop: the Home screen with Safe to spend at £8,420, the Ask card open across the row answering whether Maya can hire a junior designer in January, the cash forecast below it, and two cards lifted off the screen, Safe to spend and Goals">
     </figure>
 
     <dl class="brief">
@@ -67,17 +67,17 @@
 
     <h2>I drew the summary three times before adding any AI</h2>
     <p>A health score raised the question &ldquo;72 out of what?&rdquo;. Balance minus bills covered today only. The version I kept finds the lowest point in the next 30 days and keeps a &pound;5,000 buffer, so <strong>&ldquo;safe to spend&rdquo; has already counted payroll and VAT.</strong></p>
-    <figure class="figure breakout">
-      <img src="../assets/images/daniance/home-drafts.jpg" alt="Three drafts of the Home summary: a health score of 72 out of 100, safe to spend from today at £16,280, and safe to spend from the lowest point at £8,420 with a small 30-day forecast" loading="lazy">
+    <figure class="dkfig breakout">
+      <img src="../assets/images/daniance/home-drafts.png" width="2240" height="553" loading="lazy" alt="Three drafts of the summary card. Design 1, a health score of 72 out of 100, dropped. Design 2, safe to spend from today at £16,280, changed. Design 3, safe to spend from the lowest point at £8,420 with a small 30-day forecast, kept. A yellow note under each says why">
       <figcaption>Health score, safe to spend from today, and the one I kept: safe to spend from the lowest point in the next 30 days.</figcaption>
     </figure>
 
 
     <h2>The AI lives in a narrow card that opens across its row</h2>
     <p>I tried the assistant in three places. A chat panel was clear but took a third of the screen. An answer inside Home pushed the forecast below the fold. I kept a narrow card that opens across its row when asked.</p>
-    <figure class="figure breakout">
-      <img src="../assets/images/daniance/ai-wireframes.jpg" alt="Three wireframes: a full-height chat panel on the right, an ask bar across Home, and a narrow card beside the forecast" loading="lazy">
-      <figcaption>Chat panel, inline answer, and the narrow card I kept.</figcaption>
+    <figure class="dkfig breakout">
+      <img src="../assets/images/daniance/ai-placement.png" width="2240" height="729" loading="lazy" alt="Three wireframes of Home in browser windows: a full-height chat panel on the right, an answer across the whole screen pushing the forecast down, and a narrow card beside the forecast that opens to the full row when asked. A yellow note under each says why it was dropped or kept">
+      <figcaption>Chat panel, answer across the whole screen, and the narrow card I kept.</figcaption>
     </figure>
     <p>Then each page got its own size. Owners come to Home for the whole picture, so there the AI opens up and explains. In Reports it stays a card beside the detail, and in Goals it only suggests.</p>
 
@@ -93,46 +93,88 @@
     </div>
 
     <h3>1. Showing what it did</h3>
-    <p>Maya taps a suggested question. The card opens across the row, keeps the same height so the rest of the dashboard stays on screen, and lists what it&rsquo;s checking while it draws the answer.</p>
-    <figure class="figure breakout">
-      <img src="../assets/images/daniance/ask-flow.jpg" alt="Three screens joined by arrows: Home with a suggested question highlighted, the Ask card opening across the row while it checks accounts, and the finished answer drawn on the forecast" loading="lazy">
-      <figcaption>Home, thinking, answer. The arrows start from the button Maya presses.</figcaption>
+    <p>Maya taps a suggested question. The card opens to the right across the row, the cash forecast moves down to make room, and the card lists what it&rsquo;s checking while it draws the answer. Click anywhere outside and it folds back into the small card, and the forecast returns to its place.</p>
+
+    <figure class="dx breakout" data-dx data-state="home">
+      <div class="dx__window">
+        <div class="dx__bar" aria-hidden="true"><i></i><i></i><i></i><span>app.daniance.com/home</span></div>
+        <div class="dx__stage" role="group" aria-label="Interactive mock of Daniance Home. The Ask card opens across the row when its question is pressed, and closes when you click outside it.">
+          <img class="dx__bg" src="../assets/images/daniance/dx/stage-bg.png" alt="" loading="lazy">
+          <div class="dx__card dx__ask">
+            <img src="../assets/images/daniance/dx/ask-small.png" alt="" loading="lazy">
+            <img src="../assets/images/daniance/dx/ask-thinking.png" alt="" loading="lazy">
+            <img src="../assets/images/daniance/dx/ask-answer.png" alt="" loading="lazy">
+          </div>
+          <div class="dx__card dx__fc">
+            <img src="../assets/images/daniance/dx/forecast-home.png" alt="" loading="lazy">
+            <img src="../assets/images/daniance/dx/forecast-open.png" alt="" loading="lazy">
+          </div>
+          <div class="dx__card dx__goals">
+            <img src="../assets/images/daniance/dx/goals-home.png" alt="" loading="lazy">
+            <img src="../assets/images/daniance/dx/goals-open.png" alt="" loading="lazy">
+          </div>
+          <div class="dx__card dx__alert">
+            <img src="../assets/images/daniance/dx/alert-home.png" alt="" loading="lazy">
+          </div>
+          <button class="dx__hit" type="button" aria-label="Ask Daniance: Can I afford to hire in January?"></button>
+          <span class="dx__cursor" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5 19.5 12l-7 1.6L9 20.5z" fill="#111" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+        </div>
+      </div>
+      <div class="dx__ctl">
+        <ol class="dx__steps">
+          <li class="is-on">She taps a suggested question</li>
+          <li>The card opens to the right, the forecast moves down</li>
+          <li>A click outside folds it back</li>
+        </ol>
+        <button class="dx__play" type="button">Pause</button>
+      </div>
+      <figcaption>Built from the Figma frames at their real positions. It plays on its own; press the question to try it, and click outside the card to close it.</figcaption>
+    </figure>
+
+    <figure class="dkfig breakout">
+      <img src="../assets/images/daniance/flow-ask.png" width="2240" height="557" loading="lazy" alt="Three Home screens joined by arrows: Maya taps a suggested question, the card expands to the full row and shows it is checking, and the answer is drawn on the forecast with the next steps suggested">
+      <figcaption>The same three states as a flow. The arrows start from the button Maya presses.</figcaption>
     </figure>
 
     <h3>2. Showing why</h3>
     <p>The answer sits on her own forecast: a one-line verdict, the risk (on 7 February she&rsquo;d dip &pound;460 under her buffer), three numbers, and the sources underneath. If a bank hasn&rsquo;t synced, the answer is marked as a draft.</p>
-    <figure class="figure breakout">
-      <img src="../assets/images/daniance/answer.jpg" alt="The Ask Daniance card open across the dashboard, answering that hiring from January works but dips £460 under the £5,000 buffer on 7 February, with a bar chart of the balance with and without the hire" loading="lazy">
+    <figure class="dkfig breakout">
+      <img src="../assets/images/daniance/state-answer.png" width="2240" height="1463" loading="lazy" alt="Daniance Home in a browser window with the Ask card open across the row: yes from 1 January, but on 7 February Maya would dip £460 under her £5,000 buffer; cost a month £2,680, lowest day £4,540, against buffer minus £460; and a bar chart of the balance with the hire">
       <figcaption>The answer, drawn in the same style as the cash forecast below it.</figcaption>
     </figure>
 
     <h3>3. Making each answer traceable</h3>
     <p>Saving the answer turns it into a hiring plan that Tom, her accountant, can review. His note on the Employment Allowance brings the cost down to about &pound;2,390 a month, and the plan shows where that came from.</p>
-    <figure class="figure breakout">
-      <img src="../assets/images/daniance/accountant.jpg" alt="The hiring plan open for review: salary, employer National Insurance and pension lines, a note from the accountant about the Employment Allowance, and Good idea and Edit assumptions buttons" loading="lazy">
+    <figure class="dkfig breakout">
+      <img src="../assets/images/daniance/goals-tom.png" width="2240" height="1463" loading="lazy" alt="The hiring plan open for Tom, the accountant, in a browser window: salary, employer National Insurance, workplace pension and cost per month, a financial forecast note saying the Employment Allowance brings the cost to about £2,390 a month, and Good idea and Edit assumptions buttons">
       <figcaption>A real person is one click away from every answer.</figcaption>
     </figure>
 
     <h3>4. Making access easy to stop</h3>
     <p>Bringing in another bank is modelled on the UK Open Banking customer experience guidelines: consent in Daniance, then Face ID and the choice of accounts inside the bank&rsquo;s own app. Access is read only for 90 days, she can stop it any time, and if she cancels, nothing is shared.</p>
-    <figure class="figure breakout">
-      <img src="../assets/images/daniance/bank-flow.jpg" alt="A flow map of connecting Barclays: Accounts, choose the bank, consent, hand-off to the bank app with a QR code, two phone screens in the bank app, the connected confirmation, the updated accounts list, and a dashed path to the cancelled state" loading="lazy">
+    <figure class="dkfig breakout">
+      <img src="../assets/images/daniance/flow-bank.png" width="2240" height="1750" loading="lazy" alt="A flow map of connecting Barclays in eight steps: Accounts, choosing the bank, consent in Daniance, handing over to the Barclays app with a QR code, ticking the account to share on the phone, back in Daniance with what arrived, and Barclays listed in Accounts read only until 21 January. A dashed path leads to the edge case where she cancels and nothing is shared">
       <figcaption>The bank screens are my illustration.</figcaption>
     </figure>
 
 
     <h2>Reports keep the table her accountant already reads</h2>
     <p>Tom reads Reports too, so the page keeps the profit and loss table he already knows. Accountants read a change as favourable or adverse whatever its sign, so I coloured each change by what it means for the business: costs going down show green. Each KPI card carries a small trend for the last four quarters.</p>
-    <div class="figure-grid breakout">
-      <figure class="figure">
-        <img src="../assets/images/daniance/report.jpg" alt="The Reports page: four KPI cards with small trend lines, an AI card explaining where the profit went, and a profit and loss table with changes coloured by whether they help the business" loading="lazy">
-        <figcaption>Kept: the table, with change coloured by better or worse.</figcaption>
-      </figure>
-      <figure class="figure">
-        <img src="../assets/images/daniance/report-rejected.jpg" alt="A rejected version of Reports with a large monthly income and costs chart above the table, pushing the table down the page" loading="lazy">
-        <figcaption>Dropped: a monthly chart that pushed the table off the screen.</figcaption>
-      </figure>
-    </div>
+    <figure class="dkfig breakout">
+      <img src="../assets/images/daniance/reports-kept.png" width="2240" height="913" loading="lazy" alt="Two versions of the profit and loss table side by side, both kept as design 2, with yellow notes: accountants read changes as favourable or adverse rather than by sign, so each change is coloured by what it means for the business and carries a short bar for its size">
+      <figcaption>The table, with each change coloured by better or worse for the business.</figcaption>
+    </figure>
+    <figure class="dkfig breakout">
+      <img src="../assets/images/daniance/reports-ai.png" width="2240" height="1463" loading="lazy" alt="Reports in a browser window: four KPI cards with small trend lines, an AI card on the left answering where did the profit go this quarter with a breakdown from net profit to cash in the bank, and the profit and loss table on the right">
+      <figcaption>In Reports the AI stays a card beside the table and answers &ldquo;Where did the profit go?&rdquo;.</figcaption>
+    </figure>
+
+
+    <h2>The final design</h2>
+    <figure class="dkfig breakout">
+      <img src="../assets/images/daniance/showcase.png" width="2240" height="1400" loading="lazy" alt="Three laptops showing Daniance: Goals with a revenue target chart at the back left, Reports with the profit and loss table at the back right, and Home in front with Safe to spend, the Ask card, the cash forecast, goals and alerts">
+      <figcaption>Home, Reports and Goals.</figcaption>
+    </figure>
 
 
     <h2>Next: real owners</h2>
@@ -163,6 +205,7 @@
 </footer>
 
 <script src="../assets/js/site.js"></script>
+<script src="../assets/js/daniance-ask.js"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
