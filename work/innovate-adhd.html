@@ -6,8 +6,8 @@
 <title>Innovate ADHD — Yidan Xu</title>
 <meta name="description" content="An ADHD assessment that people with ADHD can finish. Product manager, only designer, and the person doing the marketing. Built from nothing, live in two weeks.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20261110">
+<link rel="stylesheet" href="../assets/css/site.css?v=20261110">
 </head>
 <body>
 
@@ -210,24 +210,35 @@
     <h2 class="adhd-marker">The result</h2>
     <p><strong>Getting into the service used to take at least a day, often several. Now it can take a few minutes.</strong></p>
 
-    <div class="journey" role="img" aria-label="Before: read the site, register somewhere else, wait for a questionnaire by email, remember to go back, then book. At least a day, often several, with people dropping out between the steps. Now: information, self-test and booking on one page, in a few minutes.">
-      <div class="journey__row">
-        <span class="journey__k">Before</span>
-        <ol class="journey__steps">
-          <li><span>Read the site</span></li><li><span>Register elsewhere</span></li><li><span>Questionnaire by email</span></li><li><span>Remember to go back</span></li><li><span>Book</span></li>
+    <div class="jv" role="img" aria-label="Before: five steps, read the site, register elsewhere, a questionnaire by email, remember to go back, then booking, with people dropping out between every step. At least a day, often several. Now: information, self-test and booking on one page, in minutes.">
+      <div class="jv__row">
+        <div class="jv__lead"><span class="jv__k">Before</span><span class="jv__big">1 day +</span><span class="jv__sub">often several</span></div>
+        <ol class="jv__track">
+          <li class="jv__node"><i></i><span>Read the site</span></li>
+          <li class="jv__gap" aria-hidden="true"><b>drop-off</b></li>
+          <li class="jv__node"><i></i><span>Register elsewhere</span></li>
+          <li class="jv__gap" aria-hidden="true"><b>drop-off</b></li>
+          <li class="jv__node"><i></i><span>Questionnaire by email</span></li>
+          <li class="jv__gap" aria-hidden="true"><b>drop-off</b></li>
+          <li class="jv__node"><i></i><span>Remember to go back</span></li>
+          <li class="jv__gap" aria-hidden="true"><b>drop-off</b></li>
+          <li class="jv__node"><i></i><span>Booking</span></li>
         </ol>
-        <span class="journey__t">At least a day, often several</span>
       </div>
-      <div class="journey__row journey__row--now">
-        <span class="journey__k">Now</span>
-        <ol class="journey__steps">
-          <li><span>Information</span></li><li><span>Self-test</span></li><li><span>Booking</span></li>
-        </ol>
-        <span class="journey__t">A few minutes, on one page</span>
+      <div class="jv__row jv__row--now">
+        <div class="jv__lead"><span class="jv__k">Now</span><span class="jv__big">Minutes</span><span class="jv__sub">on one page</span></div>
+        <div class="jv__page">
+          <span class="jv__pagek">One page</span>
+          <ol class="jv__track">
+            <li class="jv__node"><i></i><span>Information</span></li>
+            <li class="jv__link" aria-hidden="true"></li>
+            <li class="jv__node"><i></i><span>Self-test</span></li>
+            <li class="jv__link" aria-hidden="true"></li>
+            <li class="jv__node"><i></i><span>Booking</span></li>
+          </ol>
+        </div>
       </div>
     </div>
-
-    <p>Before, the steps were scattered, and many people fell out somewhere between them. Now they run one after another on the same page.</p>
 
     <p><strong>All five testers with ADHD finished the assessment people used to drop out of.</strong></p>
 
@@ -362,7 +373,7 @@
   <div class="footer__bottom">&copy; <span id="year"></span> Yidan Xu. All rights reserved.</div>
 </footer>
 
-<script src="../assets/js/site.js"></script>
+<script src="../assets/js/site.js?v=20261110"></script>
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
