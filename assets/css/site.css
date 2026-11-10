@@ -3516,3 +3516,26 @@ img.testimonial__avatar{object-fit:cover;}
   .signal__arrow{transform:rotate(90deg);justify-self:start;}
   .signal__shots{grid-template-columns:1fr;}
 }
+
+/* a figure that steps out of the reading column, for wide product screens
+   that are unreadable at 692px. Same centring as .styletest. */
+.breakout{
+  position:relative;left:50%;transform:translateX(-50%);
+  width:min(1120px, calc(100vw - 48px));max-width:none;
+}
+@media (max-width:760px){
+  .breakout{left:auto;transform:none;width:auto;}
+}
+
+/* four small cards, two by two, one column on a narrow phone */
+.two-up--four{grid-template-columns:repeat(2,minmax(0,1fr));}
+@media (max-width:420px){.two-up--four{grid-template-columns:1fr;}}
+
+/* the ADHD page runs at 23px, so its brief reads a step larger too */
+.prose--adhd .brief dd{font-size:19px;}
+.prose--adhd .two-up__card p{font-size:19px;line-height:1.5;}
+.prose--adhd .stat-cell__l{font-size:16px;}
+/* on the ADHD page the four AI steps sit two by two, so none is left alone on a row */
+.prose--adhd .flow-diagram{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);}
+.prose--adhd .flow-diagram__arrow{display:none !important;}
+@media (max-width:520px){.prose--adhd .flow-diagram{grid-template-columns:1fr;}}
