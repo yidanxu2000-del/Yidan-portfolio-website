@@ -3539,3 +3539,6 @@ img.testimonial__avatar{object-fit:cover;}
 .prose--adhd .flow-diagram{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);}
 .prose--adhd .flow-diagram__arrow{display:none !important;}
 @media (max-width:520px){.prose--adhd .flow-diagram{grid-template-columns:1fr;}}
+/* four facts in the brief sit two by two */
+.prose .brief--four{grid-template-columns:repeat(2,minmax(0,1fr));}
+@media (max-width:620px){.prose .brief--four{grid-template-columns:1fr;}}
