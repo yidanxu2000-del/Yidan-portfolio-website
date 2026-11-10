@@ -3516,3 +3516,213 @@ img.testimonial__avatar{object-fit:cover;}
   .signal__arrow{transform:rotate(90deg);justify-self:start;}
   .signal__shots{grid-template-columns:1fr;}
 }
+
+/* a figure that steps out of the reading column, for wide product screens
+   that are unreadable at 692px. Same centring as .styletest. */
+.breakout{
+  position:relative;left:50%;transform:translateX(-50%);
+  width:min(1120px, calc(100vw - 48px));max-width:none;
+}
+@media (max-width:760px){
+  .breakout{left:auto;transform:none;width:auto;}
+}
+
+/* four small cards, two by two, one column on a narrow phone */
+.two-up--four{grid-template-columns:repeat(2,minmax(0,1fr));}
+@media (max-width:420px){.two-up--four{grid-template-columns:1fr;}}
+
+/* the ADHD page runs at 23px, so its brief reads a step larger too */
+.prose--adhd .brief dd{font-size:19px;}
+.prose--adhd .two-up__card p{font-size:19px;line-height:1.5;}
+.prose--adhd .stat-cell__l{font-size:16px;}
+/* on the ADHD page the four AI steps sit two by two, so none is left alone on a row */
+.prose--adhd .flow-diagram{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);}
+.prose--adhd .flow-diagram__arrow{display:none !important;}
+@media (max-width:520px){.prose--adhd .flow-diagram{grid-template-columns:1fr;}}
+/* four facts in the brief sit two by two */
+.prose .brief--four{grid-template-columns:repeat(2,minmax(0,1fr));}
+@media (max-width:620px){.prose .brief--four{grid-template-columns:1fr;}}
+
+/* the way into the service, before and after: scattered steps against one page */
+.journey{margin:var(--space-5) 0 var(--space-6);display:grid;gap:var(--space-4);}
+.journey__row{
+  display:grid;grid-template-columns:72px minmax(0,1fr);gap:var(--space-3) var(--space-4);
+  align-items:center;padding:var(--space-4) var(--space-5);
+  border-radius:var(--radius-md);background:var(--gray-1);border:1px solid var(--border-hairline);
+}
+.journey__row--now{background:var(--accent-tint);border-color:rgba(226,102,31,.3);}
+.journey__k{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-secondary);
+}
+.journey__row--now .journey__k{color:var(--accent-ink);font-weight:var(--fw-semibold);}
+.prose .journey__steps{
+  list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:6px;
+}
+.prose .journey__steps li{margin:0;display:flex;align-items:center;}
+.journey__steps span{
+  padding:6px 12px;border-radius:999px;background:#fff;
+  border:1px solid var(--border-hairline);font-size:15px;line-height:1.3;color:var(--text-primary);
+}
+.journey__row--now .journey__steps span{border-color:rgba(226,102,31,.35);}
+.prose .journey__steps li + li::before{content:"\2192";margin-right:6px;color:var(--text-tertiary);}
+.journey__t{
+  grid-column:2;font-family:var(--font-display);font-size:20px;font-weight:var(--fw-semibold);
+  color:var(--text-secondary);
+}
+.journey__row--now .journey__t{color:var(--accent-ink);}
+@media (max-width:520px){
+  .journey__row{grid-template-columns:1fr;}
+  .journey__t{grid-column:1;}
+}
+
+/* ---- Daniance: product screens shown as Yidan's Figma presents them ------
+   The exports carry their own dark canvas (#121417), so the page only
+   rounds the corners and lifts them a little off the cream. */
+.dkfig{margin:var(--space-6) 0 var(--space-8);}
+.dkfig img{
+  display:block;width:100%;height:auto;
+  border-radius:20px;border:0;
+  box-shadow:0 30px 60px -28px rgba(18,20,23,.45);
+}
+.prose .dkfig figcaption{margin-top:var(--space-3);text-align:left;font-size:var(--text-body-sm);color:var(--text-tertiary);}
+@media (max-width:760px){.dkfig img{border-radius:12px;}}
+
+/* ---- Daniance: the Ask card, rebuilt from the Figma frames ----------------
+   Every card is an exact crop of the 2x export, laid over the Home frame at
+   its Figma coordinates (1440 x 900). The stage is a size container, so one
+   Figma pixel is 100cqw / 1440 at any width. */
+.dx{margin:var(--space-6) 0 var(--space-7);}
+.dx__window{
+  border-radius:20px;overflow:hidden;background:#121417;
+  box-shadow:0 30px 60px -28px rgba(18,20,23,.45);
+  padding:0 calc(var(--space-5) * .8) calc(var(--space-5) * .8);
+}
+.dx__bar{display:flex;align-items:center;gap:7px;height:38px;position:relative;}
+.dx__bar i{width:11px;height:11px;border-radius:50%;background:#FF5F57;}
+.dx__bar i:nth-child(2){background:#FEBC2E;}
+.dx__bar i:nth-child(3){background:#28C840;}
+.dx__bar span{
+  position:absolute;left:50%;transform:translateX(-50%);
+  padding:3px 14px;border-radius:6px;background:#22252B;
+  font-family:var(--font-mono);font-size:11px;color:#9AA0AB;letter-spacing:.02em;
+}
+.dx__stage{
+  position:relative;container-type:inline-size;aspect-ratio:1440 / 900;
+  border-radius:10px;overflow:hidden;background:#EEF0F3;cursor:default;
+}
+.dx__bg{position:absolute;inset:0;width:100%;height:100%;display:block;}
+
+.dx__card{
+  position:absolute;overflow:hidden;background:#fff;
+  border-radius:calc(20 / 1440 * 100cqw);
+  transition:left .7s cubic-bezier(.2,.8,.2,1),top .7s cubic-bezier(.2,.8,.2,1),
+             width .7s cubic-bezier(.2,.8,.2,1),height .7s cubic-bezier(.2,.8,.2,1),
+             opacity .45s ease,transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.dx__card img{position:absolute;left:0;top:0;height:auto;display:block;transition:opacity .35s ease;}
+.dx__card img + img{opacity:0;}
+
+/* Home */
+.dx__ask{left:18.6111%;top:35.3333%;width:25.8333%;height:35.5556%;
+  background:#F7F6FF;box-shadow:0 calc(14 / 1440 * 100cqw) calc(44 / 1440 * 100cqw) rgba(91,77,240,.20);}
+.dx__fc{left:45.8333%;top:35.3333%;width:53.0556%;height:35.5556%;}
+.dx__goals{left:18.6111%;top:72.6667%;width:25.8333%;height:25.7778%;}
+.dx__alert{left:45.8333%;top:72.6667%;width:53.0556%;height:25.7778%;}
+.dx__ask img:nth-child(1),.dx__goals img{width:calc(372 / 1440 * 100cqw);}
+.dx__ask img:nth-child(2),.dx__ask img:nth-child(3){width:calc(1156 / 1440 * 100cqw);}
+.dx__fc img,.dx__alert img{width:calc(764 / 1440 * 100cqw);}
+
+/* Open: the card takes the row, the forecast drops a row, goals slides right */
+.dx[data-state="thinking"] .dx__ask,
+.dx[data-state="answer"] .dx__ask{width:80.2778%;height:33.3333%;}
+.dx[data-state="answer"] .dx__ask{height:32.8889%;}
+.dx[data-state="thinking"] .dx__fc,
+.dx[data-state="answer"] .dx__fc{left:18.6111%;top:70%;height:26.4444%;}
+.dx[data-state="thinking"] .dx__goals,
+.dx[data-state="answer"] .dx__goals{left:73.0556%;top:70%;height:26.6667%;}
+.dx[data-state="thinking"] .dx__alert,
+.dx[data-state="answer"] .dx__alert{opacity:0;transform:translateY(12%);}
+
+.dx[data-state="thinking"] .dx__ask img:nth-child(1),
+.dx[data-state="answer"] .dx__ask img:nth-child(1){opacity:0;transition-duration:.15s;}
+.dx[data-state="thinking"] .dx__ask img:nth-child(2){opacity:1;}
+.dx[data-state="answer"] .dx__ask img:nth-child(3){opacity:1;}
+.dx[data-state="thinking"] .dx__fc img:nth-child(1),
+.dx[data-state="answer"] .dx__fc img:nth-child(1),
+.dx[data-state="thinking"] .dx__goals img:nth-child(1),
+.dx[data-state="answer"] .dx__goals img:nth-child(1){opacity:0;}
+.dx[data-state="thinking"] .dx__fc img:nth-child(2),
+.dx[data-state="answer"] .dx__fc img:nth-child(2),
+.dx[data-state="thinking"] .dx__goals img:nth-child(2),
+.dx[data-state="answer"] .dx__goals img:nth-child(2){opacity:1;}
+
+/* what a visitor can press: the question chip on Home, and anywhere else to close */
+.dx__hit{
+  position:absolute;z-index:3;border:0;padding:0;background:transparent;cursor:pointer;
+  left:20.1042%;top:48.3889%;width:17.5694%;height:5.1111%;border-radius:calc(23 / 1440 * 100cqw);
+}
+.dx__hit:focus-visible{outline:2px solid #5B4DF0;outline-offset:2px;}
+.dx[data-state="thinking"] .dx__hit,.dx[data-state="answer"] .dx__hit{display:none;}
+
+/* the pointer that shows the clicks while it plays on its own */
+.dx__cursor{
+  position:absolute;z-index:4;left:83.3%;top:91%;width:calc(22 / 1440 * 100cqw);height:calc(22 / 1440 * 100cqw);
+  margin:calc(-2 / 1440 * 100cqw) 0 0 calc(-2 / 1440 * 100cqw);
+  transition:left .9s cubic-bezier(.45,0,.25,1),top .9s cubic-bezier(.45,0,.25,1),opacity .3s;
+  pointer-events:none;opacity:0;
+}
+.dx.is-playing .dx__cursor{opacity:1;}
+.dx__cursor svg{width:100%;height:100%;display:block;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35));}
+.dx__cursor::after{
+  content:"";position:absolute;left:0;top:0;width:180%;height:180%;margin:-40% 0 0 -40%;
+  border-radius:50%;background:rgba(91,77,240,.35);transform:scale(0);opacity:0;
+}
+.dx__cursor.is-click::after{animation:dxclick .45s ease-out;}
+@keyframes dxclick{0%{transform:scale(.2);opacity:.9}100%{transform:scale(1.4);opacity:0}}
+
+/* the three steps under it, lit in time with the stage */
+.dx__ctl{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-5);margin-top:var(--space-4);}
+.prose .dx__steps{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-5);counter-reset:dx;}
+.prose .dx__steps li{
+  margin:0;font-size:var(--text-body-sm);color:var(--text-tertiary);transition:color .3s;
+  counter-increment:dx;
+}
+.prose .dx__steps li::before{
+  content:"0" counter(dx);margin-right:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;
+}
+.prose .dx__steps li.is-on{color:var(--accent-ink);font-weight:var(--fw-semibold);}
+.dx__play{
+  flex:none;padding:6px 14px;border-radius:999px;border:1px solid var(--border-hairline);
+  background:#fff;font:inherit;font-size:13px;color:var(--text-primary);cursor:pointer;
+}
+.dx__play:hover{border-color:var(--accent-ink);color:var(--accent-ink);}
+.prose .dx figcaption{margin-top:var(--space-3);font-size:var(--text-body-sm);color:var(--text-tertiary);}
+@media (max-width:760px){
+  .dx__window{border-radius:12px;padding:0 8px 8px;}
+  .dx__bar{height:28px;}
+  .dx__bar span{display:none;}
+  .dx__ctl{flex-direction:column;gap:var(--space-3);}
+}
+@media (prefers-reduced-motion: reduce){
+  .dx__card,.dx__card img,.dx__cursor{transition-duration:.01ms !important;}
+  .dx__cursor{display:none;}
+}
+/* folding back: the open card stays on screen while it shrinks to the left,
+   and the small card only fades in once the box is its size again */
+.dx__ask{z-index:2;}
+.dx__ask img:nth-child(1){transition:opacity .3s ease .45s;}
+.dx__ask img:nth-child(2),.dx__ask img:nth-child(3){transition:opacity .3s ease .45s;}
+.dx[data-state="thinking"] .dx__ask img:nth-child(1),
+.dx[data-state="answer"] .dx__ask img:nth-child(1){transition:opacity .15s ease 0s;}
+.dx[data-state="thinking"] .dx__ask img:nth-child(2),
+.dx[data-state="answer"] .dx__ask img:nth-child(3){transition:opacity .3s ease 0s;}
+/* the page caps images at their box; these must keep their Figma size while the box changes */
+.dx__card img{max-width:none;}
+
+/* Figma frames whose content runs to their own edge get a margin of the same
+   dark canvas, so the rounded panel never cuts a card corner or a shadow */
+.dkfig > img{background:#121417;}
+.dkfig:not(.dkfig--bare) > img{
+  padding:clamp(12px, 2.4vw, 34px);box-sizing:border-box;
+}
